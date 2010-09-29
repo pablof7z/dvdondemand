@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :order_items
+  map.resources :packaging_options
 
   map.resources :shipments
 
@@ -7,8 +7,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :payments
 
-  map.resources :orders
-
+  map.resources :orders do |order|
+    order.resources :order_items
+  end
 
   map.resources :publishers do |publisher|
     publisher.resources :catalogs do |catalog|
