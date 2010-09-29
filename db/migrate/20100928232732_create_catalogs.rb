@@ -1,7 +1,7 @@
 class CreateCatalogs < ActiveRecord::Migration
   def self.up
     create_table :catalogs do |t|
-      t.string :name
+      t.string :title
       t.references :publisher
       t.timestamps
     end
