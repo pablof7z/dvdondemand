@@ -5,9 +5,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :packaging_options
 
-  map.resources :customers
-
-  map.resources :payments
+  map.resources :customers do |customer|
+    customer.resources :customer_payments
+  end
 
   map.resources :orders do |order|
     order.resources :order_items
