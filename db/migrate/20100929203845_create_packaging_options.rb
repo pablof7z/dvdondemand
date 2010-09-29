@@ -1,9 +1,8 @@
 class CreatePackagingOptions < ActiveRecord::Migration
   def self.up
     create_table :packaging_options do |t|
-      t.string :name
+      t.string :title
       t.float :price
-
       t.timestamps
     end
   end
