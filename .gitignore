@@ -1,4 +1,5 @@
 .rvmrc
 db/schema.rb
+db/*.sqlite3
 log/*
 tmp/*
