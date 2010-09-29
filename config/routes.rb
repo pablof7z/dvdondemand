@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :packaging_options
+  map.resources :shipping_options
 
-  map.resources :shipments
+  map.resources :packaging_options
 
   map.resources :customers
 
