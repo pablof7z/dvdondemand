@@ -1,7 +1,7 @@
 class CreateProducts < ActiveRecord::Migration
   def self.up
     create_table :products do |t|
-      t.string :name
+      t.string :title
       t.string :studio
       t.float :price
       t.float :whole_price

@@ -1,7 +1,7 @@
 class CreateShippingOptions < ActiveRecord::Migration
   def self.up
     create_table :shipping_options do |t|
-      t.string :name
+      t.string :title
       t.float :price
 
       t.timestamps
