@@ -3,9 +3,10 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products do |t|
       t.string :title
       t.string :studio
+      t.text :description
       t.float :price
-      t.float :whole_price
-      t.float :runtime
+      t.float :wholesale_price
+      t.integer :running_time
       t.references :publisher
       t.timestamps
     end

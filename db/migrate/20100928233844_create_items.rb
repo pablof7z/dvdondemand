@@ -2,7 +2,7 @@ class CreateItems < ActiveRecord::Migration
   def self.up
     create_table :items do |t|
       t.string :title
-      t.float :runtime
+      t.integer :running_time
       t.references :publisher
       t.timestamps
     end
