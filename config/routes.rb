@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :fees
+
   map.resources :shipping_options
 
   map.resources :packaging_options
@@ -19,6 +21,7 @@ ActionController::Routing::Routes.draw do |map|
       product.resources :items
     end
     publisher.resources :items
+    publisher.resources :sales
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  description: MyString
+  amount: 1.5
+  sale: 
+
+two:
+  description: MyString
+  amount: 1.5
+  sale: 

@@ -3,9 +3,11 @@ class CreateOrders < ActiveRecord::Migration
     create_table :orders do |t|
       t.datetime :date_received
       t.datetime :date_shipped
+      t.string :tracking_code
       t.text :billing_address
       t.text :shipping_address
-      t.references :publisher
+      t.references :customer
+      t.references :sale
 
       t.timestamps
     end
