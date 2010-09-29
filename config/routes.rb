@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :payments
+
+  map.resources :orders
+
 
   map.resources :publishers do |publisher|
     publisher.resources :catalogs do |catalog|
