@@ -6,6 +6,9 @@ class CreatePublishers < ActiveRecord::Migration
       t.string :email
       t.text :address
       t.boolean :approved
+      t.float :production_fee
+      t.float :processing_fee
+      t.float :get_stock_unit_price
       t.timestamps
     end
   end

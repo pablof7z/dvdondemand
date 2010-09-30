@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  publisher_id: 1
+  deposit_1: 1
+  deposit_2: 1
+  bank: MyString
+  account: 1
+  routing: 1
+
+two:
+  publisher_id: 1
+  deposit_1: 1
+  deposit_2: 1
+  bank: MyString
+  account: 1
+  routing: 1
