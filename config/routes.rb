@@ -1,7 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.devise_for :users
 
-
   map.resources :fees
 
   map.resources :shipping_options
@@ -28,7 +27,7 @@ ActionController::Routing::Routes.draw do |map|
     publisher.resources :sales
     publisher.resources :publisher_payments
   end
-
+  
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
