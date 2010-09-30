@@ -1,0 +1,34 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to t("web-app-theme.list", :default => "List"), products_path
+      %li= link_to t("web-app-theme.new", :default => "New"), new_product_path
+      %li.active= link_to t("web-app-theme.show", :default => "Show"), product_path
+  .content
+    .inner
+      %p
+        <b>#{ t("activerecord.attributes.product.product_type", :default => t("activerecord.labels.product_type", :default => "Product type")) }:</b>
+        = @product.product_type
+      %p
+        <b>#{ t("activerecord.attributes.product.title", :default => t("activerecord.labels.title", :default => "Title")) }:</b>
+        = @product.title
+      %p
+        <b>#{ t("activerecord.attributes.product.studio", :default => t("activerecord.labels.studio", :default => "Studio")) }:</b>
+        = @product.studio
+      %p
+        <b>#{ t("activerecord.attributes.product.description", :default => t("activerecord.labels.description", :default => "Description")) }:</b>
+        = @product.description
+      %p
+        <b>#{ t("activerecord.attributes.product.price", :default => t("activerecord.labels.price", :default => "Price")) }:</b>
+        = @product.price
+      %p
+        <b>#{ t("activerecord.attributes.product.running_time", :default => t("activerecord.labels.running_time", :default => "Running time")) }:</b>
+        = @product.running_time
+      %p
+        <b>#{ t("activerecord.attributes.product.publisher_id", :default => t("activerecord.labels.publisher_id", :default => "Publisher")) }:</b>
+        = @product.publisher_id
+      .wat-cf
+        #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => t("web-app-theme.edit", :default=> "Edit"))} #{t("web-app-theme.edit", :default=> "Edit")}", edit_product_path(@product), :class => "button" } 
+        #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => t("web-app-theme.delete", :default=> "Delete"))} #{t("web-app-theme.delete", :default => "Delete")}", product_path(@product), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
+
+- content_for :sidebar, render(:partial => 'sidebar')

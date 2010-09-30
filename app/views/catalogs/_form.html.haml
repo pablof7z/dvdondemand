@@ -1,0 +1,21 @@
+
+.group
+  = f.label :title, t("activerecord.attributes.catalog.title", :default => "Title"), :class => :label
+  = f.text_field :title, :class => 'text_field'
+  <span class="description">Ex: a simple text</span>
+
+.group
+  = f.label :description, t("activerecord.attributes.catalog.description", :default => "Description"), :class => :label
+  = f.text_area :description, :class => 'text_area'
+  <span class="description">Ex: a simple text</span>
+
+.group
+  = f.label :publisher_id, t("activerecord.attributes.catalog.publisher_id", :default => "Publisher"), :class => :label
+  = f.text_field :publisher_id, :class => 'text_field'
+  <span class="description">Ex: a simple text</span>
+        
+.group.navform.wat-cf
+  %button.button{:type => 'submit'}
+    = image_tag("web-app-theme/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}")
+    = t("web-app-theme.save", :default => "Save")
+  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.cancel", :default => "Cancel")}")} #{t("web-app-theme.cancel", :default => "Cancel")}", catalogs_path, :class => "button"

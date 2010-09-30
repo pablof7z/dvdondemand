@@ -20,6 +20,7 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "haml", :version => '3.0.21'
+  config.gem "inherited_resources", :version => '1.0.6'
   config.gem "warden"
   config.gem "devise", :version => '1.0.8'
 

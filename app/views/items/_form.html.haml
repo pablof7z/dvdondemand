@@ -1,0 +1,36 @@
+
+.group
+  = f.label :title, t("activerecord.attributes.item.title", :default => "Title"), :class => :label
+  = f.text_field :title, :class => 'text_field'
+  <span class="description">Ex: a simple text</span>
+
+.group
+  = f.label :artist, t("activerecord.attributes.item.artist", :default => "Artist"), :class => :label
+  = f.text_field :artist, :class => 'text_field'
+  <span class="description">Ex: a simple text</span>
+
+.group
+  = f.label :genre, t("activerecord.attributes.item.genre", :default => "Genre"), :class => :label
+  = f.text_field :genre, :class => 'text_field'
+  <span class="description">Ex: a simple text</span>
+
+.group
+  = f.label :media_type, t("activerecord.attributes.item.media_type", :default => "Media type"), :class => :label
+  = f.text_field :media_type, :class => 'text_field'
+  <span class="description">Ex: a simple text</span>
+
+.group
+  = f.label :running_time, t("activerecord.attributes.item.running_time", :default => "Running time"), :class => :label
+  = f.text_field :running_time, :class => 'text_field'
+  <span class="description">Ex: a simple text</span>
+
+.group
+  = f.label :publisher_id, t("activerecord.attributes.item.publisher_id", :default => "Publisher"), :class => :label
+  = f.text_field :publisher_id, :class => 'text_field'
+  <span class="description">Ex: a simple text</span>
+        
+.group.navform.wat-cf
+  %button.button{:type => 'submit'}
+    = image_tag("web-app-theme/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}")
+    = t("web-app-theme.save", :default => "Save")
+  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.cancel", :default => "Cancel")}")} #{t("web-app-theme.cancel", :default => "Cancel")}", items_path, :class => "button"
