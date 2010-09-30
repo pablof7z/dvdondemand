@@ -6,6 +6,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :tracking_code
       t.text :billing_address
       t.text :shipping_address
+      t.boolean :returned
       t.references :customer
       t.references :sale
 

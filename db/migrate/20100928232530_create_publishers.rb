@@ -1,9 +1,11 @@
 class CreatePublishers < ActiveRecord::Migration
   def self.up
     create_table :publishers do |t|
-      t.string :name
+      t.string :first_name
+      t.string :last_name
+      t.string :email
       t.text :address
-      t.boolean :is_approved
+      t.boolean :approved
       t.timestamps
     end
   end
