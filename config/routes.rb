@@ -20,6 +20,7 @@ ActionController::Routing::Routes.draw do |map|
     end
     publisher.resources :products do |product|
       product.resources :items
+      product.resources :wholesale_prices
     end
     publisher.resources :items
     publisher.resources :sales
