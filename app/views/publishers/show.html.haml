@@ -4,6 +4,7 @@
       %li.first= link_to t("web-app-theme.list", :default => "List"), publishers_path
       %li= link_to t("web-app-theme.new", :default => "New"), new_publisher_path
       %li.active= link_to t("web-app-theme.show", :default => "Show"), publisher_path
+      %li= link_to t("web-app-theme.new", :default => "Catalogs &raquo;"), publisher_catalogs_path(@publisher)
   .content
     .inner
       %p
@@ -22,7 +23,7 @@
         <b>#{ t("activerecord.attributes.publisher.approved", :default => t("activerecord.labels.approved", :default => "Approved")) }:</b>
         = @publisher.approved
       .wat-cf
-        #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => t("web-app-theme.edit", :default=> "Edit"))} #{t("web-app-theme.edit", :default=> "Edit")}", edit_publisher_path(@publisher), :class => "button" } 
+        #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => t("web-app-theme.edit", :default=> "Edit"))} #{t("web-app-theme.edit", :default=> "Edit")}", edit_publisher_path(@publisher), :class => "button" }
         #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => t("web-app-theme.delete", :default=> "Delete"))} #{t("web-app-theme.delete", :default => "Delete")}", publisher_path(@publisher), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
 
 - content_for :sidebar, render(:partial => 'sidebar')

@@ -1,8 +1,9 @@
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first.active= link_to "#{t("web-app-theme.list", :default => "List")}", catalogs_path
-      %li= link_to "#{t("web-app-theme.new", :default => "New")}", new_catalog_path
+      %li.first= link_to "&laquo; #{@publisher.first_name} #{@publisher.last_name}", publisher_path(@publisher)
+      %li.active= link_to "#{t("web-app-theme.list", :default => "Catalogs")}", publisher_catalogs_path(@publisher)
+      %li= link_to "#{t("web-app-theme.new", :default => "New")}", new_publisher_catalog_path(@publisher)
   .content
     %h2.title #{ t("web-app-theme.all", :default => "All") } Catalogs
     .inner
@@ -15,15 +16,15 @@
         - @catalogs.each do |catalog|
           %tr{:class => cycle("odd", "even")}
             %td= catalog.id
-            %td= link_to catalog.title, catalog_path(catalog)
+            %td= link_to catalog.title, publisher_catalog_path(@publisher,catalog)
             %td= catalog.created_at
             %td.last
-              = link_to t("web-app-theme.show", :default => "Show"), catalog_path(catalog)
+              = link_to t("web-app-theme.show", :default => "Show"), publisher_catalog_path(@publisher,catalog)
               |
-              = link_to t("web-app-theme.edit", :default => "Edit"), edit_catalog_path(catalog)
+              = link_to t("web-app-theme.edit", :default => "Edit"), edit_publisher_catalog_path(@publisher,catalog)
               |
-              = link_to t("web-app-theme.delete", :default => "Delete"), catalog_path(catalog), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+              = link_to t("web-app-theme.delete", :default => "Delete"), publisher_catalog_path(@publisher,catalog), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
       .actions-bar.wat-cf
         .actions
-        
+
 - content_for :sidebar, render(:partial => 'sidebar')

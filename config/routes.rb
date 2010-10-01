@@ -31,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :products
   map.resources :items
 
-  map.root :controller => 'publisher', :action => 'index'
+  map.root :publishers
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

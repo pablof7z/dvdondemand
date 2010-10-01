@@ -13,9 +13,9 @@
   = f.label :publisher_id, t("activerecord.attributes.catalog.publisher_id", :default => "Publisher"), :class => :label
   = f.text_field :publisher_id, :class => 'text_field'
   <span class="description">Ex: a simple text</span>
-        
+
 .group.navform.wat-cf
   %button.button{:type => 'submit'}
     = image_tag("web-app-theme/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}")
     = t("web-app-theme.save", :default => "Save")
-  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.cancel", :default => "Cancel")}")} #{t("web-app-theme.cancel", :default => "Cancel")}", catalogs_path, :class => "button"
+  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.cancel", :default => "Cancel")}")} #{t("web-app-theme.cancel", :default => "Cancel")}", publisher_catalogs_path(@publisher), :class => "button"
