@@ -1,7 +1,7 @@
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first.active= link_to "#{t("web-app-theme.list", :default => "List")}", publishers_path
+      %li.first.active= link_to "#{t("web-app-theme.list", :default => "All Publishers")}", publishers_path
       %li= link_to "#{t("web-app-theme.new", :default => "New")}", new_publisher_path
   .content
     %h2.title #{ t("web-app-theme.all", :default => "All") } Publishers
@@ -23,6 +23,8 @@
               = link_to t("web-app-theme.edit", :default => "Edit"), edit_publisher_path(publisher)
               |
               = link_to t("web-app-theme.delete", :default => "Delete"), publisher_path(publisher), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+              ||
+              = link_to 'Catalogs', publisher_catalogs_path(publisher)
       .actions-bar.wat-cf
         .actions
 
