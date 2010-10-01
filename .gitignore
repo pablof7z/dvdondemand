@@ -1,4 +1,7 @@
+.bundle
 .rvmrc
+.yardoc
+*.lock
 db/schema.rb
 db/*.sqlite3
 log/*
