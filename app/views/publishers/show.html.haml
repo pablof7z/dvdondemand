@@ -4,7 +4,8 @@
       %li.first= link_to t("web-app-theme.list", :default => "All Publishers"), publishers_path
       %li= link_to t("web-app-theme.new", :default => "New"), new_publisher_path
       %li.active= link_to t("web-app-theme.show", :default => "Show"), publisher_path
-      %li= link_to t("web-app-theme.new", :default => "Catalogs &raquo;"), publisher_catalogs_path(@publisher)
+      %li= link_to "Catalogs (#{@publisher.catalogs.count}) &raquo;", publisher_catalogs_path(@publisher)
+      %li= link_to "Products (#{@publisher.products.count}) &raquo;", publisher_products_path(@publisher)
   .content
     .inner
       %p

@@ -1,12 +1,12 @@
 
 .group
-  = f.label :product_type, t("activerecord.attributes.product.product_type", :default => "Product type"), :class => :label
-  = f.text_field :product_type, :class => 'text_field'
+  = f.label :title, t("activerecord.attributes.product.title", :default => "Title"), :class => :label
+  = f.text_field :title, :class => 'text_field'
   <span class="description">Ex: a simple text</span>
 
 .group
-  = f.label :title, t("activerecord.attributes.product.title", :default => "Title"), :class => :label
-  = f.text_field :title, :class => 'text_field'
+  = f.label :product_type, t("activerecord.attributes.product.product_type", :default => "Product type"), :class => :label
+  = f.text_field :product_type, :class => 'text_field'
   <span class="description">Ex: a simple text</span>
 
 .group
@@ -29,13 +29,10 @@
   = f.text_field :running_time, :class => 'text_field'
   <span class="description">Ex: a simple text</span>
 
-.group
-  = f.label :publisher_id, t("activerecord.attributes.product.publisher_id", :default => "Publisher"), :class => :label
-  = f.text_field :publisher_id, :class => 'text_field'
-  <span class="description">Ex: a simple text</span>
-        
+= f.hidden_field :publisher_id
+
 .group.navform.wat-cf
   %button.button{:type => 'submit'}
     = image_tag("web-app-theme/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}")
     = t("web-app-theme.save", :default => "Save")
-  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.cancel", :default => "Cancel")}")} #{t("web-app-theme.cancel", :default => "Cancel")}", products_path, :class => "button"
+  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.cancel", :default => "Cancel")}")} #{t("web-app-theme.cancel", :default => "Cancel")}", publisher_products_path(@publisher), :class => "button"

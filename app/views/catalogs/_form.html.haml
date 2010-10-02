@@ -9,10 +9,7 @@
   = f.text_area :description, :class => 'text_area'
   <span class="description">Ex: a simple text</span>
 
-.group
-  = f.label :publisher_id, t("activerecord.attributes.catalog.publisher_id", :default => "Publisher"), :class => :label
-  = f.text_field :publisher_id, :class => 'text_field'
-  <span class="description">Ex: a simple text</span>
+= f.hidden_field :publisher_id
 
 .group.navform.wat-cf
   %button.button{:type => 'submit'}
