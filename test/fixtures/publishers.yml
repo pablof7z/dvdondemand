@@ -14,4 +14,12 @@ jane:
   last_name: Barfoo
   email: jane@bar.foo
   address: South of the border
+  approved: true
+
+newbie:
+  id: 3
+  first_name: Dummy
+  last_name: Newbie
+  email: dummy@new.bie
+  address: In the middle of the border
   approved: false

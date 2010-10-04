@@ -11,3 +11,9 @@ rock:
   publisher_id: 2
   title: Rare Rock Stuff
   description: Just as it name implies
+
+rock_on:
+  id: 3
+  publisher_id: 2
+  title: More Rare Rock Stuff
+  description: Just as it name implies
