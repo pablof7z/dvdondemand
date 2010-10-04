@@ -16,7 +16,7 @@
         - @products.each do |product|
           %tr{:class => cycle("odd", "even")}
             %td= product.id
-            %td= link_to product.title, product_path(product)
+            %td= link_to product.title, publisher_product_path(@publisher,product)
             %td= product.created_at
             %td.last
               = link_to t("web-app-theme.show", :default => "Show"), publisher_product_path(@publisher,product)
