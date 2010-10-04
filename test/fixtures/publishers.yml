@@ -1,7 +1,17 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
+john:
+  id: 1
+  first_name: John
+  last_name: Foobar
+  email: john@foo.bar
+  address: North of the border
+  approved: true
 
-two:
-  name: MyString
+jane:
+  id: 2
+  first_name: Jane
+  last_name: Barfoo
+  email: jane@bar.foo
+  address: South of the border
+  approved: false

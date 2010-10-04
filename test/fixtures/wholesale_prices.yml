@@ -1,13 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  minimum_quantity: 1
-  discont_percentage: 1.5
-  enabled: false
-  product: 
+  product_id: 1
+  minimum_quantity: 10
+  discount_percentage: 25
+  enabled: true
 
 two:
-  minimum_quantity: 1
-  discont_percentage: 1.5
+  product_id: 2
+  minimum_quantity: 5
+  discount_percentage: 10
   enabled: false
-  product: 

@@ -1,11 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
-  surname: MyString
-  email: MyString
+happy:
+  id: 1
+  first_name: Happy
+  last_name: Customer
+  email: happy@customer.com
 
-two:
-  name: MyString
-  surname: MyString
-  email: MyString
+grumpy:
+  id: 2
+  first_name: Grumpy
+  last_name: Customer
+  email: grumpy@customer.com

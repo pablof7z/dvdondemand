@@ -1,9 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
-  price: 1.5
+fast:
+  title: FedEx
+  maximium_weight: 275
+  priority: true
+  price: 5.75
 
-two:
-  name: MyString
-  price: 1.5
+cheap:
+  title: USPS
+  maximium_weight: 215
+  priority: false
+  price: 1.25

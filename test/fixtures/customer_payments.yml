@@ -1,13 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  method: MyString
-  amount: 1.5
-  customer: 
-  order: 
+happy_payment:
+  customer_id: 1
+  amount: 125
+  rejected: false
+  date_processed: <%= DateTime.now %>
 
-two:
-  method: MyString
-  amount: 1.5
-  customer: 
-  order: 
+grumpy_payment:
+  customer_id: 2
+  amount: 250
+  rejected: true
+  date_processed: <%= DateTime.now %>

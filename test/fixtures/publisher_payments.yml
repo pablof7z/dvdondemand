@@ -1,13 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  method: MyString
-  amount: 1.5
-  publisher: 
-  sale: 
+johns:
+  sale_id: 1
+  publisher_id: 1
+  amount: 125
 
-two:
-  method: MyString
-  amount: 1.5
-  publisher: 
-  sale: 
+janes:
+  sale_id: 2
+  publisher_id: 2
+  amount: 250

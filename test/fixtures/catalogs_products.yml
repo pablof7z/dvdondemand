@@ -5,5 +5,5 @@ one:
   product_id: 1
 
 two:
-  catalog_id: 1
-  product_id: 1
+  catalog_id: 2
+  product_id: 2

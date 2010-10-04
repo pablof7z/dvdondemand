@@ -1,7 +1,17 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
+johns:
+  id: 1
+  publisher_id: 1
+  title: Foobar Blues Media Pack
+  studio: Almighty Records
+  price: 14.99
+  description: Play it again, Sam
 
-two:
-  name: MyString
+janes:
+  id: 2
+  publisher_id: 2
+  title: The Barfoo Rock Antology
+  studio: 2nd Grade Records
+  price: 9.99
+  description: The golden glam age

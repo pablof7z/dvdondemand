@@ -1,11 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
-  surname: MyString
-  email: MyString
+  product: products(:one)
+  quantity: 2
 
 two:
-  name: MyString
-  surname: MyString
-  email: MyString
+  product: products(:two)
+  quantity: 3

@@ -1,9 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
+johns:
   item_id: 1
   product_id: 1
 
-two:
-  item_id: 1
-  product_id: 1
+janes:
+  item_id: 2
+  product_id: 2

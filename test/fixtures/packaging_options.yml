@@ -1,9 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
+pretty:
+  title: Gift wrap
+  weight: 250
   price: 1.5
 
-two:
-  name: MyString
-  price: 1.5
+cheap:
+  title: Bottle bag wrap
+  weight: 200
+  price: 0.5
