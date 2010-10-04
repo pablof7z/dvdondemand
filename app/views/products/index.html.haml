@@ -5,7 +5,10 @@
       %li.active= link_to "Products", products_path
       %li= link_to "#{t("web-app-theme.new", :default => "New")}", new_publisher_product_path(@publisher)
   .content
-    %h2.title All #{@publisher.first_name} #{@publisher.last_name}'s Products
+    %h2.title
+      All #{@publisher.first_name} #{@publisher.last_name}'s Products
+      - unless @catalog.blank?
+        for #{@catalog.title}
     .inner
       %table.table
         %tr
