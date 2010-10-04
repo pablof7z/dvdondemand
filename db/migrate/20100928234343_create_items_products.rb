@@ -1,6 +1,6 @@
 class CreateItemsProducts < ActiveRecord::Migration
   def self.up
-    create_table :items_products do |t|
+    create_table :items_products, :id => false do |t|
       t.integer :item_id
       t.integer :product_id
     end
