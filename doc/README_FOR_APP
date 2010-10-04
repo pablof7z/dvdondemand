@@ -1,2 +1,16 @@
 Use this README file to introduce your application and point to useful places in the API for learning more.
 Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+
+## About RailRoad gem usage
+
+We're using the "tobias-railroad" fork of the RailRoad gem because it includes explicit patches to make it work with at least Rails 2.3.5.
+
+Just run this command from the app. home directory:
+
+    railroad -M --exclude=app/models/items_products.rb,app/models/catalogs_products.rb --hide-magic | neato -Tpng > doc/models.png
+
+Notable options used:
+
+* Include just the models in the graphic
+* Exclude the associations' tables to avoid unnecesary clutter
+* Hide Rails' "magic" columns/fields/attributes
