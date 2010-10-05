@@ -1,1 +1,11 @@
 /* Override here any style definide by web-app-theme */
+
+.form input.text_field_small {
+  width: 10%;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 1.2em;
+  padding: 1px 0;
+  margin: 0;
+}
+

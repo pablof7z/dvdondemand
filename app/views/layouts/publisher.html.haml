@@ -3,7 +3,7 @@
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
     %title DVDonDemand
-    = stylesheet_link_tag 'web_app_theme', "themes/drastic-dark/style", :cache => true
+    = stylesheet_link_tag 'web_app_theme', 'web_app_theme_override', "themes/drastic-dark/style", :cache => true
   %body
     #container
       #header
@@ -25,3 +25,4 @@
               %p Copyright &copy;2010 DVDonDemand
         #sidebar
           = yield :sidebar
+

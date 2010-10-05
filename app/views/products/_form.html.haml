@@ -1,45 +1,43 @@
 = f.hidden_field :publisher_id
 
 .group
-  = f.label :title, t("activerecord.attributes.product.title", :default => "Title"), :class => :label
+  = f.label :title, "Title", :class => :label
   = f.text_field :title, :class => 'text_field'
-  <span class="description">Ex: a simple text</span>
 
 .group
-  = f.label :product_type, t("activerecord.attributes.product.product_type", :default => "Product type"), :class => :label
+  = f.label :product_type, "Product Type", :class => :label
   = f.text_field :product_type, :class => 'text_field'
   <span class="description">Ex: a simple text</span>
 
 .group
-  = f.label :studio, t("activerecord.attributes.product.studio", :default => "Studio"), :class => :label
+  = f.label :studio, "Studio", :class => :label
   = f.text_field :studio, :class => 'text_field'
-  <span class="description">Ex: a simple text</span>
 
 .group
-  = f.label :description, t("activerecord.attributes.product.description", :default => "Description"), :class => :label
+  = f.label :description, "Description", :class => :label
   = f.text_area :description, :class => 'text_area'
   <span class="description">Ex: a simple text</span>
 
 .group
-  = f.label :price, t("activerecord.attributes.product.price", :default => "Price"), :class => :label
+  = f.label :price, "Price", :class => :label
   = f.text_field :price, :class => 'text_field'
 
 .group
-  = f.label :running_time, t("activerecord.attributes.product.running_time", :default => "Running time"), :class => :label
+  = f.label :running_time, "Running Time", :class => :label
   = f.text_field :running_time, :class => 'text_field'
 
 .group
-  = f.label :wholesale_price, 'Wholesale Price', :class => :label
+  = f.label :wholesale_price, 'New Wholesale Price', :class => :label
   - f.fields_for :wholesale_prices, @product.wholesale_prices.build do |wholesale_price|
-    Min. Qty.
-    = wholesale_price.text_field :minimum_quantity, :size => '10'
+    Minimum Quantity
+    = wholesale_price.text_field :minimum_quantity, :size => '10', :class => 'text_field_small'
+    &nbsp;
     Discount %
-    = wholesale_price.text_field :discount_percentage, :size => '5'
-    Enabled?
-    = wholesale_price.check_box :enabled
+    = wholesale_price.text_field :discount_percentage, :size => '5', :class => 'text_field_small'
 
 .group.navform.wat-cf
   %button.button{:type => 'submit'}
-    = image_tag("web-app-theme/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}")
+    = image_tag("web-app-theme/tick.png", :alt => "Save")
     = t("web-app-theme.save", :default => "Save")
   = link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.cancel", :default => "Cancel")}")} #{t("web-app-theme.cancel", :default => "Cancel")}", publisher_products_path(@publisher), :class => "button"
+
