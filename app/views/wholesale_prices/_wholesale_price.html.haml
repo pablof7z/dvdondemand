@@ -1,6 +1,6 @@
 - unless wholesale_price.minimum_quantity.blank? && wholesale_price.discount_percentage.blank?
   %li
-    %a{:href=>"#"}
+    %a{:href=>"#{edit_publisher_product_wholesale_price_path(wholesale_price.product.publisher,wholesale_price.product,wholesale_price)}"}
       %b Min. Qty.
       = wholesale_price.minimum_quantity
       &nbsp;
