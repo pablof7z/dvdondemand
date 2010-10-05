@@ -32,12 +32,13 @@
     Minimum Quantity
     = wholesale_price.text_field :minimum_quantity, :size => '10', :class => 'text_field_small'
     &nbsp;
-    Discount %
+    Discount
     = wholesale_price.text_field :discount_percentage, :size => '5', :class => 'text_field_small'
+    #{"%"}
 
 .group.navform.wat-cf
   %button.button{:type => 'submit'}
     = image_tag("web-app-theme/tick.png", :alt => "Save")
     = t("web-app-theme.save", :default => "Save")
-  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.cancel", :default => "Cancel")}")} #{t("web-app-theme.cancel", :default => "Cancel")}", publisher_products_path(@publisher), :class => "button"
+  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", publisher_products_path(@publisher), :class => "button"
 

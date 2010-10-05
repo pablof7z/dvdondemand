@@ -1,0 +1,34 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "&laquo; #{@publisher.first_name} #{@publisher.last_name}", publisher_path(@publisher)
+      %li= link_to "Products", publisher_products_path(@publisher)
+      %li.active= link_to "Wholesale Prices", publisher_product_wholesale_prices_path(@publisher,@product)
+      %li= link_to "New", new_publisher_product_wholesale_price_path(@publisher,@product)
+  .content
+    %h2.title All WholesalePrices for #{@product.title}
+    .inner
+      %table.table
+        %tr
+          %th.first ID
+          %th Minimum Quantity
+          %th Discount Percentage
+          %th Enabled?
+          %th.last &nbsp;
+        - @wholesale_prices.each do |wholesale_price|
+          %tr{:class => cycle("odd", "even")}
+            %td= wholesale_price.id
+            %td= link_to wholesale_price.minimum_quantity, publisher_product_wholesale_price_path(@publisher,@product,wholesale_price)
+            %td= number_to_percentage(wholesale_price.discount_percentage, :precision => 1)
+            %td= wholesale_price.enabled ? 'Yes' : 'No'
+            %td.last
+              = link_to "Show", publisher_product_wholesale_price_path(@publisher,@product,wholesale_price)
+              |
+              = link_to "Edit", edit_publisher_product_wholesale_price_path(@publisher,@product,wholesale_price)
+              |
+              = link_to "Delete", publisher_product_wholesale_price_path(@publisher,@product,wholesale_price), :method => :delete, :confirm => "Are you sure?"
+      .actions-bar.wat-cf
+        .actions
+
+- content_for :sidebar, render(:partial => 'sidebar')
+
