@@ -3,30 +3,33 @@
     %ul.wat-cf
       %li.first= link_to "&laquo; #{@publisher.first_name} #{@publisher.last_name}", publisher_path(@publisher)
       %li= link_to "Products", publisher_products_path(@publisher)
-      %li= link_to t("web-app-theme.new", :default => "New"), new_publisher_product_path(@publisher)
-      %li.active= link_to t("web-app-theme.show", :default => "Show"), publisher_product_path(@publisher)
+      %li= link_to "New", new_publisher_product_path(@publisher)
+      %li.active= link_to "Show", publisher_product_path(@publisher)
   .content
     .inner
+      - unless @product.product_type.blank?
+        %p
+          %b Product Type:
+          = @product.product_type
       %p
-        <b>#{ t("activerecord.attributes.product.product_type", :default => t("activerecord.labels.product_type", :default => "Product type")) }:</b>
-        = @product.product_type
-      %p
-        <b>#{ t("activerecord.attributes.product.title", :default => t("activerecord.labels.title", :default => "Title")) }:</b>
+        %b Title:
         = @product.title
       %p
-        <b>#{ t("activerecord.attributes.product.studio", :default => t("activerecord.labels.studio", :default => "Studio")) }:</b>
+        %b Studio:
         = @product.studio
       %p
-        <b>#{ t("activerecord.attributes.product.description", :default => t("activerecord.labels.description", :default => "Description")) }:</b>
+        %b Description:
         = @product.description
       %p
-        <b>#{ t("activerecord.attributes.product.price", :default => t("activerecord.labels.price", :default => "Price")) }:</b>
+        %b Price:
         = @product.price
-      %p
-        <b>#{ t("activerecord.attributes.product.running_time", :default => t("activerecord.labels.running_time", :default => "Running time")) }:</b>
-        = @product.running_time
+      - unless @product.running_time.blank?
+        %p
+          %b Running Time:
+          = @product.running_time
       .wat-cf
         #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => t("web-app-theme.edit", :default=> "Edit"))} #{t("web-app-theme.edit", :default=> "Edit")}", edit_publisher_product_path(@publisher,@product), :class => "button" }
         #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => t("web-app-theme.delete", :default=> "Delete"))} #{t("web-app-theme.delete", :default => "Delete")}", publisher_product_path(@publisher,@product), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
 
-- content_for :sidebar, render(:partial => 'sidebar')
+- content_for :sidebar, render(:partial => 'discounts', :locals => {:wholesale_prices => @product.wholesale_prices})
+

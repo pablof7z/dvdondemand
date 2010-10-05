@@ -1,0 +1,10 @@
+%li
+  %a{:href=>"#"}
+    %b Min. Qty.
+    = wholesale_price.minimum_quantity
+    &nbsp;
+    %b Discount
+    = number_to_percentage(wholesale_price.discount_percentage, :precision => 1)
+    &nbsp;
+    (#{number_to_currency(wholesale_price.product.price - wholesale_price.product.price*(wholesale_price.discount_percentage/100))})
+
