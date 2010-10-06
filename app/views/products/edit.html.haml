@@ -8,7 +8,7 @@
   .content
     %h2.title #{ t("web-app-theme.edit", :default => "Edit") } Product
     .inner
-      - form_for @product, :url => publisher_product_path(@publisher,@product), :html => { :class => :form } do |f|
+      - form_for @product, :url => publisher_product_path(@publisher,@product), :html => { :multipart => true, :class => :form } do |f|
         = render :partial => "form", :locals => {:f => f}
 
 - content_for :sidebar, render(:partial => 'discounts', :locals => {:wholesale_prices => @product.wholesale_prices})

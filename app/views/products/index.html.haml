@@ -18,7 +18,11 @@
           %th.last &nbsp;
         - @products.each do |product|
           %tr{:class => cycle("odd", "even")}
-            %td= product.id
+            %td
+              - if product.cover.exists?(:thumb)
+                = image_tag(product.cover.url(:thumb))
+              - else
+                = product.id
             %td= link_to product.title, publisher_product_path(@publisher,product)
             %td= product.created_at
             %td.last
