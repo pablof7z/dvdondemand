@@ -10,3 +10,4 @@ gem 'inherited_resources', '1.0.6'
 gem 'tobias-railroad', '0.10.0'
 gem 'web-app-theme', '0.5.3'
 gem "sqlite3-ruby", :require => "sqlite3"
+gem 'paperclip', '2.3.3'

@@ -21,6 +21,7 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "haml"
   config.gem "devise"
+  config.gem "paperclip"
   config.gem "inherited_resources"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
@@ -42,3 +43,4 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
+
