@@ -1,0 +1,30 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "All Customers", customers_path
+      %li= link_to "New", new_customer_path
+  .content
+    %h2.title All Customers
+    .inner
+      %table.table
+        %tr
+          %th.first ID
+          %th Name
+          %th Created at
+          %th.last &nbsp;
+        - @customers.each do |customer|
+          %tr{:class => cycle("odd", "even")}
+            %td= customer.id
+            %td= link_to "#{customer.first_name} #{customer.last_name}", customer_path(customer)
+            %td= customer.created_at
+            %td.last
+              = link_to t("web-app-theme.show", :default => "Show"), customer_path(customer)
+              |
+              = link_to t("web-app-theme.edit", :default => "Edit"), edit_customer_path(customer)
+              |
+              = link_to t("web-app-theme.delete", :default => "Delete"), customer_path(customer), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+      .actions-bar.wat-cf
+        .actions
+
+- content_for :sidebar, render(:partial => 'sidebar')
+

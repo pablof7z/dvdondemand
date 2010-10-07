@@ -1,0 +1,32 @@
+!!! Strict
+%html
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %title DVDonDemand
+    = stylesheet_link_tag "web_app_theme", "web_app_theme_override", "themes/djime-cerulean/style", :cache => true
+  %body
+    #container
+      #header
+        %h1= link_to 'OnDemand WebStore', root_path
+        #user-navigation
+          %ul.wat-cf
+            %li= link_to 'Profile', root_path
+            %li= link_to 'Logout', root_path
+        #main-navigation
+          %ul.wat-cf
+            %li.active= link_to 'Customers', customers_path
+            %li= link_to 'Sales', root_path
+            %li= link_to 'Reports', root_path
+      #wrapper.wat-cf
+        .flash
+          - flash.each do |type, message|
+            .message{:class => type.to_s}
+              <p>#{ message }</p>
+        #main
+          = yield
+          #footer
+            .block
+              %p Copyright &copy;2010 DVDonDemand
+        #sidebar
+          = yield :sidebar
+
