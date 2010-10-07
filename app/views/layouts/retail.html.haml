@@ -7,14 +7,15 @@
   %body
     #container
       #header
-        %h1= link_to 'OnDemand WebStore', root_path
+        %h1= link_to 'OnDemand Retail WebStore', root_path
         #user-navigation
           %ul.wat-cf
             %li= link_to 'Profile', root_path
             %li= link_to 'Logout', root_path
         #main-navigation
           %ul.wat-cf
-            %li.active= link_to 'Customers', customers_path
+            %li.active= link_to 'Catalogs', retail_catalogs_path
+            %li= link_to 'Customers', customers_path
             %li= link_to 'Sales', root_path
             %li= link_to 'Reports', root_path
       #wrapper.wat-cf

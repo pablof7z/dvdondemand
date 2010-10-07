@@ -1,0 +1,25 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "All Catalogs", retail_catalogs_path
+  .content
+    %h2.title All Catalogs
+    .inner
+      %table.table
+        %tr
+          %th.first ID
+          %th Title
+          %th Publisher
+          %th.last &nbsp;
+        - @catalogs.each do |catalog|
+          %tr{:class => cycle("odd", "even")}
+            %td= catalog.id
+            %td= link_to catalog.title, retail_catalog_path(catalog)
+            %td= "#{catalog.publisher.first_name} #{catalog.publisher.last_name}"
+            %td.last
+              = link_to "Show", retail_catalog_path(catalog)
+      .actions-bar.wat-cf
+        .actions
+
+- content_for :sidebar, render(:partial => 'sidebar')
+

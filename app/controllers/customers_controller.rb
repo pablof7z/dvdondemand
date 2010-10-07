@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   inherit_resources
 
-  layout 'customer'
+  layout 'retail'
 end
 
