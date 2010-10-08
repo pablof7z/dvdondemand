@@ -15,7 +15,7 @@
           %tr{:class => cycle("odd", "even")}
             %td= catalog.id
             %td= link_to catalog.title, retail_catalog_path(catalog)
-            %td= "#{catalog.publisher.first_name} #{catalog.publisher.last_name}"
+            %td= catalog.publisher.full_name
             %td.last
               = link_to "Show", retail_catalog_path(catalog)
       .actions-bar.wat-cf

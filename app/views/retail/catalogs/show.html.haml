@@ -7,7 +7,7 @@
     .inner
       %p
         %b Publisher:
-        = "#{@catalog.publisher.first_name} #{@catalog.publisher.last_name}"
+        = @catalog.publisher.full_name
       %p
         %b Description:
         = @catalog.description

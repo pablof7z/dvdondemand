@@ -1,7 +1,7 @@
 class Retail::CatalogsController < ApplicationController
   inherit_resources
   actions :index, :show
-  respond_to :xml
+  respond_to :xml, :rss
 
   layout 'retail'
 
