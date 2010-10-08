@@ -5,15 +5,19 @@ blues:
   publisher_id: 1
   title: Assorted Blues
   description: Just as it name implies
+  private: false
 
 rock:
   id: 2
   publisher_id: 2
   title: Rare Rock Stuff
   description: Just as it name implies
+  private: false
 
 rock_on:
   id: 3
   publisher_id: 2
   title: More Rare Rock Stuff
   description: Just as it name implies
+  private: true
+
