@@ -23,11 +23,11 @@ ActionController::Routing::Routes.draw do |map|
         product.resources :items
         product.resources :wholesale_prices
       end
-      publisher.resources :items
-      publisher.resources :products
       publisher.resources :sales
-      publisher.resources :publisher_payments
+      publisher.resources :publisher_payments, :as => :payments
     end
+    publish.resources :items
+    publish.resources :products
   end
 
   # remove non-nested resources once authentication is worked out

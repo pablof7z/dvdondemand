@@ -1,0 +1,34 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "&laquo; #{@publisher.first_name} #{@publisher.last_name}", publish_publisher_path(@publisher)
+      %li.active= link_to "Products", publish_products_path
+      %li= link_to "New", new_publish_publisher_product_path(@publisher)
+  .content
+    %h2.title
+      All #{@publisher.first_name} #{@publisher.last_name}'s Products
+      - unless @catalog.blank?
+        for #{@catalog.title}
+    .inner
+      %table.table
+        %tr
+          %th.first ID
+          %th Title
+          %th Created at
+          %th.last &nbsp;
+        - @products.each do |product|
+          %tr{:class => cycle("odd", "even")}
+            %td= product.id
+            %td= link_to product.title, publish_publisher_product_path(@publisher,product)
+            %td= product.created_at
+            %td.last
+              = link_to "Show", publish_publisher_product_path(@publisher,product)
+              |
+              = link_to "Edit", edit_publish_publisher_product_path(@publisher,product)
+              |
+              = link_to "Delete", publish_publisher_product_path(@publisher,product), :method => :delete, :confirm => "Are you sure?"
+      .actions-bar.wat-cf
+        .actions
+
+- content_for :sidebar, render(:partial => 'sidebar')
+
