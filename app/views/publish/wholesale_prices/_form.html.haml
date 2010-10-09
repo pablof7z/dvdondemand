@@ -12,10 +12,11 @@
 .group
   = f.label :enabled, "Enabled", :class => :label
   = f.check_box :enabled, :class => 'check_box'
+  Yes
 
 .group.navform.wat-cf
   %button.button{:type => 'submit'}
     = image_tag("web-app-theme/tick.png", :alt => "Save")
     = t("web-app-theme.save", :default => "Save")
-  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", publisher_product_wholesale_prices_path(@publisher,@product), :class => "button"
+  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", publish_publisher_product_wholesale_prices_path(@publisher,@product), :class => "button"
 

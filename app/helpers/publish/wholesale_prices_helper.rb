@@ -1,0 +1,2 @@
+module Publish::WholesalePricesHelper
+end
