@@ -7,16 +7,16 @@
   %body
     #container
       #header
-        %h1= link_to 'OnDemand WebStore', root_path
+        %h1= link_to 'OnDemand WebStore', '#'
         #user-navigation
           %ul.wat-cf
-            %li= link_to 'Profile', root_path
-            %li= link_to 'Logout', root_path
+            %li= link_to 'Profile', '#'
+            %li= link_to 'Logout', '#'
         #main-navigation
           %ul.wat-cf
-            %li.active= link_to 'Publishers', publishers_path
-            %li= link_to 'Sales', root_path
-            %li= link_to 'Reports', root_path
+            %li.active= link_to 'Publishers', publish_publishers_path
+            %li= link_to 'Sales', '#'
+            %li= link_to 'Reports', '#'
       #wrapper.wat-cf
         #main
           = yield

@@ -1,0 +1,13 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "All Publishers", publish_publishers_path
+      %li= link_to "New", new_publish_publisher_path
+      %li.active= link_to "Edit", edit_publish_publisher_path
+  .content
+    %h2.title Edit Publisher
+    .inner
+      - form_for @publisher, :url => publish_publisher_path(@publisher), :html => { :class => :form } do |f|
+        = render :partial => "form", :locals => {:f => f}
+
+- content_for :sidebar, render(:partial => 'sidebar')

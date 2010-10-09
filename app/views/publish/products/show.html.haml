@@ -1,0 +1,57 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "&laquo; #{@publisher.first_name} #{@publisher.last_name}", publish_publisher_path(@publisher)
+      %li= link_to "Products", publish_publisher_products_path(@publisher)
+      %li= link_to "New", new_publish_publisher_product_path(@publisher)
+      %li.active= link_to "Show", publish_publisher_product_path(@publisher)
+  .content
+    .inner
+      - unless @product.product_type.blank?
+        %p
+          %b Product Type:
+          = @product.product_type
+      - if @product.cover.exists?(:medium)
+        %p= image_tag(@product.cover.url(:medium))
+        %p= link_to 'Full size Cover art', @product.cover.url, :target => :blank
+      %p
+        %b Title:
+        = @product.title
+      %p
+        %b Studio:
+        = @product.studio
+      %p
+        %b Description:
+        = @product.description
+      %p
+        %b Price:
+        = number_to_currency(@product.price)
+      - unless @product.running_time.blank?
+        %p
+          %b Running Time:
+          = @product.running_time
+      .wat-cf
+        #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_publish_publisher_product_path(@publisher,@product), :class => "button" }
+        #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", publish_publisher_product_path(@publisher,@product), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
+      - unless @product.catalogs.empty?
+        %p This Product is featured in the following Catalogs:
+        %table.table
+          %tr
+            %th.first ID
+            %th Title
+            %th Created at
+            %th Private
+            %th.last &nbsp;
+          - @product.catalogs.each do |catalog|
+            %tr{:class => cycle("odd", "even")}
+              %td= catalog.id
+              %td= link_to catalog.title, publish_publisher_catalog_path(@publisher,catalog)
+              %td= catalog.created_at
+              %td= catalog.private ? 'Yes' : 'No'
+
+- content_for :sidebar, render(:partial => 'discounts', :locals => {:wholesale_prices => @product.wholesale_prices})
+- content_for :sidebar do
+  %ul.navigation
+    %li
+      = link_to 'Manage all wholesale prices for this product', publish_publisher_product_wholesale_prices_path(@publisher,@product)
+
