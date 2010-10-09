@@ -12,6 +12,7 @@
 .group
   = f.label :private, "Private", :class => :label
   = f.check_box :private, :class => 'check_box'
+  Yes
 
 .group
   = f.label :password, "Password", :class => :label
@@ -22,5 +23,5 @@
   %button.button{:type => 'submit'}
     = image_tag("web-app-theme/tick.png", :alt => "Save")
     = t("web-app-theme.save", :default => "Save")
-  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", publisher_catalogs_path(@publisher), :class => "button"
+  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", publish_publisher_catalogs_path(@publisher), :class => "button"
 

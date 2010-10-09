@@ -1,4 +1,4 @@
-class CatalogsController < ApplicationController
+class Publish::CatalogsController < ApplicationController
   inherit_resources
   belongs_to :publisher
 
