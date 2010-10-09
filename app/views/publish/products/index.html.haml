@@ -18,17 +18,12 @@
           %th.last &nbsp;
         - @products.each do |product|
           %tr{:class => cycle("odd", "even")}
-<<<<<<< HEAD:app/views/products/index.html.haml
             %td
               - if product.cover.exists?(:thumb)
                 = image_tag(product.cover.url(:thumb))
               - else
                 = product.id
-            %td= link_to product.title, publisher_product_path(@publisher,product)
-=======
-            %td= product.id
             %td= link_to product.title, publish_publisher_product_path(@publisher,product)
->>>>>>> publish:app/views/publish/products/index.html.haml
             %td= product.created_at
             %td.last
               = link_to "Show", publish_publisher_product_path(@publisher,product)
