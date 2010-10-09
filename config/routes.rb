@@ -14,25 +14,26 @@ ActionController::Routing::Routes.draw do |map|
     order.resources :order_items
   end
 
-  map.resources :publishers do |publisher|
-    publisher.resources :catalogs do |catalog|
-      catalog.resources :products
+  map.namespace :publish do |publish|
+    publish.resources :publishers do |publisher|
+      publisher.resources :catalogs do |catalog|
+        catalog.resources :products
+      end
+      publisher.resources :products do |product|
+        product.resources :items
+        product.resources :wholesale_prices
+      end
+      publisher.resources :items
+      publisher.resources :products
+      publisher.resources :sales
+      publisher.resources :publisher_payments
     end
-    publisher.resources :products do |product|
-      product.resources :items
-      product.resources :wholesale_prices
-    end
-    publisher.resources :items
-    publisher.resources :products
-    publisher.resources :sales
-    publisher.resources :publisher_payments
   end
+
   # remove non-nested resources once authentication is worked out
   map.resources :catalogs
   map.resources :products
   map.resources :items
-
-  map.root :publishers
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
