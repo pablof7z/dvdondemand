@@ -4,4 +4,11 @@ class Retail::ProductsController < ApplicationController
   actions :show
 
   layout 'retail'
+
+  def show
+    show! do
+      render(:text => 'Forbidden', :status => 403) and return if @catalog.private
+    end
+  end
 end
+
