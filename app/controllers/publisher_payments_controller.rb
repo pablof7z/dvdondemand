@@ -1,2 +1,0 @@
-class PublisherPaymentsController < ApplicationController
-end
