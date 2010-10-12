@@ -21,7 +21,6 @@ ActionController::Routing::Routes.draw do |map|
       end
       publisher.resources :products do |product|
         product.resources :items
-        product.resources :wholesale_prices
       end
       publisher.resources :sales
       publisher.resources :publisher_payments, :as => :payments
@@ -37,6 +36,10 @@ ActionController::Routing::Routes.draw do |map|
     end
     retail.resources :products, :only => :show
     retail.resources :items
+  end
+
+  map.namespace :admin do |admin|
+    admin.resources :wholesale_prices
   end
 
   map.connect ':controller/:action/:id'

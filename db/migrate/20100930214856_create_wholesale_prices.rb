@@ -3,8 +3,8 @@ class CreateWholesalePrices < ActiveRecord::Migration
     create_table :wholesale_prices do |t|
       t.integer :minimum_quantity
       t.float :discount_percentage
+      t.text :terms
       t.boolean :enabled
-      t.references :product
 
       t.timestamps
     end
@@ -14,3 +14,4 @@ class CreateWholesalePrices < ActiveRecord::Migration
     drop_table :wholesale_prices
   end
 end
+
