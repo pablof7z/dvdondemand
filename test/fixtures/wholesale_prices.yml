@@ -4,13 +4,13 @@ one:
   id: 1
   minimum_quantity: 10
   discount_percentage: 25
-  terms: lorem ipsum
+  terms: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at neque eget ante pulvinar facilisis a eu ipsum. Quisque eget velit leo, vitae venenatis lacus. Mauris sed nisi purus, sed malesuada lectus. Nunc varius, metus ac pharetra condimentum, ipsum est rutrum tellus, vitae posuere massa sem sit amet nisi. Integer molestie tellus id sapien laoreet consectetur.
   enabled: true
 
 two:
   id: 2
   minimum_quantity: 5
   discount_percentage: 10
-  terms: lorem ipsum
+  terms: Quisque hendrerit ultricies risus, in feugiat dui facilisis at. Phasellus suscipit interdum euismod. Mauris aliquet tempor mi, volutpat ullamcorper eros porta id. Fusce ut est purus, quis pellentesque enim. Nam eleifend euismod vestibulum. Maecenas hendrerit nisi nec turpis dapibus scelerisque. Nulla placerat tempor velit, eget luctus neque pretium non.
   enabled: false
 

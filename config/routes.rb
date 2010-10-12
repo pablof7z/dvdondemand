@@ -39,7 +39,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.namespace :admin do |admin|
-    admin.resources :wholesale_prices
+    admin.resources :wholesale_prices, :as => 'wholesale'
   end
 
   map.connect ':controller/:action/:id'
