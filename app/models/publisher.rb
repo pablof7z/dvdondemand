@@ -5,7 +5,10 @@ class Publisher < ActiveRecord::Base
   has_many :sales
   has_many :publisher_payments
 
+  named_scope :approved, :conditions => { :approved => true }
+
   def full_name
     "#{first_name} #{last_name}"
   end
 end
+

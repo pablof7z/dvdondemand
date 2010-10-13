@@ -1,9 +1,12 @@
+- render :partial => 'main_navigation'
+
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first= link_to "&laquo; All Catalogs", retail_catalogs_path
-      %li.active= link_to @catalog.title, retail_catalog_path
+      %li.first= link_to "Home", retail_catalogs_path
+      %li.active= link_to "Show", retail_catalog_path
   .content
+    %h2.title= @catalog.title
     .inner
       %p
         %b Publisher:
@@ -11,23 +14,16 @@
       %p
         %b Description:
         = @catalog.description
+      %p
+        %em Products featured in this Catalog :
       %table.table
         %tr
           %th.first
           %th Title
           %th Price
           %th.last
-        - @catalog.products.each do |product|
-          %tr{:class => cycle("odd", "even")}
-            %td
-              - if product.cover.exists?(:thumb)
-                = image_tag(product.cover.url(:thumb))
-              - else
-                = product.id
-            %td= link_to product.title, retail_catalog_product_path(@catalog,product)
-            %td= number_to_currency(product.price)
-            %td.last= product.description
+        = render :partial => 'retail/products/product', :collection => @catalog.products
       .wat-cf
 
-- content_for :sidebar, render(:partial => 'sidebar')
+- content_for :sidebar, render(:partial => 'retail/shared/sidebar')
 

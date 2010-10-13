@@ -35,9 +35,12 @@ ActionController::Routing::Routes.draw do |map|
     retail.resources :catalogs, :only => [:index, :show] do |catalog|
       catalog.resources :products, :only => :show
     end
+    retail.resources :publishers, :only => [:index, :show]
     retail.resources :products, :only => :show
     retail.resources :items
   end
+
+  map.root :controller => 'retail/catalogs'
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

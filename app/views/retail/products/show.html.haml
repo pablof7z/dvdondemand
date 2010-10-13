@@ -1,10 +1,15 @@
+- content_for :main_navigation do
+  %li.active= link_to 'Catalogs', retail_catalogs_path
+  %li= link_to 'Publishers', retail_publishers_path
+
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first= link_to "&laquo; All Catalogs", retail_catalogs_path
+      %li.first= link_to "Home", retail_catalogs_path
       %li= link_to @catalog.title, retail_catalog_path
-      %li.active= link_to @product.title, retail_catalog_product_path(@catalog,@product)
+      %li.active= link_to "Show", retail_catalog_product_path(@catalog,@product)
   .content
+    %h2.title= @product.title
     .inner
       - unless @product.product_type.blank?
         %p
@@ -13,9 +18,6 @@
       - if @product.cover.exists?(:medium)
         %p= image_tag(@product.cover.url(:medium))
         %p= link_to 'Full size Cover art', @product.cover.url, :target => :blank
-      %p
-        %b Title:
-        = @product.title
       %p
         %b Studio:
         = @product.studio
@@ -34,5 +36,5 @@
         = @product.publisher.full_name
       .wat-cf
 
-- content_for :sidebar, render(:partial => 'sidebar')
+- content_for :sidebar, render(:partial => 'retail/shared/sidebar')
 

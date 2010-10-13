@@ -1,25 +1,39 @@
+- render :partial => 'main_navigation'
+
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first.active= link_to "All Catalogs", retail_catalogs_path
+      %li.first.active= link_to "Home", retail_catalogs_path
   .content
-    %h2.title All Catalogs
+    %h2.title Featured Random Products
     .inner
       %table.table
         %tr
-          %th.first ID
+          %th.first
+          %th Title
+          %th Price
+          %th.last
+        - @products.each do |product|
+          %tr{:class => cycle("odd", "even")}
+            %td
+              - if product.cover.exists?(:thumb)
+                = image_tag(product.cover.url(:thumb))
+              - else
+                = product.id
+            %td= product.title
+            %td= number_to_currency(product.price)
+            %td.last= product.description
+    %h2.title Featured Catalogs from Publishers
+    .inner
+      %table.table
+        %tr
+          %th.first
           %th Title
           %th Publisher
           %th.last &nbsp;
-        - @catalogs.each do |catalog|
-          %tr{:class => cycle("odd", "even")}
-            %td= catalog.id
-            %td= link_to catalog.title, retail_catalog_path(catalog)
-            %td= catalog.publisher.full_name
-            %td.last
-              = link_to "Show", retail_catalog_path(catalog)
+        = render :partial => @catalogs
       .actions-bar.wat-cf
         .actions
 
-- content_for :sidebar, render(:partial => 'sidebar')
+- content_for :sidebar, render(:partial => 'retail/shared/sidebar')
 
