@@ -6,11 +6,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :packaging_options
 
+  map.devise_for :customers, :as => 'users'  # first to avoid the :customers resources to catch devise's auto-generated routes
+
   map.resources :customers, :as => 'users' do |customer|
     customer.resources :customer_payments, :as => :payments
   end
-
-  map.devise_for :customers, :as => 'users'
 
   map.resources :orders do |order|
     order.resources :order_items
