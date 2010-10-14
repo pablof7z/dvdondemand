@@ -7,7 +7,7 @@ class CreateCustomers < ActiveRecord::Migration
       t.text :address
 
       # Devise-specific
-      t.authenticatable
+      t.database_authenticatable
       t.confirmable
       t.recoverable
       t.registerable
