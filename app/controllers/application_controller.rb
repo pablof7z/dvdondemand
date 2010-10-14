@@ -7,4 +7,21 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+
+  layout :layout_by_devise_resource
+
+  private
+
+  def layout_by_devise_resource
+    if devise_controller?
+      case resource_name
+        when :customer  then 'retail'
+        when :publisher then 'publish'
+      end
+    else
+      # this will surely *have* to be changed sometime
+      'admin'
+    end
+  end
 end
+
