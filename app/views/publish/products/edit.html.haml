@@ -11,9 +11,5 @@
       - form_for @product, :url => publish_publisher_product_path(@publisher,@product), :html => { :class => :form } do |f|
         = render :partial => "form", :locals => {:f => f}
 
-- content_for :sidebar, render(:partial => 'discounts', :locals => {:wholesale_prices => @product.wholesale_prices})
-- content_for :sidebar do
-  %ul.navigation
-    %li
-      = link_to 'Manage all wholesale prices for this product', publish_publisher_product_wholesale_prices_path(@publisher,@product)
+- content_for :sidebar, render(:partial => 'sidebar')
 
