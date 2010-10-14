@@ -15,6 +15,7 @@ ActionController::Routing::Routes.draw do |map|
     order.resources :order_items
   end
 
+  map.devise_for :publishers  # first to avoid the :publishers resources to catch devise's auto-generated routes
   map.namespace :publish do |publish|
     publish.resources :publishers do |publisher|
       publisher.resources :catalogs do |catalog|
@@ -27,6 +28,7 @@ ActionController::Routing::Routes.draw do |map|
       publisher.resources :sales
       publisher.resources :publisher_payments, :as => :payments
     end
+
     publish.resources :items
     publish.resources :products
   end

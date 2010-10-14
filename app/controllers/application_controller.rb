@@ -23,5 +23,12 @@ class ApplicationController < ActionController::Base
       'admin'
     end
   end
+
+  def after_sign_out_path_for(resource_or_scope)
+    case resource_or_scope
+      when :customer  then root_path
+      when :publisher then publish_publishers_path
+    end
+  end
 end
 

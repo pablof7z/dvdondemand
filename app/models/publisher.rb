@@ -7,6 +7,8 @@ class Publisher < ActiveRecord::Base
 
   named_scope :approved, :conditions => { :approved => true }
 
+  devise :database_authenticatable, :confirmable, :recoverable, :registerable, :rememberable, :trackable, :validatable
+
   def full_name
     "#{first_name} #{last_name}"
   end

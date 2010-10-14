@@ -8,5 +8,5 @@
   %ul.navigation
     - unless customer_signed_in?
       %li= link_to 'Sign Up for Purchasing', new_customer_registration_path
-    %li= link_to 'Publish &amp; Sell your Products', '#'
+    %li= link_to 'Publish &amp; Sell your Products', new_publisher_session_path
 

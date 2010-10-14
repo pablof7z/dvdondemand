@@ -2,22 +2,31 @@
 %html
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
-    %title DVDonDemand
+    %title DVDonDemand Publisher WebStore
     = stylesheet_link_tag 'web_app_theme', 'web_app_theme_override', "themes/drastic-dark/style", :cache => true
   %body
     #container
       #header
-        %h1= link_to 'OnDemand WebStore', '#'
+        %h1= link_to 'OnDemand Publisher WebStore', '#'
         #user-navigation
           %ul.wat-cf
-            %li= link_to 'Profile', '#'
-            %li= link_to 'Logout', '#'
+            - unless publisher_signed_in?
+              %li= link_to 'My Account', new_publisher_session_path
+              %li= link_to 'Sign Up', new_publisher_registration_path
+            - else
+              %li= link_to 'Logout', destroy_publisher_session_path
         #main-navigation
           %ul.wat-cf
             %li.active= link_to 'Publishers', publish_publishers_path
-            %li= link_to 'Sales', '#'
-            %li= link_to 'Reports', '#'
+            - if publisher_signed_in?
+              %li= link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
+              %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
+              %li= link_to 'Sales', publish_publisher_sales_path(current_publisher)
       #wrapper.wat-cf
+        .flash
+          - flash.each do |type, message|
+            .message{:class => type.to_s}
+              %p= message
         #main
           = yield
           #footer
