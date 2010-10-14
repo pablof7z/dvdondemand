@@ -1,5 +1,3 @@
-class Publish::PublishersController < ApplicationController
-  inherit_resources
-
-  layout 'publisher'
+class Publish::PublishersController < Publish::PublishController
 end
+

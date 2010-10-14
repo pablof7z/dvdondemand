@@ -11,4 +11,5 @@
       - form_for @catalog, :url => publish_publisher_catalog_path(@publisher,@catalog), :html => { :class => :form } do |f|
         = render :partial => "form", :locals => {:f => f}
 
-- content_for :sidebar, render(:partial => 'sidebar')
+- content_for :sidebar, render(:partial => 'publish/shared/sidebar')
+

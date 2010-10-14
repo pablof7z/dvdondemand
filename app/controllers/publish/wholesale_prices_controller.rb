@@ -1,7 +1,4 @@
-class Publish::WholesalePricesController < ApplicationController
-  inherit_resources
+class Publish::WholesalePricesController < Publish::PublishController
   belongs_to :publisher, :product
-
-  layout 'publisher'
 end
 
