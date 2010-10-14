@@ -11,5 +11,5 @@
       - form_for @wholesale_price, :url => publish_publisher_product_wholesale_prices_path(@publisher,@product), :html => { :class => :form } do |f|
         = render :partial => "form", :locals => {:f => f}
 
-- content_for :sidebar, render(:partial => 'sidebar')
+- content_for :sidebar, render(:partial => 'publish/shared/sidebar')
 
