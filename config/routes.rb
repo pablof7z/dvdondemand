@@ -31,10 +31,18 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   # remove non-nested resources once authentication is worked out
-  map.resources :catalogs
-  map.resources :products
-  map.resources :items
+  map.namespace :retail do |retail|
+    retail.resources :catalogs, :only => [:index, :show] do |catalog|
+      catalog.resources :products, :only => :show
+    end
+    retail.resources :publishers, :only => [:index, :show]
+    retail.resources :products, :only => :show
+    retail.resources :items
+  end
+
+  map.root :controller => 'retail/catalogs'
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
+

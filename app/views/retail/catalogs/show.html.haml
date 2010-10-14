@@ -1,0 +1,29 @@
+- render :partial => 'main_navigation'
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "Home", retail_catalogs_path
+      %li.active= link_to "Show", retail_catalog_path
+  .content
+    %h2.title= @catalog.title
+    .inner
+      %p
+        %b Publisher:
+        = @catalog.publisher.full_name
+      %p
+        %b Description:
+        = @catalog.description
+      %p
+        %em Products featured in this Catalog :
+      %table.table
+        %tr
+          %th.first
+          %th Title
+          %th Price
+          %th.last
+        = render :partial => 'retail/products/product', :collection => @catalog.products
+      .wat-cf
+
+- content_for :sidebar, render(:partial => 'retail/shared/sidebar')
+

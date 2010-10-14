@@ -1,0 +1,2 @@
+module Retail::CatalogsHelper
+end
