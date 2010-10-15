@@ -22,6 +22,15 @@
       .wat-cf
         #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_publish_publisher_catalog_path(current_publisher,@catalog), :class => "button" }
         #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", publish_publisher_catalog_path(current_publisher,@catalog), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
+      - unless @catalog.products.empty?
+        %p Products featured in this Catalog:
+        %table.table
+          %tr
+            %th.first ID
+            %th Title
+            %th Created at
+            %th.last &nbsp;
+          = render :partial => 'publish/products/product', :collection => @catalog.products
 
 - content_for :sidebar, render(:partial => 'publish/shared/sidebar')
 
