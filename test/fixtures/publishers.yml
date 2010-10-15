@@ -7,6 +7,8 @@ john:
   email: john@foo.bar
   address: North of the border
   approved: true
+  encrypted_password: 1e56aad2604f37776a8e5d017c7a858ab1d984b5
+  password_salt: S3tzIHrAOBq14RUJDneo
 
 jane:
   id: 2
@@ -15,6 +17,8 @@ jane:
   email: jane@bar.foo
   address: South of the border
   approved: true
+  encrypted_password: 1e56aad2604f37776a8e5d017c7a858ab1d984b5
+  password_salt: S3tzIHrAOBq14RUJDneo
 
 newbie:
   id: 3
@@ -23,3 +27,4 @@ newbie:
   email: dummy@new.bie
   address: In the middle of the border
   approved: false
+
