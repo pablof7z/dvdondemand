@@ -7,12 +7,12 @@
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first= link_to "All", publish_publisher_catalogs_path(@publisher)
-      %li.active= link_to "New", new_publish_publisher_catalog_path(@publisher)
+      %li.first= link_to "All", publish_publisher_catalogs_path(current_publisher)
+      %li.active= link_to "New", new_publish_publisher_catalog_path(current_publisher)
   .content
-    %h2.title New Catalog for #{@publisher.first_name} #{@publisher.last_name}
+    %h2.title New Catalog
     .inner
-      - form_for @catalog, :url => publish_publisher_catalogs_path(@publisher), :html => { :class => :form } do |f|
+      - form_for @catalog, :url => publish_publisher_catalogs_path(current_publisher), :html => { :class => :form } do |f|
         = render :partial => "form", :locals => {:f => f}
 
 - content_for :sidebar, render(:partial => 'publish/shared/sidebar')

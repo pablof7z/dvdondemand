@@ -7,10 +7,10 @@
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first.active= link_to "All", publish_publisher_catalogs_path(@publisher)
-      %li= link_to "New", new_publish_publisher_catalog_path(@publisher)
+      %li.first.active= link_to "All", publish_publisher_catalogs_path(current_publisher)
+      %li= link_to "New", new_publish_publisher_catalog_path(current_publisher)
   .content
-    %h2.title All #{@publisher.first_name} #{@publisher.last_name}'s Catalogs
+    %h2.title All your published Catalogs
     .inner
       %table.table
         %tr
