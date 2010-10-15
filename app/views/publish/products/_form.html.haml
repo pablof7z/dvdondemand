@@ -33,19 +33,9 @@
   = f.file_field :cover, :class => 'text_field'
   %span.description (Only JPEG or PNG images)
 
-.group
-  = f.label :wholesale_price, 'New Wholesale Price', :class => :label
-  - f.fields_for :wholesale_prices, @product.wholesale_prices.build do |wholesale_price|
-    Minimum Quantity
-    = wholesale_price.text_field :minimum_quantity, :size => '10', :class => 'text_field_small'
-    &nbsp;
-    Discount
-    = wholesale_price.text_field :discount_percentage, :size => '5', :class => 'text_field_small'
-    #{"%"}
-
 .group.navform.wat-cf
   %button.button{:type => 'submit'}
     = image_tag("web-app-theme/tick.png", :alt => "Save")
     = t("web-app-theme.save", :default => "Save")
-  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", publish_publisher_products_path(@publisher), :class => "button"
+  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", publish_publisher_products_path(current_publisher), :class => "button"
 

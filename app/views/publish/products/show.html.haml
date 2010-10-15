@@ -1,10 +1,16 @@
+- content_for :main_navigation do
+  %li= link_to 'Dashboard', publisher_root_path
+  %li= link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
+  %li.active= link_to 'Products', publish_publisher_products_path(current_publisher)
+  %li= link_to 'Sales', publish_publisher_sales_path(current_publisher)
+  %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
+
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first= link_to "&laquo; #{@publisher.first_name} #{@publisher.last_name}", publish_publisher_path(@publisher)
-      %li= link_to "Products", publish_publisher_products_path(@publisher)
-      %li= link_to "New", new_publish_publisher_product_path(@publisher)
-      %li.active= link_to "Show", publish_publisher_product_path(@publisher)
+      %li= link_to "All", publish_publisher_products_path(current_publisher)
+      %li= link_to "New", new_publish_publisher_product_path(current_publisher)
+      %li.active= link_to "Show", publish_publisher_product_path(current_publisher,@product)
   .content
     .inner
       - unless @product.product_type.blank?
@@ -31,8 +37,8 @@
           %b Running Time:
           = @product.running_time
       .wat-cf
-        #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_publish_publisher_product_path(@publisher,@product), :class => "button" }
-        #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", publish_publisher_product_path(@publisher,@product), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
+        #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_publish_publisher_product_path(current_publisher,@product), :class => "button" }
+        #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", publish_publisher_product_path(current_publisher,@product), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
       - unless @product.catalogs.empty?
         %p This Product is featured in the following Catalogs:
         %table.table
@@ -45,13 +51,9 @@
           - @product.catalogs.each do |catalog|
             %tr{:class => cycle("odd", "even")}
               %td= catalog.id
-              %td= link_to catalog.title, publish_publisher_catalog_path(@publisher,catalog)
+              %td= link_to catalog.title, publish_publisher_catalog_path(current_publisher,catalog)
               %td= catalog.created_at
               %td= catalog.private ? 'Yes' : 'No'
 
-- content_for :sidebar, render(:partial => 'discounts', :locals => {:wholesale_prices => @product.wholesale_prices})
-- content_for :sidebar do
-  %ul.navigation
-    %li
-      = link_to 'Manage all wholesale prices for this product', publish_publisher_product_wholesale_prices_path(@publisher,@product)
+- content_for :sidebar, render(:partial => 'publish/shared/sidebar')
 

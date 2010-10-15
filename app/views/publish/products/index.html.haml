@@ -1,12 +1,18 @@
+- content_for :main_navigation do
+  %li= link_to 'Dashboard', publisher_root_path
+  %li= link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
+  %li.active= link_to 'Products', publish_publisher_products_path(current_publisher)
+  %li= link_to 'Sales', publish_publisher_sales_path(current_publisher)
+  %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
+
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first= link_to "&laquo; #{@publisher.first_name} #{@publisher.last_name}", publish_publisher_path(@publisher)
-      %li.active= link_to "Products", publish_products_path
-      %li= link_to "New", new_publish_publisher_product_path(@publisher)
+      %li.first.active= link_to "All", publish_products_path
+      %li= link_to "New", new_publish_publisher_product_path(current_publisher)
   .content
     %h2.title
-      All #{@publisher.first_name} #{@publisher.last_name}'s Products
+      All your uploaded Products
       - unless @catalog.blank?
         for #{@catalog.title}
     .inner
@@ -23,14 +29,14 @@
                 = image_tag(product.cover.url(:thumb))
               - else
                 = product.id
-            %td= link_to product.title, publish_publisher_product_path(@publisher,product)
+            %td= link_to product.title, publish_publisher_product_path(current_publisher,product)
             %td= product.created_at
             %td.last
-              = link_to "Show", publish_publisher_product_path(@publisher,product)
+              = link_to "Show", publish_publisher_product_path(current_publisher,product)
               |
-              = link_to "Edit", edit_publish_publisher_product_path(@publisher,product)
+              = link_to "Edit", edit_publish_publisher_product_path(current_publisher,product)
               |
-              = link_to "Delete", publish_publisher_product_path(@publisher,product), :method => :delete, :confirm => "Are you sure?"
+              = link_to "Delete", publish_publisher_product_path(current_publisher,product), :method => :delete, :confirm => "Are you sure?"
       .actions-bar.wat-cf
         .actions
 
