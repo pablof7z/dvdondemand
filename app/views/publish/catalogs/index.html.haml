@@ -1,8 +1,13 @@
+- content_for :main_navigation do
+  %li= link_to 'Dashboard', publisher_root_path
+  %li.active= link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
+  %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
+  %li= link_to 'Sales', publish_publisher_sales_path(current_publisher)
+
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first= link_to "&laquo; #{@publisher.first_name} #{@publisher.last_name}", publish_publisher_path(@publisher)
-      %li.active= link_to "Catalogs", publish_publisher_catalogs_path(@publisher)
+      %li.first.active= link_to "All", publish_publisher_catalogs_path(@publisher)
       %li= link_to "New", new_publish_publisher_catalog_path(@publisher)
   .content
     %h2.title All #{@publisher.first_name} #{@publisher.last_name}'s Catalogs
