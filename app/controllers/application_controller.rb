@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # custom layout according to Devise resource thanks to http://github.com/plataformatec/devise/wiki/How-To:-Create-custom-layouts
   def layout_by_devise_resource
     if devise_controller?
       case resource_name
@@ -24,10 +25,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # custom sign out redirection according to Devise resource thanks to http://github.com/plataformatec/devise/wiki/How-To:-Change-the-redirect-path-after-destroying-a-session-%28signing-out%29
   def after_sign_out_path_for(resource_or_scope)
     case resource_or_scope
       when :customer  then root_path
-      when :publisher then publish_publishers_path
+      when :publisher then publish_root_path
     end
   end
 end

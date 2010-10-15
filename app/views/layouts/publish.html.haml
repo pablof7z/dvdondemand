@@ -7,7 +7,7 @@
   %body
     #container
       #header
-        %h1= link_to 'OnDemand Publisher WebStore', '#'
+        %h1= link_to 'OnDemand Publisher WebStore', publish_root_path
         #user-navigation
           %ul.wat-cf
             - unless publisher_signed_in?
@@ -17,8 +17,9 @@
               %li= link_to 'Logout', destroy_publisher_session_path
         #main-navigation
           %ul.wat-cf
-            %li.active= link_to 'Publishers', publish_publishers_path
+            %li.active= link_to 'Publish', publish_root_path
             - if publisher_signed_in?
+              %li= link_to 'Dashboard', publisher_root_path
               %li= link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
               %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
               %li= link_to 'Sales', publish_publisher_sales_path(current_publisher)
