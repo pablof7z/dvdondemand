@@ -6,7 +6,8 @@ class Publish::ProductsController < Publish::PublishController
   protected
 
   def collection
-    @products = current_publisher.products
+    # some badly needed refactoring here
+    @products = params[:catalog_id].blank? ? current_publisher.products : current_publisher.catalogs.find(:first, :conditions => {:id => params[:catalog_id]}).products
   end
 end
 
