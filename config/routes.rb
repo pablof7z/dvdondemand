@@ -16,7 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.devise_for :publishers  # first to avoid the :publishers resources to catch devise's auto-generated routes
-  map.publisher_root 'publisher', :controller => 'publish/publishers', :action => 'home'  # default route to be used after signing in thanks to http://webcache.googleusercontent.com/search?q=cache:j5n40xIYS2wJ:github.com/plataformatec/devise/wiki/How-To:-Redirect-to-a-specific-page-on-successful-sign-in+http://github.com/plataformatec/devise/wiki/howto-redirect-to-a-specific-page-on-successful-sign-in&cd=1&hl=en&ct=clnk&client=ubuntu
+  map.publisher_root 'publisher', :controller => 'publish/publishers', :action => 'home'
   map.namespace :publish do |publish|
     publish.resources :publishers do |publisher|
       publisher.resources :catalogs do |catalog|
