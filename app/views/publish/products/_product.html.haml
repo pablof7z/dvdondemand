@@ -1,0 +1,15 @@
+%tr{:class => cycle("odd", "even")}
+  %td
+    - if product.cover.exists?(:thumb)
+      = image_tag(product.cover.url(:thumb))
+    - else
+      = product.id
+  %td= link_to product.title, publish_publisher_product_path(current_publisher,product)
+  %td= product.created_at
+  %td.last
+    = link_to "Show", publish_publisher_product_path(current_publisher,product)
+    |
+    = link_to "Edit", edit_publish_publisher_product_path(current_publisher,product)
+    |
+    = link_to "Delete", publish_publisher_product_path(current_publisher,product), :method => :delete, :confirm => "Are you sure?"
+

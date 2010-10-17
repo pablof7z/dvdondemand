@@ -1,6 +1,10 @@
-class Publish::CatalogsController < ApplicationController
-  inherit_resources
+class Publish::CatalogsController < Publish::PublishController
   belongs_to :publisher
 
-  layout 'publisher'
+  protected
+
+  def collection
+    @catalogs = current_publisher.catalogs
+  end
 end
+

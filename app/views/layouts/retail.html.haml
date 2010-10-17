@@ -2,27 +2,27 @@
 %html
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
-    %title DVDonDemand
+    %title DVDonDemand Retail WebStore
     = stylesheet_link_tag "web_app_theme", "web_app_theme_override", "themes/djime-cerulean/style", :cache => true
   %body
     #container
       #header
-        %h1= link_to 'OnDemand Retail WebStore', '#'
+        %h1= link_to 'OnDemand Retail WebStore', root_path
         #user-navigation
           %ul.wat-cf
-            %li= link_to 'Profile', '#'
-            %li= link_to 'Logout', '#'
+            - unless customer_signed_in?
+              %li= link_to 'Login', new_customer_session_path
+              %li= link_to 'Sign Up', new_customer_registration_path
+            - else
+              %li= link_to 'Logout', destroy_customer_session_path
         #main-navigation
           %ul.wat-cf
-            %li.active= link_to 'Catalogs', retail_catalogs_path
-            %li= link_to 'Customers', customers_path
-            %li= link_to 'Sales', '#'
-            %li= link_to 'Reports', '#'
+            = yield :main_navigation
       #wrapper.wat-cf
         .flash
           - flash.each do |type, message|
             .message{:class => type.to_s}
-              <p>#{ message }</p>
+              %p= message
         #main
           = yield
           #footer

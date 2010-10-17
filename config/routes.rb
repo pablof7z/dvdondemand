@@ -6,14 +6,17 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :packaging_options
 
-  map.resources :customers do |customer|
-    customer.resources :customer_payments
+  map.devise_for :customers, :as => 'users'  # first to avoid the :customers resources to catch devise's auto-generated routes
+  map.resources :customers, :as => 'users' do |customer|
+    customer.resources :customer_payments, :as => :payments
   end
 
   map.resources :orders do |order|
     order.resources :order_items
   end
 
+  map.devise_for :publishers  # first to avoid the :publishers resources to catch devise's auto-generated routes
+  map.publisher_root 'publisher', :controller => 'publish/publishers', :action => 'home'
   map.namespace :publish do |publish|
     publish.resources :publishers do |publisher|
       publisher.resources :catalogs do |catalog|
@@ -25,8 +28,11 @@ ActionController::Routing::Routes.draw do |map|
       publisher.resources :sales
       publisher.resources :publisher_payments, :as => :payments
     end
+
     publish.resources :items
     publish.resources :products
+
+    publish.root :controller => 'home'
   end
 
   # remove non-nested resources once authentication is worked out
@@ -34,6 +40,7 @@ ActionController::Routing::Routes.draw do |map|
     retail.resources :catalogs, :only => [:index, :show] do |catalog|
       catalog.resources :products, :only => :show
     end
+    retail.resources :publishers, :only => [:index, :show]
     retail.resources :products, :only => :show
     retail.resources :items
   end
@@ -41,6 +48,8 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :admin do |admin|
     admin.resources :wholesale_prices, :as => 'wholesale'
   end
+
+  map.root :controller => 'retail/catalogs'
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

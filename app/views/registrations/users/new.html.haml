@@ -1,0 +1,33 @@
+- content_for :main_navigation do
+  %li= link_to 'Catalogs', retail_catalogs_path
+  %li= link_to 'Publishers', retail_publishers_path
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "Sign Up", new_customer_registration_path
+  .content
+    %h2.title Sign up for your User account
+    .inner
+      - form_for resource_name, resource, :url => registration_path(resource_name), :html => { :class => :form } do |f|
+        = f.error_messages
+
+        .group
+          %p= f.label :email, 'E-mail', :class => :label
+          %p= f.text_field :email, :class => 'text_field'
+
+        .group
+          %p= f.label :password, 'Password', :class => :label
+          %p= f.password_field :password, :class => 'text_field'
+
+        .group
+          %p= f.label :password_confirmation, 'Password confirmation', :class => :label
+          %p= f.password_field :password_confirmation, :class => 'text_field'
+
+        .group.navform.wat-cf
+          %button.button{:type => 'submit'}
+            = image_tag("web-app-theme/tick.png", :alt => "Sign up")
+            Sign up
+
+- content_for :sidebar, render(:partial => "shared/devise_user_links")
+

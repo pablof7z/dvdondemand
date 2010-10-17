@@ -1,0 +1,34 @@
+- content_for :main_navigation do
+  %li= link_to 'Catalogs', retail_catalogs_path
+  %li= link_to 'Publishers', retail_publishers_path
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "Login", new_customer_session_path
+  .content
+    %h2.title Login to your User account
+    .inner
+      - form_for resource_name, resource, :url => session_path(resource_name), :html => { :class => :form } do |f|
+        = f.error_messages
+
+        .group
+          %p= f.label :email, 'E-mail', :class => :label
+          %p= f.text_field :email, :class => 'text_field'
+
+        .group
+          %p= f.label :password, 'Password', :class => :label
+          %p= f.password_field :password, :class => 'text_field'
+
+        - if devise_mapping.rememberable?
+          .group
+            = f.label :remember_me, "Remember me", :class => :label
+            = f.check_box :remember_me, :class => 'check_box'
+
+        .group.navform.wat-cf
+          %button.button{:type => 'submit'}
+            = image_tag("web-app-theme/tick.png", :alt => "Login")
+            Login
+
+- content_for :sidebar, render(:partial => "shared/devise_user_links")
+

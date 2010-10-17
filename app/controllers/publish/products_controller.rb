@@ -1,8 +1,13 @@
-class Publish::ProductsController < ApplicationController
-  inherit_resources
+class Publish::ProductsController < Publish::PublishController
   belongs_to :publisher do
     belongs_to :catalog, :optional => true
   end
 
-  layout 'publisher'
+  protected
+
+  def collection
+    # some badly needed refactoring here: filter products by catalog, if nested resource
+    @products = params[:catalog_id].blank? ? current_publisher.products : current_publisher.catalogs.find(:first, :conditions => {:id => params[:catalog_id]}).products
+  end
 end
+

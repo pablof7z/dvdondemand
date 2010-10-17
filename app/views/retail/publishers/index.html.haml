@@ -1,0 +1,23 @@
+- render :partial => 'main_navigation'
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "Home", retail_publishers_path
+  .content
+    %h2.title Featured Publishers on the Store
+    .inner
+      %table.table
+        %tr
+          %th.first
+          %th Full Name
+          %th.last &nbsp;
+        - @publishers.each do |publisher|
+          %tr{:class => cycle("odd", "even")}
+            %td
+            %td= link_to publisher.full_name, retail_publisher_path(publisher)
+            %td.last
+              = link_to "Show", retail_publisher_path(publisher)
+
+- content_for :sidebar, render(:partial => 'retail/shared/sidebar')
+

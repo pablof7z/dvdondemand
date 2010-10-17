@@ -1,6 +1,24 @@
 Use this README file to introduce your application and point to useful places in the API for learning more.
 Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
 
+
+## About Devise auth. gem usage
+
+Devise's RDdoc documentation is great, be sure to read it thoroughly!
+
+Another great resource is it's GitHub Wiki, be sure to check it for hands-on tips: http://github.com/plataformatec/devise/wiki/
+
+Wiki-mentioned used so far, in application_controller.rb:
+
+* custom layout according to Devise resource thanks to http://github.com/plataformatec/devise/wiki/How-To:-Create-custom-layouts
+* custom sign out redirection according to Devise resource thanks to http://github.com/plataformatec/devise/wiki/How-To:-Change-the-redirect-path-after-destroying-a-session-%28signing-out%29
+
+And in routes.rb ("map.publisher_root" rule), path used for publish/publishers_controller.rb#home:
+
+* default route to be used after signing in thanks to http://webcache.googleusercontent.com/search?q=cache:j5n40xIYS2wJ:github.com/plataformatec/devise/wiki/How-To:-Redirect-to-a-specific-page-on-successful-sign-in+http://github.com/plataformatec/devise/wiki/howto-redirect-to-a-specific-page-on-successful-sign-in&cd=1&hl=en&ct=clnk&client=ubuntu
+
+
+
 ## About RailRoad gem usage
 
 We're using the "tobias-railroad" fork of the RailRoad gem because it includes explicit patches to make it work with at least Rails 2.3.5.
@@ -14,3 +32,4 @@ Notable options used:
 * Include just the models in the graphic
 * Exclude the associations' tables to avoid unnecesary clutter
 * Hide Rails' "magic" columns/fields/attributes
+

@@ -6,6 +6,14 @@ class CreateCustomers < ActiveRecord::Migration
       t.string :email
       t.text :address
 
+      # Devise-specific
+      t.database_authenticatable
+      t.confirmable
+      t.recoverable
+      t.registerable
+      t.rememberable
+      t.trackable
+
       t.timestamps
     end
   end
@@ -14,3 +22,4 @@ class CreateCustomers < ActiveRecord::Migration
     drop_table :customers
   end
 end
+

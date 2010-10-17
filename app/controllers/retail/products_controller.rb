@@ -1,9 +1,6 @@
-class Retail::ProductsController < ApplicationController
-  inherit_resources
+class Retail::ProductsController < Retail::RetailController
   belongs_to :catalog, :optional => true
   actions :show
-
-  layout 'retail'
 
   def show
     show! do

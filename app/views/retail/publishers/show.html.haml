@@ -1,0 +1,34 @@
+- render :partial => 'main_navigation'
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "Home", retail_publishers_path
+      %li.active= link_to "Show", retail_publisher_path
+  .content
+    %h2.title= @publisher.full_name
+    .inner
+      %p
+        %b First name:
+        = @publisher.first_name
+      %p
+        %b Last name:
+        = @publisher.last_name
+      %p
+        %b E-mail:
+        = @publisher.email
+      %p
+        %b Address:
+        = @publisher.address
+      %p
+        %em Catalogs by this Publisher :
+      %table.table
+        %tr
+          %th.first
+          %th Title
+          %th Publisher
+          %th.last &nbsp;
+        = render :partial => 'retail/catalogs/catalog', :collection => @publisher.catalogs
+
+- content_for :sidebar, render(:partial => 'retail/shared/sidebar')
+

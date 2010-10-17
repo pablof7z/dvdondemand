@@ -6,6 +6,15 @@ class CreatePublishers < ActiveRecord::Migration
       t.string :email
       t.text :address
       t.boolean :approved
+
+      # Devise-specific
+      t.database_authenticatable
+      t.confirmable
+      t.recoverable
+      t.registerable
+      t.rememberable
+      t.trackable
+
       t.timestamps
     end
   end
@@ -14,3 +23,4 @@ class CreatePublishers < ActiveRecord::Migration
     drop_table :publishers
   end
 end
+
