@@ -5,11 +5,11 @@
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first.active= link_to "Forgot your password?", new_publisher_password_path
+      %li.first.active= link_to "Resend confirmation instructions", new_publisher_confirmation_path
   .content
-    %h2.title Forgot your User password?
+    %h2.title Resend User confirmation instructions
     .inner
-      - form_for resource_name, resource, :url => password_path(resource_name), :html => { :class => :form } do |f|
+      - form_for resource_name, resource, :url => confirmation_path(resource_name), :html => { :class => :form } do |f|
         = f.error_messages
 
         .group
@@ -19,7 +19,7 @@
         .group.navform.wat-cf
           %button.button{:type => 'submit'}
             = image_tag("web-app-theme/tick.png", :alt => "Send me reset password instructions")
-            Send me reset password instructions
+            Resend confirmation instructions
 
 - content_for :sidebar, render(:partial => "shared/devise_user_links")
 
