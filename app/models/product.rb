@@ -6,6 +6,6 @@ class Product < ActiveRecord::Base
   has_many :product_flags
 
   has_attached_file :cover, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  # validates_attachment_content_type :cover, :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'] # latter for IE support
+  validates_attachment_content_type :cover, :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'] # latter for IE support
 end
 

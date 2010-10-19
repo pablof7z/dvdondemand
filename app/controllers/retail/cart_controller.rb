@@ -4,8 +4,7 @@ class Retail::CartController < ApplicationController
 
   def index
     @cart_total = customer_session[:cart_items].inject(0) do |total, product_id|
-      product = Product.find(product_id)
-      total + product.price
+      total + Product.find(product_id).price
     end
   end
 
