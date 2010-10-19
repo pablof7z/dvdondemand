@@ -12,6 +12,7 @@
       %li= link_to "New", new_publish_publisher_product_path(current_publisher)
       %li.active= link_to "Show", publish_publisher_product_path(current_publisher,@product)
   .content
+    %h2.title= @product.title
     .inner
       - unless @product.product_type.blank?
         %p
@@ -20,9 +21,6 @@
       - if @product.cover.exists?(:medium)
         %p= image_tag(@product.cover.url(:medium))
         %p= link_to 'Full size Cover art', @product.cover.url, :target => :blank
-      %p
-        %b Title:
-        = @product.title
       %p
         %b Studio:
         = @product.studio
@@ -40,21 +38,22 @@
       .wat-cf
         #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_publish_publisher_product_path(current_publisher,@product), :class => "button" }
         #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", publish_publisher_product_path(current_publisher,@product), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
-      - unless @product.catalogs.empty?
-        %p This Product is featured in the following Catalogs:
-        %table.table
-          %tr
-            %th.first ID
-            %th Title
-            %th Created at
-            %th Private
-            %th.last &nbsp;
-          - @product.catalogs.each do |catalog|
-            %tr{:class => cycle("odd", "even")}
-              %td= catalog.id
-              %td= link_to catalog.title, publish_publisher_catalog_path(current_publisher,catalog)
-              %td= catalog.created_at
-              %td= catalog.private ? 'Yes' : 'No'
+
+    %h2.title Allocate Product to Catalogs
+    .inner
+      - form_for :catalogs_products, :url => {:controller => 'publish/catalogs_products', :action => 'create'}, :html => { :class => :form } do |f|
+        .group
+          = hidden_field_tag 'publisher_id', current_publisher.id
+          = hidden_field_tag 'product_id', @product.id
+          = label_tag :catalog_ids, "Catalogs", :class => :label
+          - for catalog in current_publisher.catalogs
+            %p
+              = check_box_tag 'catalog_ids[]', catalog.id, @product.catalogs.include?(catalog)
+              = catalog.title
+        .group.navform.wat-cf
+          %button.button{:type => 'submit'}
+            = image_tag("web-app-theme/tick.png", :alt => "Save")
+            Save
 
 - content_for :sidebar, render(:partial => 'publish/shared/sidebar')
 
