@@ -4,5 +4,9 @@ class Customer < ActiveRecord::Base
   has_many :customer_payments
 
   devise :database_authenticatable, :confirmable, :recoverable, :registerable, :rememberable, :trackable, :validatable
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
 

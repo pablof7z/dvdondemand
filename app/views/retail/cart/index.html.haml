@@ -1,0 +1,28 @@
+- render :partial => 'retail/catalogs/main_navigation'
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "My Cart", retail_cart_path
+  .content
+    %h2.title My Cart so far
+    .inner
+    .inner
+      %table.table
+        %tr
+          %th.first
+          %th Title
+          %th Qty.
+          %th Price
+          %th.last
+        - for product_id in customer_session[:cart_items]
+          %tr
+            - product = Product.find(product_id)
+            %td
+            %td= product.title
+            %td 1
+            %td= number_to_currency(product.price)
+            %td
+
+- content_for :sidebar, render(:partial => 'retail/shared/sidebar')
+

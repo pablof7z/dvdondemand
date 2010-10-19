@@ -11,10 +11,6 @@ ActionController::Routing::Routes.draw do |map|
     customer.resources :customer_payments, :as => :payments
   end
 
-  map.resources :orders do |order|
-    order.resources :order_items
-  end
-
   map.devise_for :publishers  # first to avoid the :publishers resources to catch devise's auto-generated routes
   map.publisher_root 'publisher', :controller => 'publish/publishers', :action => 'home'
   map.namespace :publish do |publish|
@@ -43,7 +39,13 @@ ActionController::Routing::Routes.draw do |map|
     end
     retail.resources :publishers, :only => [:index, :show]
     retail.resources :products, :only => :show
-    retail.resources :items
+    retail.resources :orders do |order|
+      order.resources :order_items
+    end
+
+    retail.cart     'cart',     :controller => 'cart', :action => 'index'
+    retail.cart_add 'cart_add', :controller => 'cart', :action => 'add_item'
+    retail.cart_del 'cart_del', :controller => 'cart', :action => 'del_item'
   end
 
   map.root :controller => 'retail/catalogs'

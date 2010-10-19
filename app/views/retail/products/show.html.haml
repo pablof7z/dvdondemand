@@ -35,6 +35,12 @@
         %b Published by:
         = @product.publisher.full_name
       .wat-cf
+    .inner
+      .group.navform.wat-cf
+        - unless customer_signed_in?
+          #{link_to 'Login', new_customer_session_path} or #{link_to 'Sign Up', new_customer_registration_path} to purchase this Product
+        - else
+          = link_to "#{image_tag("web-app-theme/tick.png", :alt => "Add to cart")} Add to cart", retail_cart_add_path(:product_id => @product), :class => "button"
 
 - unless @product.publisher.bio.blank?
   - content_for :sidebar, render(:partial => 'retail/shared/about', :locals => {:publisher => @product.publisher})
