@@ -18,6 +18,8 @@ class Product < ActiveRecord::Base
   validates_attachment_content_type :cd_sleeve_art,  :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png']
   validates_attachment_content_type :dvd_sleeve_art, :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png']
 
+  has_attached_file :iso
+
   acts_as_taggable
   acts_as_taggable_on :keywords
 
