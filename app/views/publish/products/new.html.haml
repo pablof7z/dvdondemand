@@ -13,7 +13,7 @@
   .content
     %h2.title New Product
     .inner
-      - form_for @product, :url => publish_publisher_products_path(current_publisher), :html => { :class => :form } do |f|
+      - form_for @product, :url => publish_publisher_products_path(current_publisher), :html => { :multipart => true, :class => :form } do |f|
         = render :partial => "form", :locals => {:f => f}
 
 - content_for :sidebar, render(:partial => 'publish/shared/sidebar')
