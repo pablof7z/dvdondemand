@@ -6,20 +6,15 @@
       %li.first= link_to "Home", retail_publishers_path
       %li.active= link_to "Show", retail_publisher_path
   .content
-    %h2.title= @publisher.full_name
+    %h2.title= @publisher.artist_name
     .inner
-      %p
-        %b First name:
-        = @publisher.first_name
-      %p
-        %b Last name:
-        = @publisher.last_name
       %p
         %b E-mail:
         = @publisher.email
-      %p
-        %b Address:
-        = @publisher.address
+      - unless @publisher.bio.blank?
+        %p
+          %b Biography:
+        %p= @publisher.bio
       %p
         %em Catalogs by this Publisher :
       %table.table

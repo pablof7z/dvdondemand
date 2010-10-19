@@ -7,11 +7,14 @@ class Publisher < ActiveRecord::Base
 
   named_scope :approved, :conditions => { :approved => true }
 
-  # don't add :confirmable just yet, until the mailer is configured
-  devise :database_authenticatable, :recoverable, :registerable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :confirmable, :recoverable, :registerable, :rememberable, :trackable, :validatable
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def artist_name
+    nickname || full_name
   end
 end
 
