@@ -12,5 +12,9 @@ class Publisher < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def artist_name
+    nickname || full_name
+  end
 end
 

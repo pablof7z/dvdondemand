@@ -10,7 +10,7 @@
     .inner
       %p
         %b Publisher:
-        = @catalog.publisher.full_name
+        = @catalog.publisher.artist_name
       %p
         %b Description:
         = @catalog.description
@@ -25,5 +25,8 @@
         = render :partial => 'retail/products/product', :collection => @catalog.products
       .wat-cf
 
-- content_for :sidebar, render(:partial => 'retail/shared/sidebar')
+- unless @catalog.publisher.bio.blank?
+  - content_for :sidebar, render(:partial => 'retail/shared/about', :locals => {:publisher => @catalog.publisher})
+- else
+  - content_for :sidebar, render(:partial => 'retail/shared/sidebar')
 
