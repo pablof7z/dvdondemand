@@ -39,8 +39,10 @@
         %p
           %b Running Time:
           = @product.running_time
-      %p.iso
-        = link_to @product.iso_file_name, '#', :confirm => 'Please Login or Sign Up first!'
+      - if @product.iso.exists?
+        %p.iso
+          = link_to @product.iso_file_name, '#', :confirm => 'Please Login or Sign Up first!'
+          (#{number_to_human_size(@product.iso_file_size)})
       .wat-cf
     .inner
       .group.navform.wat-cf

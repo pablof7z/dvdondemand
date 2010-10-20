@@ -58,7 +58,7 @@
 
 .group
   = f.label :iso, "ISO File", :class => :label
-  - if @product.cover.exists?
+  - if @product.iso.exists?
     %p.iso
       = link_to @product.iso_file_name, @product.iso.url
       (#{number_to_human_size(@product.iso_file_size)})
