@@ -39,9 +39,8 @@
         %p
           %b Running Time:
           = @product.running_time
-      %p
-        %b Published by:
-        = @product.publisher.full_name
+      %p.iso
+        = link_to @product.iso_file_name, '#', :confirm => 'Please Login or Sign Up first!'
       .wat-cf
     .inner
       .group.navform.wat-cf

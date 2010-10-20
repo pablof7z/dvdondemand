@@ -56,6 +56,14 @@
   = f.file_field :cover_art, :class => 'text_field'
   %span.description (Only JPEG or PNG images)
 
+.group
+  = f.label :iso, "ISO File", :class => :label
+  - if @product.cover.exists?
+    %p.iso
+      = link_to @product.iso_file_name, @product.iso.url
+      (#{number_to_human_size(@product.iso_file_size)})
+  = f.file_field :iso, :class => 'text_field'
+
 .group.navform.wat-cf
   %button.button{:type => 'submit'}
     = image_tag("web-app-theme/tick.png", :alt => "Save")
