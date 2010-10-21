@@ -21,13 +21,13 @@
             %td
             %td= link_to product.title, retail_catalog_product_path(item['catalog_id'],item['product_id'])
             %td= item['qty']
-            %td= number_to_currency(product.price*item['qty'].to_f)
+            %td= number_to_currency(item['price'].to_f*item['qty'].to_f)
             %td
         %tr
           %td{:colspan => '2'}
           %td TOTAL
           %td
-            %b= number_to_currency(@cart_total)
+            %b= number_to_currency(cart_total)
           %td
 
 - content_for :sidebar, render(:partial => 'retail/shared/sidebar')
