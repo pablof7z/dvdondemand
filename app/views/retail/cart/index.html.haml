@@ -19,7 +19,7 @@
           %tr{:class => cycle("odd", "even")}
             - product = Product.find(item['product_id'])
             %td
-            %td= product.title
+            %td= link_to product.title, retail_catalog_product_path(item['catalog_id'],item['product_id'])
             %td= item['qty']
             %td= number_to_currency(product.price*item['qty'].to_f)
             %td

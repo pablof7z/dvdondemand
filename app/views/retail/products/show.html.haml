@@ -41,6 +41,7 @@
           #{link_to 'Login', new_customer_session_path} or #{link_to 'Sign Up', new_customer_registration_path} to purchase this Product
         - else
           - form_tag retail_cart_add_path, :class => 'form' do
+            = hidden_field_tag 'item[catalog_id]', @catalog.id
             = hidden_field_tag 'item[product_id]', @product.id
             = text_field_tag 'item[qty]', '1', :class => 'text_field_small'
             %button.button{:type => 'submit'}
