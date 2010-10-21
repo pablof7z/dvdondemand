@@ -3,13 +3,13 @@ class Retail::CartController < ApplicationController
   layout 'retail'
 
   def index
-    @cart_total = customer_session[:cart_items].inject(0) do |total, product_id|
-      total + Product.find(product_id).price
+    @cart_total = customer_session[:cart_items].inject(0) do |total, item|
+      total + Product.find(item['product_id']).price*item['qty'].to_f
     end
   end
 
   def add_item
-    customer_session[:cart_items] << params[:product_id]
+    customer_session[:cart_items] << params[:item]
     redirect_to :action => :index
   end
 

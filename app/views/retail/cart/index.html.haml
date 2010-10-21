@@ -15,13 +15,13 @@
           %th Qty.
           %th{:align => 'right'} Price
           %th.last
-        - for product_id in customer_session[:cart_items]
-          %tr
-            - product = Product.find(product_id)
+        - for item in customer_session[:cart_items]
+          %tr{:class => cycle("odd", "even")}
+            - product = Product.find(item['product_id'])
             %td
             %td= product.title
-            %td 1
-            %td= number_to_currency(product.price)
+            %td= item['qty']
+            %td= number_to_currency(product.price*item['qty'].to_f)
             %td
         %tr
           %td{:colspan => '2'}
