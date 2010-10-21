@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   def layout_by_devise_resource
     if devise_controller?
       case resource_name
+        when :admin     then 'admin'
         when :customer  then 'retail'
         when :publisher then 'publish'
       end
@@ -26,6 +27,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(resource_or_scope)
     case resource_or_scope
+      when :admin     then root_path
       when :customer  then root_path
       when :publisher then publish_root_path
     end

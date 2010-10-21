@@ -10,13 +10,16 @@
         %h1= link_to 'OnDemand WebStore Administration', '#'
         #user-navigation
           %ul.wat-cf
-            %li= link_to 'Profile', '#'
-            %li= link_to 'Logout', '#'
+            - unless admin_signed_in?
+              %li= link_to 'Login', new_admin_session_path
+            - else
+              %li= link_to 'Logout', destroy_admin_session_path
         #main-navigation
           %ul.wat-cf
-            %li.active= link_to 'Publishers', publish_publishers_path
-            %li= link_to 'Sales', '#'
-            %li= link_to 'Reports', '#'
+            - if admin_signed_in?
+              = yield :main_navigation
+            - else
+              %li.active= link_to 'Administration', admin_root_path
       #wrapper.wat-cf
         .flash
           - flash.each do |type, message|

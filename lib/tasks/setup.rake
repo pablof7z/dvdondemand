@@ -26,6 +26,16 @@ namespace :devise do
     puts 'New Devise Publisher created!'
     puts 'E-mail  : ' << publisher.email
     puts 'Password: ' << publisher.password
+    puts
+
+    admin = Admin.create! do |u|
+      u.email      = 'devise@admin.com'
+      u.password   = '123456'
+      u.password_confirmation = '123456'
+    end
+    puts 'New Devise Admin created!'
+    puts 'E-mail  : ' << admin.email
+    puts 'Password: ' << admin.password
   end
 end
 

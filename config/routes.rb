@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-
   map.resources :fees
 
   map.resources :shipping_options
@@ -45,6 +44,8 @@ ActionController::Routing::Routes.draw do |map|
     retail.resources :items
   end
 
+  map.devise_for :admins
+  map.admin_root 'admin', :controller => 'admin/home'
   map.namespace :admin do |admin|
     admin.resources :wholesale_prices, :as => 'wholesale'
   end
