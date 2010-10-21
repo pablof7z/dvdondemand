@@ -45,9 +45,9 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.devise_for :admins
-  map.admin_root 'admin', :controller => 'admin/home'
   map.namespace :admin do |admin|
     admin.resources :wholesale_prices, :as => 'wholesale'
+    admin.root :controller => 'home'
   end
 
   map.root :controller => 'retail/catalogs'
