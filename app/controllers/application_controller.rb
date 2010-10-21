@@ -19,9 +19,6 @@ class ApplicationController < ActionController::Base
         when :customer  then 'retail'
         when :publisher then 'publish'
       end
-    else
-      # this will surely *have* to be changed sometime
-      'admin'
     end
   end
 
