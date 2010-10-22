@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-
   map.resources :fees
 
   map.resources :shipping_options
@@ -20,7 +19,6 @@ ActionController::Routing::Routes.draw do |map|
       end
       publisher.resources :products do |product|
         product.resources :items
-        product.resources :wholesale_prices
       end
       publisher.resources :sales
       publisher.resources :publisher_payments, :as => :payments
@@ -29,6 +27,7 @@ ActionController::Routing::Routes.draw do |map|
     publish.resources :items
     publish.resources :products
 
+    # leave this route auth-less for publisher sign-up marketing
     publish.root :controller => 'home'
   end
 
@@ -46,6 +45,14 @@ ActionController::Routing::Routes.draw do |map|
     retail.cart     'cart',     :controller => 'cart', :action => 'index'
     retail.cart_add 'cart_add', :controller => 'cart', :action => 'add_item'
     retail.cart_del 'cart_del/:product_id', :controller => 'cart', :action => 'del_item'
+  end
+
+  map.devise_for :admins
+  map.namespace :admin do |admin|
+    admin.resources :wholesale_prices, :as => 'wholesale'
+
+    # route needed for Devise after_sign_in, always auth-ful because it's admin's
+    admin.root :controller => 'home'
   end
 
   map.root :controller => 'retail/catalogs'

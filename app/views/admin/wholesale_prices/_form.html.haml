@@ -10,6 +10,11 @@
   %span.description (Required)
 
 .group
+  = f.label :terms, "Terms of Agreement", :class => :label
+  = f.text_area :terms, :class => 'text_area'
+  <span class="description">Ex: a simple text</span>
+
+.group
   = f.label :enabled, "Enabled", :class => :label
   = f.check_box :enabled, :class => 'check_box'
   Yes
@@ -18,5 +23,5 @@
   %button.button{:type => 'submit'}
     = image_tag("web-app-theme/tick.png", :alt => "Save")
     = t("web-app-theme.save", :default => "Save")
-  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", publish_publisher_product_wholesale_prices_path(@publisher,@product), :class => "button"
+  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", admin_wholesale_prices_path, :class => "button"
 
