@@ -45,6 +45,8 @@ ActionController::Routing::Routes.draw do |map|
     retail.cart     'cart',     :controller => 'cart', :action => 'index'
     retail.cart_add 'cart_add', :controller => 'cart', :action => 'add_item'
     retail.cart_del 'cart_del/:product_id', :controller => 'cart', :action => 'del_item'
+
+    retail.root :controller => 'catalogs'
   end
 
   map.devise_for :admins
