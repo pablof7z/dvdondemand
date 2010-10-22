@@ -15,7 +15,7 @@
               %li= link_to 'Sign Up', new_customer_registration_path
             - else
               %li Welcome, #{link_to current_customer.full_name, root_path}
-              %li= link_to "My Cart (#{cart_item_count})", retail_cart_path
+              %li= link_to "My Cart ({cart_item_count})", retail_cart_path
               %li= link_to 'Logout', destroy_customer_session_path
         #main-navigation
           %ul.wat-cf

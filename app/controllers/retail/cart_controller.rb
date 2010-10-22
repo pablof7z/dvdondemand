@@ -16,6 +16,19 @@ class Retail::CartController < ApplicationController
     redirect_to :action => :index
   end
 
+  def update
+    unless customer_session[:cart_items].empty?
+      customer_session[:cart_items].map! do |item|
+        if item['product_id'] == params[:item][:product_id]
+          {'qty' => params[:item][:qty], 'product_id' => item['product_id'], 'catalog_id' => item['catalog_id'], 'price' => item['price']}
+        else
+          item
+        end
+      end
+    end
+    redirect_to :action => :index
+  end
+
   private
 
   def find_cart_items
