@@ -22,7 +22,7 @@
             %td= link_to product.title, retail_catalog_product_path(item['catalog_id'],item['product_id'])
             %td= item['qty']
             %td= number_to_currency(item['price'].to_f*item['qty'].to_f)
-            %td
+            %td= link_to 'Delete', retail_cart_del_path(item['product_id'])
         %tr
           %td{:colspan => '2'}
           %td TOTAL
