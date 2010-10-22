@@ -38,10 +38,12 @@ ActionController::Routing::Routes.draw do |map|
     end
     retail.resources :publishers, :only => [:index, :show]
     retail.resources :products, :only => :show
-    retail.resources :orders do |order|
-      order.resources :order_items
-    end
 
+    retail.resources :customers do |customer|
+      customer.resources :orders do |order|
+        order.resources :order_items
+      end
+    end
     retail.cart     'cart',     :controller => 'cart', :action => 'index'
     retail.cart_add 'cart_add', :controller => 'cart', :action => 'add_item'
     retail.cart_del 'cart_del/:product_id', :controller => 'cart', :action => 'del_item'
