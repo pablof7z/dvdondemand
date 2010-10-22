@@ -7,7 +7,6 @@
   .content
     %h2.title My Cart so far
     .inner
-    .inner
       %table.table
         %tr
           %th.first
@@ -35,6 +34,9 @@
           %td
             %b= number_to_currency(cart_total)
           %td
+      .wat-cf
+        - if cart_total > 0
+          = link_to "#{image_tag("web-app-theme/tick.png", :alt => "Place Order")} Place Order", new_retail_customer_order_path(current_customer), :class => "button", :confirm => "Are you sure?"
 
 - content_for :sidebar, render(:partial => 'retail/shared/sidebar')
 
