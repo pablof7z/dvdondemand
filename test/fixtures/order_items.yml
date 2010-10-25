@@ -1,9 +1,10 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  product: products(:one)
-  quantity: 2
+# one:
+#   product: products(:one)
+#   quantity: 2
 
-two:
-  product: products(:two)
-  quantity: 3
+# two:
+#   product: products(:two)
+#   quantity: 3
+

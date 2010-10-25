@@ -5,6 +5,8 @@ class Order < ActiveRecord::Base
   has_many :customer_payments
   has_many :order_items, :dependent => :delete_all
 
+  accepts_nested_attributes_for :order_items
+
   validates_presence_of :billing_address
 end
 
