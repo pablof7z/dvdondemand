@@ -20,8 +20,8 @@
             - product = Product.find(item['product_id'].to_i)
             %td
             %td= link_to product.title, retail_catalog_product_path(item['catalog_id'],item['product_id'])
-            %td= item['qty']
-            %td= number_to_currency(item['price'].to_f*item['qty'].to_f)
+            %td= item['quantity']
+            %td= number_to_currency(item['price'].to_f*item['quantity'].to_f)
             %td
         %tr
           %td{:colspan => '2'}
