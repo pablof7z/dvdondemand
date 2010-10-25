@@ -29,6 +29,11 @@ class Retail::CartController < ApplicationController
     redirect_to :action => :index
   end
 
+  def clean
+    customer_session[:cart_items] = []
+    redirect_to :action => :index
+  end
+
   private
 
   def find_cart_items
