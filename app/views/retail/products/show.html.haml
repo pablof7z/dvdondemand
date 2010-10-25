@@ -44,7 +44,7 @@
             = hidden_field_tag 'item[catalog_id]', @catalog.id
             = hidden_field_tag 'item[product_id]', @product.id
             = hidden_field_tag 'item[price]', @product.price
-            = text_field_tag 'item[qty]', '1', :class => 'text_field_small'
+            = text_field_tag 'item[quantity]', '1', :class => 'text_field_small'
             %button.button{:type => 'submit'}
               = image_tag("web-app-theme/tick.png", :alt => "Add to cart")
               Add to cart
