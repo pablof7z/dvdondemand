@@ -40,14 +40,19 @@
         - unless customer_signed_in?
           #{link_to 'Login', new_customer_session_path} or #{link_to 'Sign Up', new_customer_registration_path} to purchase this Product
         - else
-          - form_tag retail_cart_add_path, :class => 'form' do
-            = hidden_field_tag 'item[catalog_id]', @catalog.id
-            = hidden_field_tag 'item[product_id]', @product.id
-            = hidden_field_tag 'item[price]', @product.price
-            = text_field_tag 'item[quantity]', '1', :class => 'text_field_small'
-            %button.button{:type => 'submit'}
-              = image_tag("web-app-theme/tick.png", :alt => "Add to cart")
-              Add to cart
+          - if cart_items_include?(@product.id)
+            %p
+              This product is already in your Cart.
+              = link_to 'Update it.', retail_cart_path
+          - else
+            - form_tag retail_cart_add_path, :class => 'form' do
+              = hidden_field_tag 'item[catalog_id]', @catalog.id
+              = hidden_field_tag 'item[product_id]', @product.id
+              = hidden_field_tag 'item[price]', @product.price
+              = text_field_tag 'item[quantity]', '1', :class => 'text_field_small'
+              %button.button{:type => 'submit'}
+                = image_tag("web-app-theme/tick.png", :alt => "Add to cart")
+                Add to cart
 
 - unless @product.publisher.bio.blank?
   - content_for :sidebar, render(:partial => 'retail/shared/about', :locals => {:publisher => @product.publisher})
