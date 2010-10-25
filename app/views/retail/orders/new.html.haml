@@ -1,0 +1,51 @@
+- render :partial => 'retail/catalogs/main_navigation'
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "Place New Order", retail_cart_path
+  .content
+    %h2.title Place New Purchase Order
+    .inner
+      %p Please confirm the the following products to place your new purchase order.
+      %table.table
+        %tr
+          %th.first
+          %th Title
+          %th Qty.
+          %th{:align => 'right'} Price
+          %th.last
+        - for item in customer_session[:cart_items]
+          %tr{:class => cycle("odd", "even")}
+            - product = Product.find(item['product_id'].to_i)
+            %td
+            %td= link_to product.title, retail_catalog_product_path(item['catalog_id'],item['product_id'])
+            %td= item['qty']
+            %td= number_to_currency(item['price'].to_f*item['qty'].to_f)
+            %td
+        %tr
+          %td{:colspan => '2'}
+          %td TOTAL
+          %td
+            %b= number_to_currency(cart_total)
+          %td
+      - form_for @order, :url => retail_customer_orders_path(current_customer), :html => { :class => :form } do |f|
+        .group
+          = f.error_messages
+        .group
+          = f.label :billing_address, "Billing Address", :class => :label
+          = f.text_area :billing_address, :rows => 5, :class => 'text_area'
+        .group
+          = f.label :shipping_address, "Shipping Address", :class => :label
+          = f.text_area :shipping_address, :rows => 5, :class => 'text_area'
+          %p
+            = check_box_tag :same_as, :value => '1'
+            Same as Billing Address
+        .group.navform.wat-cf
+          %button.button{:type => 'submit'}
+            = image_tag("web-app-theme/tick.png", :alt => "Place Order")
+            Place Order
+          = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", retail_cart_path, :class => "button"
+
+- content_for :sidebar, render(:partial => 'retail/shared/sidebar')
+

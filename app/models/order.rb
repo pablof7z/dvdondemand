@@ -4,5 +4,7 @@ class Order < ActiveRecord::Base
   belongs_to :shipping_option # USPS, FedEx, DHL, etc.
   has_many :customer_payments
   has_many :order_items, :dependent => :delete_all
+
+  validates_presence_of :billing_address
 end
 
