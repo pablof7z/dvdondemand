@@ -1,6 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 aa:
+  id: 1
   media: cd
   title: Avant Garde
 
@@ -89,6 +90,7 @@ av:
   title: World
 
 ba:
+  id: 2
   media: dvd
   title: Action & Adventure
 
