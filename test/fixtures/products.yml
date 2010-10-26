@@ -18,3 +18,12 @@ janes:
   price: 9.99
   description: The golden glam age
 
+devises:
+  id: 3
+  publisher_id: 4
+  genre_id: 4
+  title: Macross Saga
+  studio: Harmony Gold
+  price: 11.99
+  description: The anime that changed it all, forever
+

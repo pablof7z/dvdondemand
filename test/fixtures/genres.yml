@@ -6,6 +6,7 @@ aa:
   title: Avant Garde
 
 ab:
+  id: 3
   media: cd
   title: Blues
 
@@ -95,6 +96,7 @@ ba:
   title: Action & Adventure
 
 bb:
+  id: 4
   media: dvd
   title: Anime & Animation
 
