@@ -88,3 +88,79 @@ av:
   media: cd
   title: World
 
+ba:
+  media: dvd
+  title: Action & Adventure
+
+bb:
+  media: dvd
+  title: Anime & Animation
+
+bc:
+  media: dvd
+  title: Children & Family
+
+bd:
+  media: dvd
+  title: Classics
+
+be:
+  media: dvd
+  title: Comedy
+
+bf:
+  media: dvd
+  title: Documentary
+
+bg:
+  media: dvd
+  title: Drama
+
+bh:
+  media: dvd
+  title: Faith & Spirituality
+
+bi:
+  media: dvd
+  title: Foreign
+
+bj:
+  media: dvd
+  title: Gay & Lesbian
+
+bk:
+  media: dvd
+  title: Horror
+
+bl:
+  media: dvd
+  title: Independent
+
+bm:
+  media: dvd
+  title: Music & Musicals
+
+bn:
+  media: dvd
+  title: Romance
+
+bo:
+  media: dvd
+  title: Sci-Fi & Fantasy
+
+bp:
+  media: dvd
+  title: Special Interest
+
+bq:
+  media: dvd
+  title: Sports & Fitness
+
+br:
+  media: dvd
+  title: Television
+
+bs:
+  media: dvd
+  title: Thrillers
+
