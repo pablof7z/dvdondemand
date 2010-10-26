@@ -1,0 +1,90 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+aa:
+  media: cd
+  title: Avant Garde
+
+ab:
+  media: cd
+  title: Blues
+
+ac:
+  media: cd
+  title: Classical
+
+ad:
+  media: cd
+  title: Country
+
+ae:
+  media: cd
+  title: Easy Listening
+
+af:
+  media: cd
+  title: Electronic
+
+ag:
+  media: cd
+  title: Folk
+
+ah:
+  media: cd
+  title: Hip-Hop/Rap
+
+ai:
+  media: cd
+  title: Holiday
+
+aj:
+  media: cd
+  title: Jazz
+
+ak:
+  media: cd
+  title: Kids/Family
+
+al:
+  media: cd
+  title: Latin
+
+am:
+  media: cd
+  title: Metal/Punk
+
+an:
+  media: cd
+  title: Moods
+
+ao:
+  media: cd
+  title: New Age
+
+ap:
+  media: cd
+  title: Pop
+
+aq:
+  media: cd
+  title: Reggae
+
+ar:
+  media: cd
+  title: Rock
+
+as:
+  media: cd
+  title: Spiritual
+
+at:
+  media: cd
+  title: Spoken Word
+
+au:
+  media: cd
+  title: Urban/R&B
+
+av:
+  media: cd
+  title: World
+
