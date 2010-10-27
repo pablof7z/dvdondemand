@@ -1,0 +1,35 @@
+- content_for :main_navigation do
+  %li= link_to 'Administration', admin_root_path
+  %li.active= link_to 'Genres', admin_genres_path
+  %li= link_to 'Wholesale', admin_wholesale_prices_path
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "Genres", admin_genres_path
+      %li= link_to "New", new_admin_genre_path
+  .content
+    %h2.title All Product Genres
+    .inner
+      %table.table
+        %tr
+          %th.first ID
+          %th Media
+          %th Title
+          %th.last &nbsp;
+        - @genres.each do |genre|
+          %tr{:class => cycle("odd", "even")}
+            %td= genre.id
+            %td= genre.media.upcase
+            %td= link_to genre.title, admin_genre_path(genre)
+            %td.last
+              = link_to "Show", admin_genre_path(genre)
+              |
+              = link_to "Edit", edit_admin_genre_path(genre)
+              |
+              = link_to "Delete", admin_genre_path(genre), :method => :delete, :confirm => "Are you sure?"
+      .actions-bar.wat-cf
+        .actions
+
+- content_for :sidebar, render(:partial => 'admin/shared/sidebar')
+
