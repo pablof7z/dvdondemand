@@ -1,6 +1,7 @@
 class CreateProducts < ActiveRecord::Migration
   def self.up
     create_table :products do |t|
+      t.references :media_type
       t.references :publisher
       t.references :genre
       t.string :title

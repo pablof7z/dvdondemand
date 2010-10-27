@@ -2,6 +2,10 @@
   = f.error_messages
 
 .group
+  = f.label :media_type_id, "Media Type", :class => :label
+  = f.collection_select :media_type_id, MediaType.all, :id, :name
+
+.group
   = f.label :title, "Title", :class => :label
   = f.text_field :title, :class => 'text_field'
 

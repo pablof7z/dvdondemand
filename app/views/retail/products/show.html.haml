@@ -11,13 +11,12 @@
   .content
     %h2.title= "#{@product.title} by #{@product.publisher.artist_name}"
     .inner
-      - unless @product.product_type.blank?
-        %p
-          %b Product Type:
-          = @product.product_type
       - if @product.cover.exists?(:medium)
         %p= image_tag(@product.cover.url(:medium))
         %p= link_to 'Full size Cover art', @product.cover.url, :target => :blank
+      %p
+        %b Genre:
+        = @product.genre.title
       %p
         %b Studio:
         = @product.studio

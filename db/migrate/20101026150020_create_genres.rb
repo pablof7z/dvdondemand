@@ -1,7 +1,7 @@
 class CreateGenres < ActiveRecord::Migration
   def self.up
     create_table :genres do |t|
-      t.string :media
+      t.references :media_type
       t.string :title
     end
   end

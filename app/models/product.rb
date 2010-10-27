@@ -1,4 +1,5 @@
 class Product < ActiveRecord::Base
+  belongs_to :media_type
   belongs_to :publisher
   belongs_to :genre
 

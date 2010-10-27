@@ -2,169 +2,169 @@
 
 aa:
   id: 1
-  media: cd
+  media_type_id: 1
   title: Avant Garde
 
 ab:
   id: 3
-  media: cd
+  media_type_id: 1
   title: Blues
 
 ac:
-  media: cd
+  media_type_id: 1
   title: Classical
 
 ad:
-  media: cd
+  media_type_id: 1
   title: Country
 
 ae:
-  media: cd
+  media_type_id: 1
   title: Easy Listening
 
 af:
-  media: cd
+  media_type_id: 1
   title: Electronic
 
 ag:
-  media: cd
+  media_type_id: 1
   title: Folk
 
 ah:
-  media: cd
+  media_type_id: 1
   title: Hip-Hop/Rap
 
 ai:
-  media: cd
+  media_type_id: 1
   title: Holiday
 
 aj:
-  media: cd
+  media_type_id: 1
   title: Jazz
 
 ak:
-  media: cd
+  media_type_id: 1
   title: Kids/Family
 
 al:
-  media: cd
+  media_type_id: 1
   title: Latin
 
 am:
-  media: cd
+  media_type_id: 1
   title: Metal/Punk
 
 an:
-  media: cd
+  media_type_id: 1
   title: Moods
 
 ao:
-  media: cd
+  media_type_id: 1
   title: New Age
 
 ap:
-  media: cd
+  media_type_id: 1
   title: Pop
 
 aq:
-  media: cd
+  media_type_id: 1
   title: Reggae
 
 ar:
-  media: cd
+  media_type_id: 1
   title: Rock
 
 as:
-  media: cd
+  media_type_id: 1
   title: Spiritual
 
 at:
-  media: cd
+  media_type_id: 1
   title: Spoken Word
 
 au:
-  media: cd
+  media_type_id: 1
   title: Urban/R&B
 
 av:
-  media: cd
+  media_type_id: 1
   title: World
 
 ba:
   id: 2
-  media: dvd
+  media_type_id: 2
   title: Action & Adventure
 
 bb:
   id: 4
-  media: dvd
+  media_type_id: 2
   title: Anime & Animation
 
 bc:
-  media: dvd
+  media_type_id: 2
   title: Children & Family
 
 bd:
-  media: dvd
+  media_type_id: 2
   title: Classics
 
 be:
-  media: dvd
+  media_type_id: 2
   title: Comedy
 
 bf:
-  media: dvd
+  media_type_id: 2
   title: Documentary
 
 bg:
-  media: dvd
+  media_type_id: 2
   title: Drama
 
 bh:
-  media: dvd
+  media_type_id: 2
   title: Faith & Spirituality
 
 bi:
-  media: dvd
+  media_type_id: 2
   title: Foreign
 
 bj:
-  media: dvd
+  media_type_id: 2
   title: Gay & Lesbian
 
 bk:
-  media: dvd
+  media_type_id: 2
   title: Horror
 
 bl:
-  media: dvd
+  media_type_id: 2
   title: Independent
 
 bm:
-  media: dvd
+  media_type_id: 2
   title: Music & Musicals
 
 bn:
-  media: dvd
+  media_type_id: 2
   title: Romance
 
 bo:
-  media: dvd
+  media_type_id: 2
   title: Sci-Fi & Fantasy
 
 bp:
-  media: dvd
+  media_type_id: 2
   title: Special Interest
 
 bq:
-  media: dvd
+  media_type_id: 2
   title: Sports & Fitness
 
 br:
-  media: dvd
+  media_type_id: 2
   title: Television
 
 bs:
-  media: dvd
+  media_type_id: 2
   title: Thrillers
 

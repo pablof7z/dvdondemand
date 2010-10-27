@@ -20,7 +20,7 @@
         - @genres.each do |genre|
           %tr{:class => cycle("odd", "even")}
             %td= genre.id
-            %td= genre.media.upcase
+            %td= genre.media_type.name
             %td= link_to genre.title, admin_genre_path(genre)
             %td.last
               = link_to "Show", admin_genre_path(genre)
