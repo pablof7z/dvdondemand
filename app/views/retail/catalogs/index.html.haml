@@ -11,6 +11,7 @@
         %tr
           %th.first
           %th Title
+          %th Media
           %th Price
           %th.last
         - @products.each do |product|
@@ -21,8 +22,9 @@
               - else
                 = product.id
             %td= product.title
+            %td= product.media_type.name
             %td= number_to_currency(product.price)
-            %td.last= product.description
+            %td.last= product.genre.title
     %h2.title Featured Catalogs from Publishers
     .inner
       %table.table
