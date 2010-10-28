@@ -9,9 +9,17 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :catalogs
   has_and_belongs_to_many :items
 
-  validates_presence_of :media_type, :genre, :title, :price
+  validates_presence_of :media_type, :genre, :title, :description, :price
 
   has_attached_file :cover, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   validates_attachment_content_type :cover, :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'] # latter for IE support
+
+  def cd?
+    media_type_id == MediaType::CD
+  end
+
+  def dvd?
+    media_type_id == MediaType::DVD
+  end
 end
 

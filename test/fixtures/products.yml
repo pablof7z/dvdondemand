@@ -8,6 +8,7 @@ johns:
   title: Foobar Blues Media Pack
   studio: Almighty Records
   price: 14.99
+  performers: moe, larry, curly, shemp
   description: Play it again, Sam
 
 janes:
@@ -18,6 +19,7 @@ janes:
   title: The Barfoo Rock Antology
   studio: 2nd Grade Records
   price: 9.99
+  performers: athos, porthos, aramis, dartagnan
   description: The golden glam age
 
 devises:
@@ -28,5 +30,6 @@ devises:
   title: Macross Saga
   studio: Harmony Gold
   price: 11.99
+  performers: rick hunter, minn may, roy focker, miriya parina, max sterling
   description: The anime that changed it all, forever
 

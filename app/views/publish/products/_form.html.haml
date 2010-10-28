@@ -21,6 +21,11 @@
   = f.text_field :studio, :class => 'text_field'
 
 .group
+  = f.label :performers, "Actors/Musicians", :class => :label
+  = f.text_area :performers, :rows => 2, :class => 'text_area'
+  %span.description Ex: a simple text
+
+.group
   = f.label :description, "Description", :class => :label
   = f.text_area :description, :rows => 5, :class => 'text_area'
   %span.description Ex: a simple text

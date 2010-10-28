@@ -26,6 +26,11 @@
       %p
         %b Studio:
         = @product.studio
+      - unless @product.performers.blank?
+        %p
+          %b #{@product.dvd? ? 'Actors' : 'Musicians' }:
+        %p
+          = @product.performers
       %p
         %b Description:
       %p

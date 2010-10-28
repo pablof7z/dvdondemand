@@ -6,7 +6,7 @@ class Genre < ActiveRecord::Base
   validates_uniqueness_of :title, :scope => :media_type_id
 
   default_scope :order => 'title'
-  named_scope :for_cd,  :conditions => { :media_type_id => 1 }
-  named_scope :for_dvd, :conditions => { :media_type_id => 2 }
+  named_scope :for_cd,  :conditions => { :media_type_id => MediaType::CD }
+  named_scope :for_dvd, :conditions => { :media_type_id => MediaType::DVD }
 end
 

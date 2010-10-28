@@ -6,6 +6,7 @@ class CreateProducts < ActiveRecord::Migration
       t.references :genre
       t.string :title
       t.string :studio
+      t.text :performers
       t.text :description
       t.float :price
       t.integer :running_time
