@@ -37,7 +37,6 @@ ActionController::Routing::Routes.draw do |map|
       catalog.resources :products, :only => :show
     end
     retail.resources :publishers, :only => [:index, :show]
-    retail.resources :products, :only => :show
     retail.resources :orders do |order|
       order.resources :order_items
     end
