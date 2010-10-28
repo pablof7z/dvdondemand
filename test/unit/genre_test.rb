@@ -1,8 +1,9 @@
 require 'test_helper'
 
 class GenreTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  test "should pass some validations before saving" do
+    genre = Genre.new
+    assert !genre.valid?
   end
 end
+
