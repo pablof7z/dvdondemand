@@ -15,6 +15,7 @@ class Product < ActiveRecord::Base
   validates_attachment_content_type :cover, :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'] # latter for IE support
 
   def cd?
+    # do not check thru MediaType association to make comparison snappier
     media_type_id == MediaType::CD
   end
 
