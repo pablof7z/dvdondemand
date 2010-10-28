@@ -11,19 +11,27 @@
   .content
     %h2.title= "#{@product.title} by #{@product.publisher.artist_name}"
     .inner
-      - unless @product.product_type.blank?
-        %p
-          %b Product Type:
-          = @product.product_type
       - if @product.cover.exists?(:medium)
         %p= image_tag(@product.cover.url(:medium))
         %p= link_to 'Full size Cover art', @product.cover.url, :target => :blank
       %p
+        %b Genre:
+        = @product.genre.title
+      %p
         %b Studio:
         = @product.studio
+      - unless @product.performers.blank?
+        %p
+          %b #{@product.dvd? ? 'Actors' : 'Musicians' }:
+        %p
+          = @product.performers
       %p
         %b Description:
         = @product.description
+      - unless @product.keywords.blank?
+        %p
+          %b Keywords:
+          = @product.keyword_list
       %p
         %b Price:
         = number_to_currency(@product.price)

@@ -5,7 +5,8 @@
     - else
       = product.id
   %td= link_to product.title, publish_publisher_product_path(current_publisher,product)
-  %td= product.created_at
+  %td= product.media_type.name
+  %td= product.genre.title
   %td.last
     = link_to "Show", publish_publisher_product_path(current_publisher,product)
     |

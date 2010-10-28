@@ -1,0 +1,19 @@
+- content_for :main_navigation do
+  %li= link_to 'Administration', admin_root_path
+  %li= link_to 'Genres', admin_genres_path
+  %li.active= link_to 'Publishers', admin_publishers_path
+  %li= link_to 'Wholesale', admin_wholesale_prices_path
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "All Publishers", admin_publishers_path
+      %li.active= link_to "Edit", edit_admin_publisher_path
+  .content
+    %h2.title Edit Publisher
+    .inner
+      - form_for @publisher, :url => admin_publisher_path(@publisher), :html => { :class => :form } do |f|
+        = render :partial => "form", :locals => {:f => f}
+
+- content_for :sidebar, render(:partial => 'publish/shared/sidebar')
+
