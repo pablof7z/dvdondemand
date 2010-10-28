@@ -31,6 +31,11 @@
   %span.description Ex: a simple text
 
 .group
+  = f.label :keyword_list, "Keywords", :class => :label
+  = f.text_field :keyword_list, :class => 'text_field'
+  %span.description Tip: Separate keywords with commas
+
+.group
   = f.label :price, "Price", :class => :label
   = f.text_field :price, :class => 'text_field_small'
 

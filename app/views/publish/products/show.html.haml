@@ -35,6 +35,10 @@
         %b Description:
       %p
         = @product.description
+      - unless @product.keywords.blank?
+        %p
+          %b Keywords:
+          = @product.keyword_list
       %p
         %b Price:
         = number_to_currency(@product.price)
