@@ -7,3 +7,9 @@ one:
 two:
   catalog_id: 2
   product_id: 2
+
+three:
+  # same product#2, but on private catalog, always publisher#2
+  catalog_id: 3
+  product_id: 2
+
