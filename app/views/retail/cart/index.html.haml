@@ -7,7 +7,6 @@
   .content
     %h2.title My Cart so far
     .inner
-    .inner
       %table.table
         %tr
           %th.first
@@ -23,11 +22,11 @@
               %td= link_to product.title, retail_catalog_product_path(item['catalog_id'],item['product_id'])
               %td.form
                 = hidden_field_tag 'item[product_id]', item['product_id']
-                = text_field_tag 'item[qty]', item['qty'], :class => 'text_field_small'
+                = text_field_tag 'item[quantity]', item['quantity'], :class => 'text_field_small'
                 %button.button{:type => 'submit'}
                   = image_tag("web-app-theme/tick.png", :alt => "Update")
                   Update
-              %td= number_to_currency(item['price'].to_f*item['qty'].to_f)
+              %td= number_to_currency(item['price'].to_f*item['quantity'].to_f)
               %td= link_to 'Delete', retail_cart_del_path(item['product_id'])
         %tr
           %td{:colspan => '2'}
@@ -35,6 +34,10 @@
           %td
             %b= number_to_currency(cart_total)
           %td
+      .wat-cf
+        - if cart_total > 0
+          = link_to "#{image_tag("web-app-theme/tick.png", :alt => "Place Order")} Proceed to Place Order", new_retail_customer_order_path(current_customer), :class => "button"
+          or #{link_to 'Clear cart', {:controller => 'cart', :action => 'clean'}, :confirm => 'Are you sure?'}
 
 - content_for :sidebar, render(:partial => 'retail/shared/sidebar')
 
