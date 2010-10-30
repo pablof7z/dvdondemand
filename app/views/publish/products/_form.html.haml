@@ -1,32 +1,10 @@
 .group
   = f.error_messages
 
-- if @product.new_record? or @product.cd?
-  :javascript
-    $(function() {
-      $("#for_cd").show();
-      $("#for_dvd").hide();
-    });
-- else
-  :javascript
-    $(function() {
-      $("#for_cd").hide();
-      $("#for_dvd").show();
-    });
-
 :javascript
   $(function() {
     $("#product_media_type_id").change(function() {
-      if ($(this).val()=='#{MediaType::CD}')
-      {
-        $("#for_cd").show();
-        $("#for_dvd").hide();
-      }
-      else if ($(this).val()=='#{MediaType::DVD}')
-      {
-        $("#for_cd").hide();
-        $("#for_dvd").show();
-      }
+      $("#genres_select").load("/publish/genres?media_type_id="+$(this).val());
       return false;
     });
   });
@@ -41,12 +19,8 @@
 
 .group
   = f.label :genre_id, "Genre", :class => :label
-#for_cd.group
-  for CD
-  = f.collection_select :genre_id, Genre.for_cd, :id, :title, { :include_blank => :true }
-#for_dvd.group
-  for DVD
-  = f.collection_select :genre_id, Genre.for_dvd, :id, :title, { :include_blank => :true }
+  #genres_select
+    = f.collection_select :genre_id, @genres, :id, :title
 
 .group
   = f.label :studio, "Studio", :class => :label

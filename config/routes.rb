@@ -20,6 +20,7 @@ ActionController::Routing::Routes.draw do |map|
       publisher.resources :products do |product|
         product.resources :items
       end
+      publisher.resources :genres, :only => :index
       publisher.resources :sales
       publisher.resources :publisher_payments, :as => :payments
     end
