@@ -9,3 +9,14 @@
   margin: 0;
 }
 
+.form input.cart_text_field_small {
+  width: 10%;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 1.2em;
+  padding: 5px;
+  float: left;
+  margin: 0;
+  margin-right: 10px;
+}
+

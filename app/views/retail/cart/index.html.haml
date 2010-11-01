@@ -23,7 +23,7 @@
               %td= link_to product.title, retail_catalog_product_path(item['catalog_id'],item['product_id'])
               %td.form
                 = hidden_field_tag 'item[product_id]', item['product_id']
-                = text_field_tag 'item[qty]', item['qty'], :class => 'text_field_small'
+                = text_field_tag 'item[qty]', item['qty'], :class => 'cart_text_field_small'
                 %button.button{:type => 'submit'}
                   = image_tag("web-app-theme/tick.png", :alt => "Update")
                   Update

@@ -20,8 +20,10 @@ module Retail::CartHelper
   end
 
   def cart_items_include?(product_id)
-    customer_session[:cart_items].each do |item|
-      return true if item['product_id'] == product_id.to_s
+    unless customer_session[:cart_items].blank?
+      customer_session[:cart_items].each do |item|
+        return true if item['product_id'] == product_id.to_s
+      end
     end
     false
   end
