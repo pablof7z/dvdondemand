@@ -1,6 +1,14 @@
 .group
   = f.error_messages
 
+:javascript
+  $(function() {
+    $("#product_media_type_id").change(function() {
+      $("#genres_select").load("/publish/genres?media_type_id="+$(this).val());
+      return false;
+    });
+  });
+
 .group
   = f.label :media_type_id, "Media Type", :class => :label
   = f.collection_select :media_type_id, MediaType.all, :id, :name
@@ -11,10 +19,8 @@
 
 .group
   = f.label :genre_id, "Genre", :class => :label
-  for CD
-  = f.collection_select :genre_id, Genre.for_cd, :id, :title, { :include_blank => :true }
-  for DVD
-  = f.collection_select :genre_id, Genre.for_dvd, :id, :title, { :include_blank => :true }
+  #genres_select
+    = f.collection_select :genre_id, @genres, :id, :title
 
 .group
   = f.label :studio, "Studio", :class => :label

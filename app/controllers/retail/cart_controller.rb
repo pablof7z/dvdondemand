@@ -22,12 +22,17 @@ class Retail::CartController < ApplicationController
     unless customer_session[:cart_items].empty?
       customer_session[:cart_items].map! do |item|
         if item['product_id'] == params[:item][:product_id]
-          {'qty' => params[:item][:qty], 'product_id' => item['product_id'], 'catalog_id' => item['catalog_id'], 'price' => item['price']}
+          {'quantity' => params[:item][:quantity], 'product_id' => item['product_id'], 'catalog_id' => item['catalog_id'], 'price' => item['price']}
         else
           item
         end
       end
     end
+    redirect_to :action => :index
+  end
+
+  def clean
+    customer_session[:cart_items] = []
     redirect_to :action => :index
   end
 
