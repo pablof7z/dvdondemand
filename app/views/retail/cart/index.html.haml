@@ -15,7 +15,7 @@
           %th Qty.
           %th{:align => 'right'} Price
           %th.last
-        - for item in customer_session[:cart_items]
+        - for item in @cart_items
           - form_tag :controller => 'retail/cart', :action => 'update' do
             %tr{:class => cycle("odd", "even")}
               - product = Product.find(item['product_id'].to_i)
