@@ -3,8 +3,8 @@
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
     %title DVDonDemand Publisher WebStore
-    = stylesheet_link_tag 'web_app_theme', 'web_app_theme_override', "themes/drastic-dark/style", :cache => true
-    = javascript_include_tag "jquery-1.4.3.min", "rails"
+    = javascript_include_tag 'jquery-1.4.3.min'
+    = stylesheet_link_tag 'web_app_theme', 'web_app_theme_override', "themes/drastic-dark/style", 'uploadify', :cache => true
     %meta{:name => 'csrf-token', :content => form_authenticity_token}
     %meta{:name => 'csrf-param', :content => 'authenticity_token'}
   %body

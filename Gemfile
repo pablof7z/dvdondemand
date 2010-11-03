@@ -8,6 +8,7 @@ gem 'haml', '3.0.21'
 gem 'devise', '1.0.8'
 gem 'warden', "~> 0.10.7"
 gem 'inherited_resources', '1.0.6'
+gem 'mime-types', '1.16'
 gem 'paperclip', '2.3.3'
 gem "sqlite3-ruby", :require => "sqlite3"
 gem 'tobias-railroad', '0.10.0'

@@ -23,6 +23,7 @@ Rails::Initializer.run do |config|
   config.gem "devise"
   config.gem "haml"
   config.gem "inherited_resources"
+  config.gem 'mime-types', :lib => "mime/types"
   config.gem "paperclip"
 
   # Only load the plugins named here, in the order given (default is alphabetical).

@@ -62,11 +62,11 @@
     %p.iso
       = link_to @product.iso_file_name, @product.iso.url
       (#{number_to_human_size(@product.iso_file_size)})
-  = f.file_field :iso, :class => 'text_field'
+  = render_uploadify :id => 'product_iso', :url => publish_publisher_products_path(current_publisher), :allowed_extensions => [:iso], :max_size => 4.gigabytes, :allow_multiple_files => false
+  = f.file_field :iso
+
 
 .group.navform.wat-cf
-  %button.button{:type => 'submit'}
-    = image_tag("web-app-theme/tick.png", :alt => "Save")
-    Save
-  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", publish_publisher_products_path(current_publisher), :class => "button"
+  = uploadify_submit("Upload")
+  = uploadify_cancel("Stop")
 
