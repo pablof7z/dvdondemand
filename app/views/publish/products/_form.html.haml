@@ -56,17 +56,3 @@
   = f.file_field :cover_art, :class => 'text_field'
   %span.description (Only JPEG or PNG images)
 
-.group
-  = f.label :iso, "ISO File", :class => :label
-  - if @product.iso.exists?
-    %p.iso
-      = link_to @product.iso_file_name, @product.iso.url
-      (#{number_to_human_size(@product.iso_file_size)})
-  = render_uploadify :id => 'product_iso', :url => publish_publisher_products_path(current_publisher), :allowed_extensions => [:iso], :max_size => 4.gigabytes, :allow_multiple_files => false
-  = f.file_field :iso
-
-
-.group.navform.wat-cf
-  = uploadify_submit("Upload")
-  = uploadify_cancel("Stop")
-

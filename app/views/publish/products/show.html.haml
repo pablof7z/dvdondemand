@@ -50,6 +50,25 @@
         #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_publish_publisher_product_path(current_publisher,@product), :class => "button" }
         #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", publish_publisher_product_path(current_publisher,@product), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
 
+    - unless @product.isos.empty?
+      %h2.title ISO(s) for this product
+      .inner
+        - for iso in @product.isos
+          %p
+            = iso.iso_file_name
+            (#{number_to_human_size(iso.iso_file_size)})
+
+    %h2.title Upload new ISO
+    .inner
+      - form_for Iso.new, :url => publish_product_isos_path(@product), :html => { :multipart => true, :class => :form } do |f|
+        .group
+          = f.label :iso, "ISO File", :class => :label
+          = f.file_field :iso
+          = render_uploadify :id => 'iso_iso', :url => publish_product_isos_path(@product), :allowed_extensions => [:iso], :max_size => 4.gigabytes, :allow_multiple_files => false
+        .group.navform.wat-cf
+          = uploadify_submit("Upload")
+          = uploadify_cancel("Stop")
+
     %h2.title Allocate Product to Catalogs
     .inner
       - unless current_publisher.catalogs.blank?

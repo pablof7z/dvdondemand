@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+
   map.resources :fees
 
   map.resources :shipping_options
@@ -21,6 +22,10 @@ ActionController::Routing::Routes.draw do |map|
       publisher.resources :sales,  :only => [:index, :show]
 
       publisher.resources :publisher_payments, :as => :payments, :only => [:index, :show]
+    end
+
+    publish.resources :products do |product|
+      product.resources :isos, :only => [:create, :destroy]
     end
 
     # leave this route auth-less for publisher sign-up marketing

@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
   belongs_to :publisher
   belongs_to :genre
 
+  has_many :isos
   has_many :order_items
   has_many :product_flags  # customers may flag a product for provided reasons
 
