@@ -1,6 +1,7 @@
 class Retail::OrdersController < Retail::RetailController
   before_filter :authenticate_customer!
   belongs_to :customer
+  actions :new, :create
 
   def create
     create! do |success, failure|

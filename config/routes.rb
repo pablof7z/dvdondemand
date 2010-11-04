@@ -39,7 +39,7 @@ ActionController::Routing::Routes.draw do |map|
     retail.resources :publishers, :only => [:index, :show]
 
     retail.resources :customers do |customer|
-      customer.resources :orders do |order|
+      customer.resources :orders, :only => [:new, :create] do |order|
         order.resources :order_items
       end
     end
@@ -53,6 +53,7 @@ ActionController::Routing::Routes.draw do |map|
   map.devise_for :admins
   map.namespace :admin do |admin|
     admin.resources :genres
+    admin.resources :orders
     admin.resources :publishers, :except => [:create, :new]
     admin.resources :wholesale_prices, :as => 'wholesale'
 
