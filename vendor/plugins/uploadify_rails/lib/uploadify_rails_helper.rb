@@ -1,5 +1,5 @@
 module UploadifyRailsHelper
-  
+
   def uploadify_options(options = {})
     @uploadify_options ||= {:dialog_file_description => "Files",
                             :allowed_extensions      => [:jpg, :jpeg, :gif, :png],
@@ -14,7 +14,7 @@ module UploadifyRailsHelper
                             :fields                  => nil, #accepts an Array of field ids to include
                             :uploader                => '/javascripts/uploadify/uploadify.swf' }.merge(options)
   end
-  
+
   def javascript_uploadify_tag(options = {})
     uploadify_options(options) #sets uploadify options
     javascript_tag(%(
@@ -29,12 +29,17 @@ module UploadifyRailsHelper
         buttonText    : '#{uploadify_options[:button_text]}',
         fileDesc      : '#{uploadify_options[:dialog_file_description]} (#{allowed_extensions})',
         fileExt       : '#{allowed_extensions}',
-        sizeLimit     : #{uploadify_options[:max_size]},    
+        sizeLimit     : #{uploadify_options[:max_size]},
         multi         : #{uploadify_options[:allow_multiple_files] },
-        onComplete    : function(event, queueID, fileObj, response, data) { eval(response) },
+        onComplete    : function(event, queueID, fileObj, response, data) {
+          var datum = eval('('+response+')');
+            if (datum.result == "success") {
+              $.getScript(datum.source);
+            }
+          },
         onAllComplete : function(event, data){
           $('#uploadify_cancel').hide('blind');
-          $('#uploadify_submit').show('blind');      
+          $('#uploadify_submit').show('blind');
         },
         onSelect: function(event, queueID, fileObj){
           if (fileObj.size > #{uploadify_options[:max_size]}) {
@@ -51,14 +56,14 @@ module UploadifyRailsHelper
     }
     );))
   end
-  
+
   def render_uploadify(options = {})
     javascript_tag("window._token = '#{get_authenticity_token}'") <<
-    javascript_include_tag("uploadify/swfobject") << 
+    javascript_include_tag("uploadify/swfobject") <<
     javascript_include_tag("uploadify/jquery.uploadify.v2.1.0.min") <<
-    javascript_uploadify_tag(options)  
+    javascript_uploadify_tag(options)
   end
-  
+
   def uploadify_cancel(text = "Cancel", options = {})
     link_to_function text, {:id => "uploadify_cancel", :style => "display:none"}.merge(options) do |link|
       link << "$('##{uploadify_options[:id]}').uploadifyClearQueue();
@@ -66,7 +71,7 @@ module UploadifyRailsHelper
                $('#uploadify_submit').show()"
     end
   end
-  
+
   def uploadify_submit(text = "Upload", options = {})
     link_to_function text, {:class => "button", :id => "uploadify_submit"}.merge(options) do |page|
       page << generate_updates_for_script_data
@@ -76,8 +81,8 @@ module UploadifyRailsHelper
     end
   end
 
-protected  
-  
+protected
+
   def generate_updates_for_script_data
     options = uploadify_options[:fields]
     return if options.nil?
@@ -87,20 +92,21 @@ protected
          $('##{uploadify_options[:id]}').uploadifySettings( 'scriptData', #{id}_hash ); )
     end.join("\n")
   end
-  
+
   def get_authenticity_token
     u form_authenticity_token if protect_against_forgery?
   end
-  
+
   def get_session_key_name
     ActionController::Base.session_options[:key]
   end
-  
+
   def get_session_key
     u cookies[get_session_key_name]
   end
-  
+
   def allowed_extensions
     uploadify_options[:allowed_extensions].collect { |ext| "*.#{ext}" }.join(';')
   end
 end
+

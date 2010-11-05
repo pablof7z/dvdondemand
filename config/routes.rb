@@ -25,7 +25,7 @@ ActionController::Routing::Routes.draw do |map|
     end
 
     publish.resources :products do |product|
-      product.resources :isos, :only => [:create, :destroy]
+      product.resources :isos, :only => [:create, :destroy, :show]
     end
 
     # leave this route auth-less for publisher sign-up marketing

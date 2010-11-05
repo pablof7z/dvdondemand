@@ -53,10 +53,9 @@
     - unless @product.isos.empty?
       %h2.title ISO(s) for this product
       .inner
-        - for iso in @product.isos
-          %p
-            = iso.iso_file_name
-            (#{number_to_human_size(iso.iso_file_size)})
+        = render :partial => 'publish/isos/iso', :collection => @product.isos
+    #product_isos
+      .inner
 
     %h2.title Upload new ISO
     .inner
