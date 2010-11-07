@@ -32,12 +32,17 @@ With all mentioned previously in-place, the only thing missing was to change the
 
     onComplete    : function(event, queueID, fileObj, response, data) {
       var datum = eval('('+response+')');
-        if (datum.result == "success") {
-          $.getScript(datum.source);
-        }
-      },
+      if (datum.result == "success") {
+        $.getScript(datum.source);
+      }
+    },
 
 Tested on development with Uploadify 2.1.0 (uploadify_rails' default) and jQuery 1.4.3 (Uploadify 2.1.1 requires jQuery 1.4.2)
+
+Also, "Remote" ISO deletion using jQuery thanks to:
+
+* http://travisonrails.com/2009/05/20/rails-delete-requests-with-jquery
+* http://stackoverflow.com/questions/1234432/rails-destroy-confirm-with-jquery-ajax
 
 
 ## About Devise auth. gem usage

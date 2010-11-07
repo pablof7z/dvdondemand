@@ -55,6 +55,13 @@
       .inner
         = render :partial => 'publish/isos/iso', :collection => @product.isos
     #product_isos
+      :javascript
+        $(function() {
+          $('a.remote-delete').click(function() {
+            $.post(this.href, { _method: 'delete' }, null, "script");
+            return false;
+          });
+        });
       .inner
 
     %h2.title Upload new ISO

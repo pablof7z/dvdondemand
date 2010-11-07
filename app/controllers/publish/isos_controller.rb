@@ -1,8 +1,9 @@
 class Publish::IsosController < Publish::PublishController
+  layout false
   belongs_to :product
-  actions :create, :show
+  actions :create, :show, :destroy
   respond_to :json, :only => :create
-  respond_to :js, :only => :show
+  respond_to :js, :only => [:show, :destroy]
 
   def create
     create! do |success, failure|
