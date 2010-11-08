@@ -50,11 +50,8 @@
         #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_publish_publisher_product_path(current_publisher,@product), :class => "button" }
         #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", publish_publisher_product_path(current_publisher,@product), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
 
-    - unless @product.isos.empty?
-      %h2.title ISO(s) for this product
-      .inner
-        = render :partial => 'publish/isos/iso', :collection => @product.isos
-    #product_isos
+    %h2.title ISO(s) for this product
+    .inner
       :javascript
         $(function() {
           $('a.remote-delete').click(function() {
@@ -62,7 +59,12 @@
             return false;
           });
         });
-      .inner
+      #product_isos
+      - unless @product.isos.empty?
+        = render :partial => 'publish/isos/iso', :collection => @product.isos, :locals => {:with_remote_delete => true}
+      - else
+        %p#no_isos
+          No ISO image(s) uploaded yet.
 
     %h2.title Upload new ISO
     .inner
