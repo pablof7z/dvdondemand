@@ -26,7 +26,7 @@
             %td= order.created_at.to_date.to_s(:short)
             %td= order.date_shipped
             %td= order.customer.full_name
-            %td= order.order_items.count
+            %td= order.item_count
             %td
 
 - content_for :sidebar, render(:partial => 'admin/shared/sidebar')
