@@ -53,7 +53,7 @@ ActionController::Routing::Routes.draw do |map|
   map.devise_for :admins
   map.namespace :admin do |admin|
     admin.resources :genres
-    admin.resources :orders
+    admin.resources :orders, :only => [:index, :show]
     admin.resources :publishers, :except => [:create, :new]
     admin.resources :wholesale_prices, :as => 'wholesale'
 

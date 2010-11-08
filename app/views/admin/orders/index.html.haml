@@ -28,6 +28,7 @@
             %td= order.customer.full_name
             %td= order.item_count
             %td
+              = link_to "Show", admin_order_path(order)
 
 - content_for :sidebar, render(:partial => 'admin/shared/sidebar')
 
