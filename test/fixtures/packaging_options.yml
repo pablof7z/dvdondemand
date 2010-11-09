@@ -1,11 +1,20 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-pretty:
-  title: Gift wrap
-  weight: 250
+one:
+  id: 1
+  title: Standard Clamshell
+  weight: 150
+  price: 0.5
+
+two:
+  id: 2
+  title: Premium Jewell Case
+  weight: 200
   price: 1.5
 
-cheap:
-  title: Bottle bag wrap
-  weight: 200
-  price: 0.5
+three:
+  id: 3
+  title: Premium DVD Amary Case
+  weight: 225
+  price: 2.5
+

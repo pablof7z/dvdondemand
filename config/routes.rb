@@ -58,6 +58,7 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :admin do |admin|
     admin.resources :genres
     admin.resources :publishers, :except => [:create, :new]
+    admin.resources :packaging_options, :as => 'packaging'
     admin.resources :wholesale_prices, :as => 'wholesale'
 
     # route needed for Devise after_sign_in, always auth-ful because it's admin's
