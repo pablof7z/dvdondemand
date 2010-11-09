@@ -32,7 +32,9 @@
         - for item in @order.order_items
           %tr{:class => cycle("odd", "even")}
             %td
-            %td= item.product.title
+            %td
+              %strong= item.product.title
+              %br by #{link_to item.product.publisher.full_name, admin_publisher_path(item.product.publisher)} Publisher
             %td= item.product.media_type.name
             %td= item.quantity
             %td= number_to_currency(item.product.price)
