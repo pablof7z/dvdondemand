@@ -35,9 +35,14 @@
             %td
               %strong= item.product.title
               %br by #{link_to item.product.publisher.full_name, admin_publisher_path(item.product.publisher)} Publisher
+              %br with
+              %em= item.packaging_option.title
             %td= item.product.media_type.name
             %td= item.quantity
-            %td= number_to_currency(item.product.price)
+            %td
+              = number_to_currency(item.product.price)
+              %br
+              = number_to_currency(item.packaging_option.price)
             %td
         %tr
           %th.first

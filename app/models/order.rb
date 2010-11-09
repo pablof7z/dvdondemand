@@ -20,7 +20,7 @@ class Order < ActiveRecord::Base
   def total
     total = 0
     total = order_items.inject(0) do |subtotal, item|
-      subtotal + item.product.price * item.quantity
+      subtotal + item.product.price * item.quantity + item.packaging_option.price
     end
     total
   end
