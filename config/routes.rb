@@ -20,6 +20,7 @@ ActionController::Routing::Routes.draw do |map|
       publisher.resources :products do |product|
         product.resources :items
       end
+      publisher.resources :genres, :only => :index
       publisher.resources :sales
       publisher.resources :publisher_payments, :as => :payments
     end
@@ -55,6 +56,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :genres
     admin.resources :orders, :only => [:index, :show]
     admin.resources :publishers, :except => [:create, :new]
+    admin.resources :packaging_options, :as => 'packaging'
     admin.resources :wholesale_prices, :as => 'wholesale'
 
     # route needed for Devise after_sign_in, always auth-ful because it's admin's

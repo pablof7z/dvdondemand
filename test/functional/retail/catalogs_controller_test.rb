@@ -1,8 +1,9 @@
 require 'test_helper'
 
 class Retail::CatalogsControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  test "should respond with 403 for private Catalog" do
+    get :show, :id => 3
+    assert_response :forbidden
   end
 end
+

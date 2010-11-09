@@ -3,6 +3,14 @@ class Publish::ProductsController < Publish::PublishController
     belongs_to :catalog, :optional => true
   end
 
+  def new
+    new! { @genres = Genre.for_cd }
+  end
+
+  def edit
+    edit! { @genres = @product.cd? ? Genre.for_cd : Genre.for_dvd }
+  end
+
   protected
 
   def collection

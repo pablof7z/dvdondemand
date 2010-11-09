@@ -1,0 +1,27 @@
+.group
+  = f.error_messages
+
+.group
+  = f.label :title, "Title", :class => :label
+  = f.text_field :title, :class => 'text_field'
+  %span.description (Required)
+
+.group
+  = f.label :price, "Price", :class => :label
+  = f.text_field :price, :class => 'text_field_small'
+  %span.description (Required)
+
+.group
+  = f.label :weight, "Weight", :class => :label
+  = f.text_field :weight, :class => 'text_field_small'
+
+.group
+  = f.label :available, "Available", :class => :label
+  [TODO]
+
+.group.navform.wat-cf
+  %button.button{:type => 'submit'}
+    = image_tag("web-app-theme/tick.png", :alt => "Save")
+    = t("web-app-theme.save", :default => "Save")
+  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", admin_packaging_options_path, :class => "button"
+

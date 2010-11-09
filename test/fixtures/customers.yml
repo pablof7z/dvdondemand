@@ -11,3 +11,7 @@ grumpy:
   first_name: Grumpy
   last_name: Customer
   email: grumpy@customer.com
+  # note test user with password but not confirmed by Devise
+  encrypted_password: 1e56aad2604f37776a8e5d017c7a858ab1d984b5
+  password_salt: S3tzIHrAOBq14RUJDneo
+
