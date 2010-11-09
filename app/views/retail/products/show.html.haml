@@ -59,6 +59,7 @@
               = hidden_field_tag 'item[price]', @product.price
               %p
                 = text_field_tag 'item[quantity]', '1', :class => 'cart_text_field_small'
+                = select_tag 'item[packaging_option_id]', options_from_collection_for_select(PackagingOption.all, :id, :title), :class => 'cart_text_field_small'
                 %button.button{:type => 'submit'}
                   = image_tag("web-app-theme/tick.png", :alt => "Add to cart")
                   Add to cart

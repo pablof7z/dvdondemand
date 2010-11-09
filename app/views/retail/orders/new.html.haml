@@ -15,22 +15,26 @@
           %tr
             %th.first
             %th Title
+            %th Packaging
             %th Qty.
             %th{:align => 'right'} Price
             %th.last
           - f.fields_for :order_items, @order.order_items.build do |order_item|
             - for item in customer_session[:cart_items]
+              = order_item.hidden_field :packaging_option_id, :value => item['packaging_option_id']
               = order_item.hidden_field :product_id, :value => item['product_id']
               = order_item.hidden_field :quantity,   :value => item['quantity']
               %tr{:class => cycle("odd", "even")}
-                - product = Product.find(item['product_id'].to_i)
+                - product   = Product.find(item['product_id'].to_i)
+                - packaging = PackagingOption.find(item['packaging_option_id'])
                 %td
                 %td= link_to product.title, retail_catalog_product_path(item['catalog_id'],item['product_id'])
+                %td= packaging.title
                 %td= item['quantity']
-                %td= number_to_currency(item['price'].to_f*item['quantity'].to_f)
+                %td= number_to_currency(item['price'].to_f*item['quantity'].to_f + packaging.price)
                 %td
           %tr
-            %td{:colspan => '2'}
+            %td{:colspan => '3'}
             %td TOTAL
             %td
               %b= number_to_currency(cart_total)

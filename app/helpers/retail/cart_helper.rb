@@ -3,7 +3,7 @@ module Retail::CartHelper
     total = 0
     unless customer_session[:cart_items].blank?
       total = customer_session[:cart_items].inject(0) do |subtotal, item|
-        subtotal + item['price'].to_f*item['quantity'].to_f
+        subtotal + item['price'].to_f*item['quantity'].to_f + PackagingOption.find(item['packaging_option_id']).price
       end
     end
     total

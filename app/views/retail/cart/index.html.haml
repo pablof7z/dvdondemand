@@ -11,25 +11,28 @@
         %tr
           %th.first
           %th Title
+          %th Packaging
           %th Qty.
           %th{:align => 'right'} Price
           %th.last
         - for item in @cart_items
           - form_tag :controller => 'retail/cart', :action => 'update' do
             %tr{:class => cycle("odd", "even")}
-              - product = Product.find(item['product_id'].to_i)
+              - product   = Product.find(item['product_id'])
+              - packaging = PackagingOption.find(item['packaging_option_id'])
               %td
               %td= link_to product.title, retail_catalog_product_path(item['catalog_id'],item['product_id'])
+              %td= packaging.title
               %td.form
                 = hidden_field_tag 'item[product_id]', item['product_id']
                 = text_field_tag 'item[quantity]', item['quantity'], :class => 'cart_text_field_small'
                 %button.button{:type => 'submit'}
                   = image_tag("web-app-theme/tick.png", :alt => "Update")
                   Update
-              %td= number_to_currency(item['price'].to_f*item['quantity'].to_f)
+              %td= number_to_currency(item['price'].to_f*item['quantity'].to_f + packaging.price)
               %td= link_to 'Delete', retail_cart_del_path(item['product_id'])
         %tr
-          %td{:colspan => '2'}
+          %td{:colspan => '3'}
           %td TOTAL
           %td
             %b= number_to_currency(cart_total)
