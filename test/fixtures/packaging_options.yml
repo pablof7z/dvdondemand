@@ -4,7 +4,7 @@ one:
   id: 1
   title: Standard Clamshell
   weight: 150
-  price: 0.5
+  price: 0.0
 
 two:
   id: 2
