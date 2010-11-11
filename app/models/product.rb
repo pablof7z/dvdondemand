@@ -12,8 +12,10 @@ class Product < ActiveRecord::Base
   validates_presence_of :media_type, :genre, :title, :description, :price
 
   has_attached_file :cover_art,      :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :cd_sleeve_art,  :styles => { :medium => "300x300>", :thumb => "100x100>" }
   has_attached_file :dvd_sleeve_art, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   validates_attachment_content_type :cover_art,      :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'] # latter for IE support
+  validates_attachment_content_type :cd_sleeve_art,  :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png']
   validates_attachment_content_type :dvd_sleeve_art, :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png']
 
   acts_as_taggable
