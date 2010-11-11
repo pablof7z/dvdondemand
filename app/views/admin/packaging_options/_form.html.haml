@@ -16,8 +16,9 @@
   = f.text_field :weight, :class => 'text_field_small'
 
 .group
-  = f.label :available, "Available", :class => :label
-  [TODO]
+  = f.label :description, "Description", :class => :label
+  = f.text_area :description, :rows => 5, :class => 'text_area'
+  .description Ex: a simple text
 
 .group.navform.wat-cf
   %button.button{:type => 'submit'}

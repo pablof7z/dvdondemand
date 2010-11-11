@@ -4,6 +4,7 @@ class CreatePackagingOptions < ActiveRecord::Migration
       t.string :title
       t.integer :weight
       t.float :price
+      t.text :description
       t.timestamps
     end
   end
@@ -12,3 +13,4 @@ class CreatePackagingOptions < ActiveRecord::Migration
     drop_table :packaging_options
   end
 end
+

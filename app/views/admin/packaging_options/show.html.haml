@@ -20,11 +20,13 @@
         %b Price:
         = number_to_currency(@packaging_option.price)
       %p
-        %b Weight
+        %b Weight:
         = @packaging_option.weight
-      %p
-        %b Available:
-        [TODO]
+      - unless @packaging_option.description.blank?
+        %p
+          %b Description:
+        %p
+          = @packaging_option.description
       .wat-cf
         #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_admin_packaging_option_path(@packaging_option), :class => "button" }
         #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", admin_packaging_option_path(@packaging_option), :method => "delete", :class => "button", :confirm => "Are you sure?" }

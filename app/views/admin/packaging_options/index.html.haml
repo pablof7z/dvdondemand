@@ -19,7 +19,6 @@
           %th Title
           %th Weight
           %th Price
-          %th Available?
           %th.last &nbsp;
         - for packaging in @packaging_options
           %tr{:class => cycle("odd", "even")}
@@ -27,7 +26,6 @@
             %td= link_to packaging.title, admin_packaging_option_path(packaging)
             %td= packaging.weight
             %td= number_to_currency(packaging.price)
-            %td
             %td.last
               = link_to "Show", admin_packaging_option_path(packaging)
               |
