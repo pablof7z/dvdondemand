@@ -11,8 +11,8 @@ class Product < ActiveRecord::Base
 
   validates_presence_of :media_type, :genre, :title, :description, :price
 
-  has_attached_file :cover, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  validates_attachment_content_type :cover, :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'] # latter for IE support
+  has_attached_file :cover_art, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  validates_attachment_content_type :cover_art, :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'] # latter for IE support
 
   acts_as_taggable
   acts_as_taggable_on :keywords

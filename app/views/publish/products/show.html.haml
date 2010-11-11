@@ -14,9 +14,9 @@
   .content
     %h2.title= @product.title
     .inner
-      - if @product.cover.exists?(:medium)
-        %p= image_tag(@product.cover.url(:medium))
-        %p= link_to 'Full size Cover art', @product.cover.url, :target => :blank
+      - if @product.cover_art.exists?(:medium)
+        %p= image_tag(@product.cover_art.url(:medium))
+        %p= link_to 'Full size Cover art', @product.cover_art.url, :target => :blank
       %p
         %b Media Type:
         = @product.media_type.name
