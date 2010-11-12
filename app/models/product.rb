@@ -35,5 +35,9 @@ class Product < ActiveRecord::Base
   def dvd?
     media_type_id == MediaType::DVD
   end
+
+  def available_packaging_options
+    [PackagingOption.first] + packaging_options unless packaging_options.include?(PackagingOption.first)
+  end
 end
 
