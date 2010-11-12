@@ -89,6 +89,8 @@
               = check_box_tag 'packaging_option_ids[]', option.id, @product.packaging_options.include?(option), html_options
               = option.title
               (#{number_to_currency(option.price)})
+            - unless option.description.blank?
+              %span.description= option.description
         .group.navform.wat-cf
           %button.button{:type => 'submit'}
             = image_tag("web-app-theme/tick.png", :alt => "Save")
