@@ -99,7 +99,6 @@
       - unless current_publisher.catalogs.blank?
         - form_for :catalogs_products, :url => {:controller => 'publish/catalogs_products', :action => 'create'}, :html => { :class => :form } do |f|
           .group
-            = hidden_field_tag 'publisher_id', current_publisher.id
             = hidden_field_tag 'product_id', @product.id
             = label_tag :catalog_ids, "Catalogs", :class => :label
             - for catalog in current_publisher.catalogs
