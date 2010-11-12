@@ -37,7 +37,7 @@ class Product < ActiveRecord::Base
   end
 
   def available_packaging_options
-    [PackagingOption.first] + packaging_options unless packaging_options.include?(PackagingOption.first)
+    packaging_options.include?(PackagingOption.first) ? packaging_options : [PackagingOption.first] + packaging_options
   end
 end
 
