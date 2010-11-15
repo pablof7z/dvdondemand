@@ -8,7 +8,7 @@
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first.active= link_to "All", publish_products_path
+      %li.first.active= link_to "All", publish_publisher_products_path(current_publisher)
       %li= link_to "New", new_publish_publisher_product_path(current_publisher)
   .content
     %h2.title
