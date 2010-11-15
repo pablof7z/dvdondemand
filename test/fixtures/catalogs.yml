@@ -1,20 +1,20 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-blues:
+johns:
   id: 1
   publisher_id: 1
   title: Assorted Blues
   description: Just as it name implies
   private: false
 
-rock:
+janes:
   id: 2
   publisher_id: 2
   title: Rare Rock Stuff
   description: Just as it name implies
   private: false
 
-private:
+janes_private:
   id: 3
   publisher_id: 2
   title: More Rare Rock Stuff

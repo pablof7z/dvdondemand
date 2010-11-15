@@ -19,5 +19,6 @@ class Retail::CartControllerTest < ActionController::TestCase
     post :add_item, { 'item[catalog_id]' => '1', 'item[product_id]' => '1', 'item[qty]' => '1', 'item[price]' => '14.99' }
     assert_redirected_to retail_cart_path
   end
+
 end
 
