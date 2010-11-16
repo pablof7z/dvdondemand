@@ -20,3 +20,8 @@
   margin-right: 10px;
 }
 
+p.iso {
+  background: url(/images/cd_go.png) no-repeat left center;
+  padding-left: 20px;
+}
+

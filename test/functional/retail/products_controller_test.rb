@@ -15,5 +15,6 @@ class Retail::ProductsControllerTest < ActionController::TestCase
     get :show, :catalog_id => 1, :id => 2
     assert_response :missing
   end
+
 end
 

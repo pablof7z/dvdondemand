@@ -50,15 +50,9 @@
   = f.text_field :running_time, :class => 'text_field_small'
 
 .group
-  = f.label :cover, "Cover Art", :class => :label
-  - if @product.cover.exists?
-    %p= image_tag(@product.cover.url(:medium))
-  = f.file_field :cover, :class => 'text_field'
+  = f.label :cover_art, "Cover Art", :class => :label
+  - if @product.cover_art.exists?
+    %p= image_tag(@product.cover_art.url(:medium))
+  = f.file_field :cover_art, :class => 'text_field'
   %span.description (Only JPEG or PNG images)
-
-.group.navform.wat-cf
-  %button.button{:type => 'submit'}
-    = image_tag("web-app-theme/tick.png", :alt => "Save")
-    Save
-  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", publish_publisher_products_path(current_publisher), :class => "button"
 

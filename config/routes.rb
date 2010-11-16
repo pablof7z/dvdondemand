@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+
   map.resources :fees
 
   map.resources :shipping_options
@@ -14,19 +15,16 @@ ActionController::Routing::Routes.draw do |map|
   map.publisher_root 'publisher', :controller => 'publish/publishers', :action => 'home'
   map.namespace :publish do |publish|
     publish.resources :publishers, :only => [:edit, :show] do |publisher|
-      publisher.resources :catalogs do |catalog|
-        catalog.resources :products
-      end
-      publisher.resources :products do |product|
-        product.resources :items
-      end
+      publisher.resources :catalogs, :has_many => :products
+      publisher.resources :products, :has_many => :items
+
       publisher.resources :genres, :only => :index
-      publisher.resources :sales
-      publisher.resources :publisher_payments, :as => :payments
+      publisher.resources :sales,  :only => [:index, :show]
+
+      publisher.resources :publisher_payments, :as => :payments, :only => [:index, :show]
     end
 
-    publish.resources :items
-    publish.resources :products
+    publish.resources :products, :has_many => :isos
 
     # leave this route auth-less for publisher sign-up marketing
     publish.root :controller => 'home'
@@ -39,11 +37,8 @@ ActionController::Routing::Routes.draw do |map|
     end
     retail.resources :publishers, :only => [:index, :show]
 
-    retail.resources :customers do |customer|
-      customer.resources :orders, :only => [:new, :create] do |order|
-        order.resources :order_items
-      end
-    end
+    retail.resources :customers, :has_many => :orders
+
     retail.cart     'cart',     :controller => 'cart', :action => 'index'
     retail.cart_add 'cart_add', :controller => 'cart', :action => 'add_item'
     retail.cart_del 'cart_del/:product_id', :controller => 'cart', :action => 'del_item'

@@ -1,0 +1,7 @@
+%p.iso{:id => "up_iso_#{iso.id}"}
+  = iso.iso_file_name
+  (#{number_to_human_size(iso.iso_file_size)})
+  - if with_remote_delete
+    &nbsp;
+    = link_to '[Delete]', publish_product_iso_path(iso.product, iso), :class => 'remote-delete'
+

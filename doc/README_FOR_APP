@@ -2,6 +2,49 @@ Use this README file to introduce your application and point to useful places in
 Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
 
 
+
+## About Uploadify.com integration using uploadify_rails plugin
+
+Uploadify.com integration with a Rails application has multiple well-documented issues regarding sessions, authentication tokens, some Rack middleware, correct Mime-types assignement, etc. All can be set up "manually", but the uploadify_rails plugin provides all that convenintly packed in a single place (mostly).
+
+Also, regardless of what is said in the uploadify_rails README, the Uploadify integration does not require jQueryUI.
+
+Reference resources:
+
+* http://github.com/alainbloch/uploadify_rails
+* http://railstips.org/blog/archives/2009/07/21/uploadify-and-rails23/
+* http://timmyc.posterous.com/uploadify-on-rails-with-paperclip
+
+Most challenging was honoring the default JSON response format configuration in uploadify_rails with something actually useful for this application. Although there are some Uploadify-on-Rails project examples on GitHub, few actually get the JSON part right; kudos go to:
+
+* http://github.com/martinhawkins/Uploadify-with-Paperclip-on-Rails-example.git
+* http://github.com/pkordel/uploadify_paperclip_demo.git
+
+Not specific Uploadify-related, but a great reference for JSON and jQuery usage on Rails:
+
+* http://paydrotalks.com/posts/45-standard-json-response-for-rails-and-jquery
+
+Another issue was taking into consideration the InheritedResources' controllers used throughout the application and overriding it's default format responses (as can be seen in app/controllers/publish/isos_controller.rb). Most helpful was this Gist (as it also dealt with Uploadify *and* InheritedResources):
+
+* https://gist.github.com/342155
+
+With all mentioned previously in-place, the only thing missing was to change the uploadify_rails' plugin uploadify_rails_helper.rb file to actually *execute* some JSON-formatted callbacks sent from the server on successful Uploadify completion. The lines changed were:
+
+    onComplete    : function(event, queueID, fileObj, response, data) {
+      var datum = eval('('+response+')');
+      if (datum.result == "success") {
+        $.getScript(datum.source);
+      }
+    },
+
+Tested on development with Uploadify 2.1.0 (uploadify_rails' default) and jQuery 1.4.3 (Uploadify 2.1.1 requires jQuery 1.4.2)
+
+Also, "Remote" ISO deletion using jQuery thanks to:
+
+* http://travisonrails.com/2009/05/20/rails-delete-requests-with-jquery
+* http://stackoverflow.com/questions/1234432/rails-destroy-confirm-with-jquery-ajax
+
+
 ## About Devise auth. gem usage
 
 Devise's RDdoc documentation is great, be sure to read it thoroughly!

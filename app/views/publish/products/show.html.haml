@@ -14,9 +14,9 @@
   .content
     %h2.title= @product.title
     .inner
-      - if @product.cover.exists?(:medium)
-        %p= image_tag(@product.cover.url(:medium))
-        %p= link_to 'Full size Cover art', @product.cover.url, :target => :blank
+      - if @product.cover_art.exists?(:medium)
+        %p= image_tag(@product.cover_art.url(:medium))
+        %p= link_to 'Full size Cover art', @product.cover_art.url, :target => :blank
       %p
         %b Media Type:
         = @product.media_type.name
@@ -49,6 +49,33 @@
       .wat-cf
         #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_publish_publisher_product_path(current_publisher,@product), :class => "button" }
         #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", publish_publisher_product_path(current_publisher,@product), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
+
+    %h2.title ISO(s) for this product
+    .inner
+      :javascript
+        $(function() {
+          $('a.remote-delete').click(function() {
+            $.post(this.href, { _method: 'delete' }, null, "script");
+            return false;
+          });
+        });
+      #product_isos
+      - unless @product.isos.empty?
+        = render :partial => 'publish/isos/iso', :collection => @product.isos, :locals => {:with_remote_delete => true}
+      - else
+        %p#no_isos
+          No ISO image(s) uploaded yet.
+
+    %h2.title Upload new ISO
+    .inner
+      - form_for Iso.new, :url => publish_product_isos_path(@product), :html => { :multipart => true, :class => :form } do |f|
+        .group
+          = f.label :iso, "ISO File", :class => :label
+          = f.file_field :iso
+          = render_uploadify :id => 'iso_iso', :url => publish_product_isos_path(@product), :allowed_extensions => [:iso], :max_size => 4.gigabytes, :allow_multiple_files => false
+        .group.navform.wat-cf
+          = uploadify_submit("Upload")
+          = uploadify_cancel("Stop")
 
     %h2.title Allocate Product to Catalogs
     .inner

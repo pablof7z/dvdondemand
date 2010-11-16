@@ -17,8 +17,8 @@
         - @products.each do |product|
           %tr{:class => cycle("odd", "even")}
             %td
-              - if product.cover.exists?(:thumb)
-                = image_tag(product.cover.url(:thumb))
+              - if product.cover_art.exists?(:thumb)
+                = image_tag(product.cover_art.url(:thumb))
               - else
                 = product.id
             %td= product.title

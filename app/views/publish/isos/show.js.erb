@@ -1,0 +1,3 @@
+$("#no_isos").hide();
+$("#product_isos").append("<%= escape_javascript(render(:partial => 'publish/isos/iso', :object => @iso, :locals => {:with_remote_delete => false})) %>");
+
