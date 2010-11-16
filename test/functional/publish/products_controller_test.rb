@@ -9,6 +9,7 @@ class Publish::ProductsControllerTest < ActionController::TestCase
     sign_in @publisher
 
     @catalog = @publisher.catalogs.first
+    @product = @publisher.products.first
   end
 
   test 'Products index at least require a Publisher' do
@@ -16,8 +17,15 @@ class Publish::ProductsControllerTest < ActionController::TestCase
       get :index
     end
     # so also test proper routing rules
-    assert_routing publish_publisher_products_path(@publisher), :controller => 'publish/products', :action => 'index', :publisher_id => @publisher.id.to_s
-    assert_routing publish_publisher_catalog_products_path(@publisher,@catalog), :controller => 'publish/products', :action => 'index', :publisher_id => @publisher.id.to_s, :catalog_id => @catalog.id.to_s
+    assert_routing publish_publisher_products_path(@publisher),
+      :controller   => 'publish/products',
+      :action       => 'index',
+      :publisher_id => @publisher.id.to_s
+    assert_routing publish_publisher_catalog_products_path(@publisher,@catalog),
+      :controller   => 'publish/products',
+      :action       => 'index',
+      :publisher_id => @publisher.id.to_s,
+      :catalog_id   => @catalog.id.to_s
   end
 
   test 'proper products filtering if given Catalog in path (or not)' do
@@ -32,5 +40,10 @@ class Publish::ProductsControllerTest < ActionController::TestCase
     assert_equal assigns(:products), @catalog.products
   end
 
+  test 'no Product editing w/o associated Publisher' do
+    assert_raise ActiveRecord::RecordNotFound do
+      get :edit, :product_id => @product.id.to_s
+    end
+  end
 end
 
