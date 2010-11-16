@@ -2,6 +2,15 @@ Use this README file to introduce your application and point to useful places in
 Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
 
 
+## ActiveMerchant 1.9.0 and First Data (a.k.a. LinkPoint) gateway support
+
+Log in to the Virtual Terminal and:
+
+1 - Under "Support > Download Center > Download Now" use "111111111" as your Tax ID for your test account. Then download "For API" .pem certificate.
+
+2 - Under "Administration > Basic Fraud Settings" set "Duplicate Lockout Time" from 10 minutes (default) to 0, so your tests work.
+
+
 
 ## About Uploadify.com integration using uploadify_rails plugin
 

@@ -19,3 +19,11 @@ config.action_mailer.raise_delivery_errors = false
 # Devise requirement
 config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
+config.after_initialize do
+  ActiveMerchant::Billing::LinkpointGateway.pem_file  = File.read(File.dirname(__FILE__) + '/1909055592.pem')
+  ActiveMerchant::Billing::Base.mode = :test
+  ::GATEWAY = ActiveMerchant::Billing::LinkpointGateway.new(
+    :login => "On Demand DVD"
+  )
+end
+
