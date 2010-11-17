@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
   belongs_to :shipping_option # USPS, FedEx, DHL, etc.
   has_many :customer_payments
   has_many :items, :class_name => 'OrderItem', :dependent => :delete_all
+  has_many :transactions, :class_name => 'OrderTransaction', :dependent => :delete_all
 
   accepts_nested_attributes_for :items
 
