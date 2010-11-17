@@ -24,6 +24,7 @@
               %td= link_to product.title, retail_catalog_product_path(item['catalog_id'],item['product_id'])
               %td= packaging.title
               %td.form
+                = hidden_field_tag 'item[packaging_option_id]', item['packaging_option_id']
                 = hidden_field_tag 'item[product_id]', item['product_id']
                 = text_field_tag 'item[quantity]', item['quantity'], :class => 'cart_text_field_small'
                 %button.button{:type => 'submit'}
