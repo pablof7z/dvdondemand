@@ -16,7 +16,7 @@ class Publish::ProductsController < Publish::PublishController
   def collection
     @products = if parent_type == :catalog
       # optional catalog set, get only associated products
-      current_publisher.catalogs.find(:first, :conditions => {:id => params[:catalog_id]}).products
+      current_publisher.catalogs.find(params[:catalog_id]).products
     else
       current_publisher.products
     end
