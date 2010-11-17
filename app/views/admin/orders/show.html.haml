@@ -29,7 +29,7 @@
           %th Quantity
           %th Price
           %th.last
-        - for item in @order.order_items
+        - for item in @order.items
           %tr{:class => cycle("odd", "even")}
             %td
             %td

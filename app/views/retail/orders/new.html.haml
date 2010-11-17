@@ -19,7 +19,7 @@
             %th Qty.
             %th{:align => 'right'} Price
             %th.last
-          - f.fields_for :order_items, @order.order_items.build do |order_item|
+          - f.fields_for :items, @order.items.build do |order_item|
             - for item in customer_session[:cart_items]
               = order_item.hidden_field :packaging_option_id, :value => item['packaging_option_id']
               = order_item.hidden_field :product_id, :value => item['product_id']
