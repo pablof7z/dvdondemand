@@ -10,6 +10,9 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :catalogs
   has_and_belongs_to_many :items
 
+  has_many :product_options  # product packaging options
+  has_many :packaging_options, :through => :product_options
+
   validates_presence_of :media_type, :genre, :title, :description, :price
 
   has_attached_file :cover_art,      :styles => { :medium => "300x300>", :thumb => "100x100>" }
@@ -31,6 +34,10 @@ class Product < ActiveRecord::Base
 
   def dvd?
     media_type_id == MediaType::DVD
+  end
+
+  def available_packaging_options
+    packaging_options.include?(PackagingOption.first) ? packaging_options : [PackagingOption.first] + packaging_options
   end
 end
 

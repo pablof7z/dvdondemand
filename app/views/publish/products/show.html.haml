@@ -77,12 +77,30 @@
           = uploadify_submit("Upload")
           = uploadify_cancel("Stop")
 
-    %h2.title Allocate Product to Catalogs
+    %h2.title Available Packaging Options for this Product
+    .inner
+      - form_for :products_options, :url => {:controller => 'publish/products_options', :action => 'create'}, :html => { :class => :form } do |f|
+        .group
+          - for option in PackagingOption.all
+            = hidden_field_tag 'product_id', @product.id
+            %p
+              - std_clamshell = (option.id == 1)
+              - html_options  = { :checked => std_clamshell, :disabled => std_clamshell }
+              = check_box_tag 'packaging_option_ids[]', option.id, @product.packaging_options.include?(option), html_options
+              = option.title
+              (#{number_to_currency(option.price)})
+            - unless option.description.blank?
+              %span.description= option.description
+        .group.navform.wat-cf
+          %button.button{:type => 'submit'}
+            = image_tag("web-app-theme/tick.png", :alt => "Save")
+            Save
+
+    %h2.title Allocate Product to selected Catalogs
     .inner
       - unless current_publisher.catalogs.blank?
         - form_for :catalogs_products, :url => {:controller => 'publish/catalogs_products', :action => 'create'}, :html => { :class => :form } do |f|
           .group
-            = hidden_field_tag 'publisher_id', current_publisher.id
             = hidden_field_tag 'product_id', @product.id
             = label_tag :catalog_ids, "Catalogs", :class => :label
             - for catalog in current_publisher.catalogs

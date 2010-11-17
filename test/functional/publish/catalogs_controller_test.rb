@@ -14,7 +14,10 @@ class Publish::CatalogsControllerTest < ActionController::TestCase
       get :index
     end
     # so proper routing should be in order
-    assert_routing publish_publisher_catalogs_path(@publisher), :controller => 'publish/catalogs', :action => 'index', :publisher_id => @publisher.id.to_s
+    assert_routing publish_publisher_catalogs_path(@publisher),
+      :controller   => 'publish/catalogs',
+      :action       => 'index',
+      :publisher_id => @publisher.id.to_s
   end
 
   test 'Catalogs index are per-Publisher' do
@@ -23,6 +26,5 @@ class Publish::CatalogsControllerTest < ActionController::TestCase
     # and shoud only list current Publisher's catalogs and none other's
     assert_equal assigns(:catalogs), @publisher.catalogs
   end
-
 end
 
