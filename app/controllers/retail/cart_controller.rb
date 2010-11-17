@@ -1,3 +1,4 @@
+
 class Retail::CartController < ApplicationController
   before_filter :authenticate_customer!, :find_cart_items
   layout 'retail'
@@ -22,7 +23,13 @@ class Retail::CartController < ApplicationController
     unless customer_session[:cart_items].empty?
       customer_session[:cart_items].map! do |item|
         if item['product_id'] == params[:item][:product_id]
-          {'quantity' => params[:item][:quantity], 'product_id' => item['product_id'], 'catalog_id' => item['catalog_id'], 'price' => item['price']}
+          {
+            'packaging_option_id' => item['packaging_option_id'],
+            'catalog_id'          => item['catalog_id'],
+            'product_id'          => item['product_id'],
+            'quantity'            => params[:item][:quantity],
+            'price'               => item['price']
+          }
         else
           item
         end
