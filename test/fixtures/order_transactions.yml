@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  order: 
+  amount: 1
+  sucess: false
+  authorization: MyString
+  message: MyString
+
+two:
+  order: 
+  amount: 1
+  sucess: false
+  authorization: MyString
+  message: MyString
