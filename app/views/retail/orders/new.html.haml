@@ -40,6 +40,18 @@
               %b= number_to_currency(cart_total)
             %td
         .group
+          = f.label :card_type, 'Card Type', :class => :label
+          = f.select :card_type, [['Visa','visa'], ['MasterCard','mastercard'], ['Discover','discover'], ['American Express', 'american_express']]
+        .group
+          = f.label :card_number, 'Card Number', :class => :label
+          = f.text_field :card_number, :class => 'text_field'
+        .group
+          = f.label :card_verification, 'Card Verification Value', :class => :label
+          = f.text_field :card_verification, :class => 'text_field_small'
+        .group
+          = f.label :card_expires_on, 'Card Expires On', :class => :label
+          = f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :add_month_numbers => true
+        .group
           = f.label :billing_address, "Billing Address", :class => :label
           = f.text_area :billing_address, :rows => 5, :class => 'text_area'
         .group
@@ -48,6 +60,12 @@
           %p
             = check_box_tag :same_as, :value => '1'
             Same as Billing Address
+
+        -# hidden fields for helper attr_accessor methods
+        = f.hidden_field :first_name, :value => current_customer.first_name
+        = f.hidden_field :last_name,  :value => current_customer.last_name
+        = f.hidden_field :ip_address, :value => request.remote_ip
+
         .group.navform.wat-cf
           %button.button{:type => 'submit'}
             = image_tag("web-app-theme/tick.png", :alt => "Place Order")

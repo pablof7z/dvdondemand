@@ -6,6 +6,7 @@ class CreateOrders < ActiveRecord::Migration
       t.datetime   :date_received
       t.datetime   :date_shipped
       t.string     :card_type
+      t.date       :card_expires_on
       t.string     :ip_address
       t.string     :tracking_code
       t.text       :billing_address
