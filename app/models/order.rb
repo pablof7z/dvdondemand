@@ -26,8 +26,14 @@ class Order < ActiveRecord::Base
     total
   end
 
+  # all amounts are in cents for ActiveMerchant
+  def total_in_cents
+    (total*100).round
+  end
+
   def purchase
-    response = GATEWAY.purchase((total*100).round, credit_card, :order_id => id, :ip => ip_address)
+    response = GATEWAY.purchase(total_in_cents, credit_card, :order_id => id, :ip => ip_address)
+    transactions.create!(:action => 'purchase', :amount => total_in_cents, :response => response)
     response.success?
   end
 

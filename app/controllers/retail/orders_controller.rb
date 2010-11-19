@@ -7,6 +7,7 @@ class Retail::OrdersController < Retail::RetailController
     create! do |success, failure|
       success.html do
         customer_session[:cart_items] = []
+        # Order was created, but FirstData pay. gw. could fail the purchase
         if @order.purchase
           render :action => :success
         else
