@@ -5,6 +5,7 @@ class CreateOrders < ActiveRecord::Migration
       t.references :sale
       t.datetime   :date_received
       t.datetime   :date_shipped
+      t.datetime   :purchased_at
       t.string     :card_type
       t.date       :card_expires_on
       t.string     :ip_address

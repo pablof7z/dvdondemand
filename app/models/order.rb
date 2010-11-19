@@ -26,6 +26,11 @@ class Order < ActiveRecord::Base
     total
   end
 
+  def purchase
+    response = GATEWAY.purchase((total*100).round, credit_card, :order_id => id, :ip => ip_address)
+    response.success?
+  end
+
   private
 
   def valid_credit_card
