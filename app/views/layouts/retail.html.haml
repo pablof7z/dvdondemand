@@ -12,7 +12,7 @@
           %ul.wat-cf
             - if customer_signed_in?
               %li Welcome, #{link_to current_customer.full_name, root_path}
-              %li= link_to "My Cart (#{cart_item_count})", retail_cart_path
+              %li= link_to "My Cart (#{cart_total_items})", retail_customer_cart_path(current_customer)
               %li= link_to 'Logout', destroy_customer_session_path
             - elsif publisher_signed_in?
               %li= link_to "Publisher's Dashboard", publish_root_path

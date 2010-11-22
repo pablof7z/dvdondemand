@@ -48,23 +48,8 @@
     .inner
       .group.navform.wat-cf
         - if customer_signed_in?
-          - if cart_items_include?(@product.id)
-            %p
-              This product is already in your Cart.
-              = link_to 'Update it.', retail_cart_path
-          - else
-            - form_tag retail_cart_add_path, :class => 'form' do
-              = hidden_field_tag 'item[catalog_id]', @catalog.id
-              = hidden_field_tag 'item[product_id]', @product.id
-              = hidden_field_tag 'item[price]', @product.price
-              %p
-                = text_field_tag 'item[quantity]', '1', :class => 'cart_text_field_small'
-                = select_tag 'item[packaging_option_id]', options_from_collection_for_select(@product.available_packaging_options, :id, :title_with_price), :class => 'cart_text_field_small'
-                %button.button{:type => 'submit'}
-                  = image_tag("web-app-theme/tick.png", :alt => "Add to cart")
-                  Add to cart
-        - elsif publisher_signed_in?
-          -# Add condition for Publisher's Cart?
+          - if current_customer.cart.blank?
+            = render :partial => 'retail/carts/new', :locals => { :catalog => @catalog, :product => @product }
         - else
           #{link_to 'Login', new_customer_session_path} or #{link_to 'Sign Up', new_customer_registration_path} to purchase this Product
 
