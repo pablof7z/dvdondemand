@@ -57,5 +57,25 @@
         %b Shipping Address:
         = @order.shipping_address
 
+    %h2.title FirstData transactions logging
+    .inner
+      %table.table
+        %tr
+          %th.first
+          %th Date
+          %th Action
+          %th Successful?
+          %th Response
+          %th.last
+        - for transaction in @order.transactions
+          %tr{:class => cycle("odd", "even")}
+            %td
+            %td= transaction.created_at
+            %td= transaction.action
+            %td= transaction.success ? 'Yes!' : 'No'
+            %td
+              = transaction.success ? transaction.params['approved'] : transaction.params['error']
+            %td
+
 - content_for :sidebar, render(:partial => 'admin/shared/sidebar')
 
