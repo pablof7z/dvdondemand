@@ -7,6 +7,8 @@ class CreateOrderTransactions < ActiveRecord::Migration
       t.boolean :success
       t.string  :authorization
       t.string  :message
+      t.text    :params
+      t.boolean :test
       t.timestamps
     end
   end
