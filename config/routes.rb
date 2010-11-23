@@ -36,7 +36,9 @@ ActionController::Routing::Routes.draw do |map|
     retail.resources :publishers, :only => [:index, :show]
 
     retail.resources :customers, :has_many => :orders do |customer|
-      customer.resource :cart, :has_many => :cart_items
+      customer.resource :cart do |cart|
+        cart.resources :cart_items, :as => 'items'
+      end
     end
 
     retail.root :controller => 'catalogs'
