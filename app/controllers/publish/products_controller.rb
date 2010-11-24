@@ -1,4 +1,4 @@
-class Publish::ProductsController < Publish::PublishController
+class Publish::ProductsController < PublishController
   belongs_to :publisher do
     belongs_to :catalog, :optional => true
   end
