@@ -1,4 +1,4 @@
-class Retail::OrdersController < Retail::RetailController
+class Retail::OrdersController < RetailController
   before_filter :authenticate_customer!
   belongs_to :customer
 
