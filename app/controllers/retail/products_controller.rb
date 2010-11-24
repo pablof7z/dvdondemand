@@ -1,4 +1,4 @@
-class Retail::ProductsController < Retail::RetailController
+class Retail::ProductsController < RetailController
   belongs_to :catalog
   actions :show
 

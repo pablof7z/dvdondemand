@@ -1,3 +1,3 @@
-class Admin::WholesalePricesController < Admin::AdminController
+class Admin::WholesalePricesController < AdminController
 end
 

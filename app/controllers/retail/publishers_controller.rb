@@ -1,4 +1,4 @@
-class Retail::PublishersController < Retail::RetailController
+class Retail::PublishersController < RetailController
   actions :index, :show
 
   def show

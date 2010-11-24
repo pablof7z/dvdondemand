@@ -1,3 +1,3 @@
-class Admin::PublishersController < Admin::AdminController
+class Admin::PublishersController < AdminController
 end
 

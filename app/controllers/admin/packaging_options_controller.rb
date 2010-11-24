@@ -1,3 +1,3 @@
-class Admin::PackagingOptionsController < Admin::AdminController
+class Admin::PackagingOptionsController < AdminController
 end
 
