@@ -1,3 +1,3 @@
-class Admin::GenresController < Admin::AdminController
+class Admin::GenresController < AdminController
 end
 
