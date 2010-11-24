@@ -1,4 +1,4 @@
-class Retail::CartItemsController < Retail::RetailController
+class Retail::CartItemsController < RetailController
   before_filter :authenticate_customer!
   belongs_to :customer
 

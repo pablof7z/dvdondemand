@@ -1,4 +1,4 @@
-class Retail::CartsController < Retail::RetailController
+class Retail::CartsController < RetailController
   before_filter :authenticate_customer!
   belongs_to :customer, :singleton => true
 
