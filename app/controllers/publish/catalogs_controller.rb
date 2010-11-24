@@ -1,4 +1,4 @@
-class Publish::CatalogsController < Publish::PublishController
+class Publish::CatalogsController < PublishController
   belongs_to :publisher
 
   protected

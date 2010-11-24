@@ -1,2 +1,0 @@
-class PackagingOptionsController < ApplicationController
-end

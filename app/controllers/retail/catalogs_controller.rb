@@ -1,4 +1,4 @@
-class Retail::CatalogsController < Retail::RetailController
+class Retail::CatalogsController < RetailController
   actions :index, :show
   respond_to :html, :xml, :rss
 
