@@ -59,6 +59,7 @@ class Order < ActiveRecord::Base
     )
   end
 
+  # full parameters documented in ActiveMerchant's billing/gateways/linkpoint.rb file
   def options
     {
       :billing_address => {

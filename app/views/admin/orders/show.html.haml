@@ -66,16 +66,53 @@
           %th Action
           %th Successful?
           %th Response
-          %th.last
         - for transaction in @order.transactions
           %tr{:class => cycle("odd", "even")}
             %td
-            %td= transaction.created_at
-            %td= transaction.action
-            %td= transaction.success ? 'Yes!' : 'No'
+            %td{:valign => 'top'}= transaction.created_at
+            %td{:valign => 'top'}= transaction.action
+            %td{:valign => 'top'}= transaction.success ? 'Yes!' : 'No'
             %td
-              = transaction.success ? transaction.params['approved'] : transaction.params['error']
-            %td
+              %table
+                %tr
+                  %td CSP:
+                  %td= transaction.params['csp']
+                %tr
+                  %td Code:
+                  %td= transaction.params['code']
+                %tr
+                  %td TDate:
+                  %td= transaction.params['tdate']
+                %tr
+                  %td Time:
+                  %td= transaction.params['time']
+                %tr
+                  %td OrderNum:
+                  %td= transaction.params['ordernum']
+                %tr
+                  %td Approved:
+                  %td= transaction.params['approved']
+                %tr
+                  %td Complete:
+                  %td= transaction.params['complete']
+                %tr
+                  %td AVS:
+                  %td= transaction.params['avs']
+                %tr
+                  %td Ref:
+                  %td= transaction.params['ref']
+                %tr
+                  %td Score:
+                  %td= transaction.params['score']
+                %tr
+                  %td Message:
+                  %td= transaction.params['message']
+                %tr
+                  %td AuthResponse:
+                  %td= transaction.params['authresponse']
+                %tr
+                  %td Error:
+                  %td= transaction.params['error']
 
 - content_for :sidebar, render(:partial => 'admin/shared/sidebar')
 
