@@ -9,12 +9,8 @@ class Order < ActiveRecord::Base
 
   validates_presence_of :billing_address
 
-  def item_count
-    total = 0
-    total = items.inject(0) do |subtotal, item|
-      subtotal + item.quantity
-    end
-    total
+  def items_full_count
+    items.sum(:quantity)
   end
 
   def total

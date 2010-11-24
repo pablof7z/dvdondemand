@@ -26,7 +26,7 @@
             %td= order.created_at.to_date.to_s(:short)
             %td= order.date_shipped
             %td= order.customer.full_name
-            %td= order.item_count
+            %td= order.items_full_count
             %td
               = link_to "Show", admin_order_path(order)
 
