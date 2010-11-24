@@ -1,4 +1,4 @@
-class Publish::IsosController < Publish::PublishController
+class Publish::IsosController < PublishController
   layout false
   belongs_to :product
   actions :create, :show, :destroy

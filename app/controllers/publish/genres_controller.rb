@@ -1,4 +1,4 @@
-class Publish::GenresController < Publish::PublishController
+class Publish::GenresController < PublishController
   layout false
 
   protected

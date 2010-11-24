@@ -1,4 +1,4 @@
-class Publish::SalesController < Publish::PublishController
+class Publish::SalesController < PublishController
   belongs_to :publisher
 end
 

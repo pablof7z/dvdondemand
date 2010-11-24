@@ -1,4 +1,4 @@
-class Publish::PublishersController < Publish::PublishController
+class Publish::PublishersController < PublishController
   def home; end
 end
 
