@@ -36,7 +36,7 @@ class Order < ActiveRecord::Base
   end
 
   def purchase
-    response = GATEWAY.purchase(total_in_cents, credit_card, :order_id => id, :ip => ip_address)
+    response = GATEWAY.purchase(total_in_cents, credit_card, options)
     transactions.create!(:action => 'purchase', :amount => total_in_cents, :response => response)
     response.success?
   end
@@ -61,6 +61,29 @@ class Order < ActiveRecord::Base
       :month              => card_expires_on.month,
       :year               => card_expires_on.year
     )
+  end
+
+  def options
+    {
+      :billing_address => {
+        :name     => customer.full_name,
+        :address1 => billing_address,
+        :address2 => 'toBeSetInProfile',
+        :company  => 'SeverProtectors',
+        :city     => 'Pelotillehue',
+        :country  => 'AR'
+      },
+      :shipping_address => {
+        :name     => customer.full_name,
+        :address1 => shipping_address,
+        :address2 => 'toBeSet',
+        :city     => 'Pelotillehue Ville',
+        :country  => 'UY'
+      },
+      :order_id => id,
+      :email    => customer.email,
+      :ip       => ip_address
+    }
   end
 end
 
