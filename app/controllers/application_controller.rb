@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
       case resource_name
         when :admin     then 'admin'
         when :customer  then 'retail'
-        when :publisher then 'publish'
+        when :publisher then 'fafo'
       end
     end
   end

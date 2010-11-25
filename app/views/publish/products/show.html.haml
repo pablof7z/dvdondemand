@@ -1,118 +1,114 @@
-- content_for :main_navigation do
-  %li= link_to 'Dashboard', publisher_root_path
-  %li= link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
-  %li.active= link_to 'Products', publish_publisher_products_path(current_publisher)
-  %li= link_to 'Sales', publish_publisher_sales_path(current_publisher)
-  %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
+- content_for :primary_nav do
+  %ul.primary-nav
+    %li= link_to 'Dashboard', publisher_root_path
+    %li= link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
+    %li
+      = link_to 'Products', publish_publisher_products_path(current_publisher), :class => 'current'
+      %ul.secondary-nav
+        %li= link_to "<strong>All</strong> products", publish_publisher_products_path(current_publisher)
+        %li= link_to "<strong>New</strong> product", new_publish_publisher_product_path(current_publisher)
+        %li= link_to "<strong>Show</strong> product", publish_publisher_product_path(current_publisher,@product), :class => 'current'
+    %li= link_to 'Sales', publish_publisher_sales_path(current_publisher)
+    %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
 
-.block
-  .secondary-navigation
-    %ul.wat-cf
-      %li= link_to "All", publish_publisher_products_path(current_publisher)
-      %li= link_to "New", new_publish_publisher_product_path(current_publisher)
-      %li.active= link_to "Show", publish_publisher_product_path(current_publisher,@product)
-  .content
-    %h2.title= @product.title
-    .inner
-      - if @product.cover_art.exists?(:medium)
-        %p= image_tag(@product.cover_art.url(:medium))
-        %p= link_to 'Full size Cover art', @product.cover_art.url, :target => :blank
-      %p
-        %b Media Type:
-        = @product.media_type.name
-      %p
-        %b Genre:
-        = @product.genre.title
-      %p
-        %b Studio:
-        = @product.studio
-      - unless @product.performers.blank?
-        %p
-          %b #{@product.dvd? ? 'Actors' : 'Musicians' }:
-        %p
-          = @product.performers
-      %p
-        %b Description:
-      %p
-        = @product.description
-      - unless @product.keywords.blank?
-        %p
-          %b Keywords:
-          = @product.keyword_list
-      %p
-        %b Price:
-        = number_to_currency(@product.price)
-      - unless @product.running_time.blank?
-        %p
-          %b Running Time:
-          = @product.running_time
-      .wat-cf
-        #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_publish_publisher_product_path(current_publisher,@product), :class => "button" }
-        #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", publish_publisher_product_path(current_publisher,@product), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
+%h1= @product.title
 
-    %h2.title ISO(s) for this product
-    .inner
-      :javascript
-        $(function() {
-          $('a.remote-delete').click(function() {
-            $.post(this.href, { _method: 'delete' }, null, "script");
-            return false;
-          });
-        });
-      #product_isos
-      - unless @product.isos.empty?
-        = render :partial => 'publish/isos/iso', :collection => @product.isos, :locals => {:with_remote_delete => true}
-      - else
-        %p#no_isos
-          No ISO image(s) uploaded yet.
+- if @product.cover_art.exists?(:medium)
+  %p= image_tag(@product.cover_art.url(:medium))
+  %p= link_to 'Full size Cover art', @product.cover_art.url, :target => :blank
+%p
+  %b Media Type:
+  = @product.media_type.name
+%p
+  %b Genre:
+  = @product.genre.title
+%p
+  %b Studio:
+  = @product.studio
+- unless @product.performers.blank?
+  %p
+    %b #{@product.dvd? ? 'Actors' : 'Musicians' }:
+  %p
+    = @product.performers
+%p
+  %b Description:
+%p
+  = @product.description
+- unless @product.keywords.blank?
+  %p
+    %b Keywords:
+    = @product.keyword_list
+%p
+  %b Price:
+  = number_to_currency(@product.price)
+- unless @product.running_time.blank?
+  %p
+    %b Running Time:
+    = @product.running_time
 
-    %h2.title Upload new ISO
-    .inner
-      - form_for Iso.new, :url => publish_product_isos_path(@product), :html => { :multipart => true, :class => :form } do |f|
-        .group
-          = f.label :iso, "ISO File", :class => :label
-          = f.file_field :iso
-          = render_uploadify :id => 'iso_iso', :url => publish_product_isos_path(@product), :allowed_extensions => [:iso], :max_size => 4.gigabytes, :allow_multiple_files => false
-        .group.navform.wat-cf
-          = uploadify_submit("Upload")
-          = uploadify_cancel("Stop")
+#{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_publish_publisher_product_path(current_publisher,@product), :class => "button" }
+#{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", publish_publisher_product_path(current_publisher,@product), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
 
-    %h2.title Available Packaging Options for this Product
-    .inner
-      - form_for :products_options, :url => {:controller => 'publish/products_options', :action => 'create'}, :html => { :class => :form } do |f|
-        .group
-          - for option in PackagingOption.all
-            = hidden_field_tag 'product_id', @product.id
-            %p
-              - std_clamshell = (option.id == 1)
-              - html_options  = { :checked => std_clamshell, :disabled => std_clamshell }
-              = check_box_tag 'packaging_option_ids[]', option.id, @product.packaging_options.include?(option), html_options
-              = option.title
-              (#{number_to_currency(option.price)})
-            - unless option.description.blank?
-              %span.description= option.description
-        .group.navform.wat-cf
-          %button.button{:type => 'submit'}
-            = image_tag("web-app-theme/tick.png", :alt => "Save")
-            Save
+%h2 ISO(s) for this product
 
-    %h2.title Allocate Product to selected Catalogs
-    .inner
-      - unless current_publisher.catalogs.blank?
-        - form_for :catalogs_products, :url => {:controller => 'publish/catalogs_products', :action => 'create'}, :html => { :class => :form } do |f|
-          .group
-            = hidden_field_tag 'product_id', @product.id
-            = label_tag :catalog_ids, "Catalogs", :class => :label
-            - for catalog in current_publisher.catalogs
-              %p
-                = check_box_tag 'catalog_ids[]', catalog.id, @product.catalogs.include?(catalog)
-                = catalog.title
-          .group.navform.wat-cf
-            %button.button{:type => 'submit'}
-              = image_tag("web-app-theme/tick.png", :alt => "Save")
-              Save
-      - else
-        %p= link_to 'Create some catalogs first.', new_publish_publisher_catalog_path(current_publisher)
+:javascript
+  $(function() {
+    $('a.remote-delete').click(function() {
+      $.post(this.href, { _method: 'delete' }, null, "script");
+      return false;
+    });
+  });
+#product_isos
+- unless @product.isos.empty?
+  = render :partial => 'publish/isos/iso', :collection => @product.isos, :locals => {:with_remote_delete => true}
+- else
+  %p#no_isos
+    No ISO image(s) uploaded yet.
+
+%h2 Upload new ISO
+
+- form_for Iso.new, :url => publish_product_isos_path(@product), :html => { :multipart => true } do |f|
+  .group
+    = f.label :iso, "ISO File", :class => :label
+    = f.file_field :iso
+    = render_uploadify :id => 'iso_iso', :url => publish_product_isos_path(@product), :allowed_extensions => [:iso], :max_size => 4.gigabytes, :allow_multiple_files => false
+  .group.navform.wat-cf
+    = uploadify_submit("Upload")
+    = uploadify_cancel("Stop")
+
+%h2 Available Packaging Options for this Product
+
+- form_for :products_options, :url => {:controller => 'publish/products_options', :action => 'create'} do |f|
+  - for option in PackagingOption.all
+    = hidden_field_tag 'product_id', @product.id
+    %p
+      - std_clamshell = (option.id == 1)
+      - html_options  = { :checked => std_clamshell, :disabled => std_clamshell }
+      = check_box_tag 'packaging_option_ids[]', option.id, @product.packaging_options.include?(option), html_options
+      = option.title
+      (#{number_to_currency(option.price)})
+    - unless option.description.blank?
+      %span.description= option.description
+
+  %button.button{:type => 'submit'}
+    = image_tag("web-app-theme/tick.png", :alt => "Save")
+    Save
+
+%h2 Allocate Product to selected Catalogs
+
+- unless current_publisher.catalogs.blank?
+  - form_for :catalogs_products, :url => {:controller => 'publish/catalogs_products', :action => 'create'} do |f|
+    = hidden_field_tag 'product_id', @product.id
+    = label_tag :catalog_ids, "Catalogs", :class => :label
+    - for catalog in current_publisher.catalogs
+      %p
+        = check_box_tag 'catalog_ids[]', catalog.id, @product.catalogs.include?(catalog)
+        = catalog.title
+    %button.button{:type => 'submit'}
+      = image_tag("web-app-theme/tick.png", :alt => "Save")
+      Save
+- else
+  %p= link_to 'Create some catalogs first.', new_publish_publisher_catalog_path(current_publisher)
 
 - content_for :sidebar, render(:partial => 'publish/shared/sidebar')
 

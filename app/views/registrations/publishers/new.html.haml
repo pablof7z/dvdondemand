@@ -1,29 +1,24 @@
-.block
-  .secondary-navigation
-    %ul.wat-cf
-      %li.first.active= link_to "Sign up", new_publisher_registration_path
-  .content
-    %h2.title Sign up for your Publisher account
-    .inner
-      - form_for resource_name, resource, :url => registration_path(resource_name), :html => { :class => :form } do |f|
-        = f.error_messages
+- content_for :primary_nav do
+  %ul.primary-nav
+    %li= link_to 'Dashboard', publisher_root_path
 
-        .group
-          %p= f.label :email, 'E-mail', :class => :label
-          %p= f.text_field :email, :class => 'text_field'
+%h1 Sign up for your Publisher account
 
-        .group
-          %p= f.label :password, 'Password', :class => :label
-          %p= f.password_field :password, :class => 'text_field'
+- form_for resource_name, resource, :url => registration_path(resource_name) do |f|
+  = f.error_messages
 
-        .group
-          %p= f.label :password_confirmation, 'Password confirmation', :class => :label
-          %p= f.password_field :password_confirmation, :class => 'text_field'
+  %p= f.label :email, 'E-mail', :class => :label
+  %p= f.text_field :email, :class => 'text_field'
 
-        .group.navform.wat-cf
-          %button.button{:type => 'submit'}
-            = image_tag("web-app-theme/tick.png", :alt => "Sign up")
-            Sign up
+  %p= f.label :password, 'Password', :class => :label
+  %p= f.password_field :password, :class => 'text_field'
+
+  %p= f.label :password_confirmation, 'Password confirmation', :class => :label
+  %p= f.password_field :password_confirmation, :class => 'text_field'
+
+  %button.button{:type => 'submit'}
+    = image_tag("web-app-theme/tick.png", :alt => "Sign up")
+    Sign up
 
 - content_for :sidebar, render(:partial => "shared/devise_publisher_links")
 

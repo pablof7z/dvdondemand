@@ -1,5 +1,5 @@
 class Publish::HomeController < ApplicationController
-  layout 'publish'
+  layout 'fafo'
 
   def index; end
 end
