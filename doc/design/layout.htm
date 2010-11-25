@@ -1,0 +1,325 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>Layout 0.1 > Debug</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css" />
+	<!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/ie6.css" /><![endif]-->
+	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="css/ie7.css" /><![endif]-->
+	<style>
+		body#debug #wrapper{background: url(css/996.png) repeat-y;}
+		body#debug .col{background: #fff;}
+		body#debug h1:before { content: "H1"; background: #d4ffaa;margin: 0 10px 0 0;}
+		body#debug h2:before { content: "H2"; background: #ffffb9;margin: 0 10px 0 0;}
+		body#debug h3:before { content: "H3"; background: #ffffb9;margin: 0 10px 0 0;}
+		body#debug h4:before { content: "H4"; background: #ffffb9;margin: 0 10px 0 0;}
+		body#debug h5:before { content: "H5"; background: #ffffb9;margin: 0 10px 0 0;}
+		body#debug h6:before { content: "H6"; background: #ffffb9;margin: 0 10px 0 0;}
+		body#debug p:before { content: "P"; background: #bdefff;margin: 0 10px 0 0;}
+		body#debug #footer{border-top: 1px solid #999;}
+		body#debug blockquote:before { content: "BLOCKQUOTE";background: #ffffb9;margin: 0 10px 0 0;}
+		body#debug .box{background: url(css/948.png) no-repeat;opacity: .7;padding: 5px 0 0 0;}
+		p.switch{width: 970px;margin: 2px auto 5px auto;font-size: 75%;max-width: none;background: #ededed;padding: 0 26px 0 0; text-align: right;}
+		p.switch a{padding: 0 0 0 10px;color: #999;}
+	</style>
+</head>
+
+<body>
+<p class="switch"><a href="#" onclick="body.setAttribute('id', 'normal');">Normal</a> <a href="#" onclick="body.setAttribute('id', 'debug');">Debug</a></p>
+
+<div id="wrapper">
+	<div id="header">
+		<a href="#"><img src="img/ondemanddvd-logo.png" width="119" height="66" alt="" /></a>
+		<ul class="options">
+			<li><a href="#" onclick="body.setAttribute('id', 'normal');">Normal Mode</a></li>
+			<li><a href="#" onclick="body.setAttribute('id', 'debug');">Debug Mode</a></li>
+		</ul>
+	</div><!-- header -->
+
+	<div id="nav">
+		<ul class="primary-nav">
+			<li><a href="#">Dashboard</a></li>
+			<li><a href="#">Catalogs</a></li>
+			<li><a href="#" class="current">Products</a>
+				<ul class="secondary-nav" >
+					<li><a href="#"><strong>Accounting</strong> reports</a></li>
+					<li><a href="#"><strong>Catalog</strong> management</a></li>
+					<li><a href="#"><strong>Get</strong> stock</a></li>
+					<li><a href="#" class="current"><strong>Upload</strong> content</a></li>
+					<li><a href="#"><strong>Wholesale &amp; Royalty</strong> program</a></li>
+					<li><a href="#"><strong>Get</strong> social</a></li>
+					<li><a href="#"><strong>Publisher</strong> support</a></li>
+				</ul>
+			</li>
+			<li><a href="#">Sales</a></li>
+			<li><a href="#">Payments</a></li>
+		</ul>
+	</div><!-- nav -->
+
+	<div id="container">
+
+		<div id="content" class="wide">
+
+			<h1>Lorem ipsum dolor sit amet</h1>
+			<p>Consectetur adipiscing elit. Nunc sollicitudin odio venenatis libero placerat aliquet. Vestibulum augue mi, dapibus eu, auctor et, ultricies quis, nunc. Nunc aliquet neque at enim. Fusce ac est. Vestibulum <a href="#">vestibulum est vel magna</a> tempor pharetra. Integer risus nisi, vehicula dapibus, semper quis, tincidunt quis, augue. Fusce massa sapien, pretium eget, scelerisque sed, feugiat non, neque. Donec lorem. Vivamus luctus eros cursus tellus. Sed auctor. Donec porta ligula volutpat dui. Aliquam semper aliquet justo. In odio. Vestibulum bibendum ipsum sed turpis. </p>
+			<h2>Unordered list</h2>
+			<ul>
+				<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+				<li>Nunc sollicitudin odio venenatis.</li>
+				<li>Vestibulum augue mi, dapibus eu.</li>
+				<li>Magna tempor pharetra.</li>
+				<li>Integer risus nisi, vehicula dapibus.</li>
+			</ul>
+			<h2>Ordered List</h2>
+			<ol>
+				<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+				<li>Nunc sollicitudin odio venenatis.</li>
+				<li>Vestibulum augue mi, dapibus eu.</li>
+				<li>Magna tempor pharetra.</li>
+				<li>Integer risus nisi, vehicula dapibus.</li>
+			</ol>
+
+			<div class="box">
+				<h2>Floating images</h2>
+				<img src="img/asimov.jpg" width="400" height="300" alt="" class="fl" />
+				<h3>Isaac Asimov</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin odio venenatis libero placerat aliquet. Vestibulum augue mi, dapibus eu, auctor et, ultricies quis, nunc. Nunc aliquet neque at enim. Fusce ac est. Vestibulum vestibulum est vel magna tempor pharetra. Integer risus nisi, vehicula dapibus, semper quis, tincidunt quis, augue. Fusce massa sapien, pretium eget, scelerisque sed, feugiat non, neque. Donec lorem. Vivamus luctus eros cursus tellus. Sed auctor. Donec porta ligula volutpat dui. Aliquam semper aliquet justo. In odio. Vestibulum bibendum ipsum sed turpis. </p>
+
+				<img src="img/asimov.jpg" width="400" height="300" alt="" class="fr" />
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin odio venenatis libero placerat aliquet. Vestibulum augue mi, dapibus eu, auctor et, ultricies quis, nunc. Nunc aliquet neque at enim.</p>
+				<h3>Biography</h3>
+				<p>Fusce ac est. Vestibulum vestibulum est vel magna tempor pharetra. Integer risus nisi, vehicula dapibus, semper quis, tincidunt quis, augue. Fusce massa sapien, pretium eget, scelerisque sed, feugiat non, neque. Donec lorem. Vivamus luctus eros cursus tellus. Sed auctor. Donec porta ligula volutpat dui. Aliquam semper aliquet justo. In odio. Vestibulum bibendum ipsum sed turpis. </p>
+
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin odio venenatis libero placerat aliquet. Vestibulum augue mi, dapibus eu, auctor et, ultricies quis, nunc. Nunc aliquet neque at enim. Fusce ac est. Vestibulum vestibulum est vel magna tempor pharetra. Integer risus nisi, vehicula dapibus, semper quis, tincidunt quis, augue. Fusce massa sapien, pretium eget, scelerisque sed, feugiat non, neque. Donec lorem. Vivamus luctus eros cursus tellus. Sed auctor. Donec porta ligula volutpat dui. Aliquam semper aliquet justo. In odio. Vestibulum bibendum ipsum sed turpis. </p>
+				<img src="img/asimov.jpg" width="400" height="300" alt="" class="ct" />
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin odio venenatis libero placerat aliquet. Vestibulum augue mi, dapibus eu, auctor et, ultricies quis, nunc. Nunc aliquet neque at enim. Fusce ac est. Vestibulum vestibulum est vel magna tempor pharetra. Integer risus nisi, vehicula dapibus, semper quis, tincidunt quis, augue. Fusce massa sapien, pretium eget, scelerisque sed, feugiat non, neque. Donec lorem. Vivamus luctus eros cursus tellus. Sed auctor. Donec porta ligula volutpat dui. Aliquam semper aliquet justo. In odio. Vestibulum bibendum ipsum sed turpis. </p>
+			</div><!-- box -->
+
+			<div class="box">
+				<h3>Custom Ordered List</h3>
+				<ol class="steps">
+					<li><strong>1</strong> Select file format</li>
+					<li class="current-step"><strong>2</strong> Add product detail</li>
+					<li><strong>3</strong> Upload cover art</li>
+					<li><strong>4</strong> Finish</li>
+				</ol>
+			</div><!-- box -->
+
+			<div class="box">
+				<h2>Forms</h2>
+				<form id="upload-content" action="">
+					<div class="col x6">
+						<label for="dvdtitle">
+							<span>DVD Title*:</span>
+							<input type="text" id="dvdtitle" name="dvdtitle" tabindex="1" size="48" />
+						</label>
+						<label class="w50" for="price">
+							<span>Price*:</span>
+							<input type="text" id="price" name="price" tabindex="2" size="10" />
+						</label>
+						<label class="w50" for="wprice">
+							<span>Wholesale price:</span>
+							<input type="text" id="wprice" name="wprice" tabindex="3" size="10" />
+						</label>
+						<label for="genre">
+							<span>Genre:</span>
+							<select tabindex="4">
+								<option>Action</option>
+								<option>Adventure</option>
+								<option>Animation</option>
+								<option>Biography</option>
+								<option>Comedy</option>
+								<option>Crime</option>
+								<option>Documentary</option>
+								<option>Drama</option>
+								<option>Family</option>
+								<option>Fantasy</option>
+								<option>Film-Noir</option>
+								<option>Game-Show</option>
+								<option>History</option>
+								<option>Horror</option>
+								<option>Music</option>
+								<option>Musical</option>
+								<option>Mystery</option>
+								<option>News</option>
+								<option>Reality-TV</option>
+								<option>Romance</option>
+								<option>Sci-Fi</option>
+								<option>Sport</option>
+								<option>Talk-Show</option>
+								<option>Thriller</option>
+								<option>War</option>
+								<option>Western</option>
+							</select>
+						</label>
+						<label for="studio">
+							<span>Studio:</span>
+							<input type="text" id="studio" name="studio" tabindex="5" size="48" />
+						</label>
+					</div><!-- col -->
+
+					<div class="col x6">
+						<label for="time">
+							<span>Running time:</span>
+							<input type="text" id="time" name="id" tabindex="6" size="48" />
+						</label>
+						<label for="keywords">
+							<span>Keywords:</span>
+							<input type="text" id="keywords" name="keywords" tabindex="7" size="48" />
+						</label>
+						<label for="warnings">
+							<span>Warnings:</span>
+							<select tabindex="8">
+								<option>Action</option>
+								<option>Adventure</option>
+								<option>Animation</option>
+								<option>Biography</option>
+								<option>Comedy</option>
+								<option>Crime</option>
+								<option>Documentary</option>
+								<option>Drama</option>
+								<option>Family</option>
+								<option>Fantasy</option>
+								<option>Film-Noir</option>
+								<option>Game-Show</option>
+								<option>History</option>
+								<option>Horror</option>
+								<option>Music</option>
+								<option>Musical</option>
+								<option>Mystery</option>
+								<option>News</option>
+								<option>Reality-TV</option>
+								<option>Romance</option>
+								<option>Sci-Fi</option>
+								<option>Sport</option>
+								<option>Talk-Show</option>
+								<option>Thriller</option>
+								<option>War</option>
+								<option>Western</option>
+							</select>
+						</label>
+						<label for="actors">
+							<span>Actors:</span>
+							<input type="text" id="actors" name="actors" tabindex="9" size="48" />
+						</label>
+
+					</div><!-- col -->
+
+					<div class="col">
+						<label for="description" class="lb">
+							<span>Item description:</span>
+							<textarea tabindex="10" cols="80" rows="9"></textarea>
+						</label>
+						<button class="bts" type="submit">Next</button>
+					</div>
+				</form>
+			</div><!-- box -->
+
+			<h2>Columns</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In congue aliquam augue vitae congue. Pellentesque sit amet purus lorem. Suspendisse rutrum sagittis lacus, eget lobortis metus faucibus a. Curabitur mollis arcu quis dui condimentum accumsan hendrerit non purus. In mi quam, pretium quis blandit sed, elementum et diam. In urna orci, lacinia id tempus ac, suscipit vitae erat. Donec eleifend magna non tellus sagittis et hendrerit risus porttitor.</p>
+			<p>Aenean quis varius urna. Nunc purus sem, venenatis eu sodales quis, elementum at mi. Sed ut nulla odio, in porttitor metus. Aliquam non ante et massa suscipit vehicula ac vel risus. Duis egestas enim et massa lobortis venenatis.</p>
+
+			<div class="box">
+				<h3>1 column</h3>
+				<div class="col">
+					<h4>Column #1</h4>
+				</div>
+			</div><!-- box -->
+
+			<div class="box">
+				<div class="col x6">
+					<h4>Column #1</h4>
+				</div>
+				<div class="col x6">
+					<h4>Column #2</h4>
+				</div>
+
+				<div class="col x4">
+					<h4>Column #1</h4>
+				</div>
+				<div class="col x4">
+					<h4>Column #2</h4>
+				</div>
+				<div class="col x4">
+					<h4>Column #3</h4>
+				</div>
+
+				<div class="col x3">
+					<h4>Column #1</h4>
+				</div>
+				<div class="col x3">
+					<h4>Column #2</h4>
+				</div>
+				<div class="col x3">
+					<h4>Column #3</h4>
+				</div>
+				<div class="col x3">
+					<h4>Column #4</h4>
+				</div>
+
+				<div class="col x6">
+					<h4>Column #1</h4>
+				</div>
+				<div class="col x4">
+					<h4>Column #2</h4>
+				</div>
+				<div class="col x2">
+					<h4>Column #3</h4>
+				</div>
+
+				<div class="col x8">
+					<h4>Column #1</h4>
+				</div>
+				<div class="col x4">
+					<h4>Column #2</h4>
+				</div>
+			</div><!-- box -->
+
+			<div class="box">
+				<h2>Tables</h2>
+				<table class="t1">
+					<tbody>
+					<tr>
+						<th class="first">#</th>
+						<th>Title</th>
+						<th>Media</th>
+						<th>Price</th>
+						<th class="last">Genre</th>
+					</tr>
+					<tr class="odd">
+						<td>1</td>
+						<td>Foobar Blues Media Pack</td>
+						<td>CD</td>
+						<td>$14.99</td>
+						<td>Avant Garde</td>
+					</tr>
+					<tr class="even">
+						<td>2</td>
+						<td>The Barfoo Rock Antology</td>
+						<td>CD</td>
+						<td>$9.99</td>
+						<td class="last">Action &amp; Adventure</td>
+					</tr>
+					<tr class="odd">
+						<td>3</td>
+						<td>Macross Saga</td>
+						<td>DVD</td>
+						<td>$11.99</td>
+						<td class="last">Anime &amp; Animation</td>
+					</tr>
+					</tbody>
+				</table>
+			</div><!-- box -->
+
+		</div><!-- content wide -->
+
+	</div><!-- container -->
+
+	<div id="footer">
+		<p>Copyright ©2010 onDemandDVD</p>
+	</div><!-- footer -->
+
+</div><!-- wrapper -->
+
+</body>
+</html>
+

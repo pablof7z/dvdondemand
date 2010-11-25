@@ -5,7 +5,7 @@ gem 'rails', '2.3.9'
 gem 'rack', '1.1.0'
 gem 'acts-as-taggable-on', '2.0.6'
 gem 'haml', '3.0.24'
-gem 'hpricot', '0.8.3'
+gem 'hpricot', '0.8.3'     # html2haml dependency
 gem 'devise', '1.0.8'
 gem 'warden', "~> 0.10.7"
 gem 'inherited_resources', '1.0.6'
