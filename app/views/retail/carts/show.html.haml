@@ -16,13 +16,13 @@
           %th{:align => 'right'} Price
           %th.last
         - for item in @cart.items
-          - form_for item, :url => retail_customer_cart_cart_item_path(current_customer,item) do
+          - form_for item, :url => retail_customer_cart_cart_item_path(current_customer,item) do |f|
             %tr{:class => cycle("odd", "even")}
               %td
               %td= link_to item.product.title, retail_catalog_product_path(item.catalog, item.product)
               %td= item.packaging_option.title
               %td.form
-                = text_field_tag 'item[quantity]', item.quantity, :class => 'cart_text_field_small'
+                = f.text_field :quantity, :class => 'cart_text_field_small'
                 %button.button{:type => 'submit'}
                   = image_tag("web-app-theme/tick.png", :alt => "Update")
                   Update
@@ -32,7 +32,7 @@
           %td{:colspan => '3'}
           %td TOTAL
           %td
-            %b= number_to_currency(cart_total)
+            %b= number_to_currency(@cart.items_total_price)
           %td
       .wat-cf
         = link_to 'Clear cart', retail_customer_cart_path(current_customer), :method => :delete, :confirm => 'Are you sure?'

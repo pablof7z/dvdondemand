@@ -8,5 +8,9 @@ class Retail::CartItemsController < RetailController
       redirect_to retail_customer_cart_url(current_customer) and return
     end
   end
+
+  def update
+    update! { retail_customer_cart_url(current_customer) }
+  end
 end
 
