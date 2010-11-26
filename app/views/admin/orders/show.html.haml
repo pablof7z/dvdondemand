@@ -40,7 +40,7 @@
             %td= item.product.media_type.name
             %td= item.quantity
             %td
-              = number_to_currency(item.product.price)
+              = number_to_currency(item.product.price * item.quantity)
               %br
               = number_to_currency(item.packaging_option.price)
             %td

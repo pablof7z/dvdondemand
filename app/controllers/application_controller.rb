@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_devise_resource
 
   def sign_out(resource_or_scope)
-    current_customer.cart.destroy if resource_or_scope.is_a?(Customer) || resource_or_scope == :customer
+    current_customer.cart.destroy if (resource_or_scope.is_a?(Customer) || resource_or_scope == :customer) && !current_customer.cart.blank?
     super
   end
 
