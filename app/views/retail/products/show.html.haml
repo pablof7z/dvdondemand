@@ -50,6 +50,8 @@
         - if customer_signed_in?
           - if current_customer.cart.blank?
             = render :partial => 'retail/carts/new', :locals => { :catalog => @catalog, :product => @product }
+          - else
+            = render :partial => 'retail/cart_items/new', :locals => { :catalog => @catalog, :product => @product }
         - else
           #{link_to 'Login', new_customer_session_path} or #{link_to 'Sign Up', new_customer_registration_path} to purchase this Product
 
