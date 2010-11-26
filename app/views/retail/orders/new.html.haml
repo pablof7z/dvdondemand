@@ -38,7 +38,7 @@
             %td{:colspan => '3'}
             %td TOTAL
             %td
-              %b= number_to_currency(0)
+              %b= number_to_currency(current_customer.items_total_price)
             %td
         .group
           = f.label :billing_address, "Billing Address", :class => :label
