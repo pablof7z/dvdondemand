@@ -3,7 +3,7 @@
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first.active= link_to "Place New Order", retail_cart_path
+      %li.first.active= link_to "Place New Order"
   .content
     %h2.title Place New Purchase Order
     .inner
@@ -20,24 +20,25 @@
             %th{:align => 'right'} Price
             %th.last
           - f.fields_for :items, @order.items.build do |order_item|
-            - for item in customer_session[:cart_items]
-              = order_item.hidden_field :packaging_option_id, :value => item['packaging_option_id']
-              = order_item.hidden_field :product_id, :value => item['product_id']
-              = order_item.hidden_field :quantity,   :value => item['quantity']
+            - for item in current_customer.cart.items
+              = order_item.hidden_field :packaging_option_id, :value => item.packaging_option.id
+              = order_item.hidden_field :product_id,          :value => item.product.id
+              = order_item.hidden_field :quantity,            :value => item.quantity
+              = order_item.hidden_field :price,               :value => item.price
               %tr{:class => cycle("odd", "even")}
                 - product   = Product.find(item['product_id'].to_i)
                 - packaging = PackagingOption.find(item['packaging_option_id'])
                 %td
-                %td= link_to product.title, retail_catalog_product_path(item['catalog_id'],item['product_id'])
-                %td= packaging.title
-                %td= item['quantity']
-                %td= number_to_currency(item['price'].to_f*item['quantity'].to_f + packaging.price)
+                %td= link_to item.product.title, retail_catalog_product_path(item.catalog,item.product)
+                %td= item.packaging_option.title
+                %td= item.quantity
+                %td= number_to_currency(item.price * item.quantity + item.packaging_option.price)
                 %td
           %tr
             %td{:colspan => '3'}
             %td TOTAL
             %td
-              %b= number_to_currency(cart_total)
+              %b= number_to_currency(0)
             %td
         .group
           = f.label :billing_address, "Billing Address", :class => :label
@@ -52,7 +53,7 @@
           %button.button{:type => 'submit'}
             = image_tag("web-app-theme/tick.png", :alt => "Place Order")
             Place Order
-          = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", retail_cart_path, :class => "button"
+          = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", retail_customer_cart_path(current_customer), :class => "button"
 
 - content_for :sidebar, render(:partial => 'retail/shared/sidebar')
 

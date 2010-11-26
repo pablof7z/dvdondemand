@@ -5,7 +5,7 @@ class Retail::OrdersController < RetailController
 
   def create
     create! do |success, failure|
-      success.html { customer_session[:cart_items] = [] }
+      success.html { current_customer.cart.destroy }
       failure.html { render :action => :new }
     end
   end

@@ -1,10 +1,11 @@
 class CreateOrderItems < ActiveRecord::Migration
   def self.up
     create_table :order_items do |t|
-      t.integer :quantity
       t.references :order
       t.references :product
       t.references :packaging_option
+      t.integer    :quantity
+      t.float      :price
       t.timestamps
     end
   end
