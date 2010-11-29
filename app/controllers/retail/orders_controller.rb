@@ -4,9 +4,16 @@ class Retail::OrdersController < RetailController
   actions :new, :create
 
   def new
-    # pre-build order w/items in the cart
+    # pre-build order form w/items from the cart
     @order = current_customer.orders.build
-    current_customer.cart.items.each { |item| @order.items.build(:product_id => item.product.id, :packaging_option_id => item.packaging_option.id, :price => item.product.price, :quantity => item.quantity) }
+    current_customer.cart.items.each do |item|
+      @order.items.build(
+        :packaging_option_id => item.packaging_option.id,
+        :product_id          => item.product.id,
+        :quantity            => item.quantity,
+        :price               => item.product.price
+      )
+    end
     new!
   end
 
