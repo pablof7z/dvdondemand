@@ -1,0 +1,42 @@
+- render :partial => 'retail/catalogs/main_navigation'
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "My Cart", retail_customer_cart_path(current_customer)
+  .content
+    %h2.title My Cart so far
+    .inner
+      %table.table
+        %tr
+          %th.first
+          %th Title
+          %th Packaging
+          %th Qty.
+          %th{:align => 'right'} Price
+          %th.last
+        - for item in @cart.items
+          - form_for item, :url => retail_customer_cart_cart_item_path(current_customer,item) do |f|
+            %tr{:class => cycle("odd", "even")}
+              %td
+              %td= link_to item.product.title, retail_catalog_product_path(item.catalog, item.product)
+              %td= item.packaging_option.title
+              %td.form
+                = f.text_field :quantity, :class => 'cart_text_field_small'
+                %button.button{:type => 'submit'}
+                  = image_tag("web-app-theme/tick.png", :alt => "Update")
+                  Update
+              %td= number_to_currency(item.price*item.quantity + item.packaging_option.price)
+              %td= link_to 'Delete', retail_customer_cart_cart_item_path(current_customer,item), :method => :delete
+        %tr
+          %td{:colspan => '3'}
+          %td TOTAL
+          %td
+            %b= number_to_currency(@cart.items_total_price)
+          %td
+      .wat-cf
+        = link_to "#{image_tag("web-app-theme/tick.png", :alt => "Place Order")} Proceed to Place Order", new_retail_customer_order_path(current_customer), :class => "button"
+        or #{link_to 'Clear cart', retail_customer_cart_path(current_customer), :method => :delete, :confirm => 'Are you sure?'}
+
+- content_for :sidebar, render(:partial => 'retail/shared/sidebar')
+

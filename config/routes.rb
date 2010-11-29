@@ -35,11 +35,11 @@ ActionController::Routing::Routes.draw do |map|
     end
     retail.resources :publishers, :only => [:index, :show]
 
-    retail.resources :customers, :has_many => :orders
-
-    retail.cart     'cart',     :controller => 'cart', :action => 'index'
-    retail.cart_add 'cart_add', :controller => 'cart', :action => 'add_item'
-    retail.cart_del 'cart_del/:product_id', :controller => 'cart', :action => 'del_item'
+    retail.resources :customers, :has_many => :orders do |customer|
+      customer.resource :cart do |cart|
+        cart.resources :cart_items, :as => 'items'
+      end
+    end
 
     retail.root :controller => 'catalogs'
   end
@@ -47,6 +47,7 @@ ActionController::Routing::Routes.draw do |map|
   map.devise_for :admins
   map.namespace :admin do |admin|
     admin.resources :genres
+    admin.resources :orders, :only => [:index, :show]
     admin.resources :publishers, :except => [:create, :new]
     admin.resources :packaging_options, :as => 'packaging'
     admin.resources :wholesale_prices, :as => 'wholesale'

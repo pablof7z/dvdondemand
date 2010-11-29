@@ -1,0 +1,34 @@
+- content_for :main_navigation do
+  %li= link_to 'Administration', admin_root_path
+  %li= link_to 'Genres', admin_genres_path
+  %li.active= link_to 'Orders', admin_orders_path
+  %li= link_to 'Publishers', admin_publishers_path
+  %li= link_to 'Wholesale', admin_wholesale_prices_path
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "All Orders", admin_orders_path
+  .content
+    %h2.title All Orders Placed
+    .inner
+      %table.table
+        %tr
+          %th.first ID
+          %th Date Placed
+          %th Date Shipped
+          %th Placed by
+          %th Items ordered
+          %th.last &nbsp;
+        - @orders.each do |order|
+          %tr{:class => cycle("odd", "even")}
+            %td= order.id
+            %td= order.created_at.to_date.to_s(:short)
+            %td= order.date_shipped
+            %td= order.customer.full_name
+            %td= order.items_full_count
+            %td
+              = link_to "Show", admin_order_path(order)
+
+- content_for :sidebar, render(:partial => 'admin/shared/sidebar')
+

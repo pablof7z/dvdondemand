@@ -1,0 +1,18 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   cart:
+#   packaging_option:
+#   catalog:
+#   product:
+#   quantity: 1
+#   price: 1.5
+#
+# two:
+#   cart:
+#   packaging_option:
+#   catalog:
+#   product:
+#   quantity: 1
+#   price: 1.5
+
