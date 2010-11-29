@@ -7,6 +7,8 @@ class Customer < ActiveRecord::Base
 
   devise :database_authenticatable, :confirmable, :recoverable, :registerable, :rememberable, :trackable, :validatable
 
+  validates_presence_of :first_name, :last_name, :email, :address1, :city, :country
+
   def full_name
     "#{first_name} #{last_name}"
   end

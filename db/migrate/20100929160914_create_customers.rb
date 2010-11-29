@@ -4,7 +4,11 @@ class CreateCustomers < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.string :email
-      t.text :address
+      t.string :address1
+      t.string :address2
+      t.string :company
+      t.string :city
+      t.string :country
 
       # Devise-specific
       t.database_authenticatable
