@@ -8,6 +8,8 @@ class CreateCustomers < ActiveRecord::Migration
       t.string :address2
       t.string :company
       t.string :city
+      t.string :state
+      t.string :zip_code
       t.string :country
 
       # Devise-specific

@@ -48,6 +48,10 @@
           %p= f.text_field :city, :class => 'text_field'
 
         .group
+          %p= f.label :state, 'State (US only)', :class => :label
+          %p= f.us_state_select :state, :include_blank => true
+
+        .group
           %p= f.label :country, 'Country', :class => :label
           %p= f.country_select :country
 
