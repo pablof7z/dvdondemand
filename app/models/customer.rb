@@ -7,6 +7,10 @@ class Customer < ActiveRecord::Base
 
   devise :database_authenticatable, :confirmable, :recoverable, :registerable, :rememberable, :trackable, :validatable
 
+  validates_presence_of :first_name, :last_name, :address1, :city, :country
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_uniqueness_of :email
+
   def full_name
     "#{first_name} #{last_name}"
   end

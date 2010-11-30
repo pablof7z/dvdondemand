@@ -6,6 +6,9 @@ namespace :devise do
       u.first_name = 'Devise'
       u.last_name  = 'Customer'
       u.email      = 'devise@customer.com'
+      u.address1   = 'where the streets have no name'
+      u.city       = 'Outskirtsville'
+      u.country    = 'UY'
       u.password   = '123456'
       u.password_confirmation = '123456'
     end
