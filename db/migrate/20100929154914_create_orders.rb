@@ -10,8 +10,17 @@ class CreateOrders < ActiveRecord::Migration
       t.date       :card_expires_on
       t.string     :ip_address
       t.string     :tracking_code
-      t.text       :billing_address
+
+      # billing address w/same columns as Customers'
+      t.string     :billing_address1
+      t.string     :billing_address2
+      t.string     :billing_city
+      t.string     :billing_state
+      t.string     :billing_zip_code
+      t.string     :billing_country
+      # so should be shipping address
       t.text       :shipping_address
+
       t.boolean    :returned
 
       t.timestamps

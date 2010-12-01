@@ -64,11 +64,14 @@ class Order < ActiveRecord::Base
     {
       :billing_address => {
         :name     => customer.full_name,
-        :address1 => billing_address,
-        :address2 => 'toBeSetInProfile',
-        :company  => 'SeverProtectors',
-        :city     => 'Pelotillehue',
-        :country  => 'AR'
+        :address1 => billing_address1,
+        :address2 => billing_address2,
+        :city     => billing_city,
+        :state    => billing_state,
+        :zip      => billing_zip_code,
+        :country  => billing_country,
+        :company  => customer.company,   # same as Customer's?
+        :email    => customer.email      # same as Customer's?
       },
       :shipping_address => {
         :name     => customer.full_name,

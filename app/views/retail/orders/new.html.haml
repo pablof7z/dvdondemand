@@ -50,9 +50,25 @@
         .group
           = f.label :card_expires_on, 'Card Expires On', :class => :label
           = f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :add_month_numbers => true
+        %h3 Billing Address
         .group
-          = f.label :billing_address, "Billing Address", :class => :label
-          = f.text_area :billing_address, :rows => 5, :class => 'text_area'
+          %p= f.label :billing_address1, 'Address 1', :class => :label
+          %p= f.text_field :billing_address1, :value => current_customer.address1, :class => 'text_field'
+        .group
+          %p= f.label :billing_address2, 'Address 2', :class => :label
+          %p= f.text_field :billing_address2, :value => current_customer.address2, :class => 'text_field'
+        .group
+          %p= f.label :billing_city, 'City', :class => :label
+          %p= f.text_field :billing_city, :value => current_customer.city, :class => 'text_field'
+        .group
+          %p= f.label :billing_state, 'State (US only)', :class => :label
+          %p= f.us_state_select :billing_state, :include_blank => true
+        .group
+          %p= f.label :billing_zip_code, 'Zip Code', :class => :label
+          %p= f.text_field :billing_zip_code, :value => current_customer.zip_code, :class => 'text_field_small'
+        .group
+          %p= f.label :billing_country, 'Country', :class => :label
+          %p= f.country_select :billing_country
         .group
           = f.label :shipping_address, "Shipping Address", :class => :label
           = f.text_area :shipping_address, :rows => 5, :class => 'text_area'
