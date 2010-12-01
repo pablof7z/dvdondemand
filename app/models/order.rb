@@ -12,7 +12,6 @@ class Order < ActiveRecord::Base
   attr_accessor :first_name, :last_name           # just for credit_card validations
 
   validate_on_create :valid_credit_card
-  validates_presence_of :billing_address
 
   def items_full_count
     items.sum(:quantity)
@@ -27,25 +26,11 @@ class Order < ActiveRecord::Base
   end
 
   def billing_address
-    returning [] do address
-      address << billing_address1
-      address << billing_address2 unless billing_address2.blank?
-      address << billing_city     unless billing_city.blank?
-      address << billing_state    unless billing_state.blank?
-      address << billing_country  unless billing_country.blank?
-    end
-    address.join('<br />')
+    address_for :billing
   end
 
   def shipping_address
-    returning [] do address
-      address << shipping_address1
-      address << shipping_address2 unless shipping_address2.blank?
-      address << shipping_city     unless shipping_city.blank?
-      address << shipping_state    unless shipping_state.blank?
-      address << shipping_country  unless shipping_country.blank?
-    end
-    address.join('<br />')
+    address_for :shipping
   end
 
   # follow ActiveMerchant-specific methods for FirstData integration
@@ -110,6 +95,18 @@ class Order < ActiveRecord::Base
       :email    => customer.email,
       :ip       => ip_address
     }
+  end
+
+  # build composite address for billing/shipping
+  def address_for(where)
+    returning address = [] do 
+      address << send("#{where.to_s}_address1")
+      address << send("#{where.to_s}_address2") unless send("#{where.to_s}_address2").blank?
+      address << send("#{where.to_s}_city")     unless send("#{where.to_s}_city").blank?
+      address << send("#{where.to_s}_state")    unless send("#{where.to_s}_state").blank?
+      address << send("#{where.to_s}_country")  unless send("#{where.to_s}_country").blank?
+    end
+    address.join('<br />')
   end
 end
 
