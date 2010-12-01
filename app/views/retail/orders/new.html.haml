@@ -68,7 +68,7 @@
           %p= f.text_field :billing_zip_code, :value => current_customer.zip_code, :class => 'text_field_small'
         .group
           %p= f.label :billing_country, 'Country', :class => :label
-          %p= f.country_select :billing_country
+          %p= f.select :billing_country, country_options_for_select(current_customer.country)
         %h3 Shipping Address
         %p
           = check_box_tag :same_as, :value => '1'
@@ -93,7 +93,7 @@
           %p= f.text_field :shipping_zip_code, :value => current_customer.zip_code, :class => 'text_field_small'
         .group
           %p= f.label :shipping_country, 'Country', :class => :label
-          %p= f.country_select :shipping_country
+          %p= f.select :shipping_country, country_options_for_select(current_customer.country)
 
         -# hidden fields for helper attr_accessor methods
         = f.hidden_field :first_name, :value => current_customer.first_name
