@@ -8,7 +8,8 @@ namespace :devise do
       u.email      = 'devise@customer.com'
       u.address1   = 'where the streets have no name'
       u.city       = 'Outskirtsville'
-      u.country    = 'UY'
+      u.state      = 'UT'
+      u.country    = 'US'
       u.password   = '123456'
       u.password_confirmation = '123456'
     end
