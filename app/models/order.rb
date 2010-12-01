@@ -26,7 +26,31 @@ class Order < ActiveRecord::Base
     total
   end
 
-  # all amounts are in cents for ActiveMerchant
+  def billing_address
+    returning [] do address
+      address << billing_address1
+      address << billing_address2 unless billing_address2.blank?
+      address << billing_city     unless billing_city.blank?
+      address << billing_state    unless billing_state.blank?
+      address << billing_country  unless billing_country.blank?
+    end
+    address.join('<br />')
+  end
+
+  def shipping_address
+    returning [] do address
+      address << shipping_address1
+      address << shipping_address2 unless shipping_address2.blank?
+      address << shipping_city     unless shipping_city.blank?
+      address << shipping_state    unless shipping_state.blank?
+      address << shipping_country  unless shipping_country.blank?
+    end
+    address.join('<br />')
+  end
+
+  # follow ActiveMerchant-specific methods for FirstData integration
+
+  # all amounts should be in cents to prevent rounding
   def total_in_cents
     (total*100).round
   end
