@@ -74,11 +74,13 @@ class Order < ActiveRecord::Base
         :email    => customer.email      # same as Customer's?
       },
       :shipping_address => {
-        :name     => customer.full_name,
-        :address1 => shipping_address,
-        :address2 => 'toBeSet',
-        :city     => 'Pelotillehue Ville',
-        :country  => 'UY'
+        :name     => shipping_name,
+        :address1 => shipping_address1,
+        :address2 => shipping_address2,
+        :city     => shipping_city,
+        :state    => shipping_state,
+        :zip      => shipping_zip_code,
+        :country  => shipping_country
       },
       :order_id => id,
       :email    => customer.email,

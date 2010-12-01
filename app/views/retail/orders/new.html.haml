@@ -69,12 +69,31 @@
         .group
           %p= f.label :billing_country, 'Country', :class => :label
           %p= f.country_select :billing_country
+        %h3 Shipping Address
+        %p
+          = check_box_tag :same_as, :value => '1'
+          Same as Billing Address
         .group
-          = f.label :shipping_address, "Shipping Address", :class => :label
-          = f.text_area :shipping_address, :rows => 5, :class => 'text_area'
-          %p
-            = check_box_tag :same_as, :value => '1'
-            Same as Billing Address
+          %p= f.label :shipping_name, "Ship to", :class => :label
+          %p= f.text_field :shipping_name, :value => current_customer.full_name, :class => 'text_field'
+        .group
+          %p= f.label :shipping_address1, "Address 1", :class => :label
+          %p= f.text_field :shipping_address1, :value => current_customer.address1, :class => 'text_field'
+        .group
+          %p= f.label :shipping_address2, "Address 2", :class => :label
+          %p= f.text_field :shipping_address2, :value => current_customer.address2, :class => 'text_field'
+        .group
+          %p= f.label :shipping_city, 'City', :class => :label
+          %p= f.text_field :shipping_city, :value => current_customer.city, :class => 'text_field'
+        .group
+          %p= f.label :shipping_state, 'State (US only)', :class => :label
+          %p= f.us_state_select :shipping_state, :include_blank => true
+        .group
+          %p= f.label :shipping_zip_code, 'Zip Code', :class => :label
+          %p= f.text_field :shipping_zip_code, :value => current_customer.zip_code, :class => 'text_field_small'
+        .group
+          %p= f.label :shipping_country, 'Country', :class => :label
+          %p= f.country_select :shipping_country
 
         -# hidden fields for helper attr_accessor methods
         = f.hidden_field :first_name, :value => current_customer.first_name
