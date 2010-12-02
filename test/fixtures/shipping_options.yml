@@ -2,12 +2,14 @@
 
 fast:
   title: FedEx
-  maximium_weight: 275
+  maximum_weight: 275
   priority: true
   price: 5.75
+  description: Fast!
 
 cheap:
   title: USPS
-  maximium_weight: 215
+  maximum_weight: 215
   priority: false
   price: 1.25
+  description: Cheap!
