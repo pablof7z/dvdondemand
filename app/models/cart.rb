@@ -8,7 +8,7 @@ class Cart < ActiveRecord::Base
   end
 
   def items_total_price
-    items.sum('price * quantity')
+    items.inject(0) { |sum,i| sum + i.price*i.quantity + i.packaging_option.price*i.quantity }
   end
 
   def items_include?(product)
