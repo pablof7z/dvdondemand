@@ -60,7 +60,7 @@
         = @order.shipping_address
       %p
         %b Shipping Option Selected:
-        = @order.shipping_option.title
+        = @order.shipping_option.title_with_price
 
 - content_for :sidebar, render(:partial => 'admin/shared/sidebar')
 
