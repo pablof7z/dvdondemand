@@ -51,7 +51,11 @@
           - if current_customer.cart.blank?
             = render :partial => 'retail/carts/new', :locals => { :catalog => @catalog, :product => @product }
           - else
-            = render :partial => 'retail/cart_items/new', :locals => { :catalog => @catalog, :product => @product }
+            - unless current_customer.cart.items_include?(@product)
+              = render :partial => 'retail/cart_items/new', :locals => { :catalog => @catalog, :product => @product }
+            - else
+              %p
+                %em This product is already in your Cart.
         - else
           #{link_to 'Login', new_customer_session_path} or #{link_to 'Sign Up', new_customer_registration_path} to purchase this Product
 

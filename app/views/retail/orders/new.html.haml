@@ -50,6 +50,7 @@
         .group
           = f.label :card_expires_on, 'Card Expires On', :class => :label
           = f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :add_month_numbers => true
+
         %h3 Billing Address
         .group
           %p= f.label :billing_address1, 'Address 1', :class => :label
@@ -69,6 +70,7 @@
         .group
           %p= f.label :billing_country, 'Country', :class => :label
           %p= f.select :billing_country, country_options_for_select(current_customer.country)
+
         %h3 Shipping Address
         %p
           = check_box_tag :same_as, :value => '1'
@@ -99,6 +101,10 @@
         = f.hidden_field :first_name, :value => current_customer.first_name
         = f.hidden_field :last_name,  :value => current_customer.last_name
         = f.hidden_field :ip_address, :value => request.remote_ip
+
+        %h3 Shipping Options available
+        .group
+          %p= f.select :shipping_option_id, options_from_collection_for_select(ShippingOption.all, :id, :title_with_price)
 
         .group.navform.wat-cf
           %button.button{:type => 'submit'}

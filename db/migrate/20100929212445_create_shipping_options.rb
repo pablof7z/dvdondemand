@@ -1,10 +1,11 @@
 class CreateShippingOptions < ActiveRecord::Migration
   def self.up
     create_table :shipping_options do |t|
-      t.string :title
-      t.integer :maximium_weight
+      t.string  :title
+      t.integer :maximum_weight
       t.boolean :priority
-      t.float :price
+      t.float   :price
+      t.text    :description
 
       t.timestamps
     end

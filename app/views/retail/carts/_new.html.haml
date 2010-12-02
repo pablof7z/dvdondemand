@@ -2,9 +2,10 @@
 - @cart.items.build
 - form_for @cart, :url => retail_customer_cart_path(current_customer), :class => 'form' do |f|
   - f.fields_for :items do |item|
-    = item.hidden_field :catalog_id, :value => catalog.id
-    = item.hidden_field :product_id, :value => product.id
-    = item.hidden_field :price,      :value => product.price
+    = item.hidden_field :customer_id, :value => current_customer.id
+    = item.hidden_field :catalog_id,  :value => catalog.id
+    = item.hidden_field :product_id,  :value => product.id
+    = item.hidden_field :price,       :value => product.price
     %p
       = item.text_field :quantity, :value => '1', :class => 'cart_text_field_small'
       = item.select :packaging_option_id, options_from_collection_for_select(product.available_packaging_options, :id, :title_with_price), :class => 'cart_text_field_small'
