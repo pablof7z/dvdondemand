@@ -47,6 +47,9 @@
           %p
             = check_box_tag :same_as, :value => '1'
             Same as Billing Address
+        .group
+          %h3 Shipping Options available
+          = f.select :shipping_option_id, options_from_collection_for_select(ShippingOption.all, :id, :title)
         .group.navform.wat-cf
           %button.button{:type => 'submit'}
             = image_tag("web-app-theme/tick.png", :alt => "Place Order")
