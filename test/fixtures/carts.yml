@@ -1,18 +1,5 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-# one:
-#   customer:
-#   packaging_option:
-#   catalog:
-#   product:
-#   quantity: 1
-#   price: 1.5
-#
-# two:
-#   customer:
-#   packaging_option:
-#   catalog:
-#   product:
-#   quantity: 1
-#   price: 1.5
-
+one:
+  id: 1
+  customer_id: 1
