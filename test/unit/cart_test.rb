@@ -8,10 +8,10 @@ class CartTest < ActiveSupport::TestCase
 
   test "check cart totals" do
     assert_equal @customer.cart.items_total_count, 3
-    assert_equal @customer.cart.items_total_price, 6.5
+    assert_equal @customer.cart.items_total_price, 9.5
   end
 
-  test 'check cart inclusion' do
+  test 'check cart product inclusion' do
     assert @customer.cart.items_include?(@product)
   end
 end
