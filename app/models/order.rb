@@ -17,12 +17,12 @@ class Order < ActiveRecord::Base
     items.sum(:quantity)
   end
 
+  def subtotal
+    items.inject(0) { |sum,i| sum + i.price*i.quantity + i.packaging_option.price*i.quantity }
+  end
+  
   def total
-    total = 0
-    total = items.inject(0) do |subtotal, item|
-      subtotal + item.product.price * item.quantity + item.packaging_option.price
-    end
-    total
+    subtotal + shipping_option.price
   end
 
   def billing_address
@@ -90,6 +90,11 @@ class Order < ActiveRecord::Base
         :state    => shipping_state,
         :zip      => shipping_zip_code,
         :country  => shipping_country
+      },
+      :payment => {
+        :subtotal    => subtotal,
+        :shipping    => shipping_option.price,
+        :chargetotal => total
       },
       :order_id => id,
       :items    => line_items,
