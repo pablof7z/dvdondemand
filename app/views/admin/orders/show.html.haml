@@ -53,11 +53,13 @@
           %th= number_to_currency(@order.subtotal)
           %th.last
         %tr
-          %th.first
-          %th{:colspan => 2}
-          %th= @order.shipping_option.title
-          %th= number_to_currency(@order.shipping_option.title)
-          %th.last
+          %td.first
+          %td{:colspan => 2}
+          %td
+            Shipping Option Selected
+            %em= @order.shipping_option.title
+          %td= number_to_currency(@order.shipping_option.price)
+          %td.last
         %tr
           %th.first
           %th{:colspan => 2}
@@ -67,13 +69,10 @@
           %th.last
       %p
         %b Billing Address:
-        = @order.billing_address
+        %br= @order.billing_address
       %p
         %b Shipping Address:
-        = @order.shipping_address
-      %p
-        %b Shipping Option Selected:
-        = @order.shipping_option.title_with_price
+        %br= @order.shipping_address
 
     %h2.title FirstData transactions logging
     .inner
