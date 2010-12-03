@@ -92,9 +92,18 @@ class Order < ActiveRecord::Base
         :country  => shipping_country
       },
       :order_id => id,
+      :items    => line_items,
       :email    => customer.email,
       :ip       => ip_address
     }
+  end
+  
+  def line_items
+    returning [] do |li|
+      items.each do |i|
+        li << { :id => i.id, :description => i.title, :price => i.price, :quantity => i.quantity }
+      end
+    end
   end
 
   # build composite address for billing/shipping
