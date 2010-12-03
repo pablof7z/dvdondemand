@@ -1,20 +1,27 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  ip_address: 127.0.0.1
-
+  id: 1
+  customer_id: 1
+  shipping_option_id: 1
+  
   billing_address1: Vucetich
   billing_address2: Nieva
   billing_city: Smallville
   billing_state: UT
   billing_country: US
-
   # shipping same as billing
   shipping_address1: Vucetich
   shipping_address2: Nieva
   shipping_city: Smallville
   shipping_state: UT
   shipping_country: US
+
+  date_received: <%= DateTime.now %>
+  date_shipped: <%= DateTime.now + 1 %>
+  purchased_at: <%= DateTime.now - 1 %>
+
+  ip_address: 127.0.0.1
 
 # two:
 #   date_received: <%= DateTime.now %>
