@@ -52,6 +52,19 @@
           %th SubTotal
           %th= number_to_currency(@order.subtotal)
           %th.last
+        %tr
+          %th.first
+          %th{:colspan => 2}
+          %th= @order.shipping_option.title
+          %th= number_to_currency(@order.shipping_option.title)
+          %th.last
+        %tr
+          %th.first
+          %th{:colspan => 2}
+          %th 
+            %strong Total
+          %th= number_to_currency(@order.total)
+          %th.last
       %p
         %b Billing Address:
         = @order.billing_address
