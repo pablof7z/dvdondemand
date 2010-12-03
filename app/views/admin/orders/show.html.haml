@@ -44,7 +44,7 @@
             %td
               = number_to_currency(item.product.price * item.quantity)
               %br
-              = number_to_currency(item.packaging_option.price)
+              = number_to_currency(item.packaging_option.price * item.quantity)
             %td
         %tr
           %th.first
