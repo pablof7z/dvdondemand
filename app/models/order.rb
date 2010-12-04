@@ -20,7 +20,7 @@ class Order < ActiveRecord::Base
   def subtotal
     items.inject(0) { |sum,i| sum + i.price*i.quantity + i.packaging_option.price*i.quantity }
   end
-  
+
   def total
     subtotal + shipping_option.price
   end
@@ -102,18 +102,18 @@ class Order < ActiveRecord::Base
       :ip       => ip_address
     }
   end
-  
+
   def line_items
     returning [] do |li|
       items.each do |i|
-        li << { :id => i.id, :description => i.title, :price => i.price, :quantity => i.quantity }
+        li << { :id => i.id, :description => i.product.title, :price => i.price, :quantity => i.quantity }
       end
     end
   end
 
   # build composite address for billing/shipping
   def address_for(where)
-    returning address = [] do 
+    returning address = [] do
       address << send("#{where.to_s}_address1")
       address << send("#{where.to_s}_address2") unless send("#{where.to_s}_address2").blank?
       address << send("#{where.to_s}_city")     unless send("#{where.to_s}_city").blank?
