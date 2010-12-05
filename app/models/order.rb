@@ -22,7 +22,7 @@ class Order < ActiveRecord::Base
   end
 
   def total
-    subtotal + shipping_option.price
+    subtotal + shipping_option.price 
   end
 
   def billing_address
@@ -91,15 +91,17 @@ class Order < ActiveRecord::Base
         :zip      => shipping_zip_code,
         :country  => shipping_country
       },
-      :payment => {
-        :subtotal    => subtotal,
-        :shipping    => shipping_option.price,
-        :chargetotal => total
-      },
       :line_items => line_items,
       :order_id   => id,
       :email      => customer.email,
-      :ip         => ip_address
+      :ip         => ip_address,
+      # WTF: chargetotal is the only following field that FirstData uses
+      # see http://railsdog.lighthouseapp.com/projects/31096/tickets/1411-credit-payment-to-linkpoint-gateway-fails 
+      # :tax         => tax,
+      # :vattax      => vattax,
+      # :subtotal    => subtotal,
+      # :shipping    => shipping_option.price,
+      :chargetotal => total
     }
   end
 
