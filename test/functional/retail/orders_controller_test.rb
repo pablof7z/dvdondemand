@@ -15,5 +15,12 @@ class Retail::OrdersControllerTest < ActionController::TestCase
     assert_raise(ActionController::UnknownAction) { get :edit }
     assert_raise(ActionController::UnknownAction) { get :update }
   end
+
+  test 'do not proceed to Order creation with an empty cart' do
+    get :new
+    assert_redirected_to root_url
+    get :create
+    assert_redirected_to root_url
+  end
 end
 

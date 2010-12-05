@@ -1,5 +1,6 @@
 class Retail::OrdersController < RetailController
   before_filter :authenticate_customer!
+  before_filter :no_empty_cart, :only => [:new, :create]
   belongs_to :customer
   actions :new, :create
 
@@ -30,6 +31,12 @@ class Retail::OrdersController < RetailController
       end
       failure.html { render :action => :new }
     end
+  end
+
+  private
+
+  def no_empty_cart
+    redirect_to root_url and return if current_customer.cart.blank?
   end
 end
 
