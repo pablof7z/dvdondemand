@@ -96,10 +96,10 @@ class Order < ActiveRecord::Base
         :shipping    => shipping_option.price,
         :chargetotal => total
       },
-      :order_id => id,
-      :items    => line_items,
-      :email    => customer.email,
-      :ip       => ip_address
+      :line_items => line_items,
+      :order_id   => id,
+      :email      => customer.email,
+      :ip         => ip_address
     }
   end
 
