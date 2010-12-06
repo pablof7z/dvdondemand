@@ -1,9 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-
-  map.resources :fees
-
-  map.resources :shipping_options
-
   map.devise_for :customers, :as => 'users'  # first to avoid the :customers resources to catch devise's auto-generated routes
   map.resources :customers, :as => 'users' do |customer|
     customer.resources :customer_payments, :as => :payments
@@ -46,7 +41,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.devise_for :admins
   map.namespace :admin do |admin|
-    admin.resources :genres
+    admin.resources :fees, :genres
     admin.resources :orders, :only => [:index, :show]
     admin.resources :publishers, :except => [:create, :new]
     admin.resources :packaging_options, :as => 'packaging'
@@ -58,8 +53,5 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.root :controller => 'retail/catalogs'
-
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
 end
 
