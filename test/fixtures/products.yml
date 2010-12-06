@@ -2,7 +2,7 @@
 
 johns:
   id: 1
-  publisher_id: 1
+  publisher: john
   media_type_id: 1
   genre_id: 1
   title: Foobar Blues Media Pack
@@ -13,7 +13,7 @@ johns:
 
 janes:
   id: 2
-  publisher_id: 2
+  publisher: jane
   media_type_id: 1
   genre_id: 2
   title: The Barfoo Rock Antology
