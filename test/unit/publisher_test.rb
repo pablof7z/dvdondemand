@@ -1,8 +1,15 @@
 require 'test_helper'
 
 class PublisherTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  def setup
+    @john = publishers(:john)
+    @jane = publishers(:jane)
+  end
+
+  test "assoc. catalogs & products by fixtures" do
+    assert_equal @john.catalogs.size, 1
+    assert_equal @john.products.size, 1
+    assert_equal @jane.catalogs.size, 2
+    assert_equal @jane.products.size, 1
   end
 end
