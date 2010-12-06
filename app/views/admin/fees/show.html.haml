@@ -1,0 +1,30 @@
+- content_for :main_navigation do
+  %li= link_to 'Administration', admin_root_path
+  %li.active= link_to 'Fees', admin_fees_path
+  %li= link_to 'Genres', admin_genres_path
+  %li= link_to 'Orders', admin_orders_path
+  %li= link_to 'Publishers', admin_publishers_path
+  %li= link_to 'Packaging', admin_packaging_options_path
+  %li= link_to 'Shipping', admin_shipping_options_path
+  %li= link_to 'Wholesale', admin_wholesale_prices_path
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "All Fees", admin_fees_path
+      %li= link_to "New", new_admin_fee_path
+      %li.active= link_to "Show", admin_fee_path(@fee)
+  .content
+    .inner
+      %p
+        %b Description:
+        = @fee.description
+      %p
+        %b Amount:
+        = number_to_currency(@fee.amount)
+      .wat-cf
+        #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_admin_fee_path(@fee), :class => "button" }
+        #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", admin_fee_path(@fee), :method => "delete", :class => "button", :confirm => "Are you sure?" }
+
+- content_for :sidebar, render(:partial => 'admin/shared/sidebar')
+

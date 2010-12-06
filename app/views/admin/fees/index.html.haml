@@ -1,7 +1,7 @@
 - content_for :main_navigation do
   %li= link_to 'Administration', admin_root_path
-  %li= link_to 'Fees', admin_fees_path
-  %li.active= link_to 'Genres', admin_genres_path
+  %li.active= link_to 'Fees', admin_fees_path
+  %li= link_to 'Genres', admin_genres_path
   %li= link_to 'Orders', admin_orders_path
   %li= link_to 'Publishers', admin_publishers_path
   %li= link_to 'Packaging', admin_packaging_options_path
@@ -11,28 +11,28 @@
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first.active= link_to "All Genres", admin_genres_path
-      %li= link_to "New", new_admin_genre_path
+      %li.first.active= link_to "All Fees", admin_fees_path
+      %li= link_to "New", new_admin_fee_path
   .content
-    %h2.title All Product Genres
+    %h2.title All Fees
     .inner
       %table.table
         %tr
           %th.first ID
-          %th Media
-          %th Title
+          %th Description
+          %th Amount
           %th.last &nbsp;
-        - @genres.each do |genre|
+        - for fee in @fees
           %tr{:class => cycle("odd", "even")}
-            %td= genre.id
-            %td= genre.media_type.name
-            %td= link_to genre.title, admin_genre_path(genre)
+            %td= fee.id
+            %td= link_to fee.description, admin_fee_path(fee)
+            %td= number_to_currency(fee.amount)
             %td.last
-              = link_to "Show", admin_genre_path(genre)
+              = link_to "Show", admin_fee_path(fee)
               |
-              = link_to "Edit", edit_admin_genre_path(genre)
+              = link_to "Edit", edit_admin_fee_path(fee)
               |
-              = link_to "Delete", admin_genre_path(genre), :method => :delete, :confirm => "Are you sure?"
+              = link_to "Delete", admin_fee_path(fee), :method => :delete, :confirm => "Are you sure?"
       .actions-bar.wat-cf
         .actions
 
