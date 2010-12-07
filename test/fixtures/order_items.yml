@@ -2,15 +2,15 @@
 
 one:
   order: one
-  packaging_option: standard
   product: johns
+  packaging_option: standard
   quantity: 1
   price: 14.99
 
 two:
   order: one
-  packaging_option: premium
   product: janes
+  packaging_option: premium
   quantity: 2
   price: 9.99
 

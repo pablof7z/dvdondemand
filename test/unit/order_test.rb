@@ -14,7 +14,7 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal @order.shipping_address, "Vucetich<br />Nieva<br />Smallville<br />UT<br />US"
   end
 
-  test 'named referenced fixtures' do
+  test 'totals by named ref. fixtures' do
     assert_equal @customer.orders.size, 1
     assert_equal @order.items_full_count, 3
     assert_equal @order.subtotal, 37.97

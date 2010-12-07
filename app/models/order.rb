@@ -1,7 +1,8 @@
 class Order < ActiveRecord::Base
-  belongs_to :sale
   belongs_to :customer
   belongs_to :shipping_option # USPS, FedEx, DHL, etc.
+
+  has_many :sales  # 'cause it's one sale per publisher ordered product
   has_many :customer_payments
 
   has_many :items, :class_name => 'OrderItem', :dependent => :delete_all
