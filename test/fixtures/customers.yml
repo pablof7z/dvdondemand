@@ -1,7 +1,6 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 happy:
-  id: 1
   first_name: Happy
   last_name: Customer
   email: happy@customer.com
@@ -10,7 +9,6 @@ happy:
   country: DZ
 
 grumpy:
-  id: 2
   first_name: Grumpy
   last_name: Customer
   email: grumpy@customer.com

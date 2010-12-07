@@ -1,7 +1,6 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 fast:
-  id: 1
   title: FedEx
   maximum_weight: 275
   priority: true
@@ -9,7 +8,6 @@ fast:
   description: Fast!
 
 cheap:
-  id: 2
   title: USPS
   maximum_weight: 215
   priority: false
