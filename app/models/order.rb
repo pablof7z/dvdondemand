@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
   belongs_to :customer
-  belongs_to :shipping_option # USPS, FedEx, DHL, etc.
+  belongs_to :shipping_option
 
   has_many :sales  # 'cause it's one sale per publisher ordered product
   has_many :customer_payments
@@ -14,6 +14,7 @@ class Order < ActiveRecord::Base
   attr_accessor :first_name, :last_name           # just for credit_card validations
 
   validate_on_create :valid_credit_card
+  after_create :assign_partial_cc_number
 
   def items_full_count
     items.sum(:quantity)
@@ -56,6 +57,13 @@ class Order < ActiveRecord::Base
         errors.add_to_base message
       end
     end
+  end
+
+  def assign_partial_cc_number
+    # preserve the last 4 digits of the credit card
+    to = card_number.size
+    from = to-4 
+    self.update_attribute :partial_cc_number, card_number[from..to]
   end
 
   def credit_card

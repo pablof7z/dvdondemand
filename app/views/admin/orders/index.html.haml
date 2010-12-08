@@ -22,7 +22,8 @@
           %th Date Shipped
           %th Placed by
           %th Items ordered
-          %th.last &nbsp;
+          %th Total
+          %th.last
         - @orders.each do |order|
           %tr{:class => cycle("odd", "even")}
             %td= order.id
@@ -30,6 +31,7 @@
             %td= order.date_shipped
             %td= order.customer.full_name
             %td= order.items_full_count
+            %td= number_to_currency(order.total)
             %td
               = link_to "Show", admin_order_path(order)
 
