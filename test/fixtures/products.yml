@@ -9,6 +9,8 @@ johns:
   price: 14.99
   performers: moe, larry, curly, shemp
   description: Play it again, Sam
+  # for habtm fixture:
+  catalogs: johns
 
 janes:
   publisher: jane
@@ -19,6 +21,8 @@ janes:
   price: 9.99
   performers: athos, porthos, aramis, dartagnan
   description: The golden glam age
+  # for habtm fixture:
+  catalogs: janes, janes_private
 
 devises:
   id: 3

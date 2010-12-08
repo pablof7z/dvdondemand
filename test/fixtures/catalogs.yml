@@ -5,16 +5,22 @@ johns:
   title: Assorted Blues
   description: Just as it name implies
   private: false
+  # for habtm fixture:
+  products: johns
 
 janes:
   publisher: jane
   title: Rare Rock Stuff
   description: Just as it name implies
   private: false
+  # for habtm fixture:
+  products: janes
 
 janes_private:
   publisher: jane
   title: More Rare Rock Stuff
   description: Just as it name implies
   private: true
+  # for habtm fixture:
+  products: janes
 
