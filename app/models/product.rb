@@ -37,7 +37,7 @@ class Product < ActiveRecord::Base
   end
 
   def available_packaging_options
-    packaging_options.include?(PackagingOption.first) ? packaging_options : [PackagingOption.first] + packaging_options
+    packaging_options.include?(PackagingOption.find(:first, :conditions => {:price => 0})) ? packaging_options : [PackagingOption.find(:first, :conditions => {:price => 0})] + packaging_options
   end
 end
 
