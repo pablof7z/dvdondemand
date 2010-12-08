@@ -5,10 +5,11 @@ class Order < ActiveRecord::Base
   has_many :sales  # 'cause it's one sale per publisher ordered product
   has_many :customer_payments
 
+  has_many :transactions, :class_name => 'OrderTransaction', :dependent => :delete_all
+
   has_many :items, :class_name => 'OrderItem', :dependent => :delete_all
   accepts_nested_attributes_for :items
 
-  has_many :transactions, :class_name => 'OrderTransaction', :dependent => :delete_all
   attr_accessor :card_number, :card_verification  # to not persist'em in the db
   attr_accessor :first_name, :last_name           # just for credit_card validations
 
