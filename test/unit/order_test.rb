@@ -18,6 +18,7 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal @customer.orders.size, 1
     assert_equal @order.items_full_count, 3
     assert_equal @order.subtotal, 37.97
+    assert_equal @order.total_in_cents, 4372
     assert_equal @order.total, 43.72
   end
 end
