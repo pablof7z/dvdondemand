@@ -63,7 +63,7 @@ class Order < ActiveRecord::Base
     # preserve the last 4 digits of the credit card
     to = card_number.size
     from = to-4 
-    self.update_attribute :partial_cc_number, card_number[from..to]
+    update_attribute :partial_cc_number, card_number[from..to]
   end
 
   def credit_card
