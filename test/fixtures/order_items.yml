@@ -1,16 +1,23 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
+for_order_one_i:
   order: one
   product: johns
   packaging_option: standard
   quantity: 1
   price: 14.99
 
-two:
+for_order_one_ii:
   order: one
   product: janes
   packaging_option: premium
   quantity: 2
   price: 9.99
+
+for_order_two_i:
+  order: two
+  product: johns
+  packaging_option: standard
+  quantity: 2
+  price: 14.99
 
