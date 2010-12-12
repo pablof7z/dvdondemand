@@ -36,6 +36,10 @@ class Order < ActiveRecord::Base
     address_for :shipping
   end
 
+  def items_from(publisher)
+    items.delete_if { |i| i.product.publisher != publisher }
+  end
+
   # follow ActiveMerchant-specific methods for FirstData integration
 
   # all amounts should be in cents to prevent rounding
