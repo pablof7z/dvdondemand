@@ -11,6 +11,7 @@
       %li.first.active= link_to "All Sales Reports", publish_publisher_sales_path(current_publisher)
   .content
     %h2.title Sales Reports
+    - total = 0
     .inner
       %table.table
         %tr
@@ -34,11 +35,19 @@
             %td= number_to_currency(sale.total)
             - for fee in Fee.all
               %td= number_to_currency(fee.amount)
-            %td
-              %strong= number_to_currency(sale.total - Fee.sum(:amount))
+            %td{:align => :right}
+              - subtotal = sale.total - Fee.sum(:amount)
+              %strong= number_to_currency(subtotal)
             %td
               = link_to "Show", publish_publisher_sale_path(current_publisher,sale)
             %td
+              - total += subtotal
+        %tr
+          %td{:colspan => 8, :align => :right}
+            %strong TOTAL
+          %td{:align => :right}
+            %strong= number_to_currency(total)
+          %td
 
 - content_for :sidebar, render(:partial => 'publish/shared/sidebar')
 
