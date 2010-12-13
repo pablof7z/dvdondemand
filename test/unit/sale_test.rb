@@ -10,6 +10,6 @@ class SaleTest < ActiveSupport::TestCase
   test 'assoc. order sales by named ref. fixtures' do
     assert_equal @order.sales.count, 2
     assert_equal @jane.sales.count, 1
-    assert_equal 2, @john.sales.count
+    assert_equal 3, @john.sales.count
   end
 end

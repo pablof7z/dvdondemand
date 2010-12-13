@@ -17,14 +17,14 @@ one:
   shipping_country: US
 
   date_received: <%= DateTime.now %>
-  date_shipped: <%= DateTime.now + 1 %>
-  purchased_at: <%= DateTime.now - 1 %>
+  date_shipped: <%= DateTime.now %>
+  purchased_at: <%= DateTime.now %>
 
   ip_address: 127.0.0.1
 
 two:
   customer: happy
-  shipping_option: fast
+  shipping_option: cheap
   
   billing_address1: Vucetich
   billing_address2: Nieva
@@ -38,7 +38,27 @@ two:
   shipping_state: UT
   shipping_country: US
 
-  date_received: <%= DateTime.now %>
-  date_shipped: <%= DateTime.now + 1 %>
-  purchased_at: <%= DateTime.now - 1 %>
+  date_received: <%= DateTime.yesterday - 1 %>
+  date_shipped: <%= DateTime.yesterday %>
+  purchased_at: <%= DateTime.yesterday %>
+
+three:
+  customer: happy
+  shipping_option: cheap
+  
+  billing_address1: Vucetich
+  billing_address2: Nieva
+  billing_city: Smallville
+  billing_state: UT
+  billing_country: US
+  # shipping same as billing
+  shipping_address1: Vucetich
+  shipping_address2: Nieva
+  shipping_city: Smallville
+  shipping_state: UT
+  shipping_country: US
+
+  date_received: <%= DateTime.yesterday - 2 %>
+  date_shipped: <%= DateTime.yesterday - 1 %>
+  purchased_at: <%= DateTime.yesterday - 1 %>
 
