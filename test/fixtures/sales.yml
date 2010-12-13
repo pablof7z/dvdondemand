@@ -6,7 +6,7 @@ johns_for_order_one:
   sale_type: Retail
   quantity: 1
   total: 14.99
-  created_at: <%= DateTime.now %>
+  created_at: <%= DateTime.now - 4.month %>
 
 johns_for_order_two:
   order: two
@@ -14,7 +14,7 @@ johns_for_order_two:
   sale_type: Retail
   quantity: 2
   total: <%= 14.99*2 %>
-  created_at: <%= DateTime.now - 1.month %>
+  created_at: <%= DateTime.now - 3.month %>
 
 johns_for_order_three:
   order: three
@@ -23,6 +23,22 @@ johns_for_order_three:
   quantity: 3
   total: <%= 14.99*3 %>
   created_at: <%= DateTime.now - 2.month %>
+
+johns_for_order_four:
+  order: four
+  publisher: john
+  sale_type: Retail
+  quantity: 4
+  total: <%= 14.99*4 %>
+  created_at: <%= DateTime.now - 1.month %>
+
+johns_for_order_five:
+  order: five
+  publisher: john
+  sale_type: Retail
+  quantity: 5
+  total: <%= 14.99*5 %>
+  created_at: <%= DateTime.now %>
 
 janes:
   order: one

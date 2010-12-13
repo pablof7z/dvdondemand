@@ -16,9 +16,9 @@ one:
   shipping_state: UT
   shipping_country: US
 
-  created_at: <%= DateTime.now %>
-  date_shipped: <%= DateTime.now %>
-  purchased_at: <%= DateTime.now %>
+  created_at: <%= DateTime.now - 4.month %>
+  date_shipped: <%= DateTime.now - 4.month %>
+  purchased_at: <%= DateTime.now - 4.month %>
 
   ip_address: 127.0.0.1
 
@@ -38,9 +38,11 @@ two:
   shipping_state: UT
   shipping_country: US
 
-  created_at: <%= DateTime.now - 1.month %>
-  date_shipped: <%= DateTime.now - 1.month %>
-  purchased_at: <%= DateTime.now - 1.month %>
+  created_at: <%= DateTime.now - 3.month %>
+  date_shipped: <%= DateTime.now - 3.month %>
+  purchased_at: <%= DateTime.now - 3.month %>
+
+  ip_address: 127.0.0.1
 
 three:
   customer: happy
@@ -61,4 +63,50 @@ three:
   created_at: <%= DateTime.now - 2.month %>
   date_shipped: <%= DateTime.now - 2.month %>
   purchased_at: <%= DateTime.now - 2.month %>
+
+  ip_address: 127.0.0.1
+
+four:
+  customer: happy
+  shipping_option: fast
+  
+  billing_address1: Vucetich
+  billing_address2: Nieva
+  billing_city: Smallville
+  billing_state: UT
+  billing_country: US
+  # shipping same as billing
+  shipping_address1: Vucetich
+  shipping_address2: Nieva
+  shipping_city: Smallville
+  shipping_state: UT
+  shipping_country: US
+
+  created_at: <%= DateTime.now - 1.month %>
+  date_shipped: <%= DateTime.now - 1.month %>
+  purchased_at: <%= DateTime.now - 1.month %>
+
+  ip_address: 127.0.0.1
+
+five:
+  customer: happy
+  shipping_option: fast
+  
+  billing_address1: Vucetich
+  billing_address2: Nieva
+  billing_city: Smallville
+  billing_state: UT
+  billing_country: US
+  # shipping same as billing
+  shipping_address1: Vucetich
+  shipping_address2: Nieva
+  shipping_city: Smallville
+  shipping_state: UT
+  shipping_country: US
+
+  created_at: <%= DateTime.now %>
+  date_shipped: <%= DateTime.now %>
+  purchased_at: <%= DateTime.now %>
+
+  ip_address: 127.0.0.1
 

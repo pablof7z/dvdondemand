@@ -28,3 +28,17 @@ for_order_three:
   quantity: 3
   price: 14.99
 
+for_order_four:
+  order: four
+  product: johns
+  packaging_option: standard
+  quantity: 4
+  price: 14.99
+
+for_order_five:
+  order: four
+  product: johns
+  packaging_option: standard
+  quantity: 5
+  price: 14.99
+

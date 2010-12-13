@@ -12,6 +12,7 @@
   .content
     %h2.title Sales Reports
     - total = 0
+    - subtotal = []
     .inner
       %table.table
         %tr
@@ -36,18 +37,20 @@
             - for fee in Fee.all
               %td= number_to_currency(fee.amount)
             %td{:align => :right}
-              - subtotal = sale.total - Fee.sum(:amount)
-              %strong= number_to_currency(subtotal)
+              - subtotal << sale.total - Fee.sum(:amount)
+              %strong= number_to_currency(subtotal.last)
             %td
               = link_to "Show", publish_publisher_sale_path(current_publisher,sale)
             %td
-              - total += subtotal
+              - total += subtotal.last
         %tr
           %td{:colspan => 8, :align => :right}
             %strong TOTAL
           %td{:align => :right}
             %strong= number_to_currency(total)
           %td
+
+      = Gchart.bar(:size => '650x360', :title => 'Retail Sales', :theme => :pastel, :max_value => false, :stacked => false, :data => subtotal, :axis_with_labels => 'x', :format => 'image_tag')
 
 - content_for :sidebar, render(:partial => 'publish/shared/sidebar')
 
