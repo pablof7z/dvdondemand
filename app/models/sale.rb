@@ -8,7 +8,7 @@ class Sale < ActiveRecord::Base
   def fees
     total = 0
     Fee.all.each do |fee|
-      # apply each (fixed amount) Fee to each product's sale quantity
+      # apply each (fixed amount) Fee by each product's sale quantity
       total += order.items_from(publisher).inject(0) { |sum,i| sum + i.quantity*fee.amount }
     end
     total
