@@ -9,11 +9,14 @@ class SaleTest < ActiveSupport::TestCase
     @order4 = orders(:four)
     @order5 = orders(:five)
     @john = publishers(:john)
+    
     # jane also has one sale
     @jane = publishers(:jane)
-    # doh
-    @production = fees(:production).amount
-    @processing = fees(:processing).amount
+
+    # production fee is a fixed amount
+    @production = fees(:production)
+    # processing fee is a percentage amount
+    @processing = fees(:processing)
   end
 
   test 'assoc. orders by named ref. fixtures' do
@@ -30,7 +33,7 @@ class SaleTest < ActiveSupport::TestCase
   end
 
   test "apply each Fee by product's sale" do
-    assert_equal @production*2+@processing*2, @jane.sales.first.fees
-    assert_equal @production*5+@processing*5, @john.sales.last.fees
+    assert_equal @production.amount*2 + 0.999, @jane.sales.first.fees
+    assert_equal @production.amount*5 + 3.7475, @john.sales.last.fees
   end
 end

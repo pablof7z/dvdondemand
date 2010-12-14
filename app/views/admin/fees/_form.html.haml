@@ -11,6 +11,11 @@
   = f.text_field :amount, :class => 'text_field_small'
   %span.description (Required)
 
+.group
+  = f.label :percentage, "Percentage", :class => :label
+  = f.check_box :percentage, :class => 'check_box'
+  Apply amout as percentage (of sold product's price)
+
 .group.navform.wat-cf
   %button.button{:type => 'submit'}
     = image_tag("web-app-theme/tick.png", :alt => "Save")

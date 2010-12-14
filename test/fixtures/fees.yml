@@ -1,11 +1,12 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 production:
-  id: 1
   description: Production Fee
   amount: 1.5
+  percentage: false
 
 processing:
-  id: 2
   description: CC Processing Fee
-  amount: 0.75
+  amount: 0.05
+  percentage: true
+
