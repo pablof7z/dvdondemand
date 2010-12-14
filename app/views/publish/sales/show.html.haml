@@ -40,9 +40,9 @@
           %tr
             %td{:colspan => 3, :align => :right}
               = fee.description
-              %em (applies for each product)
+              %em (applies for each product sold)
             %td{:align => :right}
-              = number_to_currency(fee.amount)
+              = fee.percentage ? "#{fee.amount}%" : number_to_currency(fee.amount)
         %tr
           %td{:colspan => 3, :align => :right}
             %b Earnings

@@ -26,7 +26,8 @@
           %tr{:class => cycle("odd", "even")}
             %td= fee.id
             %td= link_to fee.description, admin_fee_path(fee)
-            %td= number_to_currency(fee.amount)
+            %td
+              = fee.percentage ? "#{fee.amount}%" : number_to_currency(fee.amount)
             %td.last
               = link_to "Show", admin_fee_path(fee)
               |
