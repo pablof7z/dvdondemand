@@ -37,7 +37,7 @@
             - for fee in Fee.all
               %td= number_to_currency(fee.amount)
             %td{:align => :right}
-              - subtotal << sale.total - Fee.sum(:amount)
+              - subtotal << sale.total - sale.fees
               %strong= number_to_currency(subtotal.last)
             %td
               = link_to "Show", publish_publisher_sale_path(current_publisher,sale)
