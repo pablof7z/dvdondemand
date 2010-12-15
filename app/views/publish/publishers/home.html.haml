@@ -1,16 +1,9 @@
 - content_for :primary_nav do
-  %ul.primary-nav
-    %li= link_to 'Dashboard', publisher_root_path, :class => 'current'
-    %li= link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
-    %li= link_to 'Products', publish_publisher_products_path(current_publisher)
-    %li= link_to 'Sales', publish_publisher_sales_path(current_publisher)
-    %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
+  =render :partial => 'publish/shared/navbar'
 
 %h1 Publisher's Dashboard
 
 %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ullamcorper sapien id libero auctor vitae condimentum massa rutrum. Pellentesque sollicitudin sapien id metus facilisis quis gravida arcu auctor.
 %p Maecenas pulvinar magna orci, at rhoncus nisi. Cras vestibulum, justo tristique scelerisque ultricies, lacus neque gravida purus, vitae fringilla enim felis sit amet mauris. Nulla quis augue risus. In semper commodo purus at rhoncus. Etiam in ipsum mauris.
 %p Praesent pharetra, nunc quis placerat pellentesque, tellus quam dignissim sapien, sed bibendum velit nulla quis lectus. Vivamus non nunc et tellus placerat interdum eget sit amet ipsum. Etiam eu enim urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-- content_for :sidebar, render(:partial => 'publish/shared/sidebar')
 

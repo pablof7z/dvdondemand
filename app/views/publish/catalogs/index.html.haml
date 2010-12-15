@@ -10,28 +10,21 @@
     %li= link_to 'Sales', publish_publisher_sales_path(current_publisher)
     %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
 
-%h1 All your published Catalogs
 
-%table.t1
-  %tbody
-    %tr
-      %th.first ID
-      %th Title
-      %th Created at
-      %th.last &nbsp;
-    - @catalogs.each do |catalog|
-      %tr{:class => cycle("odd", "even")}
-        %td= catalog.id
-        %td= link_to catalog.title, publish_publisher_catalog_path(@publisher,catalog)
-        %td= catalog.created_at
-        %td.last
-          = link_to "Show", publish_publisher_catalog_path(@publisher,catalog)
-          |
-          = link_to "Edit", edit_publish_publisher_catalog_path(@publisher,catalog)
-          |
-          = link_to "Delete", publish_publisher_catalog_path(@publisher,catalog), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
-          ||
-          = link_to "Products (#{catalog.products.count})", publish_publisher_catalog_products_path(@publisher,catalog)
 
-- content_for :sidebar, render(:partial => 'publish/shared/sidebar')
+#content
+  %h1 All your published Catalogs
+
+  %table.t1
+    %thead
+      %tr
+        %th.first.w5{:scope => 'col'} ID
+        %th.w80 Title
+        %th.last Created at
+    %tbody
+      - @catalogs.each do |catalog|
+        %tr{:class => cycle("odd", "even")}
+          %td= catalog.id
+          %td= link_to catalog.title, publish_publisher_catalog_path(@publisher,catalog)
+          %td= catalog.created_at
 

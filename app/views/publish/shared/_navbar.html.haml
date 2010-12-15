@@ -1,0 +1,47 @@
+%ul.primary-nav
+  - if publisher_signed_in? 
+    %li
+      - if controller.controller_name == 'publishers'
+        =link_to 'Dashboard', publisher_root_path, :class => 'current'
+        %ul.secondary-nav
+      - else
+        =link_to 'Dashboard', publisher_root_path
+
+    %li
+      - if controller.controller_name == 'catalogs'
+        =link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher), :class => 'current'
+        %ul.secondary-nav
+          %li= link_to "<strong>All</strong> catalogs", publish_publisher_catalogs_path(current_publisher), :class => (controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>New</strong> catalog", new_publish_publisher_catalog_path(current_publisher), :class => (controller.action_name == 'new'?'current':'')
+
+      - else
+        =link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
+
+    %li
+      - if controller.controller_name == 'products'
+        = link_to 'Products', publish_publisher_products_path(current_publisher), :class => 'current'
+        %ul.secondary-nav
+          %li= link_to '<strong>All</strong> products', publish_publisher_products_path(current_publisher), :class => (controller.action_name == 'index'?'current':'')
+          %li= link_to '<strong>Upload</strong> content', new_publish_publisher_product_path(current_publisher), :class => (controller.action_name == 'new'?'current':'')
+      - else
+        = link_to 'Products', publish_publisher_products_path(current_publisher)
+
+    %li
+      - if controller.controller_name == 'sales'
+        =link_to 'Sales', publish_publisher_sales_path(current_publisher), :class => 'current'
+        %ul.secondary-nav
+          %li= link_to '<strong>Accounting</strong> report', publish_publisher_sales_path(current_publisher), :class => (controller.action_name == 'index'?'current':'')
+      - else
+        =link_to 'Sales', publish_publisher_sales_path(current_publisher)
+
+    %li
+      - if controller.controller_name == 'publisher_payments'
+        =link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher), :class => 'current'
+        %ul.secondary-nav
+      - else
+        =link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
+
+  - else
+    %li
+      =link_to 'Dashboard', publisher_root_path, :class => 'current'
+      %ul.secondary-nav

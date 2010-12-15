@@ -1,0 +1,23 @@
+/* CSS3 */
+#footer p{
+	color: #fff;
+	opacity: .6;
+}
+#content dd{
+	border: 1px solid #cfcfcf;
+	-moz-border-radius: 6px; 
+	-webkit-border-radius: 6px; 
+	border-radius: 6px;
+}
+.tools{
+	border: 1px solid #cfcfcf;
+	-moz-border-radius: 6px; 
+	-webkit-border-radius: 6px; 
+	border-radius: 6px;
+	background: #ededed;
+}
+.box.sp{/* special */
+	-moz-border-radius: 6px; 
+	-webkit-border-radius: 6px; 
+	border-radius: 6px;
+}

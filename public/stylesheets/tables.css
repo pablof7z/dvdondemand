@@ -12,6 +12,7 @@ table tfoot th{
 	background: #d1d1d1;
 	border-bottom: 1px solid #e3e3e3;
 	color: #333;
+	vertical-align: middle;
 }
 /* Table cells */
 table thead td,
@@ -19,6 +20,7 @@ table tbody td,
 table tfoot td{
 	padding: 5px;
 	border-bottom: 1px solid #e3e3e3;
+	vertical-align: middle;
 }
 /* Table FOOT */
 table tfoot td{
@@ -45,7 +47,18 @@ table tbody tr.odd td
 
 .first{}
 .last{}
+.cover{width: 40px;text-align: center;}
 
 table.t1{/* wide */
 	width: 948px;
+}
+
+table.t1 tbody th{
+	pa dding: 1px;
+	mar gin: 0
+}
+table.t1 tbody th img{
+	border: 1px solid #999;
+	padding: 1px;
+	margin: 0
 }
