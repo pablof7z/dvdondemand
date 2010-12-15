@@ -35,9 +35,7 @@
             %td= sale.quantity
             %td= number_to_currency(sale.total)
             - for fee in Fee.all
-              %td
-                = fee.percentage ? "#{fee.amount}%" : number_to_currency(fee.amount)
-                (*)
+              %td= number_to_currency(sale.fees_for(fee))
             %td{:align => :right}
               - subtotal << sale.total - sale.fees
               %strong= number_to_currency(subtotal.last)
@@ -51,7 +49,7 @@
           %td{:align => :right}
             %strong= number_to_currency(total)
           %td
-      %br (*) Applies to each product sold
+      %br (*) Fees apply to each product sold
 
       %p= Gchart.bar(:size => '650x360', :title => 'Retail Sales', :theme => :pastel, :max_value => false, :stacked => false, :data => subtotal, :axis_with_labels => 'x', :format => 'image_tag')
 
