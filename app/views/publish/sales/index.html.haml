@@ -26,22 +26,26 @@
             %th= fee.description
           %th Earnings
           %th.last
-        - @sales.each do |sale|
-          %tr{:class => cycle("odd", "even")}
-            %td
-            %td= sale.created_at.to_date.to_s(:short)
-            %td= sale.id
-            %td= sale.sale_type
-            %td= sale.quantity
-            %td= number_to_currency(sale.total)
-            - for fee in Fee.all
-              %td= number_to_currency(sale.fees_for(fee))
-            %td{:align => :right}
-              - subtotal << sale.total - sale.fees
-              %strong= number_to_currency(subtotal.last)
-            %td
-              = link_to "Show", publish_publisher_sale_path(current_publisher,sale)
-            %td
+        - @sales.each do |month,sales|
+          %tr
+            %td{:colspan => 10}
+              = month.strftime('%B').upcase
+          - for sale in sales
+            %tr
+              %td
+              %td= sale.created_at.to_date.to_s(:short)
+              %td= sale.id
+              %td= sale.sale_type
+              %td= sale.quantity
+              %td= number_to_currency(sale.total)
+              - for fee in Fee.all
+                %td= number_to_currency(sale.fees_for(fee))
+              %td{:align => :right}
+                - subtotal << sale.total - sale.fees
+                %strong= number_to_currency(subtotal.last)
+              %td
+                = link_to "Show", publish_publisher_sale_path(current_publisher,sale)
+              %td
               - total += subtotal.last
         %tr
           %td{:colspan => 8, :align => :right}
@@ -51,7 +55,8 @@
           %td
       %br (*) Fees apply to each product sold
 
-      %p= Gchart.bar(:size => '650x360', :title => 'Retail Sales', :theme => :pastel, :max_value => false, :stacked => false, :data => subtotal, :axis_with_labels => 'x', :format => 'image_tag')
+      - data = @sales.values.map { |v| v.map {|s| s.total} }.flatten
+      %p= Gchart.bar(:size => '650x360', :title => 'Retail Sales', :theme => :pastel, :stacked => false, :data => [data,subtotal], :axis_with_labels => 'x', :legend => ['Sale Price','Earnings'], :format => 'image_tag')
 
 - content_for :sidebar, render(:partial => 'publish/shared/sidebar')
 
