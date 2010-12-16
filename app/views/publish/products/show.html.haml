@@ -1,20 +1,5 @@
 - content_for :primary_nav do
-  %ul.primary-nav
-    %li= link_to 'Dashboard', publisher_root_path
-    %li= link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
-    %li
-      = link_to 'Products', publish_publisher_products_path(current_publisher), :class => 'current'
-      %ul.secondary-nav
-        %li= link_to '<strong>All</strong> products', publish_publisher_products_path(current_publisher), :class => 'current'
-        %li= link_to '<strong>Accounting</strong> report'
-        %li= link_to '<strong>Catalog</strong> management'
-        %li= link_to '<strong>Get</strong> stock'
-        %li= link_to '<strong>Upload</strong> content', new_publish_publisher_product_path(current_publisher)
-        %li= link_to '<strong>Wholesale &amp; Royalty</strong> program'
-        %li= link_to '<strong>Get</strong> social'
-        %li= link_to '<strong>Publisher</strong> support'
-    %li= link_to 'Sales', publish_publisher_sales_path(current_publisher)
-    %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
+  =render :partial => 'publish/shared/navbar'
 
 
 #content
@@ -51,7 +36,7 @@
 
       %ul.tools
         %li= link_to 'Edit', edit_publish_publisher_product_path(current_publisher, @product), :class => 'edit'
-        %li= link_to 'Delete', publish_publisher_product_path(current_publisher,@product), :method => 'delete', :class => 'button', :confirm => t('web-app-theme.confirm', :default => 'Are you sure?')
+        %li= link_to 'Delete', publish_publisher_product_path(current_publisher,@product), :method => 'delete', :class => 'delete', :confirm => t('web-app-theme.confirm', :default => 'Are you sure?')
 
 
   .box.sp
