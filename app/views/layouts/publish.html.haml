@@ -45,7 +45,9 @@
         =yield :primary_nav
       - else
         %ul.primary-nav
-          %li.active= link_to 'Publish', publish_root_path
+          %li.active
+            =link_to 'Publish', publish_root_path
+            %ul.secondary-nav
 
 
     #wrapper
