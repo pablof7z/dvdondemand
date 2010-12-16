@@ -35,7 +35,7 @@
               %td
               %td= sale.created_at.to_date.to_s(:short)
               %td= sale.id
-              %td= sale.sale_type
+              %td= sale.type
               %td= sale.quantity
               %td= number_to_currency(sale.total)
               - for fee in Fee.all

@@ -3,7 +3,7 @@ class CreateSales < ActiveRecord::Migration
     create_table :sales do |t|
       t.references :publisher
       t.references :order
-      t.string     :sale_type  # "type" name column reserved for SingleTableInheritance
+      t.string     :sale_type
       t.integer    :quantity
       t.float      :total
 

@@ -3,7 +3,7 @@
 johns_for_order_one:
   order: one
   publisher: john
-  sale_type: Retail
+  type: Retail
   quantity: 1
   total: 14.99
   created_at: <%= DateTime.new(2010,10,1) %>
@@ -11,7 +11,7 @@ johns_for_order_one:
 johns_for_order_two:
   order: two
   publisher: john
-  sale_type: Retail
+  type: Retail
   quantity: 2
   total: <%= 14.99*2 %>
   created_at: <%= DateTime.new(2010,10,2) %>
@@ -19,7 +19,7 @@ johns_for_order_two:
 johns_for_order_three:
   order: three
   publisher: john
-  sale_type: Retail
+  type: Retail
   quantity: 3
   total: <%= 14.99*3 %>
   created_at: <%= DateTime.new(2010,11,1) %>
@@ -27,7 +27,7 @@ johns_for_order_three:
 johns_for_order_four:
   order: four
   publisher: john
-  sale_type: Retail
+  type: Retail
   quantity: 4
   total: <%= 14.99*4 %>
   created_at: <%= DateTime.new(2010,11,2) %>
@@ -35,7 +35,7 @@ johns_for_order_four:
 johns_for_order_five:
   order: five
   publisher: john
-  sale_type: Retail
+  type: Retail
   quantity: 5
   total: <%= 14.99*5 %>
   created_at: <%= DateTime.new(2010,12,1) %>
@@ -43,7 +43,7 @@ johns_for_order_five:
 janes:
   order: one
   publisher: jane
-  sale_type: Retail
+  type: Retail
   quantity: 2
   total: <%= 9.99*2  %>
   created_at: <%= DateTime.now %>

@@ -1,0 +1,2 @@
+class Retail < Sale
+end
