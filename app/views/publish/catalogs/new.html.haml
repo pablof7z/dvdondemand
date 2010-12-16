@@ -6,24 +6,8 @@
 #content
   .box.sp
     %h1 New catalog
-    %form{:action => "", :id => ""}
-      %label{:for => "title"}
-        %span Title:
-        %input#title{:name => "title", :size => "72", :tabindex => "1", :type => "text"}/
-      %label.lb{:for => "description"}
-        %span Item description:
-        %textarea{:cols => "80", :rows => "9", :tabindex => "2"}
-      %label{:for => "private"}
-        %input#private{:tabindex => "3", :type => "checkbox"}/
-        Private
-      %label{:for => "pass"}
-        %span Password:
-        %input#pass{:name => "pass", :size => "48", :tabindex => "4", :type => "password"}/
-        %span.descr Required if Private checked
-      %p.bto
-        %button.bts{:type => "submit"} Save
-        or
-        %a{:href => "#"} Cancel
+    - form_for @catalog, :url => publish_publisher_catalogs_path(current_publisher), :html => { :class => :form } do |f|
+      =render :partial => "form", :locals => {:f => f}
 
 - content_for :sidebar, render(:partial => 'publish/shared/sidebar')
 

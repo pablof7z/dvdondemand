@@ -12,19 +12,24 @@
 
 
 
-#content
+#content.wide
   %h1 All your published Catalogs
 
   %table.t1
     %thead
       %tr
         %th.first.w5{:scope => 'col'} ID
-        %th.w80 Title
-        %th.last Created at
+        %th.w50 Title
+        %th Created at
+        %th.w20 &nbsp;
     %tbody
       - @catalogs.each do |catalog|
         %tr{:class => cycle("odd", "even")}
           %td= catalog.id
           %td= link_to catalog.title, publish_publisher_catalog_path(@publisher,catalog)
           %td= catalog.created_at
+          %td.last
+            %ul.tools
+              %li= link_to 'Edit', edit_publish_publisher_catalog_path(@publisher, catalog), :class => 'edit'
+              %li= link_to 'Delete', publish_publisher_catalog_path(@publisher, catalog), :class => 'delete', :method => :delete, :confirm => 'Are you sure?'
 
