@@ -53,5 +53,5 @@
 %p.bto
   %button.bts{:type => 'submit'} Save
   or
-  %a{:href => '#'} Cancel
+  =link_to 'Cancel', publish_publisher_product_path(current_publisher, @product)
 
