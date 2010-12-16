@@ -29,7 +29,7 @@ class SaleTest < ActiveSupport::TestCase
 
   test 'assoc. publisher sales by named ref. fixtures' do
     assert_equal 1, @jane.sales.count
-    assert_equal 6, @john.sales.count
+    assert_equal 10, @john.sales.count
   end
 
   test "apply each Fee by product's sale" do

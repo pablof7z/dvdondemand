@@ -56,7 +56,40 @@ five:
   purchased_at: <%= DateTime.now %>
 <%= addresses %>
 
+# Wholesale follows
 six:
+  customer: grumpy
+  shipping_option: cheap
+  created_at: <%= DateTime.now - 4.month %>
+  date_shipped: <%= DateTime.now - 4.month %>
+  purchased_at: <%= DateTime.now - 4.month %>
+<%= addresses %>
+
+seven:
+  customer: grumpy
+  shipping_option: cheap
+  created_at: <%= DateTime.now - 3.month %>
+  date_shipped: <%= DateTime.now - 3.month %>
+  purchased_at: <%= DateTime.now - 3.month %>
+<%= addresses %>
+
+eight:
+  customer: grumpy
+  shipping_option: cheap
+  created_at: <%= DateTime.now - 2.month %>
+  date_shipped: <%= DateTime.now - 2.month %>
+  purchased_at: <%= DateTime.now - 2.month %>
+<%= addresses %>
+
+nine:
+  customer: grumpy
+  shipping_option: cheap
+  created_at: <%= DateTime.now - 1.month %>
+  date_shipped: <%= DateTime.now - 1.month %>
+  purchased_at: <%= DateTime.now - 1.month %>
+<%= addresses %>
+
+ten:
   customer: grumpy
   shipping_option: cheap
   created_at: <%= DateTime.now %>

@@ -42,10 +42,39 @@ for_order_five:
   quantity: 5
   price: 14.99
 
+# Wholesale follows
 for_order_six:
   order: six
   product: johns
   packaging_option: standard
   quantity: 6
+  price: 14.99
+
+for_order_seven:
+  order: seven
+  product: johns
+  packaging_option: standard
+  quantity: 7
+  price: 14.99
+
+for_order_eight:
+  order: eight
+  product: johns
+  packaging_option: standard
+  quantity: 8
+  price: 14.99
+
+for_order_nine:
+  order: nine
+  product: johns
+  packaging_option: standard
+  quantity: 9
+  price: 14.99
+
+for_order_ten:
+  order: ten
+  product: johns
+  packaging_option: standard
+  quantity: 10
   price: 14.99
 
