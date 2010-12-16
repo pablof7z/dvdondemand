@@ -42,3 +42,10 @@ for_order_five:
   quantity: 5
   price: 14.99
 
+for_order_six:
+  order: six
+  product: johns
+  packaging_option: standard
+  quantity: 6
+  price: 14.99
+

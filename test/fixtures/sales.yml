@@ -40,6 +40,14 @@ johns_for_order_five:
   total: <%= 14.99*5 %>
   created_at: <%= DateTime.new(2010,12,1) %>
 
+johns_for_order_six:
+  order: six
+  publisher: john
+  type: Wholesale
+  quantity: 6
+  total: <%= 14.99*6 %>
+  created_at: <%= DateTime.now %>
+
 janes:
   order: one
   publisher: jane

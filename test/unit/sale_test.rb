@@ -29,11 +29,11 @@ class SaleTest < ActiveSupport::TestCase
 
   test 'assoc. publisher sales by named ref. fixtures' do
     assert_equal 1, @jane.sales.count
-    assert_equal 5, @john.sales.count
+    assert_equal 6, @john.sales.count
   end
 
   test "apply each Fee by product's sale" do
     assert_equal @production.amount*2 + 0.999, @jane.sales.first.fees
-    assert_equal @production.amount*5 + 3.7475, @john.sales.last.fees
+    assert_equal @production.amount*5 + 3.7475, @john.sales.first(:conditions => {:quantity => 5}).fees
   end
 end

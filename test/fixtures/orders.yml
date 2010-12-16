@@ -56,3 +56,10 @@ five:
   purchased_at: <%= DateTime.now %>
 <%= addresses %>
 
+six:
+  customer: grumpy
+  shipping_option: cheap
+  created_at: <%= DateTime.now %>
+  date_shipped: <%= DateTime.now %>
+  purchased_at: <%= DateTime.now %>
+<%= addresses %>
