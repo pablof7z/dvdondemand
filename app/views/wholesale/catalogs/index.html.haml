@@ -1,0 +1,16 @@
+- content_for :main_navigation do
+  %li= link_to 'Wholesale Account', wholesale_root_path
+  %li= link_to 'Invoices', wholesale_wholesaler_wholesaler_invoices_path(current_wholesaler)
+  %li.active= link_to 'Catalogs', wholesale_wholesaler_catalogs_path(current_wholesaler)
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to 'Home', wholesale_root_path
+  .content
+    %h2.title Wholesale's Catalog Download
+    .inner
+      = link_to "Download catalog", wholesale_wholesaler_catalogs_path(current_wholesaler, :format => :xml)
+
+- content_for :sidebar, render(:partial => 'wholesale/shared/sidebar')
+

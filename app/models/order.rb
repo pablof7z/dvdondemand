@@ -65,7 +65,7 @@ class Order < ActiveRecord::Base
   private
 
   def valid_credit_card
-    unless credit_card.valid?
+    if wholesaler_id == nil and credit_card.valid?
       credit_card.errors.full_messages.each do |message|
         errors.add_to_base message
       end
@@ -73,10 +73,14 @@ class Order < ActiveRecord::Base
   end
 
   def assign_partial_cc_number
-    # preserve the last 4 digits of the credit card
-    to = card_number.size
-    from = to-4 
-    update_attribute :partial_cc_number, card_number[from..to]
+    unless wholesaler
+      # preserve the last 4 digits of the credit card
+      to = card_number.size
+      from = to-4 
+      update_attribute :partial_cc_number, card_number[from..to]
+    else
+      update_attribute :partial_cc_number, "XXXX"
+    end
   end
 
   def credit_card
