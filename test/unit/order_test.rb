@@ -18,7 +18,7 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test 'customer totals by named ref. fixtures' do
-    assert_equal 1, @customer.orders.size
+    assert_equal 5, @customer.orders.size
   end
 
   test 'order totals by named ref. fixtures' do
@@ -29,14 +29,20 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test 'john items_from convenience method' do
-    assert_equal 1, @order.items_from(@john).size
+    assert_equal 1, @order.items_from(@john).count
   end
 
   test 'jane items_from convenience method' do
-    assert_equal 1, @order.items_from(@jane).size
+    assert_equal 1, @order.items_from(@jane).count
   end
 
   test 'newbie items_from convenience method' do
-    assert_equal 0, @order.items_from(@newbie).size
+    assert_equal 0, @order.items_from(@newbie).count
+  end
+
+  test "one order, many publisher's retail sales" do
+    assert_equal 2, @order.sales.count
+    assert_equal 2, @order.retail_sales.count
+    assert_equal 0, @order.whole_sales.count
   end
 end

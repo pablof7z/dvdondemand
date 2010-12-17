@@ -2,7 +2,10 @@ class Order < ActiveRecord::Base
   belongs_to :customer
   belongs_to :shipping_option
 
-  has_many :sales  # 'cause it's one sale per publisher ordered product
+  has_many :sales                                    # 'cause it's one sale per publisher ordered product
+  has_many :whole_sales, :class_name => 'Wholesale'  # not sure if it'll ever be needed
+  has_many :retail_sales, :class_name => 'Retail'    # most likely case (bought many products from many publishers)
+
   has_many :customer_payments
 
   has_many :transactions, :class_name => 'OrderTransaction', :dependent => :delete_all
@@ -10,8 +13,8 @@ class Order < ActiveRecord::Base
   has_many :items, :class_name => 'OrderItem', :dependent => :delete_all
   accepts_nested_attributes_for :items
 
-  attr_accessor :card_number, :card_verification  # to not persist'em in the db
-  attr_accessor :first_name, :last_name           # just for credit_card validations
+  attr_accessor :card_number, :card_verification     # to not persist'em in the db
+  attr_accessor :first_name, :last_name              # just for credit_card validations
 
   validate_on_create :valid_credit_card
   after_create :assign_partial_cc_number
@@ -51,6 +54,11 @@ class Order < ActiveRecord::Base
     response = GATEWAY.purchase(total_in_cents, credit_card, options)
     transactions.create!(:action => 'purchase', :amount => total_in_cents, :response => response)
     response.success?
+  end
+
+  def to_retail_sale
+    items.each do |i|
+    end
   end
 
   private
