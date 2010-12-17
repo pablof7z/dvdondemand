@@ -2,6 +2,7 @@ class WholesalerInvoice < ActiveRecord::Base
   belongs_to :wholesaler
   has_many :sales
   has_many :payments, :class_name => 'WholesalerPayment'
+  has_many :orders, :through => :sales
   
   def total
     sum = 0
