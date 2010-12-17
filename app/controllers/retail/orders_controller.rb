@@ -24,6 +24,8 @@ class Retail::OrdersController < RetailController
         current_customer.cart.destroy
         # Order was created, but FirstData pay. gw. could fail the purchase
         if @order.purchase
+          # order is cashed, so make it a real Retail sale
+          @order.to_retail_sale
           render :action => :success
         else
           render :action => :failure
