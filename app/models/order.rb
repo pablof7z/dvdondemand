@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
   belongs_to :customer
   belongs_to :shipping_option
+  belongs_to :wholesaler
 
   has_many :sales                                    # 'cause it's one sale per publisher ordered product
   has_many :whole_sales, :class_name => 'Wholesale'  # not sure if it'll ever be needed

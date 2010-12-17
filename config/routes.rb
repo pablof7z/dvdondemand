@@ -51,6 +51,13 @@ ActionController::Routing::Routes.draw do |map|
     # route needed for Devise after_sign_in, always auth-ful because it's admin's
     admin.root :controller => 'home'
   end
+  
+  map.devise_for :wholesalers
+  map.namespace :wholesale do |wholesale|
+    wholesale.resources :wholesaler_invoices, :as => 'invoices', :except => [:create, :new, :delete]
+    
+    wholesale.root :controller => 'home'
+  end
 
   map.root :controller => 'retail/catalogs'
 end
