@@ -8,15 +8,10 @@ class Wholesale::OrdersController < WholesaleController
     # Get wholesaler
     @wholesaler = Wholesaler.find_by_api_key(params[:api_key])
     
-    if @wholesaler == nil
-      @wholesaler = Wholesaler.new
-      
-      respond_to do |format|
-        format.xml { render :xml => { :error => "Invalid api" }, :status => "404" }
-      end
-      
-      return
-    end
+    raise { :error => "Invalid api" } if @wholesaler == nil
+    
+    # Get invoice
+    @wholesaler_invoice = @wholesaler.current_invoice
     
     # Create order
     @order = Order.new
@@ -30,62 +25,30 @@ class Wholesale::OrdersController < WholesaleController
     @order.save
 
     # Create customer
-    if params[:customer].blank?
-      respond_to do |format|
-        format.xml { render :xml => { :error => "Missing information" }, :status => "404" }
-      end
-      return
-    end
+    raise { :error => "Missing information" } if params[:customer].blank?
+
     @customer = Customer.find(:first, :conditions => { :email => params[:customer][:email], :wholesaler_id => @wholesaler.id }) || Customer.new
     @customer.update_attributes(params[:customer])
     @customer.email = params[:customer][:email]
     @customer.wholesaler = @wholesaler
     @customer.password = "blahblah"
-    if ! @customer.save
-      respond_to do |format|
-        format.xml { render :xml => @customer.errors, :status => :unprocessable_entity }
-      end
-      return
-    end
+    raise @customer.errors if ! @customer.save
     
     # Create order
     @order = Order.new
     @order.customer = @customer
     
     # Create order items
-    if params[:items].blank?
-      respond_to do |format|
-        format.xml { render :xml => { :error => "Missing information" }, :status => "404" }
-      end
-      return
-    end
+    raise { :error => "Missing information" } if params[:items].blank?
+
     params[:items].each do |item|
-      if item == nil or item[:product_id].blank? or item[:packaging_option_id].blank? or item[:quantity].blank?
-        respond_to do |format|
-          format.xml { render :xml => { :error => "Missing information" }, :status => "404" }
-        end
-        return
-      end
+      raise { :error => "Missing information" } if item == nil or item[:product_id].blank? or item[:packaging_option_id].blank? or item[:quantity].blank?
       
       # Get product
-      product = Product.find(item[:product_id]) rescue nil
-      
-      if product == nil
-        respond_to do |format|
-          format.xml { render :xml => { :error => "Invalid product #{item[:product_id]}" }, :status => "404" }
-        end
-        return
-      end
+      raise { :error => "Invalid product #{item[:product_id]}" } if Product.find(item[:product_id]) rescue nil
       
       # Get packaging
-      packaging_option = PackagingOption.find(item[:packaging_option_id]) rescue nil
-      
-      if packaging_option == nil
-        respond_to do |format|
-          format.xml { render :xml => { :error => "Invalid packaging option #{item[:packaging_option_id]}" }, :status => "404" }
-        end
-        return
-      end
+      { :error => "Invalid packaging option #{item[:packaging_option_id]}" } if PackagingOption.find(item[:packaging_option_id]) rescue nil
       
       order_item = OrderItem.new
       order_item.packaging_option = packaging_option
@@ -96,6 +59,17 @@ class Wholesale::OrdersController < WholesaleController
     
     respond_to do |format|
       format.xml { render :xml => @order.to_xml(:include => [ :customer, :wholesaler ]), :status => :created }
+    end
+    
+    # Create sale
+    @order.to_retail_sale
+    
+    # Add to invoice
+    @order.sales.each do |sale|
+    end
+  rescue
+    respond_to do |format|
+      format.xml { render :xml => { :error => $! }, :status => "404" }
     end
   end
 end
