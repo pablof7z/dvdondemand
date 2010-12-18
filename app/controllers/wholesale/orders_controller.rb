@@ -44,7 +44,7 @@ class Wholesale::OrdersController < WholesaleController
       
       order_item = OrderItem.new
       order_item.packaging_option_id = item[:packaging_option_id]
-      order_item.product_id = item[:product_id]
+      order_item.product = product
       order_item.quantity = item[:quantity]
       order_item.price = product.price
       

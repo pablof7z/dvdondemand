@@ -11,7 +11,7 @@ class WholesalerInvoice < ActiveRecord::Base
   end
   
   def paid?
-    total.to_f <= owed
+    owed <= 0
   end
   
   def at_least_partially_paid?
@@ -20,7 +20,7 @@ class WholesalerInvoice < ActiveRecord::Base
   
   def owed
     sum = 0
-    payments.each {|p| sum = sum + s.amount }
+    payments.each {|p| sum = sum + p.amount }
     total.to_f - sum
   end
 end

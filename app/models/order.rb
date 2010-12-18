@@ -58,7 +58,14 @@ class Order < ActiveRecord::Base
   end
 
   def to_retail_sale
-    items.each do |i|
+    # ref: http://apidock.com/rails/Enumerable/group_by
+    items.group_by { |i| i.product.publisher }.each do |p,is|
+      retail_sales.create!(
+        :publisher_id => p.id,
+        # ref: http://apidock.com/rails/Enumerable/sum
+        :quantity => is.sum(&:quantity),
+        :total => is.sum { |j| j.quantity*j.price }
+      )
     end
   end
 

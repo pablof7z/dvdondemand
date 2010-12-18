@@ -25,4 +25,8 @@ class Wholesaler < ActiveRecord::Base
     invoices.each { |invoice| owed = owed + invoice.owed }
     return owed
   end
+  
+  def remaining_credit
+    WHOLESALER_CREDIT_LIMIT - money_owed
+  end
 end

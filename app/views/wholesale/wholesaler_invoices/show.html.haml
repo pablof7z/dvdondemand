@@ -14,17 +14,32 @@
       %p
         %b Total:
         = number_to_currency(@wholesaler_invoice.total)
+        %b Owed:
+        = number_to_currency(@wholesaler_invoice.owed)
       %table.table
         %tr
           %th.first Order
           %th Date
+          %th Customer
           %th Amount
           %th.last &nbsp;
         = render :partial => @wholesaler_invoice.orders
       .actions-bar.wat-cf
         .actions
-
-
+    %h2.title= "Payments"
+    .inner
+      %p
+        %b Total:
+        = number_to_currency(@wholesaler_invoice.total - @wholesaler_invoice.owed)
+      %table.table
+        %tr
+          %th.first Payment
+          %th Date
+          %th Amount
+          %th.last &nbsp;
+        = render :partial => @wholesaler_invoice.payments
+      .actions-bar.wat-cf
+        .actions
 
 - content_for :sidebar, render(:partial => 'wholesale/shared/sidebar')
 
