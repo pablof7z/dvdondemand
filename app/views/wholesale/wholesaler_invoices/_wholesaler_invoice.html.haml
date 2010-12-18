@@ -4,6 +4,7 @@
   %td= wholesaler_invoice.created_at
   %td= number_to_currency(wholesaler_invoice.total)
   %td= number_to_currency(wholesaler_invoice.owed)
+  %td= wholesaler_invoice.paid? ? "Yes" : "No"
   %td.last
     = link_to "Show", wholesale_wholesaler_wholesaler_invoice_path(current_wholesaler,wholesaler_invoice)
 

@@ -14,27 +14,31 @@
     %ul.wat-cf
       %li.first= link_to "All Wholesale Accounts", admin_wholesalers_path
       %li= link_to "#{@wholesaler.name}", admin_wholesaler_path(@wholesaler)
-      %li.active= link_to "Invoices"
+      %li= link_to "Invoice #{@invoice.id}"
+      %li.active= link_to "Payments"
+      %li= link_to "New", new_admin_wholesaler_invoice_payment_path
   .content
     %h2.title
       = "Invoices for #{@wholesaler.name}"
     .inner
       %table.table
         %tr
-          %th.first ID
-          %th Created at
-          %th Total
-          %th Owed
+          %th.first Payment
+          %th Date
+          %th Amount
           %th.last &nbsp;
-        - @invoices.each do |invoice|
+        - @payments.each do |payment|
           %tr{:class => cycle("odd", "even")}
             %td
-              = invoice.id
-            %td= invoice.created_at
-            %td= number_to_currency(invoice.total)
-            %td= number_to_currency(invoice.owed)
+              = payment.id
+            %td
+              = payment.created_at
+            %td
+              = number_to_currency(payment.amount)
             %td.last
-              = link_to "Payments", admin_wholesaler_invoice_payments_path(@wholesaler, invoice)
+              #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_admin_wholesaler_invoice_payment_path(@wholesaler, @invoice, payment), :class => "button" }
+              #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", admin_wholesaler_invoice_payment_path(@wholesaler, @invoice, payment), :method => "delete", :class => "button", :confirm => "Are you sure?" }
+
 
 - content_for :sidebar, render(:partial => 'admin/shared/sidebar')
 

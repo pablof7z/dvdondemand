@@ -42,6 +42,7 @@ namespace :devise do
     puts 'Password: ' << admin.password
     
     wholesaler = Wholesaler.create! do |u|
+      u.name       = "Wholesale Account"
       u.email      = 'devise@wholesaler.com'
       u.password   = '123456'
       u.password_confirmation = '123456'

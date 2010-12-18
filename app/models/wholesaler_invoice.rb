@@ -20,7 +20,7 @@ class WholesalerInvoice < ActiveRecord::Base
   
   def owed
     sum = 0
-    payments.each {|p| sum = sum + p.amount }
+    payments.each {|p| sum = sum + p.amount.to_f }
     total.to_f - sum
   end
 end

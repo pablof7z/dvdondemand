@@ -2,6 +2,7 @@ class Wholesaler < ActiveRecord::Base
   has_many :orders
   has_many :invoices, :class_name => 'WholesalerInvoice', :order => 'created_at DESC'
   has_many :sales, :through => :invoices
+  has_many :payments, :through => :invoices
   
   devise :registerable, :database_authenticatable, :rememberable, :trackable
 
@@ -10,7 +11,7 @@ class Wholesaler < ActiveRecord::Base
   
   def current_invoice
     # First invoice or last invoice is closed
-    if invoices.size == 0 or invoices[0].paid? == false
+    if invoices.size == 0 or invoices[0].paid? == true
       new_invoice = WholesalerInvoice.new
       invoices << new_invoice
       new_invoice.save

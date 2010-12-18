@@ -44,6 +44,11 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :fees, :genres
     admin.resources :orders, :only => [:index, :show]
     admin.resources :publishers, :except => [:create, :new]
+    admin.resources :wholesalers, :except => [:create, :new], :has_many => :wholesaler_invoices do |wholesaler|
+      wholesaler.resources :invoices, :except => [:create, :new, :delete], :as => 'invoices', :has_many => :wholesaler_payments do |invoice|
+        invoice.resources :payments, :as => 'payments'
+      end
+    end
     admin.resources :packaging_options, :as => 'packaging'
     admin.resources :shipping_options, :as => 'shipping'
     admin.resources :wholesale_prices, :as => 'wholesale'
