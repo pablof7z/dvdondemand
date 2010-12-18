@@ -23,6 +23,11 @@ class Wholesale::OrdersController < WholesaleController
     # Create order
     @order = Order.new
     @order.customer = @customer
+    @order.wholesaler = @wholesaler
+    
+    # ShippingOption
+    @order.shipping_option = ShippingOption.find(params[:shipping_option_id]) rescue nil
+    raise "Invalid shipping option #{params[:shipping_option_id]}" if @order.shipping_option == nil
     
     # Create order items
     raise "Missing information" if params[:items].blank?
@@ -41,12 +46,14 @@ class Wholesale::OrdersController < WholesaleController
       order_item.packaging_option_id = item[:packaging_option_id]
       order_item.product_id = item[:product_id]
       order_item.quantity = item[:quantity]
-      order_item.price = product.price unless product == nil
+      order_item.price = product.price
       
       @order.items << order_item
     end
     
     raise "Wholesale account would owe past the credit limit with this sale" if @wholesaler.money_owed + @order.total > WHOLESALER_CREDIT_LIMIT
+    
+    @order.save!
     
     respond_to do |format|
       format.xml { render :xml => @order.to_xml(:include => [ :customer, :wholesaler ]), :status => :created }
@@ -59,7 +66,9 @@ class Wholesale::OrdersController < WholesaleController
     @wholesaler_invoice = @wholesaler.current_invoice
     
     # Add to invoice
-    @order.sales.each do |sale|
+    Sale.find(:all, :conditions => { :order_id => @order.id }).each do |sale|
+      @wholesaler_invoice.sales << sale
+      sale.save
     end
   rescue
     respond_to do |format|
