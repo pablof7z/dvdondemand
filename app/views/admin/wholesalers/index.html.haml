@@ -1,0 +1,38 @@
+- content_for :main_navigation do
+  %li= link_to 'Administration', admin_root_path
+  %li= link_to 'Fees', admin_fees_path
+  %li= link_to 'Genres', admin_genres_path
+  %li= link_to 'Orders', admin_orders_path
+  %li= link_to 'Publishers', admin_publishers_path
+  %li.active= link_to 'Wholesale Accounts', admin_wholesalers_path
+  %li= link_to 'Packaging', admin_packaging_options_path
+  %li= link_to 'Shipping', admin_shipping_options_path
+  %li= link_to 'Wholesale', admin_wholesale_prices_path
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "All Wholesalers", admin_wholesalers_path
+  .content
+    %h2.title All Wholesalers
+    .inner
+      %table.table
+        %tr
+          %th.first ID
+          %th Name
+          %th Created at
+          %th.last &nbsp;
+        - @wholesalers.each do |wholesaler|
+          %tr{:class => cycle("odd", "even")}
+            %td= wholesaler.id
+            %td= link_to "#{wholesaler.name}", admin_wholesaler_path(wholesaler)
+            %td= wholesaler.created_at
+            %td.last
+              = link_to "Invoices", admin_wholesaler_invoices_path(wholesaler)
+              |
+              = link_to "Show", admin_wholesaler_path(wholesaler)
+      .actions-bar.wat-cf
+        .actions
+
+- content_for :sidebar, render(:partial => 'admin/shared/sidebar')
+
