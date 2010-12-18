@@ -55,7 +55,7 @@ ActionController::Routing::Routes.draw do |map|
   map.devise_for :wholesalers
   map.namespace :wholesale do |wholesale|
     wholesale.resources :wholesalers, :only => [:edit, :show] do |wholesaler|
-      wholesaler.resources :orders, :has_many => :order_items
+      wholesaler.resources :orders, :has_many => :order_items, :collection => { :create => :post }
       wholesaler.resources :wholesaler_invoices, :as => 'invoices', :except => [:create, :new, :delete], :has_many => :wholesaler_invoices
       
       wholesaler.resources :catalogs, :only => [:index, :show] do |catalog|

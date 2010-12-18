@@ -16,3 +16,4 @@ class WholesalerInvoice < ActiveRecord::Base
     total.to_i <= sum
   end
 end
+
