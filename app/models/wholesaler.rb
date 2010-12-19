@@ -12,8 +12,8 @@ class Wholesaler < ActiveRecord::Base
   validates_presence_of :api_key
   
   def current_invoice
-    # First invoice or last invoice is closed
-    if invoices.size == 0 or invoices[0].paid? == true
+    # First invoice or last invoice is closed or last invoice is from a different month
+    if invoices.size == 0 or invoices[0].paid? == true or invoices[0].created_at.month != Date.today.month
       new_invoice = WholesalerInvoice.new
       invoices << new_invoice
       new_invoice.save
@@ -34,6 +34,12 @@ class Wholesaler < ActiveRecord::Base
   end
   
   def before_validation_on_create
+    create_api_key
+  end
+  
+  private
+  
+  def create_api_key
     a = ("0".."9").to_a + ("a".."z").to_a + ("A".."Z").to_a + %w(@ - _ =)
     
     while true
