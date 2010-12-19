@@ -3,6 +3,7 @@ source :gemcutter
 
 gem 'rails', '2.3.9'
 gem 'rack', '1.1.0'
+gem 'ruby-debug'
 gem 'activemerchant', '1.9.0'
 gem 'acts-as-taggable-on', '2.0.6'
 gem 'haml', '3.0.24'

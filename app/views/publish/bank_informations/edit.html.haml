@@ -1,0 +1,21 @@
+- content_for :main_navigation do
+  %li= link_to 'Dashboard', publisher_root_path
+  %li= link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
+  %li= link_to 'Products', publish_publisher_products_path(current_publisher)
+  %li= link_to 'Sales', publish_publisher_sales_path(current_publisher)
+  %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "Edit My Account", edit_publisher_registration_path
+      %li= link_to "Financial Information", publish_publisher_bank_informations_path(current_publisher)
+      %li.last.active= link_to "Edit Bank Information", edit_publish_publisher_bank_information_path(current_publisher, @bank_information)
+  .content
+    %h2.title Edit Financial Information
+    .inner
+      - form_for @bank_information, :url => publish_publisher_bank_informations_path(current_publisher, @bank_information), :html => { :class => :form } do |f|
+        = render :partial => "form", :locals => {:f => f}
+
+- content_for :sidebar, render(:partial => 'publish/shared/sidebar')
+

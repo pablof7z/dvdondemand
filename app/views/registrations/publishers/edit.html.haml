@@ -9,6 +9,7 @@
   .secondary-navigation
     %ul.wat-cf
       %li.first.active= link_to "Edit My Account", edit_publisher_registration_path
+      %li.last= link_to "Financial Information", publish_publisher_bank_informations_path(@publisher)
   .content
     %h2.title Edit my #{resource_name.to_s.humanize} account
     .inner

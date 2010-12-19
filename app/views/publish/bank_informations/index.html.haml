@@ -1,0 +1,52 @@
+- content_for :main_navigation do
+  %li= link_to 'Dashboard', publisher_root_path
+  %li= link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
+  %li= link_to 'Products', publish_publisher_products_path(current_publisher)
+  %li= link_to 'Sales', publish_publisher_sales_path(current_publisher)
+  %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "Edit My Account", edit_publisher_registration_path
+      %li.active= link_to "Financial Information", publish_publisher_bank_informations_path(current_publisher)
+      %li.last= link_to "Add Bank Information", new_publish_publisher_bank_information_path(current_publisher)
+  .content
+    %h2.title Financial Information
+    .inner
+      %table.table
+        %tr
+          %th.first ID
+          %th Bank Name
+          %th Account #
+          %th Validation Status
+          %th Default
+          %th Date
+          %th.last &nbsp;
+        - @bank_informations.each do |bank_information|
+          %tr{:class => cycle("odd", "even")}
+            %td= bank_information.id
+            %td= bank_information.bank_name
+            %td= bank_information.account_number
+            %td= bank_information.validation_status
+            %td= bank_information.default ? "Yes" : "No"
+            %td= bank_information.created_at
+            %td.last
+              - if bank_information.validation_status == BankInformation::NotValidated
+                = link_to "Send Validation Deposit", send_deposit_publish_publisher_bank_information_path(@publisher,bank_information), :method => :post, :confirm => "#{t("web-app-theme.confirm", :default => "We are going to send two small deposits to this account. Once you receive the accounts you can simply enter the received amounts to verify this financial information.\n\nContinue?")}"
+                |
+              - if bank_information.validation_status == BankInformation::DepositSent
+                = link_to "Validate", validate_publish_publisher_bank_information_path(@publisher,bank_information)
+                |
+              - if bank_information.validation_status == BankInformation::Validated and ! bank_information.default
+                = link_to "Make Default", make_default_publish_publisher_bank_information_path(@publisher,bank_information), :method => :post
+        - if @bank_informations.size == 0
+          %tr{:class => cycle("odd", "even")}
+            %td{:colspan=>"5",:style=>'text-align: center;'}
+              You have not added any financial information yet.
+              = link_to "Add a financial institution information", new_publish_publisher_bank_information_path(@publisher)
+      .actions-bar.wat-cf
+        .actions
+
+- content_for :sidebar, render(:partial => 'publish/shared/sidebar')
+

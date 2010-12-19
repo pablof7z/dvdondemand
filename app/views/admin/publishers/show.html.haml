@@ -30,6 +30,7 @@
       %p
         %b Approved:
         = @publisher.approved ? 'Yes' : 'No'
+        = @publisher.approval_source
       .wat-cf
         #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_admin_publisher_path(@publisher), :class => "button" }
         #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", admin_publisher_path(@publisher), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }

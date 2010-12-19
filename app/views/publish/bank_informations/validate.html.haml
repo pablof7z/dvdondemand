@@ -1,0 +1,39 @@
+- content_for :main_navigation do
+  %li= link_to 'Dashboard', publisher_root_path
+  %li= link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
+  %li= link_to 'Products', publish_publisher_products_path(current_publisher)
+  %li= link_to 'Sales', publish_publisher_sales_path(current_publisher)
+  %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "Edit My Account", edit_publisher_registration_path
+      %li= link_to "Financial Information", publish_publisher_bank_informations_path(current_publisher)
+      %li.last.active= link_to "Validate Bank Information", validate_publish_publisher_bank_information_path(current_publisher, @bank_information)
+  .content
+    %h2.title Validate Financial Information
+    .inner
+      %p
+        Approximately
+        = distance_of_time_in_words_to_now @bank_information.deposit1.created_at
+        ago we sent two small deposits to this account. If you received them enter the amounts here to validate
+        your financial account.
+      - form_for @bank_information, :url => validate_publish_publisher_bank_information_path(current_publisher, @bank_information), :method => 'post', :html => { :class => :form } do |f|
+        .group
+          = label_tag :deposit1, "Amount:"
+          = text_field_tag :deposit1, params[:deposit1], :class => 'text_field_small'
+          %span.description= "Right amount is #{number_to_currency @bank_information.deposit1.amount}"
+        .group
+          = label_tag :deposit2, "Amount:"
+          = text_field_tag :deposit2, params[:deposit2], :class => 'text_field_small'
+          %span.description= "Right amount is #{number_to_currency @bank_information.deposit2.amount}"
+        .group.navform.wat-cf
+          %button.button{:type => 'submit'}
+            = image_tag("web-app-theme/tick.png", :alt => "Save")
+            = t("web-app-theme.save", :default => "Save")
+          = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", publish_publisher_bank_informations_path(current_publisher), :class => "button"
+
+
+- content_for :sidebar, render(:partial => 'publish/shared/sidebar')
+

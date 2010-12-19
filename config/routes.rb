@@ -13,7 +13,8 @@ ActionController::Routing::Routes.draw do |map|
 
       publisher.resources :genres, :only => :index
       publisher.resources :sales,  :only => [:index, :show]
-
+      
+      publisher.resources :bank_informations, :as => :financial, :member => { :send_deposit => :post, :make_default => :post, :validate => [ :get, :post, :put ] }, :except => [ :destroy ]
       publisher.resources :publisher_payments, :as => :payments, :only => [:index, :show]
     end
 
