@@ -33,8 +33,6 @@ class Wholesaler < ActiveRecord::Base
     WHOLESALER_CREDIT_LIMIT - money_owed
   end
   
-  private
-  
   def before_validation_on_create
     a = ("0".."9").to_a + ("a".."z").to_a + ("A".."Z").to_a + %w(@ - _ =)
     
