@@ -46,6 +46,7 @@ h1, h2, h3, h4, h5, h6{
 	color: #4a4d71;
 	color: #0E2D49;
 	color: #14576c;
+	color: #383f56;
 }
 p{
 	margin: 0 0 15px 0;
@@ -53,7 +54,7 @@ p{
 }
 a{color: #417FCA; color: #0C5ECE}
 a:hover{color: #3B5998; color: #0c3d7c}
-h1{font-size: 185%;}
+h1{font-size: 185%;margin-bottom: 30px}
 h2{font-size: 160%;}
 h3{font-size: 120%;}
 h4{font-size: 100%;}
@@ -283,7 +284,7 @@ ancho: 972
 .col h1,.col h2,.col h3,.col h4,.col h5,.col h6{
 	color: #666;
 }
-.col{width: 948px; min-height: 90px;float: left;margin: 0 24px 10px 0;padding: 0 0 5px 0;background: #ededed;b order-bottom: 1px solid #d5d5d5; overflow: hidden;}
+.col{width: 948px; min-height: 90px;float: left;margin: 0 24px 10px 0;padding: 0 0 5px 0;backg round: #ededed;b order-bottom: 1px solid #d5d5d5; overflow: hidden;}
 
 .col.x2{width: 138px;}
 .col.x3{width: 219px;}
@@ -292,19 +293,48 @@ ancho: 972
 .col.x8{width: 624px;}
 .col.x100{width: 100%;background: #ccc;}
 
-#content.wide .box.sp{
-	margin: 0 24px 15px 0;
-	padding: 15px 0 15px 20px;
+.box.sp{/* special */
+	p adding: 15px 14px 15px 15px;
+	border: 1px solid #eeeeee;
+	background: #f9f9f9;
 }
-.box.sp .col{min-height: 90px;float: left;margin: 0 19px 10px 0;padding: 0 0 5px 0;ba ckground: #dcdcdc;b order-bottom: 1px solid #d5d5d5;overflow:hidden;}
 
-.box.sp .col.x2{width: 135px;}
-.box.sp .col.x3{width: 212px;}
-.box.sp .col.x4{width: 289px;}
-.box.sp .col.x5{width: 366px;}
-.box.sp .col.x5b{width: 400px;}
-.box.sp .col.x6{width: 443px;}
-.box.sp .col.x8{width: 597px;}
+#content .box.sp{m argin: 0 24px 15px 0;padding: 15px 0 15px 14px;}
+#content .box.sp .col{min-height: 90px;float: left;margin: 0 15px 10px 0;padding: 0 0 5px 0;back ground: #dcdcdc;bor der-bottom: 1px solid #d5d5d5;overflow:hidden;}
+
+#content .box.sp .col.x2{width: 99px;}/* 698 */
+#content .box.sp .col.x3{width: 157px;}/* 702 */
+#content .box.sp .col.x4{width: 214px;}/* 701 */
+#content .box.sp .col.x5{width: 270px;}/* 698 */
+#content .box.sp .col.x7{width: 388px;}
+#content .box.sp .col.x6{width: 329px;}/* 702 */
+#content .box.sp .col.x8{width: 443px;}/* 701 */
+
+
+#content.wide .box.sp{margin: 0 24px 15px 0;padding: 15px 0 15px 20px;}
+#content.wide .box.sp .col{min-height: 90px;float: left;margin: 0 19px 10px 0;padding: 0 0 5px 0;ba ckground: #dcdcdc;b order-bottom: 1px solid #d5d5d5;overflow:hidden;}
+
+#content.wide .box.sp .col.x2,
+#contentFbox.wide .box.sp .col.x2
+{width: 135px;}
+#content.wide .box.sp .col.x3,
+#contentFbox.wide .box.sp .col.x3
+{width: 212px;}
+#content.wide .box.sp .col.x4,
+#contentFbox.wide .box.sp .col.x4
+{width: 289px;}
+#content.wide .box.sp .col.x5,
+#contentFbox.wide .box.sp .col.x5
+{width: 366px;}
+#content.wide .box.sp .col.x5b,
+#contentFbox.wide .box.sp .col.x5b
+{width: 400px;}
+#content.wide .box.sp .col.x6,
+#contentFbox.wide .box.sp .col.x6
+{width: 443px;}
+#content.wide .box.sp .col.x8,
+#contentFbox.wide .box.sp .col.x8
+{width: 597px;}
 
 /* Content
 -----------------------------*/
@@ -351,11 +381,7 @@ p.switch{
 	display: none;
 }
 
-.artw{
-	padding: 10px; 
-	margin: 0 20px 10px 0;
-	background: url(/images/dvd-240x338-shadow.jpg) no-repeat;
-}
+
 
 /* Sidebar
 -----------------------------*/
@@ -389,11 +415,7 @@ dd{
 	overflow: visible;
 	padding: 10px
 }
-.box.sp{/* special */
-	padding: 15px 14px 15px 15px;
-	border: 1px solid #eeeeee;
-	background: #f9f9f9;
-}
+
 
 .boxy{
 	border: 1px solid #b2b2b2;
@@ -466,4 +488,31 @@ small{
 	position: absolute;
 	bottom: 0
 	
+}
+
+/* Fbox */
+#wrapperFbox{
+	width: 972px;
+	margin: 0 auto;
+	padding: 0;
+	b ackground: #ccc;
+	overflow: hidden;
+}
+
+#containerFbox{
+	width: 972px;/* 972? */
+	min-height: 500px;
+	overflow: hidden;
+	padding: 15px 0;
+	b ackground: #000
+}
+#contentFbox{
+	width: 705px;
+	min-height: 300px;
+	float: left;
+	ba ckground: #ff6600
+}
+#contentFbox.wide{
+	width: 972px;
+	ba ckground: #ff5577
 }

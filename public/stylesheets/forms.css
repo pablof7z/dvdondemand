@@ -102,10 +102,11 @@ label.spc1{
 	width: auto;
 	text-decoration: none;
 }
-.bto:hover{
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
-	background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
+
+.bto.del{
+	color: #ff3300;
 }
+
 
 /* BTSO: Button System and Options */
 /* ::::::::::::::::::::::::::::::::::::::::: */
