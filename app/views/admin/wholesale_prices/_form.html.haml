@@ -25,10 +25,10 @@
   = f.check_box :enabled
   Yes
 
-%p.btso
+%p.btso.b1
   %button.button{:type => 'submit'}
-    = image_tag("web-app-theme/tick.png", :alt => "Save")
-    = t("web-app-theme.save", :default => "Save")
-  or
-  = link_to "Cancel", admin_wholesale_prices_path
+    Save
+  %span
+    or
+    = link_to "Cancel", admin_wholesale_prices_path
 

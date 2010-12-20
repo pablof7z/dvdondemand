@@ -12,10 +12,10 @@
   = f.text_field :title, :class => 'text_field'
   %span.descr (Required)
 
-%p.btso
+%p.btso.b1
   %button.button{:type => 'submit'}
-    = image_tag("web-app-theme/tick.png", :alt => "Save")
-    = t("web-app-theme.save", :default => "Save")
-  or
-  = link_to "Cancel", admin_genres_path
+    Save
+  %span
+    or
+    = link_to "Cancel", admin_genres_path
 

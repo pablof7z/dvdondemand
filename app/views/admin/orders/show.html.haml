@@ -2,9 +2,8 @@
   =render :partial => 'admin/shared/navbar'
 
 #content
+  %h1 Order ##{@order.id}
   .box
-    %h1 Order ##{@order.id}
-  .inner
     %p
       %b Placed by:
       = @order.customer.full_name

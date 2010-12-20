@@ -24,10 +24,10 @@
   = f.text_area :description, :rows => 5
   %span.descr Ex: a simple text
 
-%p.btso
+%p.btso.b1
   %button.button{:type => 'submit'}
-    = image_tag("web-app-theme/tick.png", :alt => "Save")
-    = t("web-app-theme.save", :default => "Save")
-  or
-  = link_to "Cancel", admin_packaging_options_path
+    Save
+  %span
+    or
+    = link_to "Cancel", admin_packaging_options_path
 
