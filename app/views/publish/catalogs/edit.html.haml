@@ -2,8 +2,8 @@
   =render :partial => 'publish/shared/navbar'
 
 #content
+  %h1 Edit Catalog
   .box.sp
-    %h1 Edit Catalog
     - form_for @catalog, :url => publish_publisher_catalog_path(current_publisher,@catalog), :html => { :class => :form } do |f|
       = render :partial => "form", :locals => {:f => f}
 

@@ -13,8 +13,10 @@
   %span Password:
   = f.text_field :password, :class => 'text_field_small', :size => 48
   %span.descr Required if Private checked
-%p.bto
-  %button.bts{:type => "submit"} Save
-  or
-  =link_to 'Cancel', publish_publisher_catalogs_path(current_publisher)
+%p.btso.b1
+  %button.button{:type => 'submit'}
+    Save
+  %span
+    or
+    = link_to "Cancel", publish_publisher_catalogs_path(current_publisher)
 

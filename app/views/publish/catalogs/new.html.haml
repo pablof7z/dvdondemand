@@ -5,8 +5,9 @@
 
 #content
   %h1 New catalog
-  - form_for @catalog, :url => publish_publisher_catalogs_path(current_publisher), :html => { :class => :form } do |f|
-    =render :partial => "form", :locals => {:f => f}
+  .box.sp
+    - form_for @catalog, :url => publish_publisher_catalogs_path(current_publisher), :html => { :class => :form } do |f|
+      =render :partial => "form", :locals => {:f => f}
 
 - content_for :sidebar, render(:partial => 'publish/shared/sidebar')
 
