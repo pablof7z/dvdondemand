@@ -1,0 +1,13 @@
+%tr{:class => cycle("odd", "even")}
+  %td
+    = credit_card.id
+  %td= credit_card.created_at
+  %td= credit_card.card_type.capitalize
+  %td= credit_card.card_number_mask
+  %td= credit_card.card_expires_on.strftime("%B %Y")
+  %td= credit_card.default ? "Yes" : "No"
+  %td.last
+    = link_to "Make Default", make_default_wholesale_wholesaler_credit_card_path(current_wholesaler, credit_card), :method => :post, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+    |
+    = link_to "Delete", wholesale_wholesaler_credit_card_path(current_wholesaler,credit_card), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+

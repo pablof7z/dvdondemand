@@ -292,3 +292,4 @@ ActionView::Helpers::FormOptionsHelper::COUNTRIES = {
 }.invert.sort
 
 WHOLESALER_CREDIT_LIMIT = 2000
+WHOLESALER_MINIMUM_PAYMENT = 1

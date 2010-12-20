@@ -8,6 +8,8 @@ class CreateWholesalerPayments < ActiveRecord::Migration
       t.datetime :date_processed
       t.string :check_number
       t.float :amount
+      t.integer :credit_card_id
+      t.boolean :charged
 
       t.timestamps
     end

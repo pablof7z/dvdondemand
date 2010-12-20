@@ -6,5 +6,8 @@
   %td= number_to_currency(wholesaler_invoice.owed)
   %td= wholesaler_invoice.paid? ? "Yes" : "No"
   %td.last
+    - unless wholesaler_invoice.paid?
+      = link_to "Pay", pay_wholesale_wholesaler_wholesaler_invoice_path(current_wholesaler,wholesaler_invoice)
+      |
     = link_to "Show", wholesale_wholesaler_wholesaler_invoice_path(current_wholesaler,wholesaler_invoice)
 

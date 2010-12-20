@@ -4,11 +4,13 @@ class Admin::PaymentsController < AdminController
   
   def create
     params[:payment] = params[:wholesaler_payment]
+    params[:payment][:charged] = true
     super
   end
   
   def update
     params[:payment] = params[:wholesaler_payment]
+    params[:payment][:charged] = true
     super
   end
 end
