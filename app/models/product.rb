@@ -15,9 +15,20 @@ class Product < ActiveRecord::Base
 
   validates_presence_of :media_type, :genre, :title, :description, :price
 
-  has_attached_file :cover_art,      :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  has_attached_file :cd_sleeve_art,  :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  has_attached_file :dvd_sleeve_art, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :cover_art, :styles => { :cropped => { :jcrop => true },
+	                                           :cropped_medium => { :jcrop => true, :geometry => "300x300>" },
+	                                           :medium => "300x300>",
+	                                           :thumb => "100x100>" }, :processors => [:jcropper]
+  has_attached_file :cd_sleeve_art, :styles => { :cropped => { :jcrop => true },
+	                                           :cropped_medium => { :jcrop => true, :geometry => "300x300>" },
+	                                           :medium => "300x300>",
+	                                           :thumb => "100x100>" }, :processors => [:jcropper]
+
+	has_attached_file :dvd_sleeve_art, :styles => { :cropped => { :jcrop => true },
+	                                           :cropped_medium => { :jcrop => true, :geometry => "300x300>" },
+	                                           :medium => "300x300>",
+	                                           :thumb => "100x100>" }, :processors => [:jcropper]
+
   validates_attachment_content_type :cover_art,      :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'] # latter for IE support
   validates_attachment_content_type :cd_sleeve_art,  :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png']
   validates_attachment_content_type :dvd_sleeve_art, :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png']
@@ -26,6 +37,12 @@ class Product < ActiveRecord::Base
 
   acts_as_taggable
   acts_as_taggable_on :keywords
+
+	after_update :reprocess_arts
+
+	attr_accessor :cover_art_crop_x, :cover_art_crop_y, :cover_art_crop_w, :cover_art_crop_h
+	attr_accessor :cd_sleeve_art_crop_x, :cd_sleeve_art_crop_y, :cd_sleeve_art_crop_w, :cd_sleeve_art_crop_h
+	attr_accessor :dvd_sleeve_art_crop_x, :dvd_sleeve_art_crop_y, :dvd_sleeve_art_crop_w, :dvd_sleeve_art_crop_h
 
   def cd?
     # do not check thru MediaType association to make comparison snappier
@@ -39,5 +56,17 @@ class Product < ActiveRecord::Base
   def available_packaging_options
     packaging_options.include?(PackagingOption.first) ? packaging_options : [PackagingOption.first] + packaging_options
   end
+
+	private
+
+	def reprocess_arts
+		[ :cover_art, :cd_sleeve_art, :dvd_sleeve_art ].each do |art|
+			send(art).reprocess! if
+				eval("!#{art}_crop_x.blank? and !#{art}_crop_y.blank? and " +
+				     "!#{art}_crop_w.blank? and !#{art}_crop_h.blank?")
+
+		end
+	end
+
 end
 
