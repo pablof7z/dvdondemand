@@ -1,9 +1,11 @@
 %ul.primary-nav
   - if publisher_signed_in? 
     %li
-      - if controller.controller_name == 'publishers'
+      - if controller.controller_name == 'publishers' or controller.controller_name == 'home' or controller.controller_name == 'registrations'
         =link_to 'Dashboard', publisher_root_path, :class => 'current'
         %ul.secondary-nav
+          %li= link_to "<strong>Publisher</strong> home", publisher_root_path, :class => (controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>Edit</strong> account", edit_publisher_registration_path, :class => (controller.action_name == 'edit'?'current':'')
       - else
         =link_to 'Dashboard', publisher_root_path
 

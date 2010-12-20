@@ -1,57 +1,55 @@
-- content_for :main_navigation do
-  %li= link_to 'Dashboard', publisher_root_path
-  %li= link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
-  %li= link_to 'Products', publish_publisher_products_path(current_publisher)
-  %li= link_to 'Sales', publish_publisher_sales_path(current_publisher)
-  %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
+- content_for :primary_nav do
+  =render :partial => 'publish/shared/navbar'
 
-.block
-  .secondary-navigation
-    %ul.wat-cf
-      %li.first.active= link_to "Edit My Account", edit_publisher_registration_path
-  .content
-    %h2.title Edit my #{resource_name.to_s.humanize} account
-    .inner
-      - form_for resource_name, resource, :url => registration_path(resource_name), :html => { :class => :form, :method => :put } do |f|
-        = f.error_messages
+#content
+  %h1 Edit my #{resource_name.to_s.humanize} account
+  .box.sp
+    - form_for resource_name, resource, :url => registration_path(resource_name), :html => { :class => :form, :method => :put } do |f|
+      = f.error_messages
 
-        .group
-          %p= f.label :email, 'E-mail', :class => :label
-          %p= f.text_field :email, :class => 'text_field'
+      %label
+        %span
+          E-mail
+        = f.text_field :email
 
-        .group
-          %p= f.label :password, 'Password', :class => :label
-          %p= f.password_field :password, :class => 'text_field'
-          %p (leave blank if you don't want to change it)
+      %label
+        %span
+          Password
+        = f.password_field :password
+        %span.descr (leave blank if you don't want to change it)
 
-        .group
-          %p= f.label :password_confirmation, 'Password confirmation', :class => :label
-          %p= f.password_field :password_confirmation, :class => 'text_field'
+      %label
+        %span
+          Password confirmation
+        = f.password_field :password_confirmation
 
-        .group
-          %p= f.label :nickname, 'Artistic Name', :class => :label
-          %p= f.text_field :nickname, :class => 'text_field'
+      %label
+        %span
+          Artistic Name
+        = f.text_field :nickname
 
-        .group
-          = f.label :bio, "Biography", :class => :label
-          = f.text_area :bio, :class => 'text_area'
-          %span.description Ex: a simple text
+      %label.lb
+        %span
+          Biography
+        = f.text_area :bio
+        %span.descr Ex: a simple text
 
-        .group
-          %p= f.label :current_password, 'Current Password', :class => :label
-          %p= f.password_field :current_password, :class => 'text_field'
-          %p (we need your current password to confirm your changes)
+      %label
+        %span
+          Current Password
+        = f.password_field :current_password
+        %span.descr (we need your current password to confirm your changes)
 
-        .group.navform.wat-cf
-          %button.button{:type => 'submit'}
-            = image_tag("web-app-theme/tick.png", :alt => "Update")
-            Update
+      %p.btso
+        %button.button{:type => 'submit'}
+          = image_tag("web-app-theme/tick.png", :alt => "Update")
+          Update
 
-    %h2.title Cancel my account
-    .inner
-      %p
-        Unhappy?
-        = link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete
+  %h2.title Cancel my account
+  .inner
+    %p
+      Unhappy?
+      = link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete
 
 - content_for :sidebar, render(:partial => "shared/devise_publisher_links")
 
