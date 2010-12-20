@@ -1,3 +1,3 @@
 class Fee < ActiveRecord::Base
-  belongs_to :sale
+  validates_presence_of :description, :amount
 end

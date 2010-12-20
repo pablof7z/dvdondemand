@@ -1,11 +1,14 @@
 %ul.primary-nav
   - if publisher_signed_in? 
     %li
-      - if controller.controller_name == 'publishers' or controller.controller_name == 'home' or controller.controller_name == 'registrations'
+      - if controller.controller_name == 'publishers' or controller.controller_name == 'home' or controller.controller_name == 'registrations' or controller.controller_name == 'bank_information'
         =link_to 'Dashboard', publisher_root_path, :class => 'current'
         %ul.secondary-nav
           %li= link_to "<strong>Publisher</strong> home", publisher_root_path, :class => (controller.action_name == 'index'?'current':'')
           %li= link_to "<strong>Edit</strong> account", edit_publisher_registration_path, :class => (controller.action_name == 'edit'?'current':'')
+          %li= link_to "<strong>Financial</strong> information", publish_publisher_bank_informations_path(@publisher), :class => (controller.action_name == 'edit'?'current':'')
+          - if controller.controller_name == 'bank_information'
+            %li= link_to "<strong>Add</strong> bank information", new_publish_publisher_bank_information_path(current_publisher), :class => (controller.action_name == 'new'?'current':'')
       - else
         =link_to 'Dashboard', publisher_root_path
 
@@ -32,7 +35,7 @@
       - if controller.controller_name == 'sales'
         =link_to 'Sales', publish_publisher_sales_path(current_publisher), :class => 'current'
         %ul.secondary-nav
-          %li= link_to '<strong>Accounting</strong> report', publish_publisher_sales_path(current_publisher), :class => (controller.action_name == 'index'?'current':'')
+          %li= link_to '<strong>All</strong> sales report', publish_publisher_sales_path(current_publisher), :class => (controller.action_name == 'index'?'current':'')
       - else
         =link_to 'Sales', publish_publisher_sales_path(current_publisher)
 

@@ -1,7 +1,6 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 john:
-  id: 1
   first_name: John
   last_name: Foobar
   email: john@foo.bar
@@ -9,9 +8,9 @@ john:
   approved: true
   encrypted_password: 1e56aad2604f37776a8e5d017c7a858ab1d984b5
   password_salt: S3tzIHrAOBq14RUJDneo
+  id: 4
 
 jane:
-  id: 2
   first_name: Jane
   last_name: Barfoo
   email: jane@bar.foo
@@ -21,7 +20,6 @@ jane:
   password_salt: S3tzIHrAOBq14RUJDneo
 
 newbie:
-  id: 3
   first_name: Dummy
   last_name: Newbie
   email: dummy@new.bie

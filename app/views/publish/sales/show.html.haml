@@ -1,0 +1,54 @@
+- content_for :main_navigation do
+  %li= link_to 'Dashboard', publisher_root_path
+  %li= link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
+  %li= link_to 'Products', publish_publisher_products_path(current_publisher)
+  %li.active= link_to 'Sales', publish_publisher_sales_path(current_publisher)
+  %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "All Sales Reports", publish_publisher_sales_path(current_publisher)
+      %li.active= link_to "Show"
+  .content
+    %h2.title Sale #{@sale.id}
+    .inner
+      %p
+        %b Type:
+        Retail
+      %p
+        %b Date:
+        = @sale.created_at.to_s(:long)
+      %h3 Yor Products in this Sale
+      %table.table
+        %th ID
+        %th Title
+        %th Quantity
+        %th Price
+        - for item in @sale.order.items_from(current_publisher)
+          %tr{:class => cycle("odd", "even")}
+            %td= item.product.id
+            %td= item.product.title
+            %td= item.quantity
+            %td{:align => :right}= number_to_currency(item.price)
+        %tr
+          %td{:colspan => 3, :align => :right}
+            %b Total
+          %td{:align => :right}
+            %b= number_to_currency(@sale.total)
+        - for fee in Fee.all
+          %tr
+            %td{:colspan => 3, :align => :right}
+              = fee.description
+              (*)
+            %td{:align => :right}
+              = number_to_currency(@sale.fees_for(fee))
+        %tr
+          %td{:colspan => 3, :align => :right}
+            %b Earnings
+          %td{:align => :right}
+            %b= number_to_currency(@sale.total - @sale.fees)
+      %br (*) Fees apply to each product sold
+
+- content_for :sidebar, render(:partial => 'publish/shared/sidebar')
+

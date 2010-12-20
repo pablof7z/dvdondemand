@@ -1,8 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 johns:
-  id: 1
-  publisher_id: 1
+  publisher: john
   media_type_id: 1
   genre_id: 1
   title: Foobar Blues Media Pack
@@ -10,10 +9,11 @@ johns:
   price: 14.99
   performers: moe, larry, curly, shemp
   description: Play it again, Sam
+  # for habtm fixture:
+  catalogs: johns
 
 janes:
-  id: 2
-  publisher_id: 2
+  publisher: jane
   media_type_id: 1
   genre_id: 2
   title: The Barfoo Rock Antology
@@ -21,6 +21,8 @@ janes:
   price: 9.99
   performers: athos, porthos, aramis, dartagnan
   description: The golden glam age
+  # for habtm fixture:
+  catalogs: janes, janes_private
 
 devises:
   id: 3

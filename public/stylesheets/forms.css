@@ -130,3 +130,53 @@ p.btso{clear: both;}
 	font-size: 70%;
 	padding: 4px 8px !important;
 }
+
+/* Messages */
+.flash{
+	
+}
+.message{
+	padding: 10px !important;
+	margin: 0 24px 10px 0 !important;
+	line-height: 110% !important;
+	height: auto !important;
+}
+.message p{
+	margin: 0 !important;
+	padding: 0 0 0 35px;
+	font-weight: bold;
+}
+.notice{
+	color: #3e6a0f;
+	background: #DFF2BF url(/images/ico-notice.png) 10px 6px no-repeat;
+	border: 1px solid #538f13; 
+}
+.warning, .alert{
+	color: #D8000C;
+	background: #ffc1c1 url(/images/ico-warning.png) 10px 6px no-repeat;
+	border: 1px solid #D8000C; 
+}
+.errorExplanation{
+	margin: 0 0 30px 0!important;
+}
+.errorExplanation h2{
+	margin-bottom: 10px;
+	color: #753e56;
+	color: #333
+}
+.errorExplanation p{
+	color: #333
+}
+.errorExplanation ul{
+	margin: 0 24px 0 0 !important;
+	padding: 0!important;
+	background: none;
+}
+.errorExplanation ul li{
+	list-style: none;
+	background: #ffd7d7;
+	border-bottom: 1px dotted #D8000C;
+	color: #D8000C;
+	margin: 0 0 2px 0 !important;
+	padding: 0 0 0 10px!important;
+}

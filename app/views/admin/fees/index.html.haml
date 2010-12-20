@@ -1,0 +1,27 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content.wide
+  %h1 All Fees
+  .box
+    %table.t1
+      %tr
+        %th.first ID
+        %th Description
+        %th Amount
+        %th.last &nbsp;
+      - for fee in @fees
+        %tr{:class => cycle("odd", "even")}
+          %td= fee.id
+          %td= link_to fee.description, admin_fee_path(fee)
+          %td
+            = fee.percentage ? "#{fee.amount}%" : number_to_currency(fee.amount)
+          %td.last
+            = link_to "Show", admin_fee_path(fee)
+            |
+            = link_to "Edit", edit_admin_fee_path(fee)
+            |
+            = link_to "Delete", admin_fee_path(fee), :method => :delete, :confirm => "Are you sure?"
+    .actions-bar.wat-cf
+      .actions
+

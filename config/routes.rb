@@ -1,9 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-
-  map.resources :fees
-
-  map.resources :shipping_options
-
   map.devise_for :customers, :as => 'users'  # first to avoid the :customers resources to catch devise's auto-generated routes
   map.resources :customers, :as => 'users' do |customer|
     customer.resources :customer_payments, :as => :payments
@@ -18,7 +13,8 @@ ActionController::Routing::Routes.draw do |map|
 
       publisher.resources :genres, :only => :index
       publisher.resources :sales,  :only => [:index, :show]
-
+      
+      publisher.resources :bank_informations, :as => :financial, :member => { :send_deposit => :post, :make_default => :post, :validate => [ :get, :post, :put ] }, :except => [ :destroy ]
       publisher.resources :publisher_payments, :as => :payments, :only => [:index, :show]
     end
 
@@ -46,19 +42,38 @@ ActionController::Routing::Routes.draw do |map|
 
   map.devise_for :admins
   map.namespace :admin do |admin|
-    admin.resources :genres
+    admin.resources :fees, :genres
     admin.resources :orders, :only => [:index, :show]
     admin.resources :publishers, :except => [:create, :new]
+    admin.resources :wholesalers, :except => [:create, :new], :has_many => :wholesaler_invoices do |wholesaler|
+      wholesaler.resources :invoices, :except => [:create, :new, :delete], :as => 'invoices', :has_many => :wholesaler_payments do |invoice|
+        invoice.resources :payments, :as => 'payments'
+      end
+    end
     admin.resources :packaging_options, :as => 'packaging'
+    admin.resources :shipping_options, :as => 'shipping'
     admin.resources :wholesale_prices, :as => 'wholesale'
 
     # route needed for Devise after_sign_in, always auth-ful because it's admin's
     admin.root :controller => 'home'
   end
+  
+  map.devise_for :wholesalers
+  map.namespace :wholesale do |wholesale|
+    wholesale.resources :wholesalers, :only => [:edit, :show] do |wholesaler|
+      wholesaler.resources :orders, :has_many => :order_items, :collection => { :create => :post }
+      wholesaler.resources :wholesaler_invoices, :as => 'invoices', :except => [:create, :new, :delete], :has_many => :wholesaler_payments, :member => { :pay => [ :get, :post ] }
+      
+      wholesaler.resources :catalogs, :only => [:index, :show] do |catalog|
+        catalog.resources :products, :only => :show
+      end
+      
+      wholesaler.resources :credit_cards, :member => { :make_default => :post }, :except => [ :edit ]
+    end
+    
+    wholesale.root :controller => 'home'
+  end
 
   map.root :controller => 'retail/catalogs'
-
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
 end
 

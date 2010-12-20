@@ -1,10 +1,10 @@
 - content_for :primary_nav do
   =render :partial => 'admin/shared/navbar'
 
-#content
+#content.wide
   %h1 All Product Genres
   .inner
-    %table.table
+    %table.t1
       %tr
         %th.first ID
         %th Media
@@ -23,6 +23,4 @@
             = link_to "Delete", admin_genre_path(genre), :method => :delete, :confirm => "Are you sure?"
     .actions-bar.wat-cf
       .actions
-
-- content_for :sidebar, render(:partial => 'admin/shared/sidebar')
 

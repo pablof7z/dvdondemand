@@ -1,11 +1,12 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  description: MyString
+production:
+  description: Production Fee
   amount: 1.5
-  sale: 
+  percentage: false
 
-two:
-  description: MyString
-  amount: 1.5
-  sale: 
+processing:
+  description: CC Processing Fee
+  amount: 0.05
+  percentage: true
+

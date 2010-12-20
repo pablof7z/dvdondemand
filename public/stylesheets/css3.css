@@ -18,6 +18,12 @@
 	-webkit-border-radius: 6px; 
 	border-radius: 6px;
 }
+.warning,
+.notice{
+		-moz-border-radius: 6px; 
+	-webkit-border-radius: 6px; 
+	border-radius: 6px;
+}
 .boxy h3{
 -webkit-border-top-left-radius: 6px;
 -webkit-border-top-right-radius: 6px;

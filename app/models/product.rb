@@ -54,7 +54,10 @@ class Product < ActiveRecord::Base
   end
 
   def available_packaging_options
-    packaging_options.include?(PackagingOption.first) ? packaging_options : [PackagingOption.first] + packaging_options
+    # "standard" packaging option is always free
+    standard = PackagingOption.find(:first, :conditions => {:price => 0})
+    # and should be always available to all products
+    packaging_options.include?(standard) ? packaging_options : [standard] + packaging_options
   end
 
 	private

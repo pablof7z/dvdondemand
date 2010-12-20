@@ -1,19 +1,16 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  id: 1
+standard:
   title: Standard Clamshell
   weight: 150
   price: 0.0
 
-two:
-  id: 2
+premium:
   title: Premium Jewell Case
   weight: 200
   price: 1.5
 
-three:
-  id: 3
+amary:
   title: Premium DVD Amary Case
   weight: 225
   price: 2.5

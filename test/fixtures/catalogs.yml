@@ -1,23 +1,26 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 johns:
-  id: 1
-  publisher_id: 1
+  publisher: john
   title: Assorted Blues
   description: Just as it name implies
   private: false
+  # for habtm fixture:
+  products: johns
 
 janes:
-  id: 2
-  publisher_id: 2
+  publisher: jane
   title: Rare Rock Stuff
   description: Just as it name implies
   private: false
+  # for habtm fixture:
+  products: janes
 
 janes_private:
-  id: 3
-  publisher_id: 2
+  publisher: jane
   title: More Rare Rock Stuff
   description: Just as it name implies
   private: true
+  # for habtm fixture:
+  products: janes
 

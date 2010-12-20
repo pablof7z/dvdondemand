@@ -39,14 +39,73 @@
               %b= number_to_currency(current_customer.cart.items_total_price)
             %td
         .group
-          = f.label :billing_address, "Billing Address", :class => :label
-          = f.text_area :billing_address, :rows => 5, :class => 'text_area'
+          = f.label :card_type, 'Card Type', :class => :label
+          = f.select :card_type, [['Visa','visa'], ['MasterCard','mastercard'], ['Discover','discover'], ['American Express', 'american_express']]
         .group
-          = f.label :shipping_address, "Shipping Address", :class => :label
-          = f.text_area :shipping_address, :rows => 5, :class => 'text_area'
-          %p
-            = check_box_tag :same_as, :value => '1'
-            Same as Billing Address
+          = f.label :card_number, 'Card Number', :class => :label
+          = f.text_field :card_number, :class => 'text_field'
+        .group
+          = f.label :card_verification, 'Card Verification Value', :class => :label
+          = f.text_field :card_verification, :class => 'text_field_small'
+        .group
+          = f.label :card_expires_on, 'Card Expires On', :class => :label
+          = f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :add_month_numbers => true
+
+        %h3 Billing Address
+        .group
+          %p= f.label :billing_address1, 'Address 1', :class => :label
+          %p= f.text_field :billing_address1, :value => current_customer.address1, :class => 'text_field'
+        .group
+          %p= f.label :billing_address2, 'Address 2', :class => :label
+          %p= f.text_field :billing_address2, :value => current_customer.address2, :class => 'text_field'
+        .group
+          %p= f.label :billing_city, 'City', :class => :label
+          %p= f.text_field :billing_city, :value => current_customer.city, :class => 'text_field'
+        .group
+          %p= f.label :billing_state, 'State (US only)', :class => :label
+          %p= f.select :billing_state, us_state_options_for_select(current_customer.state, :include_blank => true)
+        .group
+          %p= f.label :billing_zip_code, 'Zip Code', :class => :label
+          %p= f.text_field :billing_zip_code, :value => current_customer.zip_code, :class => 'text_field_small'
+        .group
+          %p= f.label :billing_country, 'Country', :class => :label
+          %p= f.select :billing_country, country_options_for_select(current_customer.country)
+
+        %h3 Shipping Address
+        %p
+          = check_box_tag :same_as, :value => '1'
+          Same as Billing Address
+        .group
+          %p= f.label :shipping_name, "Ship to", :class => :label
+          %p= f.text_field :shipping_name, :value => current_customer.full_name, :class => 'text_field'
+        .group
+          %p= f.label :shipping_address1, "Address 1", :class => :label
+          %p= f.text_field :shipping_address1, :value => current_customer.address1, :class => 'text_field'
+        .group
+          %p= f.label :shipping_address2, "Address 2", :class => :label
+          %p= f.text_field :shipping_address2, :value => current_customer.address2, :class => 'text_field'
+        .group
+          %p= f.label :shipping_city, 'City', :class => :label
+          %p= f.text_field :shipping_city, :value => current_customer.city, :class => 'text_field'
+        .group
+          %p= f.label :shipping_state, 'State (US only)', :class => :label
+          %p= f.select :shipping_state, us_state_options_for_select(current_customer.state, :include_blank => true)
+        .group
+          %p= f.label :shipping_zip_code, 'Zip Code', :class => :label
+          %p= f.text_field :shipping_zip_code, :value => current_customer.zip_code, :class => 'text_field_small'
+        .group
+          %p= f.label :shipping_country, 'Country', :class => :label
+          %p= f.select :shipping_country, country_options_for_select(current_customer.country)
+
+        -# hidden fields for helper attr_accessor methods
+        = f.hidden_field :first_name, :value => current_customer.first_name
+        = f.hidden_field :last_name,  :value => current_customer.last_name
+        = f.hidden_field :ip_address, :value => request.remote_ip
+
+        %h3 Shipping Options available
+        .group
+          %p= f.select :shipping_option_id, options_from_collection_for_select(ShippingOption.all, :id, :title_with_price)
+
         .group.navform.wat-cf
           %button.button{:type => 'submit'}
             = image_tag("web-app-theme/tick.png", :alt => "Place Order")

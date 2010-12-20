@@ -1,0 +1,9 @@
+%tr{:class => cycle("odd", "even")}
+  %td
+    = wholesaler_payment.id
+  %td
+    = wholesaler_payment.created_at
+  %td
+    = number_to_currency(wholesaler_payment.amount)
+  %td.last
+

@@ -1,10 +1,80 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-# one:
-#   product: products(:one)
-#   quantity: 2
+for_order_one_i:
+  order: one
+  product: johns
+  packaging_option: standard
+  quantity: 1
+  price: 14.99
 
-# two:
-#   product: products(:two)
-#   quantity: 3
+for_order_one_ii:
+  order: one
+  product: janes
+  packaging_option: premium
+  quantity: 2
+  price: 9.99
+
+for_order_two:
+  order: two
+  product: johns
+  packaging_option: standard
+  quantity: 2
+  price: 14.99
+
+for_order_three:
+  order: three
+  product: johns
+  packaging_option: standard
+  quantity: 3
+  price: 14.99
+
+for_order_four:
+  order: four
+  product: johns
+  packaging_option: standard
+  quantity: 4
+  price: 14.99
+
+for_order_five:
+  order: five
+  product: johns
+  packaging_option: standard
+  quantity: 5
+  price: 14.99
+
+# Wholesale follows
+for_order_six:
+  order: six
+  product: johns
+  packaging_option: standard
+  quantity: 6
+  price: 14.99
+
+for_order_seven:
+  order: seven
+  product: johns
+  packaging_option: standard
+  quantity: 7
+  price: 14.99
+
+for_order_eight:
+  order: eight
+  product: johns
+  packaging_option: standard
+  quantity: 8
+  price: 14.99
+
+for_order_nine:
+  order: nine
+  product: johns
+  packaging_option: standard
+  quantity: 9
+  price: 14.99
+
+for_order_ten:
+  order: ten
+  product: johns
+  packaging_option: standard
+  quantity: 10
+  price: 14.99
 

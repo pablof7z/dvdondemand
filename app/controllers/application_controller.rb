@@ -20,9 +20,10 @@ class ApplicationController < ActionController::Base
   def layout_by_devise_resource
     if devise_controller?
       case resource_name
-        when :admin     then 'admin'
-        when :customer  then 'retail'
-        when :publisher then 'publish'
+        when :admin      then 'admin'
+        when :customer   then 'retail'
+        when :publisher  then 'publish'
+        when :wholesaler then 'wholesale'
       end
     end
   end
@@ -32,6 +33,7 @@ class ApplicationController < ActionController::Base
       when :admin     then root_path
       when :customer  then root_path
       when :publisher then publish_root_path
+      when :wholesaler then wholesale_root_path
     end
   end
 end

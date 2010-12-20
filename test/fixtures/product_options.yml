@@ -1,9 +1,10 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  product: 
-  packaging_option: 
+  product: johns
+  packaging_option: premium
 
 two:
-  product: 
-  packaging_option: 
+  product: janes
+  packaging_option: amary
+

@@ -1,0 +1,44 @@
+- content_for :main_navigation do
+  %li= link_to 'Wholesale Account', wholesale_root_path
+  %li.active= link_to 'Invoices', wholesale_wholesaler_wholesaler_invoices_path(current_wholesaler)
+  %li= link_to 'Catalogs', wholesale_wholesaler_catalogs_path(current_wholesaler)
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "All", wholesale_wholesaler_wholesaler_invoices_path(current_wholesaler)
+
+  .content
+    %h2.title
+      All your invoices
+    .inner
+      %table.table
+        %tr
+          %th.first ID
+          %th Date
+          %th Amount
+          %th Owed
+          %th Paid
+          %th.last &nbsp;
+        = render :partial => @wholesaler_invoices
+        %tr
+          %td
+          %td
+          %td{:colspan=>2}
+            %b Balance:
+            = number_to_currency(current_wholesaler.money_owed)
+          %td
+          %td
+        %tr
+          %td
+          %td
+          %td{:colspan=>2}
+            %b Remaining Credit:
+            = number_to_currency(current_wholesaler.remaining_credit)
+          %td
+          %td
+      .actions-bar.wat-cf
+        .actions
+
+- content_for :sidebar, render(:partial => 'wholesale/shared/sidebar')
+

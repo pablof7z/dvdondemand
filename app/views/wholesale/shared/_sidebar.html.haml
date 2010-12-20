@@ -1,0 +1,18 @@
+.block
+  %h3 API Key
+  .content
+    %p
+    - if current_wholesaler == nil
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    - else
+      = link_to_function "Show key", visual_effect(:toggle_appear, 'apik')
+      %p
+      #apik{:style=>'font-size: 22px; display: none; overflow: auto;'}
+        = current_wholesaler.api_key
+
+.block
+  %h3 Links
+  %ul.navigation
+    <li><a href="#">Link 1</a></li>
+    <li><a href="#">Link 2</a></li>
+

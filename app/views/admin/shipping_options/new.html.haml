@@ -1,0 +1,11 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content
+  %h1 New Shipping Option
+  .box.sp
+    - form_for @shipping_option, :url => admin_shipping_options_path, :html => { :class => :form } do |f|
+      = render :partial => "form", :locals => {:f => f}
+
+- content_for :sidebar, render(:partial => 'admin/shared/sidebar')
+

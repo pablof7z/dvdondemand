@@ -1,0 +1,32 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content
+  %h1 All Shipping Options
+  .box
+    %table.table
+      %tr
+        %th.first ID
+        %th Title
+        %th Weight
+        %th Priority?
+        %th Price
+        %th.last &nbsp;
+      - for shipping in @shipping_options
+        %tr{:class => cycle("odd", "even")}
+          %td= shipping.id
+          %td= link_to shipping.title, admin_shipping_option_path(shipping)
+          %td= shipping.maximum_weight
+          %td= shipping.priority ? 'Yes!' : 'No'
+          %td= number_to_currency(shipping.price)
+          %td.last
+            = link_to "Show", admin_shipping_option_path(shipping)
+            |
+            = link_to "Edit", edit_admin_shipping_option_path(shipping)
+            |
+            = link_to "Delete", admin_shipping_option_path(shipping), :method => :delete, :confirm => "Are you sure?"
+    .actions-bar.wat-cf
+      .actions
+
+- content_for :sidebar, render(:partial => 'admin/shared/sidebar')
+

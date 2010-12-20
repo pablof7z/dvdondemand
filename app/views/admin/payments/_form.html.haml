@@ -1,0 +1,16 @@
+.group
+  = f.error_messages
+
+%label
+  %span
+    Amount
+  = f.text_field :amount, :size => '6'
+  %span.descr (Required)
+
+%p.btso.b1
+  %button.button{:type => 'submit'}
+    Save
+  %span
+    or
+    = link_to "Cancel", admin_wholesaler_invoice_payments_path(@wholesaler, @invoice), :class => "button"
+

@@ -1,0 +1,39 @@
+.group
+  = f.error_messages
+
+%label
+  %span
+    Title
+  = f.text_field :title
+  %span.descr (Required)
+
+%label
+  %span
+    Price
+  = f.text_field :price, :size => '6'
+  %span.descr (Required)
+
+%label
+  %span
+    Weight
+  = f.text_field :maximum_weight, :size => '6'
+
+%label
+  %span
+    Priority
+  = f.check_box :priority
+  %span.descr Check for priority shipping service.
+
+%label.lb
+  %span
+    Description
+  = f.text_area :description, :rows => 5
+  %span.descr Ex: a simple text
+
+%p.btso.b1
+  %button.button{:type => 'submit'}
+    Save
+  %span
+    or
+    = link_to "Cancel", admin_shipping_options_path, :class => "button"
+

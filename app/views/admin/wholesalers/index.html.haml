@@ -1,0 +1,24 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content.wide
+  %h1 All Wholesalers
+  .box
+    %table.t1
+      %tr
+        %th.first ID
+        %th Name
+        %th Created at
+        %th.last &nbsp;
+      - @wholesalers.each do |wholesaler|
+        %tr{:class => cycle("odd", "even")}
+          %td= wholesaler.id
+          %td= link_to "#{wholesaler.name}", admin_wholesaler_path(wholesaler)
+          %td= wholesaler.created_at
+          %td.last
+            = link_to "Invoices", admin_wholesaler_invoices_path(wholesaler)
+            |
+            = link_to "Show", admin_wholesaler_path(wholesaler)
+    .actions-bar.wat-cf
+      .actions
+

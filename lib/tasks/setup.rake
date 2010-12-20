@@ -6,6 +6,10 @@ namespace :devise do
       u.first_name = 'Devise'
       u.last_name  = 'Customer'
       u.email      = 'devise@customer.com'
+      u.address1   = 'where the streets have no name'
+      u.city       = 'Outskirtsville'
+      u.state      = 'UT'
+      u.country    = 'US'
       u.password   = '123456'
       u.password_confirmation = '123456'
     end
@@ -36,6 +40,16 @@ namespace :devise do
     puts 'New Devise Admin created!'
     puts 'E-mail  : ' << admin.email
     puts 'Password: ' << admin.password
+    
+    wholesaler = Wholesaler.create! do |u|
+      u.name       = "Wholesale Account"
+      u.email      = 'devise@wholesaler.com'
+      u.password   = '123456'
+      u.password_confirmation = '123456'
+    end
+    puts 'New Devise Wholesaler created!'
+    puts 'E-mail  : ' << wholesaler.email
+    puts 'Password: ' << wholesaler.password
   end
 end
 

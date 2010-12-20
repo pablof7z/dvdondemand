@@ -1,0 +1,2 @@
+module Wholesale::CatalogsHelper
+end

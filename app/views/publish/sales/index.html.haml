@@ -1,31 +1,55 @@
 - content_for :primary_nav do
   =render :partial => 'publish/shared/navbar'
 
-
-
 #content.wide
+  %h1 Sales Reports
+  - total = 0
+  - subtotal = []
   .box
-    %h1 Accounting report
+    %table.table
+      %tr
+        %th.first
+        %th Date
+        %th Transaction
+        %th Type
+        %th Qty.
+        %th Sale Price
+        - for fee in Fee.all 
+          %th= fee.description
+        %th Earnings
+        %th.last
+      - @sales.each do |month,sales|
+        %tr
+          %td{:colspan => 10}
+            = month.strftime('%B').upcase
+        - for sale in sales
+          %tr
+            %td
+            %td= sale.created_at.to_date.to_s(:short)
+            %td= sale.id
+            %td= sale.type
+            %td= sale.quantity
+            %td= number_to_currency(sale.total)
+            - for fee in Fee.all
+              %td= number_to_currency(sale.fees_for(fee))
+            %td{:align => :right}
+              - subtotal << sale.total - sale.fees
+              %strong= number_to_currency(subtotal.last)
+            %td
+              = link_to "Show", publish_publisher_sale_path(current_publisher,sale)
+            %td
+            - total += subtotal.last
+      %tr
+        %td{:colspan => 8, :align => :right}
+          %strong TOTAL
+        %td{:align => :right}
+          %strong= number_to_currency(total)
+        %td
+    %br (*) Fees apply to each product sold
 
-    %table.t1
-      %thead
-        %tr
-          %th.first{:scope => 'col'} Year
-          %th{:scope => "col"} Retail sales
-          %th{:scope => "col"} Royalty sales
-          %th{:scope => "col"} Wholesale sales
-          %th{:scope => "col"} Get Stock purchases
-          %th{:scope => "col"} Totals
-          %th.last{:scope => "col"} PPS Payments
-      %tfoot
-        %tr
-          %th{:scope => 'row'} Totals
-          %td
-          %td
-          %td
-          %td
-          %td
-          %td
-      %tbody
-        
+    - retail_sales = current_publisher.retail_sales.map { |s| s.total }
+    - whole_sales  = current_publisher.whole_sales.map { |s| s.total }
+    %p
+      = Gchart.bar(:size => '300x360', :title => 'Retail Sales', :theme => :pastel, :stacked => false, :data => retail_sales, :axis_with_labels => 'x', :format => 'image_tag')
+      = Gchart.bar(:size => '300x360', :title => 'Wholesale Sales', :theme => :thirty7signals, :stacked => false, :data => whole_sales, :axis_with_labels => 'x', :format => 'image_tag')
 

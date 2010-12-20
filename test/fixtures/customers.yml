@@ -1,16 +1,20 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 happy:
-  id: 1
   first_name: Happy
   last_name: Customer
   email: happy@customer.com
+  address1: where the streets have no name
+  city: Smallville
+  country: DZ
 
 grumpy:
-  id: 2
   first_name: Grumpy
   last_name: Customer
   email: grumpy@customer.com
+  address1: where the streets have no name
+  city: Bigville
+  country: DJ
   # note test user with password but not confirmed by Devise
   encrypted_password: 1e56aad2604f37776a8e5d017c7a858ab1d984b5
   password_salt: S3tzIHrAOBq14RUJDneo
