@@ -2,9 +2,8 @@
   =render :partial => 'admin/shared/navbar'
 
 #content
-  .box
-    %h1 New Packaging Option
-  .inner
+  %h1 New Packaging Option
+  .box.sp
     - form_for @packaging_option, :url => admin_packaging_options_path, :html => { :class => :form } do |f|
       = render :partial => "form", :locals => {:f => f}
 

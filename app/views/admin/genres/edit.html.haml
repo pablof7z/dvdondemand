@@ -3,7 +3,7 @@
 
 #content
   %h1 Edit Product Genre
-  .inner
+  .box.sp
     - form_for @genre, :url => admin_genre_path(@genre), :html => { :class => :form } do |f|
       = render :partial => "form", :locals => {:f => f}
 

@@ -1,18 +1,21 @@
 .group
   = f.error_messages
 
-.group
-  = f.label :media_type_id, "Media Type", :class => :label
+%label
+  %span
+    Media Type
   = f.collection_select :media_type_id, MediaType.all, :id, :name
 
-.group
-  = f.label :title, "Title", :class => :label
+%label
+  %span
+    Title
   = f.text_field :title, :class => 'text_field'
-  %span.description (Required)
+  %span.descr (Required)
 
-.group.navform.wat-cf
+%p.btso
   %button.button{:type => 'submit'}
     = image_tag("web-app-theme/tick.png", :alt => "Save")
     = t("web-app-theme.save", :default => "Save")
-  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", admin_genres_path, :class => "button"
+  or
+  = link_to "Cancel", admin_genres_path
 

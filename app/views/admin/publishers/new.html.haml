@@ -2,9 +2,8 @@
   =render :partial => 'admin/shared/navbar'
 
 #content
-  .box
-    %h1 New Publisher
-  .inner
+  %h1 New Publisher
+  .box.sp
     - form_for @publisher, :url => publish_publishers_path, :html => { :class => :form } do |f|
       = render :partial => "form", :locals => {:f => f}
 

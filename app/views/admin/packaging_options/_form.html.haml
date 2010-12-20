@@ -1,28 +1,33 @@
 .group
   = f.error_messages
 
-.group
-  = f.label :title, "Title", :class => :label
-  = f.text_field :title, :class => 'text_field'
-  %span.description (Required)
+%label
+  %span
+    Title
+  = f.text_field :title
+  %span.descr (Required)
 
-.group
-  = f.label :price, "Price", :class => :label
-  = f.text_field :price, :class => 'text_field_small'
-  %span.description (Required)
+%label
+  %span
+    Price
+  = f.text_field :price
+  %span.descr (Required)
 
-.group
-  = f.label :weight, "Weight", :class => :label
-  = f.text_field :weight, :class => 'text_field_small'
+%label
+  %span
+    Weight
+  = f.text_field :weight, :size => '6'
 
-.group
-  = f.label :description, "Description", :class => :label
-  = f.text_area :description, :rows => 5, :class => 'text_area'
-  .description Ex: a simple text
+%label.lb
+  %span
+    Description
+  = f.text_area :description, :rows => 5
+  %span.descr Ex: a simple text
 
-.group.navform.wat-cf
+%p.btso
   %button.button{:type => 'submit'}
     = image_tag("web-app-theme/tick.png", :alt => "Save")
     = t("web-app-theme.save", :default => "Save")
-  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", admin_packaging_options_path, :class => "button"
+  or
+  = link_to "Cancel", admin_packaging_options_path
 

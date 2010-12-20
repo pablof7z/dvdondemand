@@ -2,9 +2,8 @@
   =render :partial => 'admin/shared/navbar'
 
 #content
-  .box
-    %h1 New Wholesale Price
-  .inner
+  %h1 New Wholesale Price
+  .box.sp
     - form_for @wholesale_price, :url => admin_wholesale_prices_path, :html => { :class => :form } do |f|
       = render :partial => "form", :locals => {:f => f}
 
