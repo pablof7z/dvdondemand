@@ -55,6 +55,10 @@
 
     #wrapper
       #container
+        .flash
+          - flash.each do |type, message|
+            .message{:class => type.to_s}
+              %p= message
         =yield
 
         #sidebar
