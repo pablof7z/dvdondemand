@@ -25,20 +25,23 @@
       body#debug .box{background: url(css/948.png) no-repeat;opacity: .7;padding: 5px 0 0 0;}
       p.switch{width: 970px;margin: 2px auto 5px auto;font-size: 75%;max-width: none;background: #ededed;padding: 0 26px 0 0; text-align: right;}
       p.switch a{padding: 0 0 0 10px;color: #999;}
-    %body
+
+    = yield :header
+
+  %body
     %p.switch
       %a{:href => "#", :onclick => "body.setAttribute('id', 'normal');"} Normal
       %a{:href => "#", :onclick => "body.setAttribute('id', 'debug');"} Debug
     #header
       %a{:href => "#"}
-        %img{:alt => "", :height => "66", :src => "/images/ondemanddvd-logo.png", :width => "119"}/
+        %img.logo{:alt => "", :src => "/images/ondemanddvd-logo.png"}
       %ul.options
         - unless publisher_signed_in?
-          %li= link_to 'My Account', new_publisher_session_path
-          %li= link_to 'Sign Up', new_publisher_registration_path
+          %li= link_to 'Sign Up', new_publisher_registration_path, :class => 'log'
+          %li= link_to 'My Account', new_publisher_session_path, :class => 'account'
         - else
-          %li= link_to 'Edit Account', edit_publisher_registration_path
-          %li= link_to 'Logout', destroy_publisher_session_path
+          %li= link_to 'Logout', destroy_publisher_session_path, :class => 'log'
+          %li= link_to 'Edit Account', edit_publisher_registration_path, :class => 'account'
 
     #nav
       - if publisher_signed_in?

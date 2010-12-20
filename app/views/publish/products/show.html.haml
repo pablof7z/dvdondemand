@@ -8,7 +8,7 @@
 
     - if @product.cover_art.exists?(:medium)
       %a{:href => @product.cover_art.url, :alt => 'Full size Cover art', :target => 'blank'}
-        =image_tag(@product.cover_art.url(:medium), :class => [ 'fl', 'artw' ])
+        =image_tag(@product.cover_art.url(:medium), :class => 'fl artw')
     %dl
       %dt Media Type:
       %dd= @product.media_type.name

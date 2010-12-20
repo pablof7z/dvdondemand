@@ -10,7 +10,8 @@ table tfoot th{
 	text-align: left;
 	padding: 6px 5px;
 	background: #d1d1d1;
-	border-bottom: 1px solid #e3e3e3;
+	background: url(table-th.png) repeat-x;
+	border-bottom: 1px solid #c8c8c8;
 	color: #333;
 	vertical-align: middle;
 }

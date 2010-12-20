@@ -2,6 +2,7 @@
 @import url(tables.css);
 @import url(css3.css);
 @import url(admin.css);
+@import url(arrays.css);
 
 /* Reset 
 -----------------------------*/
@@ -29,7 +30,9 @@ table {
 /* General 
 -----------------------------*/
 html{
-	background-image: url(/images/bg.jpg); 
+	/*background-image: url(/images/bg.jpg); */
+	backgr ound: #213A4F;
+	background: #EEF2F3 url(/images/back.png);
 }
 body{
 	font-family: "Lucida Grande",Helvetica, Arial, sans-serif;
@@ -38,17 +41,19 @@ body{
 	color: #666;
 }
 h1, h2, h3, h4, h5, h6{
-	font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+	font-family: Arial, "Trebuchet MS", Helvetica, Arial, sans-serif;
 	margin: 5px 0 25px 0;
-	color: #2c2e43;
+	color: #4a4d71;
+	color: #0E2D49;
+	color: #14576c;
 }
 p{
 	margin: 0 0 15px 0;
 	max-width: 940px;
 }
-a{color: #417FCA;}
-a:hover{color: #3B5998;}
-h1{font-size: 200%;}
+a{color: #417FCA; color: #0C5ECE}
+a:hover{color: #3B5998; color: #0c3d7c}
+h1{font-size: 185%;}
 h2{font-size: 160%;}
 h3{font-size: 120%;}
 h4{font-size: 100%;}
@@ -70,33 +75,17 @@ h4{font-size: 100%;}
 	display: block;
 	margin: 15px auto;
 }
-/* Width */
-.w5{width: 5%;}
-.w10{width: 10%;}
-.w15{width: 15%;}
-.w20{width: 20%;}
-.w25{width: 25%;}
-.w30{width: 30%;}
-.w35{width: 35%;}
-.w40{width: 40%;}
-.w45{width: 45%;}
-.w50{width: 50%;}
-.w55{width: 55%;}
-.w60{width: 60%;}
-.w65{width: 65%;}
-.w70{width: 70%;}
-.w75{width: 75%;}
-.w80{width: 80%;}
-.w85{width: 85%;}
-.w90{width: 90%;}
-.w95{width: 95%;}
+p.clear{
+	height: 15px;
+	clear: both;
+}
 
 /* Primary divisions
 -----------------------------*/
 #wrapper{
 	width: 972px;
 	margin: 0 auto;
-	padding: 0 0 0 24px;
+	padding: 0 0 15px 24px;
 	background: #fff;
 	overflow: hidden;
 }
@@ -115,17 +104,19 @@ h4{font-size: 100%;}
 	height: 70px;
 	clear: both;
 	margin: 0 auto;
-	padding: 25px 0 0 0;
+	padding: 15px 0 0 0;
 	font-size: 90%;
 	position: relative;
-	background: url(/images/content-bottom.png) no-repeat center top;
+	ba ckground: url(/images/content-bottom.png) no-repeat center top;
 	font-size: 80%;
+	color: #999;
 }
 #container{
-	width: 972px;
+	width: 972px;/* 972? */
 	min-height: 500px;
 	overflow: hidden;
 	padding: 15px 0;
+	ba ckground: #000
 }
 #content{
 	width: 705px;
@@ -171,14 +162,30 @@ h4{font-size: 100%;}
 }
 .options li a{
 	float: left;
-	padding: 8px 0 8px 8px;
 }
 #header img{
 	position: absolute;
-	top: 12px;
+	top: 35px;
 	left: 0;
 }
-
+.options li a.account{
+	display: block;
+	width: 130px;
+	height: 44px;
+	margin: 0 0 0 10px;
+	padding: 0 0 0 20px;
+	background: url(/images/button_account.png) no-repeat;
+	font-weight: bold;
+	color: #fff;
+	line-height: 250%;
+	text-decoration: none;
+}
+.options li a.account:hover{
+	background-position: 0 -44px;
+}
+.options li a.log{
+	line-height: 250%;
+}
 
 /* Nav
 -----------------------------*/
@@ -194,18 +201,20 @@ h4{font-size: 100%;}
 	text-decoration: none;
 }
 
-#nav ul li a:hover{
+/*#nav ul li a:hover{
 	background: #DE4808;
 	color: #fff;
-}
+}*/
 
 /* Primary Nav */
 
 #nav ul.primary-nav{
-	width: 996px;
+	width: 986px;
 	height: 53px;
 	background-image: url(/images/nav-primary.png);
 	background-repeat: no-repeat;
+	/*margin-left: 1px;*/
+	padding: 0 0 0 10px;
 }
 #nav ul.primary-nav li{
 	float: left;
@@ -219,8 +228,12 @@ h4{font-size: 100%;}
 	color: #fff;
 	line-height: 370%;
 }
+#nav ul.primary-nav li a:hover{
+	background: url(/images/nav-primary_hover.png);
+	color: #fff;
+}
 #nav ul.primary-nav li a.current{
-	background: #DE4808;
+	background: url(/images/nav_primary-current.png) repeat-x;
 	color: #ededed;
 	z-index: 1000
 }
@@ -235,28 +248,43 @@ h4{font-size: 100%;}
 	top: 53px;
 	left: 0;
 	z-index: 800;
+/*	border-left: 1px solid #dbdbdb; 
+	border-right: 1px solid #dbdbdb; */
 }
 
 #nav ul.secondary-nav li a{
 	float: left;
-	height: 43px;
+	height: 41px;
 	color: #ededed;
 	line-height: normal;
-	padding-top: 5px;
+	padding-top: 7px;
+	font-size: 90%;
 }
-#nav ul.secondary-nav li a.current{
-	background: #c74107;
-	color: #ededed;
+#nav ul.secondary-nav li a:hover{
+	background: url(/images/nav-secondary_hover.png);
+	color: #fff;
+}
+#nav ul.primary-nav li ul.secondary-nav li a.current{
+	background: url(/images/nav_secondary-current.png) repeat-x;
+	color: #fff;
 }
 
 
 
 /* Columns
 -----------------------------*/
+/* 
+modulo: 57 
+gut: 24
+ancho: 972
+*/
+
+
 .col h1,.col h2,.col h3,.col h4,.col h5,.col h6{
 	color: #666;
 }
-.col{width: 948px; min-height: 90px;float: left;margin: 0 24px 10px 0;padding: 0 0 5px 0;background: #ededed;border-bottom: 1px solid #d5d5d5; overflow: hidden }
+.col{width: 948px; min-height: 90px;float: left;margin: 0 24px 10px 0;padding: 0 0 5px 0;background: #ededed;b order-bottom: 1px solid #d5d5d5; overflow: hidden;}
+
 .col.x2{width: 138px;}
 .col.x3{width: 219px;}
 .col.x4{width: 300px;}
@@ -264,6 +292,19 @@ h4{font-size: 100%;}
 .col.x8{width: 624px;}
 .col.x100{width: 100%;background: #ccc;}
 
+#content.wide .box.sp{
+	margin: 0 24px 15px 0;
+	padding: 15px 0 15px 20px;
+}
+.box.sp .col{min-height: 90px;float: left;margin: 0 19px 10px 0;padding: 0 0 5px 0;ba ckground: #dcdcdc;b order-bottom: 1px solid #d5d5d5;overflow:hidden;}
+
+.box.sp .col.x2{width: 135px;}
+.box.sp .col.x3{width: 212px;}
+.box.sp .col.x4{width: 289px;}
+.box.sp .col.x5{width: 366px;}
+.box.sp .col.x5b{width: 400px;}
+.box.sp .col.x6{width: 443px;}
+.box.sp .col.x8{width: 597px;}
 
 /* Content
 -----------------------------*/
@@ -312,7 +353,7 @@ p.switch{
 
 .artw{
 	padding: 10px; 
-	margin-right: 20px;
+	margin: 0 20px 10px 0;
 	background: url(/images/dvd-240x338-shadow.jpg) no-repeat;
 }
 
@@ -341,7 +382,6 @@ dt{
 }
 dd{
 	margin-bottom: 10px;
-	wi dth: 530px;
 	min-height: 20px;
 	height: auto !important;
 	height: 20px;
@@ -351,8 +391,37 @@ dd{
 }
 .box.sp{/* special */
 	padding: 15px 14px 15px 15px;
-	border: 1px solid #cfcfcf;
+	border: 1px solid #eeeeee;
 	background: #f9f9f9;
+}
+
+.boxy{
+	border: 1px solid #b2b2b2;
+	margin: 0 0 15px 0;
+	padding: 10px 15px;
+	background: #fff;
+	overflow: hidden;
+	position: relative;
+}
+.boxy.iso{
+	background: #fff url(/images/ico-dvdxxx.png) 10px 20px no-repeat;
+}
+.boxy.iso small{
+	display: block;
+	margin: 0 0 15px 90px;
+}
+small{
+	font-size: 85%;
+	line-height: 140%;
+	display: block;
+	margin: 0 0 15px 0;
+}
+.boxy h3{
+	background: #b2b2b2;
+	color:#fff;
+	margin: -11px -16px 15px -16px;
+	padding: 5px 15px;
+	font-size: 90%;
 }
 #content .box.sp dl{
 	width: 400px;
@@ -372,4 +441,29 @@ dd{
 	float: none;
 	padding: 0;
 	border: 0
+}
+
+.coverart{
+	width: 174px;
+	height: 250px;
+	float: left;
+	margin: 0 20px 0 0;
+}
+.cddvd{
+	background: url(/images/ico-cddvd.png) no-repeat;
+	width: 174px;
+	height: 250px;
+	float: left;
+	margin: 0 0 0 0;
+}
+.coverart,
+.cddvd{
+	position: relative;
+	
+}
+.coverart .tools.mini,
+.cddvd .tools.mini{
+	position: absolute;
+	bottom: 0
+	
 }
