@@ -1,0 +1,42 @@
+- content_for :main_navigation do
+  %li= link_to 'Wholesale Account', wholesale_root_path
+  %li= link_to 'Invoices', wholesale_wholesaler_wholesaler_invoices_path(current_wholesaler)
+  %li= link_to 'Catalogs', wholesale_wholesaler_catalogs_path(current_wholesaler)
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "Edit My Account", edit_wholesaler_registration_path
+      %li.last= link_to "Credit Card Data", wholesale_wholesaler_credit_cards_path(current_wholesaler)
+  .content
+    %h2.title Edit my #{resource_name.to_s.humanize} account
+    .inner
+      - form_for resource_name, resource, :url => registration_path(resource_name), :html => { :class => :form, :method => :put } do |f|
+        = f.error_messages
+
+        .group
+          %p= f.label :email, 'E-mail', :class => :label
+          %p= f.text_field :email, :class => 'text_field'
+
+        .group
+          %p= f.label :password, 'Password', :class => :label
+          %p= f.password_field :password, :class => 'text_field'
+          %p (leave blank if you don't want to change it)
+
+        .group
+          %p= f.label :password_confirmation, 'Password confirmation', :class => :label
+          %p= f.password_field :password_confirmation, :class => 'text_field'
+
+        .group.navform.wat-cf
+          %button.button{:type => 'submit'}
+            = image_tag("web-app-theme/tick.png", :alt => "Update")
+            Update
+
+    %h2.title Cancel my account
+    .inner
+      %p
+        Unhappy?
+        = link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete
+
+- content_for :sidebar, render(:partial => "shared/devise_wholesaler_links")
+

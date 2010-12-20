@@ -1,0 +1,45 @@
+- content_for :main_navigation do
+  %li= link_to 'Wholesale Account', wholesale_root_path
+  %li.active= link_to 'Invoices', wholesale_wholesaler_wholesaler_invoices_path(current_wholesaler)
+  %li= link_to 'Catalogs', wholesale_wholesaler_catalogs_path(current_wholesaler)
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li= link_to "All", wholesale_wholesaler_wholesaler_invoices_path(current_wholesaler)
+      %li= link_to "Invoice #{@wholesaler_invoice.id}", wholesale_wholesaler_wholesaler_invoice_path(current_wholesaler,@wholesaler_invoice)
+      %li.active= link_to "Add payment", pay_wholesale_wholesaler_wholesaler_invoice_path(current_wholesaler,@wholesaler_invoice)
+  .content
+    %h2.title= "Invoice ##{@wholesaler_invoice.id}"
+    .inner
+      %p
+        %b Invoice Total:
+        = number_to_currency(@wholesaler_invoice.total)
+      %p
+        %b Owed:
+        = number_to_currency(@wholesaler_invoice.owed)
+      
+      - form_for @wholesaler_payment, :url => pay_wholesale_wholesaler_wholesaler_invoice_path(current_wholesaler, @wholesaler_invoice), :html => { :class => :form } do |f|
+        .group
+          = f.error_messages
+
+        .group
+          = f.label :amount, 'Amount', :class => :label
+          = f.text_field :amount, :class => 'text_field_small'
+        .group
+          %p= f.label :credit_card, 'Credit Card', :class => :label
+          - if current_wholesaler.credit_cards.size == 0
+            You have not entered any credit cards.
+            = link_to "You need to enter a credit card before paying this", new_wholesale_wholesaler_credit_card_path(current_wholesaler)
+          - else
+            %p= f.select :credit_card_id, current_wholesaler.credit_cards.map { |i| [ "#{i.card_type.capitalize} #{i.card_number_mask} #{i.card_expires_on.strftime('%m/%y')}", i.id] }
+            .group.navform.wat-cf
+              %button.button{:type => 'submit'}
+                = image_tag("web-app-theme/tick.png", :alt => "Save")
+                = t("web-app-theme.save", :default => "Save")
+              = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", wholesale_wholesaler_wholesaler_invoices_path(current_wholesaler), :class => "button"
+
+          
+
+- content_for :sidebar, render(:partial => 'wholesale/shared/sidebar')
+

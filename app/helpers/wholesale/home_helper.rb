@@ -1,0 +1,2 @@
+module Wholesale::HomeHelper
+end

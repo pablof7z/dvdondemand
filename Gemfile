@@ -2,6 +2,7 @@
 source :gemcutter
 
 gem 'rails', '2.3.9'
+gem 'ruby-debug'
 gem 'rack', '1.1.0'
 gem 'ruby-debug'
 gem 'activemerchant', '1.9.0'
