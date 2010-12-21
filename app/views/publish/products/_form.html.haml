@@ -27,22 +27,37 @@
 
   :javascript
     $(function() {
-      $('a.sleeve').fancybox({
-        autoDimensions: true,
-        overlayColor: '#000',
-        type: 'ajax',
-        onComplete: function () { createJcrop('sleeve') },
-        onClosed: function() { }
-      });
 
-      $('a.disc-cover').fancybox({
-        autoDimensions: true,
-        overlayColor: '#000',
-        type: 'ajax',
-        onComplete: function () { createJcrop('disc-cover') },
-        onClosed: function() { }
-      });
+      var empty_coords = { x: '', y: '', w: '', h: ''};
+      function setCropValues(img, coords) {
+        $('#' + img + '-crop-x').val(coords.x);
+        $('#' + img + '-crop-y').val(coords.y);
+        $('#' + img + '-crop-w').val(coords.w);
+        $('#' + img + '-crop-h').val(coords.h);
+      }
 
+      var elems = [ 'sleeve', 'disc-cover' ];
+      for (i in elems) {
+        (function (elem) {
+          $('a.'+ elem).fancybox({
+            modal: true,
+            autoDimensions: true,
+            overlayColor: '#000',
+            type: 'ajax',
+            onComplete: function () {
+              $('#contentFbox button[type=submit]').click($.fancybox.close);
+              $('#contentFbox a[href=#cancel]').click(function () {
+                setCropValues(elem, empty_coords);
+                $.fancybox.close();
+              });
+              createJcrop(elem);
+              window.setTimeout($.fancybox.center, 0);
+            },
+            onClosed: function() {
+            }
+          });
+        })(elems[i]);
+      }
 
       $("#product_media_type_id").change(function() {
         $("#genres_select").load("#{publish_publisher_genres_path(current_publisher)}?media_type_id="+$(this).val());
@@ -65,10 +80,7 @@
             marginTop: '-' + Math.round(ry * coords.y) + 'px'
           });
 
-          $('#' + img + '-crop-x').val(coords.x);
-          $('#' + img + '-crop-y').val(coords.y);
-          $('#' + img + '-crop-w').val(coords.w);
-          $('#' + img + '-crop-h').val(coords.h);
+          setCropValues(img, coords);
         };
           
 
