@@ -39,7 +39,7 @@
               %td= sale.quantity
               %td= number_to_currency(sale.total)
               - for fee in Fee.all
-                %td= number_to_currency(sale.fees_for(fee))
+                %td= number_to_currency(sale.collect_fees_for(fee))
               %td{:align => :right}
                 - subtotal << sale.total - sale.fees
                 %strong= number_to_currency(subtotal.last)
