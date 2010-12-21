@@ -135,7 +135,9 @@
       #genres_select= f.collection_select :genre_id, @genres, :id, :title
     - else
       %select#product_genre_id{:name => 'product_genre_id'}
-    = f.hidden_field :description, :cols => 80, :rows => 9, :value => 'default'
+  %label.lb
+    %span Description:
+    = f.text_area :description, :cols => 50, :rows => 9
   %label{:for => 'studio'}
     %span Studio:
     = f.text_field :studio, :size => 45
