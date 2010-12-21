@@ -246,10 +246,10 @@
         .template
           - if @product.cd_sleeve_art.exists?
             %a{:href => "#"}
-              %div{:style => 'width: 250px; height: 170px; overflow: hidden; margin: 10px auto;'}
+              %div{:style => 'width: 240px; height: 120px; overflow: hidden; margin: 10px auto;'}
                 %img#sleeve-template{:src => '/images/template_cd.png', :style => 'position: absolute; z-index: 1;' }/
-                %img#sleeve-medium.sleeve-preview{:src => @product.cd_sleeve_art.url(:medium), :style => 'margin: 12px; display: none; width: 225px; height: 111px;'}
-                %img#sleeve-cropped{:src => "#{@product.cd_sleeve_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'margin: 12px; width: 225px; height: 111px;'}
+                %img#sleeve-medium.sleeve-preview{:src => @product.cd_sleeve_art.url(:medium), :style => 'display: none; width: 240px; height: 120px;'}
+                %img#sleeve-cropped{:src => "#{@product.cd_sleeve_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'width: 240px; height: 120px;'}
                 = f.hidden_field :cd_sleeve_art_crop_x, :id => 'sleeve-crop-x'
                 = f.hidden_field :cd_sleeve_art_crop_y, :id => 'sleeve-crop-y'
                 = f.hidden_field :cd_sleeve_art_crop_w, :id => 'sleeve-crop-w'
