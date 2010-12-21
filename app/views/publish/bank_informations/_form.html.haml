@@ -19,12 +19,7 @@
 %label
   %span
     Account Type
-  %label
-    = f.radio_button :account_type, 'Checking'
-    Checking
-  %label
-    = f.radio_button :account_type, 'Savings'
-    Savings
+  = f.select :account_type, options_for_select(['Checking', 'Savings'])
 
 %p.btso.b1
   %button.button{:type => 'submit'}
