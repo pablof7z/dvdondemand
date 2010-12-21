@@ -93,7 +93,7 @@
     %h2 Allocate Product to selected Catalogs
 
     - unless current_publisher.catalogs.blank?
-      - form_for :catalogs_products, :url => {:controller => 'publish/catalogs_products', :action => 'create'} do |f|
+      - form_for :catalogs_products, :url => publish_catalogs_products_path do |f|
         = hidden_field_tag 'product_id', @product.id
         = label_tag :catalog_ids, "Catalogs", :class => :label
         - for catalog in current_publisher.catalogs
