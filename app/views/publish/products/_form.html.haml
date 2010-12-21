@@ -173,8 +173,12 @@
           - if @product.cover_art.exists?
             %a{:href => "#"}
               %div{:style => 'width: 160px; height: 160px; overflow: hidden; margin: 10px auto;'}
-                %img#cover{:src => '/images/template_disc_cover.png'}/
+                %img#cover{:src => '/images/template_disc_cover.png', :style => 'position: absolute; z-index: 1;'}/
                 %img{:src => "#{@product.cover_art.url(:cropped_medium)}?#{Time.now.to_i}"}
+                = f.hidden_field :cover_art_crop_x, :id => 'disc-cover-crop-x'
+                = f.hidden_field :cover_art_crop_y, :id => 'disc-cover-crop-y'
+                = f.hidden_field :cover_art_crop_w, :id => 'disc-cover-crop-w'
+                = f.hidden_field :cover_art_crop_h, :id => 'disc-cover-crop-h'
             %ul.tools
               %li
                 %a.bto.disc-cover{:href => publish_publisher_product_modal_path(current_publisher, @product, :disc_cover)} Edit
@@ -189,10 +193,10 @@
               %div{:style => 'width: 250px; height: 170px; overflow: hidden; margin: 10px auto;'}
                 %img{:src => '/images/template_dvd.png', :style => 'position: absolute; z-index: 1;' }/
                 %img{:src => "#{@product.cd_sleeve_art.url(:cropped_medium)}?#{Time.now.to_i}"}
-                = f.hidden_field :cd_sleeve_art_crop_x, :id => 'cd-sleeve-crop-x'
-                = f.hidden_field :cd_sleeve_art_crop_y, :id => 'cd-sleeve-crop-y'
-                = f.hidden_field :cd_sleeve_art_crop_w, :id => 'cd-sleeve-crop-w'
-                = f.hidden_field :cd_sleeve_art_crop_h, :id => 'cd-sleeve-crop-h'
+                = f.hidden_field :cd_sleeve_art_crop_x, :id => 'sleeve-crop-x'
+                = f.hidden_field :cd_sleeve_art_crop_y, :id => 'sleeve-crop-y'
+                = f.hidden_field :cd_sleeve_art_crop_w, :id => 'sleeve-crop-w'
+                = f.hidden_field :cd_sleeve_art_crop_h, :id => 'sleeve-crop-h'
             %ul.tools
               %li
                 %a.bto.sleeve{:href => publish_publisher_product_modal_path(current_publisher, @product, :sleeve)} Edit
