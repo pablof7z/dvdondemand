@@ -79,12 +79,12 @@
 
     %h2.title Available Packaging Options for this Product
     .inner
-      - form_for :products_options, :url => {:controller => 'publish/products_options', :action => 'create'}, :html => { :class => :form } do |f|
+      - form_for @product.product_options.build, :url => publish_publisher_product_options_path(current_publisher), :html => { :class => :form } do |f|
         .group
           - for option in PackagingOption.all
             = hidden_field_tag 'product_id', @product.id
             %p
-              - std_clamshell = (option.id == 1)
+              - std_clamshell = (option.price == 0)
               - html_options  = { :checked => std_clamshell, :disabled => std_clamshell }
               = check_box_tag 'packaging_option_ids[]', option.id, @product.packaging_options.include?(option), html_options
               = option.title
@@ -99,7 +99,7 @@
     %h2.title Allocate Product to selected Catalogs
     .inner
       - unless current_publisher.catalogs.blank?
-        - form_for :catalogs_products, :url => {:controller => 'publish/catalogs_products', :action => 'create'}, :html => { :class => :form } do |f|
+        - form_for @product.catalogs.build, :url => publish_publisher_product_placements_path(current_publisher), :html => { :class => :form } do |f|
           .group
             = hidden_field_tag 'product_id', @product.id
             = label_tag :catalog_ids, "Catalogs", :class => :label
