@@ -162,10 +162,13 @@ p.btso{clear: both;}
 .errorExplanation h2{
 	margin-bottom: 10px;
 	color: #753e56;
-	color: #333
+	color: #333;
+	display: none;
 }
 .errorExplanation p{
-	color: #333
+    font-size: 14px;
+    font-weight: bold;
+	color: #333;
 }
 .errorExplanation ul{
 	margin: 0 24px 0 0 !important;
@@ -173,10 +176,6 @@ p.btso{clear: both;}
 	background: none;
 }
 .errorExplanation ul li{
-	list-style: none;
-	background: #ffd7d7;
-	border-bottom: 1px dotted #D8000C;
-	color: #D8000C;
 	margin: 0 0 2px 0 !important;
 	padding: 0 0 0 10px!important;
 }
