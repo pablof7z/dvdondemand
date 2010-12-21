@@ -12,11 +12,15 @@ class Publish::ProductsController < PublishController
   end
   
   def create
-    create! { @genres = @product.cd? ? Genre.for_cd : Genre.for_dvd }
+    create! do |success, failure|
+      failure.html { @genres = @product.cd? ? Genre.for_cd : Genre.for_dvd; render :action => 'new' }
+    end
   end
   
   def update
-    update! { @genres = @product.cd? ? Genre.for_cd : Genre.for_dvd }
+    update! do |success, failure|
+      failure.html { @genres = @product.cd? ? Genre.for_cd : Genre.for_dvd; render :action => 'edit' }
+    end
   end
 
   protected
