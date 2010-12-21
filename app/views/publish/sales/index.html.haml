@@ -55,11 +55,7 @@
           %td
       %br (*) Fees apply to each product sold
 
-      - retail_sales = current_publisher.retail_sales.map { |s| s.total }
-      - whole_sales  = current_publisher.whole_sales.map { |s| s.total }
-      %p
-        = Gchart.bar(:size => '300x360', :title => 'Retail Sales', :theme => :pastel, :stacked => false, :data => retail_sales, :axis_with_labels => 'x', :format => 'image_tag')
-        = Gchart.bar(:size => '300x360', :title => 'Wholesale Sales', :theme => :thirty7signals, :stacked => false, :data => whole_sales, :axis_with_labels => 'x', :format => 'image_tag')
+      = render :partial => 'gchart', :locals => { :retail_sales => current_publisher.retail_sales.map { |s| s.total }, :whole_sales => current_publisher.whole_sales.map { |s| s.total } }
 
 - content_for :sidebar, render(:partial => 'publish/shared/sidebar')
 
