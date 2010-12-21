@@ -15,7 +15,7 @@
     .inner
       %p
         %b Type:
-        Retail
+        = @sale.type
       %p
         %b Date:
         = @sale.created_at.to_s(:long)
@@ -42,7 +42,7 @@
               = fee.description
               (*)
             %td{:align => :right}
-              = number_to_currency(@sale.fees_for(fee))
+              = number_to_currency(@sale.collect_fees_for(fee))
         %tr
           %td{:colspan => 3, :align => :right}
             %b Earnings

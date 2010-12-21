@@ -5,7 +5,7 @@ class RetailTest < ActiveSupport::TestCase
     @john = publishers(:john)
   end
 
-  test 'Retail named fixtures and STI' do
+  test 'Retail sales named fixtures and STI' do
     assert_equal 10, @john.sales.count
     assert_equal 5, @john.retail_sales.count
   end
