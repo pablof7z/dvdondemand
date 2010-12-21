@@ -10,6 +10,14 @@ class Publish::ProductsController < PublishController
   def edit
     edit! { @genres = @product.cd? ? Genre.for_cd : Genre.for_dvd }
   end
+  
+  def create
+    create! { @genres = @product.cd? ? Genre.for_cd : Genre.for_dvd }
+  end
+  
+  def update
+    update! { @genres = @product.cd? ? Genre.for_cd : Genre.for_dvd }
+  end
 
   protected
 
