@@ -40,6 +40,8 @@
           %li= link_to 'Sign Up', new_publisher_registration_path, :class => 'log'
           %li= link_to 'My Account', new_publisher_session_path, :class => 'account'
         - else
+          - unless current_publisher.valid?
+            %li= link_to 'Validation Pending', publish_publisher_bank_informations_path(current_publisher), :class => 'log'
           %li= link_to 'Logout', destroy_publisher_session_path, :class => 'log'
           %li= link_to 'Edit Account', edit_publisher_registration_path, :class => 'account'
 
