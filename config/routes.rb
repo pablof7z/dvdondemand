@@ -19,7 +19,8 @@ ActionController::Routing::Routes.draw do |map|
       publisher.resources :bank_informations, :as => :financial, :member => { :send_deposit => :post, :make_default => :post, :validate => [ :get, :post, :put ] }, :except => [ :destroy ]
       publisher.resources :publisher_payments, :as => :payments, :only => [:index, :show]
     end
-
+    
+    publish.resources :products_options
     publish.resources :products, :has_many => :isos
 
     # leave this route auth-less for publisher sign-up marketing

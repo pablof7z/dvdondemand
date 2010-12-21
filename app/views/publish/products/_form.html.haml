@@ -45,7 +45,7 @@
 
 
       $("#product_media_type_id").change(function() {
-        $("#genres_select").load("/publish/genres?media_type_id="+$(this).val());
+        $("#genres_select").load("#{publish_publisher_genres_path(current_publisher)}?media_type_id="+$(this).val());
         return false;
       });
 
