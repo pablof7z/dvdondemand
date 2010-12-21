@@ -6,8 +6,6 @@ class Wholesale::WholesalerInvoicesController < WholesaleController
     @wholesaler_payment = WholesalerPayment.new(params[:wholesaler_payment])
     @wholesaler_payment.invoice = @wholesaler_invoice
     
-    redirect_to wholesale_wholesaler_wholesaler_invoices_path(current_wholesaler)
-    
     if request.post?
       @wholesaler_payment.charged = false
       if @wholesaler_payment.save
@@ -15,6 +13,7 @@ class Wholesale::WholesalerInvoicesController < WholesaleController
           @wholesaler_payment.charged = true
           @wholesaler_payment.save
           flash[:notice] = "Charged was done"
+          redirect_to wholesale_wholesaler_wholesaler_invoices_path(current_wholesaler)
         else
           flash[:warning] = "Unable to charge credit card"
         end
