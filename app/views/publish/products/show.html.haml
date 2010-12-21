@@ -72,7 +72,7 @@
   .box.sp
     %h2 Available Packaging Options for this Product
 
-    - form_for :products_options, :url => {:controller => 'publish/products_options', :action => 'create'} do |f|
+    - form_for :products_options, publish_products_options_path(current_publisher) do |f|
       - for option in PackagingOption.all
         = hidden_field_tag 'product_id', @product.id
         %p
