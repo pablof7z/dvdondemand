@@ -6,7 +6,7 @@
         %ul.secondary-nav
           %li= link_to "<strong>Publisher</strong> home", publisher_root_path, :class => (controller.action_name == 'index'?'current':'')
           %li= link_to "<strong>Edit</strong> account", edit_publisher_registration_path, :class => (controller.action_name == 'edit'?'current':'')
-          %li= link_to "<strong>Financial</strong> information", publish_publisher_bank_informations_path(@publisher), :class => (controller.action_name == 'edit'?'current':'')
+          %li= link_to "<strong>Financial</strong> information", publish_publisher_bank_informations_path(current_publisher), :class => (controller.action_name == 'edit'?'current':'')
           - if controller.controller_name == 'bank_information'
             %li= link_to "<strong>Add</strong> bank information", new_publish_publisher_bank_information_path(current_publisher), :class => (controller.action_name == 'new'?'current':'')
       - else
