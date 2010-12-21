@@ -80,7 +80,7 @@
       }
 
 
-      var imgs = [ 'sleeve', 'disc-cover' ];
+      var imgs = [ 'sleeve', 'disc-cover', 'product-image' ];
       for (i in imgs) {
         (function (img) {
           $('a.'+ img).fancybox({
@@ -211,6 +211,8 @@
         %a{:href => '#tab1'} Disc Cover
       %li
         %a{:href => '#tab2'} Sleeve
+      %li
+        %a{:href => '#tab3'} Image Product
     #basic-modal.tab_cantainer
       #tab1.tab_content
         .template
@@ -250,6 +252,25 @@
                 %a.bto{:href => "#"} Delete
           - else
             = f.file_field :cd_sleeve_art
+      #tab3.tab_content
+        .template
+          - if @product.image.exists?
+            %a{:href => "#"}
+              %div{:style => 'width: 220px; height: 293px; overflow: hidden; margin: 10px auto;'}
+                %img#product-image-template{:src => '/images/template_product_image.png', :style => 'position: absolute; z-index: 1;' }/
+                %img#product-image-medium.product-image-preview{:src => @product.image.url(:medium), :style => 'padding: 5px; display: none; width: 210px; height: 283px;'}
+                %img#product-image-cropped{:src => "#{@product.image.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'padding: 5px; width: 210px; height: 283px;'}
+                = f.hidden_field :image_crop_x, :id => 'product-image-crop-x'
+                = f.hidden_field :image_crop_y, :id => 'product-image-crop-y'
+                = f.hidden_field :image_crop_w, :id => 'product-image-crop-w'
+                = f.hidden_field :image_crop_h, :id => 'product-image-crop-h'
+            %ul.tools
+              %li
+                %a.bto.product-image{:href => publish_publisher_product_modal_path(current_publisher, @product, :product_image)} Edit
+              %li
+                %a.bto{:href => "#"} Delete
+          - else
+            = f.file_field :image
 
 
 
