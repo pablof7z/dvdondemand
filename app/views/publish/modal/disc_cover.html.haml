@@ -1,0 +1,15 @@
+#contentFbox
+  .box.sp
+    %h1 Sleeve
+    .col.x4
+      %img#disc-cover-cropbox{:src => @product.cover_art.url(:medium)}
+    .col.x4
+      %div{:style => 'width: 160px; height: 160px; overflow: hidden; margin: 0 auto;'}
+        %img#disc-cover-back{:src => '/images/template_disc_cover.png', :style => 'position: absolute; z-index: 1; width: 160px; height: 160px'}/
+        %img#disc-cover-preview{:src => @product.cover_art.url(:original)}
+
+    %p.btso.b1
+      %button{:type => 'submmit'} Save
+      %span
+        or
+        %a{:href => '#'} Cancel
