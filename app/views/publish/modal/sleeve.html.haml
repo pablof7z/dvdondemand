@@ -6,7 +6,7 @@
     .col.x4
       %div{:style => 'width: 240px; height: 160px; overflow: hidden; margin: 0 auto;'}
         %img#sleeve-back{:src => '/images/template_dvd.png', :style => 'position: absolute; z-index: 1; width: 240px; height: 160px'}/
-        %img#sleeve-preview{:src => @product.cd_sleeve_art.url(:original)}
+        %img.sleeve-preview{:src => @product.cd_sleeve_art.url(:original)}
 
     %p.btso.b1
       %button{:type => 'submit'} Save
