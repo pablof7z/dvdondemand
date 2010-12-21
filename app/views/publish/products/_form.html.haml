@@ -198,9 +198,9 @@
         .template
           - if @product.cover_art.exists?
             %a{:href => "#"}
-              %div{:style => 'width: 250px; height: 170px; overflow: hidden; margin: 10px auto;'}
+              %div{:style => 'width: 250px; height: 170px; overflow: hidden; margin: 10px auto; position: relative;'}
                 %img{:src => '/images/template_dvd.png', :style => 'position: absolute; z-index: 1;' }/
-                %img{:src => "#{@product.cd_sleeve_art.url(:cropped_medium)}?#{Time.now.to_i}"}
+                %img{:src => "#{@product.cd_sleeve_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'position: absolute; top: 5px; left: 5px;'}
                 = f.hidden_field :cd_sleeve_art_crop_x, :id => 'sleeve-crop-x'
                 = f.hidden_field :cd_sleeve_art_crop_y, :id => 'sleeve-crop-y'
                 = f.hidden_field :cd_sleeve_art_crop_w, :id => 'sleeve-crop-w'
