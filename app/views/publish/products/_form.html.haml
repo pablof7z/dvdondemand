@@ -29,6 +29,8 @@
     $(function() {
 
       var empty_coords = { x: '', y: '', w: '', h: ''};
+      var saved_coords = {};
+
       function setCropValues(img, coords) {
         $('#' + img + '-crop-x').val(coords.x);
         $('#' + img + '-crop-y').val(coords.y);
@@ -36,27 +38,80 @@
         $('#' + img + '-crop-h').val(coords.h);
       }
 
-      var elems = [ 'sleeve', 'disc-cover' ];
-      for (i in elems) {
-        (function (elem) {
-          $('a.'+ elem).fancybox({
+      function getCropValues(img) {
+        return {
+          x: $('#' + img + '-crop-x').val(),
+          y: $('#' + img + '-crop-y').val(),
+          w: $('#' + img + '-crop-w').val(),
+          h: $('#' + img + '-crop-h').val()
+        };
+      }
+
+      function saveCropValues(img, coords) {
+        saved_coords[img] = {
+          x: coords.x,
+          y: coords.y,
+          h: coords.h,
+          w: coords.w
+        };
+      }
+
+      function loadCropValues(img) {
+        if (typeof saved_coords[img] == 'undefined')
+          return empty_coords;
+
+        return saved_coords[img];
+      }
+
+      function updatePreview(img, coords) {
+          var preview = $('.' + img + '-preview');
+          var cropbox = $('#' + img + '-cropbox');
+          var back = $('#' + img + '-back');
+          var rx = back.width() / coords.w;
+          var ry = back.height() / coords.h;
+
+          preview.css({
+            width: Math.round(rx * cropbox.width()) + 'px',
+            height: Math.round(ry * cropbox.height()) + 'px',
+            marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+            marginTop: '-' + Math.round(ry * coords.y) + 'px'
+          });
+
+      }
+
+
+      var imgs = [ 'sleeve', 'disc-cover' ];
+      for (i in imgs) {
+        (function (img) {
+          $('a.'+ img).fancybox({
             modal: true,
             autoDimensions: true,
             overlayColor: '#000',
             type: 'ajax',
             onComplete: function () {
-              $('#contentFbox button[type=submit]').click($.fancybox.close);
-              $('#contentFbox a[href=#cancel]').click(function () {
-                setCropValues(elem, empty_coords);
+              // Save button
+              $('#contentFbox button[type=submit]').click(function () {
+                $('#' + img + '-medium').show();
+                setCropValues(img, loadCropValues(img));
                 $.fancybox.close();
+                return false;
               });
-              createJcrop(elem);
+
+              // Cancel link
+              $('#contentFbox a[href=#cancel]').click(function () {
+                var coords = getCropValues(img);
+                updatePreview(img, coords);
+                $.fancybox.close();
+                return false;
+              });
+
+              createJcrop(img);
               window.setTimeout($.fancybox.center, 0);
             },
             onClosed: function() {
             }
           });
-        })(elems[i]);
+        })(imgs[i]);
       }
 
       $("#product_media_type_id").change(function() {
@@ -70,24 +125,15 @@
         var preview = $('#' + img + '-preview');
 
         function callback(coords) {
-          var rx = back.width() / coords.w;
-          var ry = back.height() / coords.h;
-
-          preview.css({
-            width: Math.round(rx * cropbox.width()) + 'px',
-            height: Math.round(ry * cropbox.height()) + 'px',
-            marginLeft: '-' + Math.round(rx * coords.x) + 'px',
-            marginTop: '-' + Math.round(ry * coords.y) + 'px'
-          });
-
-          setCropValues(img, coords);
+          saveCropValues(img, coords);
+          updatePreview(img, coords);
         };
           
-
+        coords = loadCropValues(img);
         cropbox.Jcrop({
           onSelect: callback,
           onChange: callback,
-          setSelect: [ 0, 0, 100, 100 ],
+          setSelect: [ coords.x, coords.y, coords.w, coords.h ],
           aspectRatio: back.width() / back.height()
         });
       };
@@ -107,9 +153,6 @@
         $('#label-modal-content').modal();
         return false;
       });
-
-      $('ul.tabs li')
-
 
       $('.tab_content').hide();
       $('ul.tabs li:first').addClass('active').show();
@@ -181,8 +224,9 @@
           - if @product.cover_art.exists?
             %a{:href => "#"}
               %div{:style => 'width: 160px; height: 160px; overflow: hidden; margin: 10px auto;'}
-                %img#cover{:src => '/images/template_disc_cover.png', :style => 'position: absolute; z-index: 1;'}/
-                %img{:src => "#{@product.cover_art.url(:cropped_medium)}?#{Time.now.to_i}"}
+                %img#disc-cover-template{:src => '/images/template_disc_cover.png', :style => 'position: absolute; z-index: 1;'}/
+                %img#disc-cover-medium.disc-cover-preview{:src => @product.cover_art.url(:medium), :style => 'display: none;'}
+                %img#disc-cover-cropped{:src => "#{@product.cover_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'width: 160px; height: 160px;'}
                 = f.hidden_field :cover_art_crop_x, :id => 'disc-cover-crop-x'
                 = f.hidden_field :cover_art_crop_y, :id => 'disc-cover-crop-y'
                 = f.hidden_field :cover_art_crop_w, :id => 'disc-cover-crop-w'
@@ -198,9 +242,10 @@
         .template
           - if @product.cover_art.exists?
             %a{:href => "#"}
-              %div{:style => 'width: 250px; height: 170px; overflow: hidden; margin: 10px auto; position: relative;'}
-                %img{:src => '/images/template_dvd.png', :style => 'position: absolute; z-index: 1;' }/
-                %img{:src => "#{@product.cd_sleeve_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'position: absolute; top: 5px; left: 5px;'}
+              %div{:style => 'width: 250px; height: 170px; overflow: hidden; margin: 10px auto;'}
+                %img#sleeve-template{:src => '/images/template_dvd.png', :style => 'position: absolute; z-index: 1;' }/
+                %img#sleeve-medium.sleeve-preview{:src => @product.cd_sleeve_art.url(:medium), :style => 'padding: 5px; display: none; width: 240px; height: 160px;'}
+                %img#sleeve-cropped{:src => "#{@product.cd_sleeve_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'padding: 5px; width: 240px; height: 160px;'}
                 = f.hidden_field :cd_sleeve_art_crop_x, :id => 'sleeve-crop-x'
                 = f.hidden_field :cd_sleeve_art_crop_y, :id => 'sleeve-crop-y'
                 = f.hidden_field :cd_sleeve_art_crop_w, :id => 'sleeve-crop-w'
