@@ -4,9 +4,14 @@
     .col.x4
       %img#product-image-cropbox{:src => @product.image.url(:medium)}
     .col.x4
-      %div{:style => 'width: 220px; height: 293px; overflow: hidden; margin: 0 auto;'}
-        %img#product-image-back{:src => '/images/template_product_image.png', :style => 'position: absolute; z-index: 1; width: 220px; height: 293px'}/
-        %img.product-image-preview{:src => @product.image.url(:original)}
+      - if params[:media_type] == 'dvd'
+        %div{:style => 'width: 220px; height: 293px; overflow: hidden; margin: 0 auto;'}
+          %img#product-image-back{:src => '/images/template_dvd_product_image.png', :style => 'position: absolute; z-index: 1; width: 220px; height: 293px'}/
+          %img.product-image-preview{:src => @product.image.url(:original)}
+      - else
+        %div{:style => 'width: 220px; height: 220px; overflow: hidden; margin: 0 auto;'}
+          %img#product-image-back{:src => '/images/template_cd_product_image.png', :style => 'position: absolute; z-index: 1; width: 220px; height: 220px'}/
+          %img.product-image-preview{:src => @product.image.url(:original)}
 
     %p.btso.b1
       %button{:type => 'submit'} Save
