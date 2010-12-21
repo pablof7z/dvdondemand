@@ -9,7 +9,9 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :publish do |publish|
     publish.resources :publishers, :only => [:edit, :show] do |publisher|
       publisher.resources :catalogs, :has_many => :products
-      publisher.resources :products, :has_many => :items
+      publisher.resources :products, :has_many => :items do |product|
+        product.modal '/modal/:action/:id', :controller => 'modal'
+      end
 
       publisher.resources :genres, :only => :index
       publisher.resources :sales,  :only => [:index, :show]
