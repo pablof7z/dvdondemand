@@ -52,8 +52,8 @@ class Order < ActiveRecord::Base
   end
 
   def purchase
-    response = GATEWAY.purchase(total_in_cents, credit_card, options)
-    transactions.create!(:action => 'purchase', :amount => total_in_cents, :response => response)
+    response = OrderTransaction.purchase(total_in_cents, credit_card, options)
+    transactions << response
     response.success?
   end
 
