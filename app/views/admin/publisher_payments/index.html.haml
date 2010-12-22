@@ -1,22 +1,25 @@
 - content_for :primary_nav do
-  =render :partial => 'publish/shared/navbar'
+  =render :partial => 'admin/shared/navbar'
 
 #content.wide
-  %h1 All your publisher payments
-
-  %table.t1
-    %thead
+  %h1 All Publisher Payments
+  .box
+    %table.t1
       %tr
         %th.first.w5{:scope => 'col'} ID
         %th Date
-        %th.w50 Payment Method
+        %th.Payment Method
         %th
         %th Amount
-    %tbody
       - @publisher_payments.each do |publisher_payment|
         %tr{:class => cycle("odd", "even")}
           %td= publisher_payment.id
           %td= publisher_payment.created_at
-          %td= publisher_payment.payment_method
+          %td= publisher_payment.payment_method_with_data
           %td
+            - if publisher_payment.bank_information
+              = publisher_payment.memo
           %td= number_to_currency publisher_payment.amount
+    .actions-bar.wat-cf
+      .actions
+

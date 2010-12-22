@@ -47,14 +47,16 @@
         =link_to 'Orders', admin_orders_path
     
     %li
-      - if controller.controller_name == 'publishers'
+      - if controller.controller_name == 'publishers' or controller.controller_name == 'publisher_payments'
         =link_to 'Publishers', admin_publishers_path, :class => 'current'
         %ul.secondary-nav
-          %li= link_to "<strong>All</strong> publishers", admin_publishers_path, :class => (controller.action_name == 'index'?'current':'')
-          - if controller.action_name == 'show'
-            %li= link_to "<strong>Show</strong> publisher", admin_publisher_path(@publisher), :class => (controller.action_name == 'show'?'current':'')
+          %li= link_to "<strong>All</strong> publishers", admin_publishers_path, :class => (controller.controller_name == 'publishers' and controller.action_name == 'index'?'current':'')
+          - if controller.controller_name == 'publishers' and controller.action_name == 'show'
+            %li= link_to "<strong>Show</strong> publisher", admin_publisher_path(@publisher), :class => (controller.controller_name == 'publishers' and controller.action_name == 'show'?'current':'')
           - if controller.action_name == 'edit' or controller.action_name == 'update'
             %li= link_to "<strong>Edit</strong> publisher", edit_admin_publisher_path(@publisher), :class => (controller.action_name == 'edit'?'current':'')
+          %li= link_to "<strong>All</strong> publisher payments", admin_publisher_payments_path, :class => (controller.controller_name == 'publisher_payments' and controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>Generate</strong> publisher payments", generate_admin_publisher_payment_path(1), :class => (controller.controller_name == 'publisher_payments' and controller.action_name == 'process'?'current':'')
 
       - else
         =link_to 'Publishers', admin_publishers_path
