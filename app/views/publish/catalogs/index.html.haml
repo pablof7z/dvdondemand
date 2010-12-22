@@ -1,16 +1,5 @@
 - content_for :primary_nav do
-  %ul.primary-nav
-    %li= link_to 'Dashboard', publisher_root_path
-    %li
-      = link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher), :class => 'current'
-      %ul.secondary-nav
-        %li= link_to "<strong>All</strong> catalogs", publish_publisher_catalogs_path(current_publisher), :class => 'current'
-        %li= link_to "<strong>New</strong> catalog", new_publish_publisher_catalog_path(current_publisher)
-    %li= link_to 'Products', publish_publisher_products_path(current_publisher)
-    %li= link_to 'Sales', publish_publisher_sales_path(current_publisher)
-    %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
-
-
+  =render :partial => 'publish/shared/navbar'
 
 #content.wide
   %h1 All your published Catalogs
