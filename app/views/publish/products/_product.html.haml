@@ -1,7 +1,7 @@
 %tr{:class => cycle("odd", "even")}
   %td
-    - if product.cover_art.exists?(:thumb)
-      = image_tag(product.cover_art.url(:thumb))
+    - if product.image.exists?(:thumb)
+      = image_tag(product.image.url(:thumb))
     - else
       = product.id
   %td= link_to product.title, publish_publisher_product_path(current_publisher,product)
