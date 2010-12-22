@@ -26,6 +26,8 @@
     #simplemodal-container a.modalCloseImg {background:url(/images/x.png) no-repeat; width:25px; height:29px; display:inline; z-index:3200; position:absolute; top:-15px; right:-16px; cursor:pointer;}
     #cd_sleeve { display: #{@product.cd? ? 'block' : 'none'}; }
     #dvd_sleeve { display: #{@product.dvd? ? 'block' : 'none'}; }
+    #product-image-cd-tab { display: #{@product.cd? ? 'block' : 'none'}; }
+    #product-image-dvd-tab { display: #{@product.dvd? ? 'block' : 'none'}; }
 
   :javascript
     $(function() {
@@ -93,7 +95,7 @@
             onComplete: function () {
               // Save button
               $('#contentFbox button[type=submit]').click(function () {
-                $('#' + img + '-medium').show();
+                $('.' + img + '-medium').show();
                 setCropValues(img, loadCropValues(img));
                 $.fancybox.close();
                 return false;
@@ -118,12 +120,29 @@
 
       $("#product_media_type_id").change(function() {
         $("#genres_select").load("#{publish_publisher_genres_path(current_publisher)}?media_type_id="+$(this).val());
-        if ($(this).val() == '1') { selected_sleeve = $('#cd_sleeve'); ns_sleeve = $('#dvd_sleeve'); }
-        if ($(this).val() == '2') { selected_sleeve = $('#dvd_sleeve'); ns_sleeve = $('#cd_sleeve'); }
+        if ($(this).val() == '1') {
+          selected_sleeve = $('#cd_sleeve');
+          ns_sleeve = $('#dvd_sleeve');
+          $('#product-image-cd-tab').show();
+          $('#product-image-dvd-tab').hide();
+
+        } else if ($(this).val() == '2') {
+          selected_sleeve = $('#dvd_sleeve');
+          ns_sleeve = $('#cd_sleeve');
+          $('#product-image-cd-tab').hide();
+          $('#product-image-dvd-tab').show();
+        }
+
         selected_sleeve.show();
         ns_sleeve.hide();
         selected_sleeve.trigger('click');
         return false;
+      });
+
+      $('a.bto.del').click(function () {
+          tab = $(this).attr('href');
+          $(tab + '-edit').hide();
+          $(tab + '-upload').show();
       });
 
       function createJcrop(img) {
@@ -144,22 +163,6 @@
           aspectRatio: back.width() / back.height()
         });
       };
-
-      $('#basic-modal .front').click(function (e) {
-        $('#front-modal-content').modal();
-        createJcrop('cd-sleeve');
-        return false;
-      });
-
-      $('#basic-modal .back').click(function (e) {
-        $('#back-modal-content').modal();
-        return false;
-      });
-
-      $('#basic-modal .label').click(function (e) {
-        $('#label-modal-content').modal();
-        return false;
-      });
 
       $('.tab_content').hide();
       $('ul.tabs li:first').addClass('active').show();
@@ -219,84 +222,115 @@
       %li#cd_sleeve
         %a{:href => '#tab2'} CD Sleeve
       %li#dvd_sleeve
-        %a{:href => '#tab4'} DVD Sleeve
+        %a{:href => '#tab3'} DVD Sleeve
       %li
-        %a{:href => '#tab3'} Image Product
+        %a{:href => '#tab4'} Product Image
     #basic-modal.tab_cantainer
       #tab1.tab_content
         .template
           - if @product.cover_art.exists?
-            %a{:href => "#"}
-              %div{:style => 'width: 160px; height: 160px; overflow: hidden; margin: 10px auto;'}
-                %img#disc-cover-template{:src => '/images/template_disc_cover.png', :style => 'position: absolute; z-index: 1;'}/
-                %img#disc-cover-medium.disc-cover-preview{:src => @product.cover_art.url(:medium), :style => 'display: none;'}
-                %img#disc-cover-cropped{:src => "#{@product.cover_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'width: 160px; height: 160px;'}
-                = f.hidden_field :cover_art_crop_x, :id => 'disc-cover-crop-x'
-                = f.hidden_field :cover_art_crop_y, :id => 'disc-cover-crop-y'
-                = f.hidden_field :cover_art_crop_w, :id => 'disc-cover-crop-w'
-                = f.hidden_field :cover_art_crop_h, :id => 'disc-cover-crop-h'
-            %ul.tools
-              %li
-                %a.bto.disc-cover{:href => publish_publisher_product_modal_path(current_publisher, @product, :disc_cover)} Edit
-              %li
-                %a.bto.del.label{:href => "#"} Delete
+            #cover-edit
+              %a{:href => "#"}
+                %div{:style => 'width: 160px; height: 160px; overflow: hidden; margin: 10px auto;'}
+                  %img#disc-cover-template{:src => '/images/template_disc_cover.png', :style => 'position: absolute; z-index: 1;'}/
+                  %img.disc-cover-medium.disc-cover-preview{:src => @product.cover_art.url(:medium), :style => 'display: none;'}
+                  %img#disc-cover-cropped{:src => "#{@product.cover_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'width: 160px; height: 160px;'}
+              %ul.tools
+                %li
+                  %a.bto.disc-cover{:href => publish_publisher_product_modal_path(current_publisher, @product, :disc_cover)} Edit
+                %li
+                  %a.bto.del.label{:href => '#cover'} Delete
+            #cover-upload{:style => 'display: none'}
+              = f.file_field :cover_art
+
+            = f.hidden_field :cover_art_crop_x, :id => 'disc-cover-crop-x'
+            = f.hidden_field :cover_art_crop_y, :id => 'disc-cover-crop-y'
+            = f.hidden_field :cover_art_crop_w, :id => 'disc-cover-crop-w'
+            = f.hidden_field :cover_art_crop_h, :id => 'disc-cover-crop-h'
+
           - else
             = f.file_field :cover_art
       #tab2.tab_content
         .template
           - if @product.cd_sleeve_art.exists?
-            %a{:href => "#"}
-              %div{:style => 'width: 240px; height: 120px; overflow: hidden; margin: 10px auto;'}
-                %img#sleeve-template{:src => '/images/template_cd.png', :style => 'position: absolute; z-index: 1;' }/
-                %img#sleeve-medium.sleeve-preview{:src => @product.cd_sleeve_art.url(:medium), :style => 'display: none; width: 240px; height: 120px;'}
-                %img#sleeve-cropped{:src => "#{@product.cd_sleeve_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'width: 240px; height: 120px;'}
-                = f.hidden_field :cd_sleeve_art_crop_x, :id => 'sleeve-crop-x'
-                = f.hidden_field :cd_sleeve_art_crop_y, :id => 'sleeve-crop-y'
-                = f.hidden_field :cd_sleeve_art_crop_w, :id => 'sleeve-crop-w'
-                = f.hidden_field :cd_sleeve_art_crop_h, :id => 'sleeve-crop-h'
-            %ul.tools
-              %li
-                %a.bto.sleeve{:href => publish_publisher_product_modal_path(current_publisher, @product, :sleeve, :media_type => :cd)} Edit
-              %li
-                %a.bto{:href => "#"} Delete
+            #sleeve-cd-edit
+              %a{:href => "#"}
+                %div{:style => 'width: 240px; height: 120px; overflow: hidden; margin: 10px auto;'}
+                  %img#sleeve-template{:src => '/images/template_cd.png', :style => 'position: absolute; z-index: 1;' }/
+                  %img.sleeve-medium.sleeve-preview{:src => @product.cd_sleeve_art.url(:medium), :style => 'display: none; width: 240px; height: 120px;'}
+                  %img#sleeve-cropped{:src => "#{@product.cd_sleeve_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'width: 240px; height: 120px;'}
+              %ul.tools
+                %li
+                  %a.bto.sleeve{:href => publish_publisher_product_modal_path(current_publisher, @product, :sleeve, :media_type => :cd)} Edit
+                %li
+                  %a.bto.del.label{:href => '#sleeve-cd'} Delete
+            #sleeve-cd-upload{:style => 'display: none'}
+              = f.file_field :cd_sleeve_art
+
+            = f.hidden_field :cd_sleeve_art_crop_x, :id => 'sleeve-crop-x'
+            = f.hidden_field :cd_sleeve_art_crop_y, :id => 'sleeve-crop-y'
+            = f.hidden_field :cd_sleeve_art_crop_w, :id => 'sleeve-crop-w'
+            = f.hidden_field :cd_sleeve_art_crop_h, :id => 'sleeve-crop-h'
+
           - else
             = f.file_field :cd_sleeve_art
-      #tab4.tab_content
+      #tab3.tab_content
         .template
           - if @product.dvd_sleeve_art.exists?
-            %a{:href => "#"}
-              %div{:style => 'width: 250px; height: 170px; overflow: hidden; margin: 10px auto;'}
-                %img#sleeve-template{:src => '/images/template_dvd.png', :style => 'position: absolute; z-index: 1;' }/
-                %img#sleeve-medium.sleeve-preview{:src => @product.cd_sleeve_art.url(:medium), :style => 'padding: 5px; display: none; width: 240px; height: 160px;'}
-                %img#sleeve-cropped{:src => "#{@product.dvd_sleeve_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'padding: 5px; width: 240px; height: 160px;'}
-                = f.hidden_field :dvd_sleeve_art_crop_x, :id => 'sleeve-crop-x'
-                = f.hidden_field :dvd_sleeve_art_crop_y, :id => 'sleeve-crop-y'
-                = f.hidden_field :dvd_sleeve_art_crop_w, :id => 'sleeve-crop-w'
-                = f.hidden_field :dvd_sleeve_art_crop_h, :id => 'sleeve-crop-h'
-            %ul.tools
-              %li
-                %a.bto.sleeve{:href => publish_publisher_product_modal_path(current_publisher, @product, :sleeve, :media_type => :dvd)} Edit
-              %li
-                %a.bto{:href => "#"} Delete
+            #sleeve-dvd-edit
+              %a{:href => "#"}
+                %div{:style => 'width: 250px; height: 170px; overflow: hidden; margin: 10px auto;'}
+                  %img#sleeve-template{:src => '/images/template_dvd.png', :style => 'position: absolute; z-index: 1;' }/
+                  %img.sleeve-medium.sleeve-preview{:src => @product.dvd_sleeve_art.url(:medium), :style => 'padding: 5px; display: none; width: 240px; height: 160px;'}
+                  %img#sleeve-cropped{:src => "#{@product.dvd_sleeve_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'padding: 5px; width: 240px; height: 160px;'}
+              %ul.tools
+                %li
+                  %a.bto.sleeve{:href => publish_publisher_product_modal_path(current_publisher, @product, :sleeve, :media_type => :dvd)} Edit
+                %li
+                  %a.bto.del.label{:href => '#sleeve-dvd'} Delete
+            #sleeve-dvd-upload{:style => 'display: none'}
+              = f.file_field :dvd_sleeve_art
+
+            = f.hidden_field :dvd_sleeve_art_crop_x, :id => 'sleeve-crop-x'
+            = f.hidden_field :dvd_sleeve_art_crop_y, :id => 'sleeve-crop-y'
+            = f.hidden_field :dvd_sleeve_art_crop_w, :id => 'sleeve-crop-w'
+            = f.hidden_field :dvd_sleeve_art_crop_h, :id => 'sleeve-crop-h'
+
           - else
             = f.file_field :dvd_sleeve_art
-      #tab3.tab_content
+      #tab4.tab_content
         .template
           - if @product.image.exists?
             %a{:href => "#"}
-              %div{:style => 'width: 220px; height: 293px; overflow: hidden; margin: 10px auto;'}
-                %img#product-image-template{:src => '/images/template_product_image.png', :style => 'position: absolute; z-index: 1;' }/
-                %img#product-image-medium.product-image-preview{:src => @product.image.url(:medium), :style => 'padding: 5px; display: none; width: 210px; height: 283px;'}
-                %img#product-image-cropped{:src => "#{@product.image.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'padding: 5px; width: 210px; height: 283px;'}
-                = f.hidden_field :image_crop_x, :id => 'product-image-crop-x'
-                = f.hidden_field :image_crop_y, :id => 'product-image-crop-y'
-                = f.hidden_field :image_crop_w, :id => 'product-image-crop-w'
-                = f.hidden_field :image_crop_h, :id => 'product-image-crop-h'
-            %ul.tools
-              %li
-                %a.bto.product-image{:href => publish_publisher_product_modal_path(current_publisher, @product, :product_image)} Edit
-              %li
-                %a.bto{:href => "#"} Delete
+              #product-image-edit
+                #product-image-cd-tab
+                  %div{:style => 'width: 220px; height: 220px; overflow: hidden; margin: 10px auto;'}
+                    %img#product-image-template{:src => '/images/template_cd_product_image.png', :style => 'position: absolute; z-index: 1;' }/
+                    %img.product-image-medium.product-image-preview{:src => @product.image.url(:medium), :style => 'padding: 5px; display: none; width: 210px; height: 210px;'}
+                    %img#product-image-cropped{:src => "#{@product.image.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'padding: 5px; width: 210px; height: 210px;'}
+                  %ul.tools
+                    %li
+                      %a.bto.product-image{:href => publish_publisher_product_modal_path(current_publisher, @product, :product_image, :media_type => :cd)} Edit
+                    %li
+                      %a.bto.del.label{:href => '#product-image'} Delete
+
+                #product-image-dvd-tab
+                  %div{:style => 'width: 220px; height: 293px; overflow: hidden; margin: 10px auto;'}
+                    %img#product-image-template{:src => '/images/template_dvd_product_image.png', :style => 'position: absolute; z-index: 1;' }/
+                    %img.product-image-medium.product-image-preview{:src => @product.image.url(:medium), :style => 'padding: 5px; display: none; width: 210px; height: 283px;'}
+                    %img#product-image-cropped{:src => "#{@product.image.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'padding: 5px; width: 210px; height: 283px;'}
+                  %ul.tools
+                    %li
+                      %a.bto.product-image{:href => publish_publisher_product_modal_path(current_publisher, @product, :product_image, :media_type => :dvd)} Edit
+                    %li
+                      %a.bto.del.label{:href => '#product-image'} Delete
+              #product-image-upload{:style => 'display: none'}
+                = f.file_field :image
+
+              = f.hidden_field :image_crop_x, :id => 'product-image-crop-x'
+              = f.hidden_field :image_crop_y, :id => 'product-image-crop-y'
+              = f.hidden_field :image_crop_w, :id => 'product-image-crop-w'
+              = f.hidden_field :image_crop_h, :id => 'product-image-crop-h'
           - else
             = f.file_field :image
 
