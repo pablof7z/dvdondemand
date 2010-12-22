@@ -312,7 +312,7 @@
                     %li
                       %a.bto.product-image{:href => publish_publisher_product_modal_path(current_publisher, @product, :product_image, :media_type => :cd)} Edit
                     %li
-                      %a.bto.del.label{:href => "#"} Delete
+                      %a.bto.del.label{:href => '#product-image'} Delete
 
                 #product-image-dvd-tab
                   %div{:style => 'width: 220px; height: 293px; overflow: hidden; margin: 10px auto;'}
@@ -323,7 +323,7 @@
                     %li
                       %a.bto.product-image{:href => publish_publisher_product_modal_path(current_publisher, @product, :product_image, :media_type => :dvd)} Edit
                     %li
-                      %a.bto.del.label{:href => "#product-image"} Delete
+                      %a.bto.del.label{:href => '#product-image'} Delete
               #product-image-upload{:style => 'display: none'}
                 = f.file_field :image
 
