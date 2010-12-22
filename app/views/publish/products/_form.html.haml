@@ -24,7 +24,7 @@
     #simplemodal-container {width:780px; height:580px; color:#bbb; background-color:#ededed; border:10px solid #fff; padding:12px;}
     #simplemodal-container .simplemodal-data {padding:8px;}
     #simplemodal-container a.modalCloseImg {background:url(/images/x.png) no-repeat; width:25px; height:29px; display:inline; z-index:3200; position:absolute; top:-15px; right:-16px; cursor:pointer;}
-    #cd_sleeve { display: #{@product.cd? ? 'block' : 'none'}; }
+    #cd_sleeve { display: #{(@product.cd? or @product.media_type_id == nil) ? 'block' : 'none'}; }
     #dvd_sleeve { display: #{@product.dvd? ? 'block' : 'none'}; }
     #product-image-cd-tab { display: #{@product.cd? ? 'block' : 'none'}; }
     #product-image-dvd-tab { display: #{@product.dvd? ? 'block' : 'none'}; }
