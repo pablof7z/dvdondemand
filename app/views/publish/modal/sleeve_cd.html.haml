@@ -1,0 +1,15 @@
+#contentFbox
+  .box.sp
+    %h1 CD Sleeve
+    .col.x4
+      %img#sleeve-cd-cropbox{:src => @product.cd_sleeve_art.url(:medium)}
+    .col.x4
+      %div{:style => 'width: 240px; height: 120px; overflow: hidden; margin: 0 auto;'}
+        %img#sleeve-cd-back{:src => "/images/template_cd.png", :style => 'position: absolute; z-index: 1; width: 240px; height: 120px;'}
+        %img.sleeve-cd-preview{:src => @product.cd_sleeve_art.url(:original)}
+
+    %p.btso.b1
+      %button{:type => 'submit'} Save
+      %span
+        or
+        %a{:href => '#cancel'} Cancel
