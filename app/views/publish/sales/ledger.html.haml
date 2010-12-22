@@ -1,0 +1,68 @@
+- content_for :main_navigation do
+  %li= link_to 'Dashboard', publisher_root_path
+  %li= link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
+  %li= link_to 'Products', publish_publisher_products_path(current_publisher)
+  %li.active= link_to 'Sales', publish_publisher_sales_path(current_publisher)
+  %li= link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
+
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "All Sales Reports", publish_publisher_sales_path(current_publisher)
+  .content
+    %h2.title Sales Reports
+    .inner
+      %table.table
+        %tr
+          %th Date
+          %th Transaction
+          %th Type
+          %th Qty.
+          %th Sale Price
+          - for fee in Fee.all 
+            %th= fee.description
+          %th Earnings
+          %th Actions
+        - total = 0
+        - subtotal = []
+        - sale_total = 0
+        - @group.each do |month,sales|
+          %tr
+            %td{:colspan => 9}
+              = month.strftime('%B').upcase
+          - for sale in sales
+            %tr
+              %td= sale.created_at.strftime('%m/%d')
+              %td= sale.id
+              %td
+                %strong= sale.type
+              %td= sale.quantity
+              %td{:align => :right}
+                - sale_total += sale.total
+                %strong= number_to_currency(sale.total)
+              - for fee in Fee.all
+                %td{:align => :right}
+                  = number_to_currency(sale.collect_fees_for(fee))
+              %td{:align => :right}
+                - subtotal << sale.total - sale.fees
+                %strong= number_to_currency(subtotal.last)
+              %td
+                = link_to "Show", publish_publisher_sale_path(current_publisher,sale)
+              - total += subtotal.last
+        %tr
+          %td{:colspan => 3, :align => :right}
+            %strong TOTAL
+          %td
+          %td{:align => :right}
+            %strong= number_to_currency(sale_total)
+          %td
+          %td
+          %td{:align => :right}
+            %strong= number_to_currency(total)
+          %td
+      %br (*) Fees apply to each product sold
+
+      = render :partial => 'gchart', :locals => { :sales => @sales.map { |s| s.total } }
+
+- content_for :sidebar, render(:partial => 'publish/shared/sidebar')
+

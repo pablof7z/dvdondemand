@@ -10,49 +10,56 @@
     %ul.wat-cf
       %li.first.active= link_to "All Sales Reports", publish_publisher_sales_path(current_publisher)
   .content
-    %h2.title Sales Reports
+    %h2.title Year 2010
     - total = 0
     - subtotal = []
     .inner
       %table.table
         %tr
-          %th Date
-          %th Transaction
-          %th Type
-          %th Qty.
-          %th Sale Price
-          - for fee in Fee.all 
-            %th= fee.description
-          %th Earnings
-          %th Actions
-        - @sales.each do |month,sales|
+          %th Month
+          %th Retail Sales
+          %th Royalty Sales
+          %th Wholesale Sales
+          %th Get Stock Purchases
+          %th Totals
+          %th PPS Payments
+        - grand_total, retail_total, whole_total = 0, 0, 0
+        - (1..12).each do |m|
+          - date   = Date.new(2010, m, 1)
+          - start, finish = date.beginning_of_month, date.end_of_month
+          -# the tamale
+          - retail   = @retail_sales.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
+          - whole    = @whole_sales.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
+          - subtotal = retail + whole
+          - retail_total += retail
+          - whole_total  += whole
           %tr
-            %td{:colspan => 9}
-              = month.strftime('%B').upcase
-          - for sale in sales
-            %tr
-              %td= sale.created_at.strftime('%m/%d')
-              %td= sale.id
-              %td= sale.type
-              %td= sale.quantity
-              %td= number_to_currency(sale.total)
-              - for fee in Fee.all
-                %td= number_to_currency(sale.collect_fees_for(fee))
-              %td{:align => :right}
-                - subtotal << sale.total - sale.fees
-                %strong= number_to_currency(subtotal.last)
-              %td
-                = link_to "Show", publish_publisher_sale_path(current_publisher,sale)
-              - total += subtotal.last
+            %td= date.strftime('%B').upcase
+            %td{:align => :right}
+              = link_to(number_to_currency(retail), ledger_publish_publisher_sales_path(current_publisher, :type => 'retail_sales', :month => date.month)) unless retail == 0
+            %td{:align => :right}= number_to_currency(0)
+            %td{:align => :right}
+              = link_to(number_to_currency(whole), ledger_publish_publisher_sales_path(current_publisher, :type => 'whole_sales', :month => date.month)) unless whole == 0
+            %td{:align => :right}= number_to_currency(0)
+            %td{:align => :right}
+              = number_to_currency(subtotal) unless subtotal == 0
+            %td{:align => :right}= number_to_currency(0)
+            - grand_total += subtotal
         %tr
-          %td{:colspan => 7, :align => :right}
-            %strong TOTAL
-          %td{:align => :right}
-            %strong= number_to_currency(total)
           %td
-      %br (*) Fees apply to each product sold
-
-      = render :partial => 'gchart', :locals => { :retail_sales => current_publisher.retail_sales.map { |s| s.total }, :whole_sales => current_publisher.whole_sales.map { |s| s.total } }
+            %strong TOTALS
+          %td{:align => :right}
+            %strong= number_to_currency(retail_total)
+          %td{:align => :right}
+            %strong= number_to_currency(0)
+          %td{:align => :right}
+            %strong= number_to_currency(whole_total)
+          %td{:align => :right}
+            %strong= number_to_currency(0)
+          %td{:align => :right}
+            %strong= number_to_currency(grand_total)
+          %td{:align => :right}
+            %strong= number_to_currency(0)
 
 - content_for :sidebar, render(:partial => 'publish/shared/sidebar')
 

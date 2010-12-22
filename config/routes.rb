@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
       publisher.resources :product_placements, :as => 'placements', :only => [:create]
 
       publisher.resources :genres, :only => :index
-      publisher.resources :sales,  :only => [:index, :show]
+      publisher.resources :sales, :collection => {:ledger => :get}
 
       publisher.resources :publisher_payments, :as => :payments, :only => [:index, :show]
     end
