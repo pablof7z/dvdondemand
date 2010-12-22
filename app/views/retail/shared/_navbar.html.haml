@@ -1,0 +1,7 @@
+%ul.primary-nav
+  %li
+    %a.current{:href => "./CUST   Catalogs_files/CUST   Catalogs.html"} Catalogs
+  %li
+    %a{:href => "http://190.244.4.238/oddvd_v11/cust-publihsers.php"} Publishers
+  - if customer_signed_in?
+    %li.cart= link_to "My Cart (#{items_total_count})", retail_customer_cart_path(current_customer)

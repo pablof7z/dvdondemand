@@ -26,8 +26,12 @@
 #content table ul.tools{border: 0;background: none;padding: 0;}
 #content table ul.tools li{margin: 5px 25px 0 0; list-style: none;float: left;}
 #content table ul.tools li a{padding: 0 0 0 20px;}
-#content table ul.tools .edit{background: url(/images/ico-edit.png) 0 0 no-repeat;}
-#content table ul.tools .delete{background: url(/images/ico-delete.png) 0 0 no-repeat;}
+#content table ul.tools .edit{background: url(ico-edit.png) 0 0 no-repeat;}
+#content table ul.tools .delete{background: url(ico-delete.png) 0 0 no-repeat;}
+.delete{
+	background: url(ico-delete.png) 0 0 no-repeat;
+	padding: 0 0 0 20px;
+}
 
 /* Tabs */
 .template{

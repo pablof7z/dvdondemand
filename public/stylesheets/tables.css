@@ -10,10 +10,19 @@ table tfoot th{
 	text-align: left;
 	padding: 6px 5px;
 	background: #d1d1d1;
-	background: url(/images/table-th.png) repeat-x;
-	border-bottom: 1px solid #c8c8c8;
+	background: url(table-th.png) repeat-x;
+	border-bottom: 1px solid #e3e3e3;
 	color: #333;
 	vertical-align: middle;
+	font-weight: normal;
+}
+table thead th{
+	font-weight: bold;
+}
+table tfoot th{
+	font-weight: bold;
+	font-size: 110%;
+	padding: 12px 5px;
 }
 /* Table cells */
 table thead td,
@@ -61,5 +70,8 @@ table.t1 tbody th{
 table.t1 tbody th img{
 	border: 1px solid #999;
 	padding: 1px;
+	margin: 0
+}
+tr td p{
 	margin: 0
 }
