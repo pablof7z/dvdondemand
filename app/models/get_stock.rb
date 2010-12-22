@@ -1,0 +1,2 @@
+class GetStock < Sale
+end
