@@ -1,0 +1,32 @@
+- content_for :primary_nav do
+  =render :partial => 'retail/shared/navbar'
+
+#content.wide
+  .box
+    %h2
+      Featured Catalogs from Publishers
+      %a.all{:href => "http://190.244.4.238/oddvd_v11/cust-catalogs.php#"} view all
+    .jcarousel-skin-tango
+      .jcarousel-container.jcarousel-container-horizontal{:style => "position: relative; display: block; "}
+        .jcarousel-clip.jcarousel-clip-horizontal{:style => "overflow-x: hidden; overflow-y: hidden; position: relative; "}
+          %ul#first-carousel.first-and-second-carousel.jcarousel-list.jcarousel-list-horizontal{:style => "overflow-x: hidden; overflow-y: hidden; position: relative; top: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; width: 1717px; left: 0px; "}
+            - i = 0
+            - @products.each do |product|
+              - i = i + 1
+              = render :partial => 'carousel_product', :locals => { :product => product, :index => i }
+        .jcarousel-prev.jcarousel-prev-horizontal.jcarousel-prev-disabled.jcarousel-prev-disabled-horizontal{:disabled => "true", :style => "display: block; "}
+        .jcarousel-next.jcarousel-next-horizontal{:disabled => "false", :style => "display: block; "}
+    %h2
+      Featured Catalogs from Publishers
+      %a.all{:href => "http://190.244.4.238/oddvd_v11/cust-catalogs.php#"} view all
+    .jcarousel-skin-tango
+      .jcarousel-container.jcarousel-container-horizontal{:style => "position: relative; display: block; "}
+        .jcarousel-clip.jcarousel-clip-horizontal{:style => "overflow-x: hidden; overflow-y: hidden; position: relative; "}
+          %ul#first-carousel.first-and-second-carousel.jcarousel-list.jcarousel-list-horizontal{:style => "overflow-x: hidden; overflow-y: hidden; position: relative; top: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; width: 1717px; left: 0px; "}
+            - i = 0
+            - @catalogs.each do |catalog|
+              - i = i + 1
+              - product = catalog.products.last
+              = render :partial => 'carousel_product', :locals => { :product => product, :index => i }
+        .jcarousel-prev.jcarousel-prev-horizontal.jcarousel-prev-disabled.jcarousel-prev-disabled-horizontal{:disabled => "true", :style => "display: block; "}
+        .jcarousel-next.jcarousel-next-horizontal{:disabled => "false", :style => "display: block; "}

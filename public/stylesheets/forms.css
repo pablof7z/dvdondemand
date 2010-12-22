@@ -43,7 +43,8 @@ label.lb{/* lb=label block */
 }
 label.lb span{
 	width: 99%;
-}span.descr{
+}
+span.descr{
 	font-size: 75%;
 	font-style: italic;
 	float: right;
@@ -77,59 +78,8 @@ label.spc1{
 
 
 
-/* 
--------- Buttons -------------------------------------------------------------------------------------------------- */
 
 
-/* BTS: Button System */
-/* :::::::::::::::::::::::::::::::::::::::::: */
-.bts{
-	display: block;
-	padding: 5px 15px;
-	margin: 0 0 15px 0;
-	clear: both;
-}
-
-/* BTO: Button Options */
-/* ::::::::::::::::::::::::::::::::::::::::: */
-.bto{
-   border: 1px solid #cfcfcf;
-   color: #444;
-   font-family: Arial, Helvetica, sans-serif !important;
-   font-size: 80%;
-   cursor: pointer;
-	padding: 6px 25px !important;
-	width: auto;
-	text-decoration: none;
-}
-
-.bto.del{
-	color: #ff3300;
-}
-
-
-/* BTSO: Button System and Options */
-/* ::::::::::::::::::::::::::::::::::::::::: */
-p.btso{clear: both;}
-
-/* Green button */
-.b1{height: 55px;}
-.b1 button{
-   border: 1px solid #64ca00;
-   color: #fff;
-   font-family: Arial, Helvetica, sans-serif !important;
-   font-size: 120%;
-   cursor: pointer;
-	padding: 15px 45px !important;
-	vertical-align: top;
-}
-.b1 button:hover{border: 1px solid #268624;}
-.b1 span{line-height: 350%;padding: 0 0 0 10px;}
-
-.tools.mini .bto{
-	font-size: 70%;
-	padding: 4px 8px !important;
-}
 
 /* Messages */
 .flash{
@@ -148,12 +98,12 @@ p.btso{clear: both;}
 }
 .notice{
 	color: #3e6a0f;
-	background: #DFF2BF url(/images/ico-notice.png) 10px 6px no-repeat;
+	background: #DFF2BF url(ico-notice.png) 10px 6px no-repeat;
 	border: 1px solid #538f13; 
 }
 .warning, .alert{
 	color: #D8000C;
-	background: #ffc1c1 url(/images/ico-warning.png) 10px 6px no-repeat;
+	background: #ffc1c1 url(ico-warning.png) 10px 6px no-repeat;
 	border: 1px solid #D8000C; 
 }
 .errorExplanation{
@@ -162,13 +112,10 @@ p.btso{clear: both;}
 .errorExplanation h2{
 	margin-bottom: 10px;
 	color: #753e56;
-	color: #333;
-	display: none;
+	color: #333
 }
 .errorExplanation p{
-    font-size: 14px;
-    font-weight: bold;
-	color: #333;
+	color: #333
 }
 .errorExplanation ul{
 	margin: 0 24px 0 0 !important;
@@ -176,6 +123,61 @@ p.btso{clear: both;}
 	background: none;
 }
 .errorExplanation ul li{
+	list-style: none;
+	background: #ffd7d7;
+	border-bottom: 1px dotted #D8000C;
+	color: #D8000C;
 	margin: 0 0 2px 0 !important;
 	padding: 0 0 0 10px!important;
+}
+
+
+/* Search Form */
+form#search-form{
+	position: absolute;
+	top: 30px;
+	right: 0;
+}
+form#search-form input.txt{
+	width: 280px;
+	height: 20px;
+	border: 1px solid #b9b9b9;
+	-webkit-border-top-left-radius: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-radius-topleft: 6px;
+	-moz-border-radius-bottomleft: 6px;
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+	margin: 0 !important;
+	vertical-align: middle;
+	font-size: 120%;
+}
+
+
+/* Shopp */
+form.addCart{
+	padding: 15px 0 20px 0;
+	border-top: 1px solid #ccc; 
+	border-bottom: 1px solid #ccc; 
+}
+
+tr td label{/* no width */
+	width: auto;
+	height: auto;
+	margin: 0 5px 0 0;
+	vertical-align: middle;
+}
+/*td label input { padding: 0 2px;}
+td label select { padding: 0}*/
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+tr td .mini{
+	margin: 5px 0 0 0;
+}
+input,
+textarea,
+select{
+	border: 1px solid #cfcfcf;
+	-webkit-border-radius: 3px; 
+}
 }

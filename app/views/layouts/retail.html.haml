@@ -1,38 +1,55 @@
-!!! Strict
 %html
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
-    %title DVDonDemand Retail WebStore
-    = stylesheet_link_tag "web_app_theme", "web_app_theme_override", "themes/djime-cerulean/style", :cache => true
-  %body
-    #container
-      #header
-        %h1= link_to 'OnDemand Retail WebStore', root_path
-        #user-navigation
-          %ul.wat-cf
-            - if customer_signed_in?
-              %li Welcome, #{link_to current_customer.full_name, root_path}
-              %li= link_to "My Cart (#{items_total_count})", retail_customer_cart_path(current_customer)
-              %li= link_to 'Logout', destroy_customer_session_path
-            - elsif publisher_signed_in?
-              %li= link_to "Publisher's Dashboard", publish_root_path
-              %li= link_to 'Logout', destroy_publisher_session_path
-            - else
-              %li= link_to 'User Login', new_customer_session_path
-              %li= link_to 'Sign Up', new_customer_registration_path
-        #main-navigation
-          %ul.wat-cf
-            = yield :main_navigation
-      #wrapper.wat-cf
-        .flash
-          - flash.each do |type, message|
-            .message{:class => type.to_s}
-              %p= message
-        #main
-          = yield
-          #footer
-            .block
-              %p Copyright &copy;2010 DVDonDemand
-        #sidebar
-          = yield :sidebar
+    %title Behind The Station Retail Store
+    = stylesheet_link_tag 'styles', :cache => true
+    = javascript_include_tag 'jquery-1.4.3.min'
+    = javascript_include_tag 'jquery.jcarousel.min'
+    = stylesheet_link_tag 'skin', :cache => true
+    %meta{:name => 'csrf-token', :content => form_authenticity_token}
+    %meta{:name => 'csrf-param', :content => 'authenticity_token'}
 
+    /[if IE 6] <link rel="stylesheet" type="text/css" href="css/ie6.css" />
+    /[if IE 7] <link rel="stylesheet" type="text/css" href="css/ie7.css" />
+    :javascript
+      jQuery(document).ready(function() {
+          // Initialise the first and second carousel by class selector.
+      	// Note that they use both the same configuration options (none in this case).
+      	jQuery('.first-and-second-carousel').jcarousel();
+      	
+      	// If you want to use a caoursel with different configuration options,
+      	// you have to initialise it seperately.
+      	// We do it by an id selector here.
+      	jQuery('#third-carousel').jcarousel({
+              vertical: true
+          });
+      });
+    
+    = yield :header
+
+  %body#customer       
+    #header
+      %a{:href => root_path}
+        %img.logo{:alt => "", :src => "/images/behind_the_station-logo.png"}/
+      %form#search-form{:action => "", :method => "post"}
+        %input.txt{:name => "search", :size => "20", :type => "text", :value => ""}/
+        %input.bt-search{:alt => "Search", :src => "/images/retail/button_search.png", :title => "Search", :type => "image", :value => "Search"}
+      %ul.options.customer
+        - if customer_signed_in?
+          %li Welcome, #{link_to current_customer.full_name, root_path}
+          %li.myaccount= link_to 'Logout', destroy_customer_session_path
+        - elsif publisher_signed_in?
+          %li= link_to "Publisher's Dashboard", publish_root_path
+          %li= link_to 'Logout', destroy_publisher_session_path
+        - else
+          %li= link_to 'User Login', new_customer_session_path
+          %li= link_to 'Sign Up', new_customer_registration_path
+    #nav.nos
+      = yield :primary_nav
+    #wrapper
+      #container
+        = yield
+      #sidebar
+        = yield :sidebar
+    #footer
+      %p Copyright &copy;2010 onDemandDVD

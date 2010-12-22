@@ -20,8 +20,8 @@
           Amount:
         = text_field_tag :deposit2, params[:deposit2], :size => '6'
         %span.descr= "Right amount is #{number_to_currency @bank_information.deposit2.amount}"
-      %p.btso.b1
-        %button.button{:type => 'submit'}
+      %p.btso
+        %button.b1{:type => 'submit'}
           Save
         %span
           or

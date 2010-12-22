@@ -1,7 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 johns:
-  publisher: john
+  publisher_id: 1
   title: Assorted Blues
   description: Just as it name implies
   private: false
