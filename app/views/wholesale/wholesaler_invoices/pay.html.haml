@@ -31,8 +31,8 @@
         - else
           %p= f.select :credit_card_id, current_wholesaler.credit_cards.map { |i| [ "#{i.card_type.capitalize} #{i.card_number_mask} #{i.card_expires_on.strftime('%m/%y')}", i.id] }
       - if current_wholesaler.credit_cards.size != 0
-        %p.btso.b1
-          %button.button{:type => 'submit'}
+        %p.btso
+          %button.b1{:type => 'submit'}
             Submit
           %span
             or
