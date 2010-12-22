@@ -1,0 +1,30 @@
+.group
+  = f.error_messages
+
+%label
+  %span
+    Bank Name
+  = f.text_field :bank_name
+
+%label
+  %span
+    Account #
+  = f.text_field :account_number
+
+%label
+  %span
+    Routing #
+  = f.text_field :routing_number
+
+%label
+  %span
+    Account Type
+  = f.select :account_type, options_for_select(['Checking', 'Savings'])
+
+%p.btso.b1
+  %button.button{:type => 'submit'}
+    Save
+  %span
+    or
+    = link_to "Cancel", publish_publisher_bank_informations_path(current_publisher)
+

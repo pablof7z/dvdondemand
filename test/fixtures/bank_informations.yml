@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  account_number: MyString
+  routing_number: MyString
+  bank_name: MyString
+  account_type: MyString
+  validated: false
+
+two:
+  account_number: MyString
+  routing_number: MyString
+  bank_name: MyString
+  account_type: MyString
+  validated: false

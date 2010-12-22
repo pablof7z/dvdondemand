@@ -1,0 +1,26 @@
+%ul.primary-nav
+  - if wholesaler_signed_in? 
+    %li
+      - if controller.controller_name == 'wholesalers' or controller.controller_name == 'registrations' or controller.controller_name == 'home' or controller.controller_name == 'credit_cards'
+        =link_to 'Dashboard', wholesale_root_path, :class => 'current'
+        %ul.secondary-nav
+          %li= link_to "<strong>Wholesale Account</strong> home", wholesale_root_path, :class => (controller.controller_name != 'credit_cards' and controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>Edit</strong> account", edit_wholesaler_registration_path, :class => (controller.action_name == 'edit'?'current':'')
+          %li= link_to "<strong>Credit</strong> card data", wholesale_wholesaler_credit_cards_path(current_wholesaler), :class => (controller.controller_name == 'credit_cards' and controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>New</strong> credit card", new_wholesale_wholesaler_credit_card_path(current_wholesaler), :class => (controller.controller_name == 'credit_cards' and controller.action_name == 'new'?'current':'')
+      - else
+        =link_to 'Dashboard', wholesale_root_path
+    
+    %li
+      - if controller.controller_name == 'wholesaler_invoices'
+        =link_to 'Invoices', wholesale_wholesaler_wholesaler_invoices_path(current_wholesaler), :class => 'current'
+        %ul.secondary-nav
+          %li= link_to "<strong>All</strong> invoices", wholesale_wholesaler_wholesaler_invoices_path(current_wholesaler), :class => (controller.action_name == 'index'?'current':'')
+          - if controller.action_name == 'show'
+            %li= link_to "<strong>Invoice</strong> #{@wholesaler_invoice.id}", wholesale_wholesaler_wholesaler_invoice_path(current_wholesaler, @wholesaler_invoice.id), :class => (controller.action_name == 'edit'?'current':'')
+          - if controller.action_name == 'pay'
+            %li= link_to "<strong>Invoice</strong> #{@wholesaler_invoice.id}", wholesale_wholesaler_wholesaler_invoice_path(current_wholesaler, @wholesaler_invoice.id)
+            %li= link_to "<strong>Add</strong> payment", pay_wholesale_wholesaler_wholesaler_invoice_path(current_wholesaler,@wholesaler_invoice), :class => (controller.action_name == 'pay'?'current':'')
+      - else
+        =link_to 'Invoices', wholesale_wholesaler_wholesaler_invoices_path(current_wholesaler)
+    

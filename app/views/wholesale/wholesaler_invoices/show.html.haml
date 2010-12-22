@@ -1,0 +1,36 @@
+- content_for :primary_nav do
+  =render :partial => 'wholesale/shared/navbar'
+
+#content.wide
+  %h1= "Invoice ##{@wholesaler_invoice.id}"
+  .box
+    %p
+      %b Total:
+      = number_to_currency(@wholesaler_invoice.total)
+      %b Owed:
+      = number_to_currency(@wholesaler_invoice.owed)
+    %table.t1
+      %tr
+        %th.first Order
+        %th Date
+        %th Customer
+        %th Amount
+        %th.last &nbsp;
+      = render :partial => @wholesaler_invoice.orders
+    .actions-bar.wat-cf
+      .actions
+  %h2.title= "Payments"
+  .inner
+    %p
+      %b Total:
+      = number_to_currency(@wholesaler_invoice.total - @wholesaler_invoice.owed)
+    %table.t1
+      %tr
+        %th.first Payment
+        %th Date
+        %th Amount
+        %th.last &nbsp;
+      = render :partial => @wholesaler_invoice.payments
+    .actions-bar.wat-cf
+      .actions
+

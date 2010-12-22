@@ -1,0 +1,10 @@
+- content_for :primary_nav do
+  =render :partial => 'wholesale/shared/navbar'
+
+#content
+  %h1 Wholesale's Catalog Download
+  .box
+    = link_to "Download catalog", wholesale_wholesaler_catalogs_path(current_wholesaler, :format => :xml)
+
+- content_for :sidebar, render(:partial => 'wholesale/shared/sidebar')
+

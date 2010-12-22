@@ -1,0 +1,11 @@
+- content_for :primary_nav do
+  =render :partial => 'wholesale/shared/navbar'
+
+#content
+  %h1 New Credit Card
+  .box.sp
+    - form_for @credit_card, :url => wholesale_wholesaler_credit_cards_path(current_wholesaler), :html => { :class => :form } do |f|
+      = render :partial => "form", :locals => {:f => f}
+
+- content_for :sidebar, render(:partial => 'publish/shared/sidebar')
+

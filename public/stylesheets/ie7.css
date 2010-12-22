@@ -1,0 +1,8 @@
+/* IE7 */
+textarea{overflow: auto;}
+#nav ul.secondary-nav li a{padding: 10px 28px 8px 28px;}
+button{
+	padding: 0 8px  !important;
+	height: auto !important;
+	background: #ccc !important;
+}

@@ -1,0 +1,34 @@
+- content_for :primary_nav do
+  =render :partial => 'wholesale/shared/navbar'
+
+#content.wide
+  %h1 All your invoices
+  .box
+    %table.t1
+      %tr
+        %th.first ID
+        %th Date
+        %th Amount
+        %th Owed
+        %th Paid
+        %th.last &nbsp;
+      = render :partial => @wholesaler_invoices
+      %tr
+        %td
+        %td
+        %td{:colspan=>2}
+          %b Balance:
+          = number_to_currency(current_wholesaler.money_owed)
+        %td
+        %td
+      %tr
+        %td
+        %td
+        %td{:colspan=>2}
+          %b Remaining Credit:
+          = number_to_currency(current_wholesaler.remaining_credit)
+        %td
+        %td
+    .actions-bar.wat-cf
+      .actions
+

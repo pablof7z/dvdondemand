@@ -1,0 +1,35 @@
+!!! Strict
+%html
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %title Layout 0.1 > Debug
+    = stylesheet_link_tag 'styles'
+    :css
+      p.switch{width: 970px;margin: 2px auto 5px auto;font-size: 75%;max-width: none;background: #ededed;padding: 0 26px 0 0; text-align: right;}
+      p.switch a{padding: 0 0 0 10px;color: #999;}
+  %body
+    %p.switch
+      %a{:href => "#", :onclick => "body.setAttribute('id', 'normal');"} Normal
+      %a{:href => "#", :onclick => "body.setAttribute('id', 'debug');"} Debug
+    #wrapper
+      #header
+        %a{:href => "#"}
+          %img{:alt => "", :height => "66", :src => "/images/ondemanddvd-logo.png", :width => "119"}
+        %ul.options
+          - unless publisher_signed_in?
+            %li= link_to 'My Account', new_publisher_session_path
+            %li= link_to 'Sign Up', new_publisher_registration_path
+          - else
+            %li= link_to 'Edit Account', edit_publisher_registration_path
+            %li= link_to 'Logout', destroy_publisher_session_path
+      #nav
+        = yield :primary_nav
+      #container
+        #content.wide
+          .col.x8
+            = yield
+          .col.x4
+            = yield :sidebar
+      #footer
+        %p Copyright &copy;2010 onDemandDVD
+

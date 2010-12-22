@@ -1,0 +1,69 @@
+!!! Strict
+%html
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %title DVDonDemand WebStore Wholesale Accounts
+    = javascript_include_tag 'jquery-1.4.3.min'
+    = stylesheet_link_tag 'styles', :cache => true
+    = javascript_include_tag :defaults
+    %meta{:name => 'csrf-token', :content => form_authenticity_token}
+    %meta{:name => 'csrf-param', :content => 'authenticity_token'}
+
+    /[if IE 6] <link rel="stylesheet" type="text/css" href="css/ie6.css" />
+    /[if IE 7] <link rel="stylesheet" type="text/css" href="css/ie7.css" />
+    :css
+      body#debug #wrapper{background: url(css/996.png) repeat-y;}
+      body#debug .col{background: #fff;}
+      body#debug h1:before { content: "H1"; background: #d4ffaa;margin: 0 10px 0 0;}
+      body#debug h2:before { content: "H2"; background: #ffffb9;margin: 0 10px 0 0;}
+      body#debug h3:before { content: "H3"; background: #ffffb9;margin: 0 10px 0 0;}
+      body#debug h4:before { content: "H4"; background: #ffffb9;margin: 0 10px 0 0;}
+      body#debug h5:before { content: "H5"; background: #ffffb9;margin: 0 10px 0 0;}
+      body#debug h6:before { content: "H6"; background: #ffffb9;margin: 0 10px 0 0;}
+      body#debug p:before { content: "P"; background: #bdefff;margin: 0 10px 0 0;}
+      body#debug #footer{border-top: 1px solid #999;}
+      body#debug blockquote:before { content: "BLOCKQUOTE";background: #ffffb9;margin: 0 10px 0 0;}
+      body#debug .box{background: url(css/948.png) no-repeat;opacity: .7;padding: 5px 0 0 0;}
+      p.switch{width: 970px;margin: 2px auto 5px auto;font-size: 75%;max-width: none;background: #ededed;padding: 0 26px 0 0; text-align: right;}
+      p.switch a{padding: 0 0 0 10px;color: #999;}
+
+    = yield :header
+
+  %body
+    %p.switch
+      %a{:href => "#", :onclick => "body.setAttribute('id', 'normal');"} Normal
+      %a{:href => "#", :onclick => "body.setAttribute('id', 'debug');"} Debug
+    #header
+      %a{:href => "#"}
+        %img.logo{:alt => "", :src => "/images/ondemanddvd-logo.png"}
+      %ul.options
+        - unless wholesaler_signed_in?
+          %li= link_to 'Sign Up', new_wholesaler_registration_path, :class => 'log'
+          %li= link_to 'My Account', new_wholesaler_session_path, :class => 'account'
+        - else
+          %li= link_to 'Logout', destroy_wholesaler_session_path, :class => 'log'
+          %li= link_to 'Edit Account', edit_wholesaler_registration_path, :class => 'account'
+
+    #nav
+      - if wholesaler_signed_in?
+        =yield :primary_nav
+      - else
+        %ul.primary-nav
+          %li.active
+            =link_to 'Wholesale Account', wholesale_root_path
+            %ul.secondary-nav
+
+    #wrapper
+      #container
+        .flash
+          - flash.each do |type, message|
+            .message{:class => type.to_s}
+              %p= message
+        =yield
+
+        #sidebar
+          =yield :sidebar
+
+    #footer
+      %p Copyright &copy;2010 onDemandDVD
+

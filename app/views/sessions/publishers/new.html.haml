@@ -1,26 +1,22 @@
-.block
-  .secondary-navigation
-    %ul.wat-cf
-      %li.first.active= link_to "Login", new_publisher_session_path
-  .content
-    %h2.title Login to your Publisher account
-    .inner
-      - form_for resource_name, resource, :url => session_path(resource_name), :html => { :class => :form } do |f|
-        %p= f.label :email, 'E-mail', :class => :label
-        %p= f.text_field :email, :class => 'text_field'
+- content_for :primary_nav do
+  =render :partial => 'publish/shared/navbar'
 
-        %p= f.label :password, 'Password', :class => :label
-        %p= f.password_field :password, :class => 'text_field'
+%h1 Login to your Publisher account
 
-        - if devise_mapping.rememberable?
-          .group
-            = f.label :remember_me, "Remember me", :class => :label
-            = f.check_box :remember_me, :class => 'check_box'
+- form_for resource_name, resource, :url => session_path(resource_name) do |f|
+  %p= f.label :email, 'E-mail', :class => :label
+  %p= f.text_field :email, :class => 'text_field'
 
-        .group.navform.wat-cf
-          %button.button{:type => 'submit'}
-            = image_tag("web-app-theme/tick.png", :alt => "Login")
-            Login
+  %p= f.label :password, 'Password', :class => :label
+  %p= f.password_field :password, :class => 'text_field'
+
+  - if devise_mapping.rememberable?
+    = f.label :remember_me, "Remember me", :class => :label
+    = f.check_box :remember_me, :class => 'check_box'
+
+  %button.button{:type => 'submit'}
+    = image_tag("web-app-theme/tick.png", :alt => "Login")
+    Login
 
 - content_for :sidebar, render(:partial => "shared/devise_publisher_links")
 

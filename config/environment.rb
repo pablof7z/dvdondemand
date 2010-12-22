@@ -291,3 +291,5 @@ ActionView::Helpers::FormOptionsHelper::COUNTRIES = {
   'ZW'=>'Zimbabwe'
 }.invert.sort
 
+WHOLESALER_CREDIT_LIMIT = 2000
+WHOLESALER_MINIMUM_PAYMENT = 1

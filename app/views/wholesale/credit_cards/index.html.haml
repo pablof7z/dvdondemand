@@ -1,0 +1,19 @@
+- content_for :primary_nav do
+  =render :partial => 'wholesale/shared/navbar'
+
+#content.wide
+  %h1 All your credit cards
+  .box
+    %table.t1
+      %tr
+        %th.first ID
+        %th Date
+        %th Credit card type
+        %th Credit card number
+        %th Credit card expiration date
+        %th Default
+        %th.last &nbsp;
+      = render :partial => @wholesaler.credit_cards
+    .actions-bar.wat-cf
+      .actions
+

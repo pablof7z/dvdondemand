@@ -8,6 +8,7 @@ class Publisher < ActiveRecord::Base
   has_many :retail_sales, :class_name => 'Retail'
 
   has_many :publisher_payments
+  has_many :bank_informations
 
   named_scope :approved, :conditions => { :approved => true }
 
@@ -19,6 +20,14 @@ class Publisher < ActiveRecord::Base
 
   def artist_name
     nickname || full_name
+  end
+  
+  def default_bank_information
+    bank_informations.each do |a|
+      return a if a.default
+    end
+    
+    return nil
   end
 end
 

@@ -10,6 +10,18 @@ class Publish::ProductsController < PublishController
   def edit
     edit! { @genres = @product.cd? ? Genre.for_cd : Genre.for_dvd }
   end
+  
+  def create
+    create! do |success, failure|
+      failure.html { @genres = @product.cd? ? Genre.for_cd : Genre.for_dvd; render :action => 'new' }
+    end
+  end
+  
+  def update
+    update! do |success, failure|
+      failure.html { @genres = @product.cd? ? Genre.for_cd : Genre.for_dvd; render :action => 'edit' }
+    end
+  end
 
   protected
 

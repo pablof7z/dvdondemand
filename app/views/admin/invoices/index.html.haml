@@ -1,0 +1,22 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content.wide
+  %h1= "Invoices for #{@wholesaler.name}"
+  %table.t1
+    %tr
+      %th.first ID
+      %th Created at
+      %th Total
+      %th Owed
+      %th.last &nbsp;
+    - @invoices.each do |invoice|
+      %tr{:class => cycle("odd", "even")}
+        %td
+          = invoice.id
+        %td= invoice.created_at
+        %td= number_to_currency(invoice.total)
+        %td= number_to_currency(invoice.owed)
+        %td.last
+          = link_to "Payments", admin_wholesaler_invoice_payments_path(@wholesaler, invoice)
+

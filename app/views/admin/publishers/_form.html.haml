@@ -1,29 +1,34 @@
+%label
+  %span
+    First name
+  = f.text_field :first_name
 
-.group
-  = f.label :first_name, "First name", :class => :label
-  = f.text_field :first_name, :class => 'text_field'
+%label
+  %span
+    Last name
+  = f.text_field :last_name
 
-.group
-  = f.label :last_name, "Last name", :class => :label
-  = f.text_field :last_name, :class => 'text_field'
+%label
+  %span
+    Email
+  = f.text_field :email
 
-.group
-  = f.label :email, "Email", :class => :label
-  = f.text_field :email, :class => 'text_field'
+%label.lb
+  %span
+    Address
+  = f.text_area :address, :rows => 5
+  %span.descr Ex: a simple text
 
-.group
-  = f.label :address, "Address", :class => :label
-  = f.text_area :address, :rows => 5, :class => 'text_area'
-  %span.description Ex: a simple text
-
-.group
-  = f.label :approved, "Approved", :class => :label
-  = f.check_box :approved, :class => 'check_box'
+%label
+  %span
+    Approved
+  = f.check_box :approved
   Yes
 
-.group.navform.wat-cf
+%p.btso.b1
   %button.button{:type => 'submit'}
-    = image_tag("web-app-theme/tick.png", :alt => "Save")
-    = t("web-app-theme.save", :default => "Save")
-  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Cancel")} Cancel", admin_publishers_path, :class => "button"
+    Save
+  %span
+    or
+    = link_to "Cancel", admin_publishers_path
 

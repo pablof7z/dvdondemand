@@ -1,0 +1,181 @@
+/* Forms */
+
+.fcol{
+	float: left;
+}
+
+form{
+	margin: 10px 0;
+	padding-bottom: 10px;
+	overflow: hidden;
+}
+form h2,
+form h3,
+form h4{
+	margin-bottom: 15px;
+	line-height: 200%;
+}
+form h2{font-size: 120%;}
+input{padding: 5px;}
+select{padding: 5px;m in-width: 200px;}
+label{
+	display: block;
+	width: 100%;
+	height: 40px;
+	float: left;
+	position: relative;
+	font-size: 90%!important;
+}
+label span{
+	width: 120px;
+	display: block;
+	float: left;
+	line-height: 185%;
+	fo nt-size: 90%;
+}
+label.lb{/* lb=label block */
+	display: block;
+	min-height: 150px;
+	height: auto !important;
+	height: 150px;
+	clear: both;
+	margin-bottom: 10px;
+}
+label.lb span{
+	width: 99%;
+}span.descr{
+	font-size: 75%;
+	font-style: italic;
+	float: right;
+	width: 180px;
+	text-indent: 10px;
+	color: #999
+}
+textarea{
+	font-family: "Lucida Grande",Helvetica, Arial, sans-serif;
+	font-size: 90%;
+	line-height: 1.4em;
+	padding: 5px;
+}
+
+/* debug */
+form .col{
+	background: none;
+	border: 0;
+}
+
+label.spc1{
+	height: 45px
+}
+.spc1 input{
+	font-size: 120%;
+	font-weight: bold;
+	border: 2px solid #999; 
+	border: 2px solid #999; 
+	
+}
+
+
+
+/* 
+-------- Buttons -------------------------------------------------------------------------------------------------- */
+
+
+/* BTS: Button System */
+/* :::::::::::::::::::::::::::::::::::::::::: */
+.bts{
+	display: block;
+	padding: 5px 15px;
+	margin: 0 0 15px 0;
+	clear: both;
+}
+
+/* BTO: Button Options */
+/* ::::::::::::::::::::::::::::::::::::::::: */
+.bto{
+   border: 1px solid #cfcfcf;
+   color: #444;
+   font-family: Arial, Helvetica, sans-serif !important;
+   font-size: 80%;
+   cursor: pointer;
+	padding: 6px 25px !important;
+	width: auto;
+	text-decoration: none;
+}
+
+.bto.del{
+	color: #ff3300;
+}
+
+
+/* BTSO: Button System and Options */
+/* ::::::::::::::::::::::::::::::::::::::::: */
+p.btso{clear: both;}
+
+/* Green button */
+.b1{height: 55px;}
+.b1 button{
+   border: 1px solid #64ca00;
+   color: #fff;
+   font-family: Arial, Helvetica, sans-serif !important;
+   font-size: 120%;
+   cursor: pointer;
+	padding: 15px 45px !important;
+	vertical-align: top;
+}
+.b1 button:hover{border: 1px solid #268624;}
+.b1 span{line-height: 350%;padding: 0 0 0 10px;}
+
+.tools.mini .bto{
+	font-size: 70%;
+	padding: 4px 8px !important;
+}
+
+/* Messages */
+.flash{
+	
+}
+.message{
+	padding: 10px !important;
+	margin: 0 24px 10px 0 !important;
+	line-height: 110% !important;
+	height: auto !important;
+}
+.message p{
+	margin: 0 !important;
+	padding: 0 0 0 35px;
+	font-weight: bold;
+}
+.notice{
+	color: #3e6a0f;
+	background: #DFF2BF url(/images/ico-notice.png) 10px 6px no-repeat;
+	border: 1px solid #538f13; 
+}
+.warning, .alert{
+	color: #D8000C;
+	background: #ffc1c1 url(/images/ico-warning.png) 10px 6px no-repeat;
+	border: 1px solid #D8000C; 
+}
+.errorExplanation{
+	margin: 0 0 30px 0!important;
+}
+.errorExplanation h2{
+	margin-bottom: 10px;
+	color: #753e56;
+	color: #333;
+	display: none;
+}
+.errorExplanation p{
+    font-size: 14px;
+    font-weight: bold;
+	color: #333;
+}
+.errorExplanation ul{
+	margin: 0 24px 0 0 !important;
+	padding: 0!important;
+	background: none;
+}
+.errorExplanation ul li{
+	margin: 0 0 2px 0 !important;
+	padding: 0 0 0 10px!important;
+}
