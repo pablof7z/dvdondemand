@@ -19,6 +19,7 @@ class Product < ActiveRecord::Base
                                          :cropped_medium => { :jcrop => true, :geometry => "210x283>" },
                                          :cropped_small => { :jcrop => true, :geometry => "90x121>" },
                                          :medium => "300x300>",
+                                         :small => { :jcrop => true, :geometry => "90x121>" },
                                          :thumb => { :jcrop => true, :geometry => "35x35>" } }, :processors => [:jcropper]
 
   has_attached_file :cover_art, :styles => { :cropped => { :jcrop => true },
