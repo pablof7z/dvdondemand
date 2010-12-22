@@ -8,5 +8,10 @@ class Catalog < ActiveRecord::Base
 
   named_scope :public, :conditions => { :private => false }
   named_scope :private, :conditions => { :private => true }
+  
+  def available_for_retail_listing
+    return false if products.empty?
+    return true
+  end
 end
 

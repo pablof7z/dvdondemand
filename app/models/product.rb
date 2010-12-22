@@ -67,6 +67,12 @@ class Product < ActiveRecord::Base
     # and should be always available to all products
     packaging_options.include?(standard) ? packaging_options : [standard] + packaging_options
   end
+  
+  def available_for_retail_listing
+    return false if publisher == nil or publisher.approved == false
+    return false if catalogs.empty?
+    return true
+  end
 
   private
 

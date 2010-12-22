@@ -1,4 +1,5 @@
 @import url(forms.css);
+@import url(buttons.css);
 @import url(tables.css);
 @import url(css3.css);
 @import url(admin.css);
@@ -30,15 +31,18 @@ table {
 /* General 
 -----------------------------*/
 html{
-	/*background-image: url(/images/bg.jpg); */
+	/*background-image: url(bg.jpg); */
 	backgr ound: #213A4F;
-	background: #EEF2F3 url(/images/back.png);
 }
 body{
 	font-family: "Lucida Grande",Helvetica, Arial, sans-serif;
 	font-size: 90%;
 	line-height: 1.4em;
 	color: #666;
+	background: #EEF2F3 url(back.png);
+}
+body#customer{
+	background: url(bg-customer.jpg);
 }
 h1, h2, h3, h4, h5, h6{
 	font-family: Arial, "Trebuchet MS", Helvetica, Arial, sans-serif;
@@ -77,8 +81,9 @@ h4{font-size: 100%;}
 	margin: 15px auto;
 }
 p.clear{
-	height: 15px;
+	height: 5px;
 	clear: both;
+	margin: 0;
 }
 
 /* Primary divisions
@@ -108,7 +113,7 @@ p.clear{
 	padding: 15px 0 0 0;
 	font-size: 90%;
 	position: relative;
-	ba ckground: url(/images/content-bottom.png) no-repeat center top;
+	ba ckground: url(content-bottom.png) no-repeat center top;
 	font-size: 80%;
 	color: #999;
 }
@@ -169,13 +174,16 @@ p.clear{
 	top: 35px;
 	left: 0;
 }
+body#customer #header img.logo{
+	top: 25px;
+}
 .options li a.account{
 	display: block;
 	width: 130px;
 	height: 44px;
 	margin: 0 0 0 10px;
 	padding: 0 0 0 20px;
-	background: url(/images/button_account.png) no-repeat;
+	background: url(button_account.png) no-repeat;
 	font-weight: bold;
 	color: #fff;
 	line-height: 250%;
@@ -202,20 +210,43 @@ p.clear{
 	text-decoration: none;
 }
 
-/*#nav ul li a:hover{
-	background: #DE4808;
-	color: #fff;
-}*/
-
 /* Primary Nav */
 
 #nav ul.primary-nav{
 	width: 986px;
 	height: 53px;
-	background-image: url(/images/nav-primary.png);
+	background-image: url(nav-primary.png);
 	background-repeat: no-repeat;
 	/*margin-left: 1px;*/
 	padding: 0 0 0 10px;
+}
+body#customer #nav ul.primary-nav{
+	background-image: url(nav-primary-customer.png);
+}
+body#customer #nav ul.primary-nav li.cart{
+	display: block;
+	float: right;
+	width: 108px;
+	height: 53px;
+	padding: 0;
+	margin: 0;
+}
+body#customer #nav ul.primary-nav li.cart a{
+	display: block;
+	float: right;
+	background-image: url(nav-primary-customer_cart.png);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	width: 108px;
+	height: 53px;
+	padding: 0;
+	margin: 0;
+	text-indent: 40px
+}
+body#customer #nav ul.primary-nav li.cart a:hover{
+	background-image: url(nav-primary-customer_cart.png);
+	background-repeat: no-repeat;
+	background-position: 0 -53px;
 }
 #nav ul.primary-nav li{
 	float: left;
@@ -230,20 +261,28 @@ p.clear{
 	line-height: 370%;
 }
 #nav ul.primary-nav li a:hover{
-	background: url(/images/nav-primary_hover.png);
+	background: url(nav-primary_hover.png);
+	color: #fff;
+}
+body#customer #nav ul.primary-nav li a:hover{
+	background: url(nav-primary_hover-customer.png);
 	color: #fff;
 }
 #nav ul.primary-nav li a.current{
-	background: url(/images/nav_primary-current.png) repeat-x;
+	background: url(nav_primary-current.png) repeat-x;
 	color: #ededed;
 	z-index: 1000
 }
+body#customer #nav ul.primary-nav li a.current{
+	background: url(nav_primary-current-customer.png) repeat-x;
 
+
+}
 /* Secondary Nav */
 #nav ul.primary-nav li ul.secondary-nav{
 	width: 996px;
 	height: 62px;
-	background-image: url(/images/nav-secondary.png);
+	background-image: url(nav-secondary.png);
 	background-repeat: no-repeat;
 	position: absolute;
 	top: 53px;
@@ -252,7 +291,9 @@ p.clear{
 /*	border-left: 1px solid #dbdbdb; 
 	border-right: 1px solid #dbdbdb; */
 }
-
+body#customer #nav ul.primary-nav li ul.secondary-nav{
+	background-image: url(nav-secondary-customer.png);
+}
 #nav ul.secondary-nav li a{
 	float: left;
 	height: 41px;
@@ -262,11 +303,11 @@ p.clear{
 	font-size: 90%;
 }
 #nav ul.secondary-nav li a:hover{
-	background: url(/images/nav-secondary_hover.png);
+	background: url(nav-secondary_hover.png);
 	color: #fff;
 }
 #nav ul.primary-nav li ul.secondary-nav li a.current{
-	background: url(/images/nav_secondary-current.png) repeat-x;
+	background: url(nav_secondary-current.png) repeat-x;
 	color: #fff;
 }
 
@@ -397,6 +438,8 @@ p.switch{
 /* Products */
 dl{
 	overflow: hidden;
+	clear: both;
+	margin: 0 0 20px 0
 }
 dt{
 	font-weight: bold;
@@ -426,7 +469,7 @@ dd{
 	position: relative;
 }
 .boxy.iso{
-	background: #fff url(/images/ico-dvdxxx.png) 10px 20px no-repeat;
+	background: #fff url(ico-dvdxxx.png) 10px 20px no-repeat;
 }
 .boxy.iso small{
 	display: block;
@@ -472,7 +515,7 @@ small{
 	margin: 0 20px 0 0;
 }
 .cddvd{
-	background: url(/images/ico-cddvd.png) no-repeat;
+	background: url(ico-cddvd.png) no-repeat;
 	width: 174px;
 	height: 250px;
 	float: left;
@@ -515,4 +558,45 @@ small{
 #contentFbox.wide{
 	width: 972px;
 	ba ckground: #ff5577
+}
+
+/* Carousel */
+a.all{
+	font-size: 50%!important;
+	padding: 0 20px
+}
+.jcarousel-skin-tango li img{
+	border: 1px solid #ccc; 
+	display: block;
+	margin: 0 auto;
+}
+.jcarousel-skin-tango li span{
+	display: block;
+	font-size: 85%;
+	width: 119px;
+	height: 17px;
+	margin: 0 0 0 0;
+	overflow: hidden;
+	text-align: center;
+}
+.jcarousel-skin-tango li a span.title{
+	font-weight: bold;
+	color: #0C5ECE;
+}
+.jcarousel-skin-tango li a:hover span.title{color: #0c3d7c}
+.jcarousel-skin-tango li span.genre{
+	font-style: italic;
+}
+.jcarousel-skin-tango li span.price{
+	color: #333;
+	font-weight: bold;
+}
+.jcarousel-skin-tango li a{
+	text-decoration: none;
+	color: #666;
+}
+
+.jcarousel-skin-tango li:hover{
+	background:#ededed;
+	cursor: pointer;
 }

@@ -45,7 +45,7 @@ ActionController::Routing::Routes.draw do |map|
       end
     end
 
-    retail.root :controller => 'catalogs'
+    retail.root :controller => 'home'
   end
 
   map.devise_for :admins
@@ -82,6 +82,6 @@ ActionController::Routing::Routes.draw do |map|
     wholesale.root :controller => 'home'
   end
 
-  map.root :controller => 'retail/catalogs'
+  map.root :controller => 'retail/home'
 end
 
