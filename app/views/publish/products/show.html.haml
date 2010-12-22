@@ -5,6 +5,17 @@
 #content
   .box.sp
     %h1= @product.title
+    
+    - if @product.available_for_retail_listing?
+      %div.flash
+        %div.notice.message
+          %p= link_to "This product is currently available for sale.", retail_catalog_product_path(@product.catalogs.first, @product)
+    - else
+      %div.flash
+        %div.alert.message
+          %p
+            This product is not being listed for sale.
+            %span= "#{@product.available_for_retail_listing}."
 
     - if @product.image.exists?(:cropped_medium)
       %a{:href => @product.image.url, :alt => 'Full size Cover art', :target => 'blank'}

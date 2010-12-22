@@ -13,7 +13,8 @@ class Product < ActiveRecord::Base
   has_many :product_options  # product packaging options
   has_many :packaging_options, :through => :product_options
 
-  validates_presence_of :media_type, :genre, :title, :description, :price
+  validates_presence_of :media_type, :genre, :title, :description
+  validates_numericality_of :price, :greater_than => 0
 
   has_attached_file :image, :styles => { :cropped => { :jcrop => true },
                                          :cropped_medium => { :jcrop => true, :geometry => "210x283>" },
@@ -70,9 +71,15 @@ class Product < ActiveRecord::Base
   end
   
   def available_for_retail_listing
-    return false if publisher == nil or publisher.approved == false
-    return false if catalogs.empty?
+    return "No publisher selected" if publisher == nil
+    return "Publisher not yet approved" if publisher.approved == false
+    return "Product is not associated with any catalog" if catalogs.empty?
+    return "Product has no ISO file" if isos.empty?
     return true
+  end
+  
+  def available_for_retail_listing?
+    available_for_retail_listing == true
   end
 
   private
