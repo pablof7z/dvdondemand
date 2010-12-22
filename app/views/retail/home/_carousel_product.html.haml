@@ -1,0 +1,12 @@
+%li.jcarousel-item.jcarousel-item-horizontal.jcarousel-item.jcarousel-item-horizontal{:jcarouselindex => index, :style => "list-style-type: none; list-style-position: initial; list-style-image: initial; float: left; "}
+  %a{:href => retail_catalog_product_path(product.catalogs.first, product), :title => product.title}
+    - if product.cover_art.exists?(:thumb)
+      = image_tag(product.cover_art.url(:thumb))
+    - else
+      - if product.cd?
+        =image_tag 'medium/missing_cd90.png'
+      - else
+        =image_tag 'medium/missing_dvd90.png'
+    %span.title= product.title
+    %span.genre= product.genre.title
+    %span.price= number_to_currency product.price
