@@ -1,6 +1,5 @@
 - if catalog.products.count > 0
   %tr{:class => cycle("odd", "even")}
-    %td
     %td= link_to catalog.title, retail_catalog_path(catalog)
     %td= catalog.publisher.full_name
     %td.last
