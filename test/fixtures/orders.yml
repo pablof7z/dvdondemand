@@ -81,6 +81,7 @@ eight:
   purchased_at: <%= DateTime.now - 2.month %>
 <%= addresses %>
 
+# GetStock follows
 nine:
   customer: grumpy
   shipping_option: cheap

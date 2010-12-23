@@ -75,10 +75,11 @@ johns_for_order_eight:
   total: <%= 14.99*8 %>
   created_at: <%= DateTime.now - 2.month %>
 
+# GetStock follows
 johns_for_order_nine:
   order: eight
   publisher: john
-  type: Wholesale
+  type: GetStock
   quantity: 9
   total: <%= 14.99*9 %>
   created_at: <%= DateTime.now - 1.month %>
@@ -86,7 +87,7 @@ johns_for_order_nine:
 johns_for_order_ten:
   order: eight
   publisher: john
-  type: Wholesale
+  type: GetStock
   quantity: 10
   total: <%= 14.99*10 %>
   created_at: <%= DateTime.now %>
