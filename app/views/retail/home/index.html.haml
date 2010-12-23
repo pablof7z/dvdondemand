@@ -29,3 +29,22 @@
         - @catalogs.each do |catalog|
           - product = catalog.products.last
           = render :partial => 'retail/shared/carousel_catalog', :locals => { :catalog => catalog, :product => product }
+
+  .box.sp2
+    %h2.hbar2 DVD: Genre list
+    - (@genres_for_dvd.length / 7.0).ceil.times do |chunk|
+      .col.x4
+        %ul
+          - 7.times do |index|
+            - if @genres_for_dvd[chunk*7+index]
+              %li
+                %a{:href => '#'}= @genres_for_dvd[chunk*7+index].title
+  .box.sp2
+    %h2.hbar2 CD: Genre list
+    - (@genres_for_dvd.length / 7.0).ceil.times do |chunk|
+      .col.x4
+        %ul
+          - 7.times do |index|
+            - if @genres_for_dvd[chunk*7+index]
+              %li
+                %a{:href => '#'}= @genres_for_dvd[chunk*7+index].title
