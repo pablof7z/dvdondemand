@@ -11,9 +11,7 @@
         %div.notice.message
           %p= link_to "This product is currently available for sale.", retail_catalog_product_path(@product.catalogs.first, @product)
     - else
-      %div.flash
-        %div.warning.message
-          %p This product is not being listed for sale. #{@product.available_for_retail_listing}.
+      %p This product is not being listed for sale. #{@product.available_for_retail_listing}.
 
     .col.x5
       - if @product.image.exists?(:cropped_medium)

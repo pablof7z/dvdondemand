@@ -166,10 +166,10 @@
 
 
 .col.x6
-  %label.spc1{:for => 'title'}
+  %label{:for => 'title'}
     %span Title:
     = f.text_field :title, :size => 33
-  %label.spc1{:for => 'price'}
+  %label{:for => 'price'}
     %span Price:
     = f.text_field :price, :size => 6
   %label{:for => 'media_type_id'}
@@ -178,7 +178,7 @@
   %label{:for => 'genre_id'}
     %span Genre:
     - if @genres
-      #genres_select= f.collection_select :genre_id, @genres, :id, :title
+      %span#genres_select= f.collection_select :genre_id, @genres, :id, :title
     - else
       %select#product_genre_id{:name => 'product_genre_id'}
   %label.lb
@@ -186,13 +186,13 @@
     = f.text_area :description, :cols => 50, :rows => 9
   %label{:for => 'studio'}
     %span Studio:
-    = f.text_field :studio, :size => 45
+    = f.text_field :studio, :size => 33
   %label{:for => 'performers'}
     %span Actors/Performers:
-    = f.text_field :performers, :size => 45
+    = f.text_field :performers, :size => 33
   %label{:for => 'keyword_list'}
     %span Tags:
-    = f.text_field :keyword_list, :size => 45
+    = f.text_field :keyword_list, :size => 33
 
 .col.x5b.ml40
   .boxy
