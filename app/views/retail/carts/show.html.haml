@@ -1,4 +1,5 @@
-- render :partial => 'retail/catalogs/main_navigation'
+- content_for :primary_nav do
+  =render :partial => 'retail/shared/navbar'
 
 #content.wide
   .box
@@ -30,6 +31,7 @@
               %td= link_to 'Delete', retail_customer_cart_cart_item_path(current_customer,item), :method => :delete, :class => 'delete'
 
   %p.btso
-    %button.b2{:type => 'submit'} Proceed to Place Order
+    %button.b2{:type => 'submit', :onclick => "javascript:location.href='#{new_retail_customer_order_url(current_customer)}'"} Proceed to Place Order
     or
-    %a{:href => '#'} Cancel
+    = link_to 'Clear cart', retail_customer_cart_path(current_customer), :method => :delete, :confirm => 'Are you sure?'
+
