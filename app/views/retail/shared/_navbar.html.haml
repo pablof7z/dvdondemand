@@ -1,7 +1,12 @@
 %ul.primary-nav
   %li
-    %a.current{:href => "./CUST   Catalogs_files/CUST   Catalogs.html"} Catalogs
+    %a.current{:href => ''} Catalogs
   %li
-    %a{:href => "http://190.244.4.238/oddvd_v11/cust-publihsers.php"} Publishers
+    %a{:href => ''} Publishers
   - if customer_signed_in?
-    %li.cart= link_to "My Cart (#{items_total_count})", retail_customer_cart_path(current_customer)
+    %li.cart= link_to "Cart (#{items_total_count})", retail_customer_cart_path(current_customer)
+
+%form#search-form{:action => '', :method => 'post'}
+  %label.fade{:for => 'search'} Search product...
+  %input#search.txt{:name => 'search', :size => '20', :type => 'text', :value => ''}/
+  %input.bt-search{:alt => 'Go', :src => '/stylesheets/button_search.png', :title => 'Buscar', :type => 'image', :value => 'Buscar'}/
