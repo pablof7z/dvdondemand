@@ -36,4 +36,11 @@ class SaleTest < ActiveSupport::TestCase
     assert_equal @production.amount*2 + 0.999, @jane.sales.first.fees
     assert_equal @production.amount*5 + 3.7475, @john.sales.first(:conditions => {:quantity => 5}).fees
   end
+
+  test 'other STI sales existance by fixtures' do
+    assert_equal  5, @john.retail_sales.count
+    assert_equal  3, @john.whole_sales.count
+    assert_equal  2, @john.get_stocks.count
+    assert_equal 10, @john.sales.count
+  end
 end
