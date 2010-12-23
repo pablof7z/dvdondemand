@@ -14,19 +14,22 @@
           %th Get Stock Purchases
           %th Totals
           %th PPS Payments
-          - grand_total  = 0
-          - retail_total = 0
-          - whole_total  = 0
+          - whole_total    = 0
+          - retail_total   = 0
+          - getstock_total = 0
+          - grand_total    = 0
       %tbody
         - (1..12).each do |m|
-          - date   = Date.new(2010, m, 1)
+          - date = Date.new(2010, m, 1)
           - start, finish = date.beginning_of_month, date.end_of_month
           -# the tamale
-          - retail   = @retail_sales.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
           - whole    = @whole_sales.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
-          - subtotal = retail + whole
-          - retail_total += retail
-          - whole_total  += whole
+          - retail   = @retail_sales.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
+          - getstock = @get_stocks.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
+          - subtotal = whole + retail + getstock
+          - whole_total    += whole
+          - retail_total   += retail
+          - getstock_total += getstock
           %tr{:class => cycle("odd", "even")}
             %td= date.strftime('%B').upcase
             %td{:align => :right}
@@ -34,7 +37,8 @@
             %td{:align => :right}= number_to_currency(0)
             %td{:align => :right}
               = link_to(number_to_currency(whole), ledger_publish_publisher_sales_path(current_publisher, :type => 'whole_sales', :month => date.month)) unless whole == 0
-            %td{:align => :right}= number_to_currency(0)
+            %td{:align => :right}
+              = link_to(number_to_currency(getstock), ledger_publish_publisher_sales_path(current_publisher, :type => 'get_stocks', :month => date.month)) unless getstock == 0
             %td{:align => :right}
               = number_to_currency(subtotal) unless subtotal == 0
             %td{:align => :right}= number_to_currency(0)
@@ -49,7 +53,7 @@
           %td{:align => :right}
             %strong= number_to_currency(whole_total)
           %td{:align => :right}
-            %strong= number_to_currency(0)
+            %strong= number_to_currency(getstock_total)
           %td{:align => :right}
             %strong= number_to_currency(grand_total)
           %td{:align => :right}
