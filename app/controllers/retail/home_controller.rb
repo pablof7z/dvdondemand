@@ -13,4 +13,10 @@ class Retail::HomeController < RetailController
 
     @best_selling = @products.take(5)
   end
+  
+  def search
+    @products = Product.search(params[:id]).map do |product|
+      product if product.available_for_retail_listing?
+    end.compact
+  end
 end

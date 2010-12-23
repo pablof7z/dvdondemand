@@ -9,6 +9,8 @@ gem 'acts-as-taggable-on', '2.0.6'
 gem 'haml', '3.0.24'
 gem 'hpricot', '0.8.3'     # html2haml dependency
 gem 'googlecharts', '1.6.0'
+gem 'mysql'
+gem 'thinking-sphinx', '1.3.20'
 gem 'devise', '1.0.8'
 gem 'warden', "~> 0.10.7"
 gem 'inherited_resources', '1.0.6'
