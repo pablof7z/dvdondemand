@@ -16,12 +16,13 @@ gem 'warden', "~> 0.10.7"
 gem 'inherited_resources', '1.0.6'
 gem 'mime-types', '1.16'
 gem 'paperclip', '2.3.3'
-gem "sqlite3-ruby", :require => "sqlite3"
 
 group :development do
   gem 'ruby-debug'
   gem 'tobias-railroad', '0.10.0'
   gem 'web-app-theme', '0.5.3'
-  # should eventually be moved here:
-  # gem "sqlite3-ruby", :require => "sqlite3"
+end
+
+group :test do
+  gem "sqlite3-ruby", :require => "sqlite3"
 end
