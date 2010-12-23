@@ -53,6 +53,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :fees, :genres
     admin.resources :orders, :only => [:index, :show]
     admin.resources :publishers, :except => [:create, :new]
+    admin.resources :publisher_payments, :except => [ :delete ], :member => { :generate => [ :get, :post ] }
     admin.resources :wholesalers, :except => [:create, :new], :has_many => :wholesaler_invoices do |wholesaler|
       wholesaler.resources :invoices, :except => [:create, :new, :delete], :as => 'invoices', :has_many => :wholesaler_payments do |invoice|
         invoice.resources :payments, :as => 'payments'

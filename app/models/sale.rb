@@ -2,7 +2,7 @@ class Sale < ActiveRecord::Base
   belongs_to :publisher
   belongs_to :order
   belongs_to :wholesaler_invoice
-  has_many :publisher_payments
+  belongs_to :publisher_payment
 
   default_scope :order => 'created_at'
 

@@ -30,14 +30,17 @@ class OrderTest < ActiveSupport::TestCase
 
   test 'john items_from convenience method' do
     assert_equal 1, @order.items_from(@john).count
+    assert_equal 2, @order.items.count
   end
 
   test 'jane items_from convenience method' do
     assert_equal 1, @order.items_from(@jane).count
+    assert_equal 2, @order.items.count
   end
 
   test 'newbie items_from convenience method' do
     assert_equal 0, @order.items_from(@newbie).count
+    assert_equal 2, @order.items.count
   end
 
   test "one order, many publisher's retail sales" do

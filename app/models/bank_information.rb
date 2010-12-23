@@ -2,9 +2,11 @@ class BankInformation < ActiveRecord::Base
   belongs_to :deposit1, :class_name => 'PublisherPayment'
   belongs_to :deposit2, :class_name => 'PublisherPayment'
   belongs_to :publisher
+  has_many :publisher_payment
   
   validates_presence_of :account_number, :routing_number, :bank_name
   validates_inclusion_of :account_type, :in => %w(Checking Savings), :message => 'account type must be checking or savings account'
+  validates_uniqueness_of :account_number, :scope => [ :routing_number, :publisher_id ]
   
   NotValidated = "Not validated"
   Validated = "Validated"
@@ -22,8 +24,8 @@ class BankInformation < ActiveRecord::Base
       return false
     end
     
-    self.deposit1 = PublisherPayment.new(:publisher => publisher, :bank_information => self, :amount => random_deposit)
-    self.deposit2 = PublisherPayment.new(:publisher => publisher, :bank_information => self, :amount => random_deposit)
+    self.deposit1 = PublisherPayment.new(:publisher => publisher, :bank_information => self, :amount => random_deposit, :memo => "Account validation deposit")
+    self.deposit2 = PublisherPayment.new(:publisher => publisher, :bank_information => self, :amount => random_deposit, :memo => "Account validation deposit")
     self.deposit1.save
     self.deposit2.save
     self.save

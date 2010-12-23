@@ -1,9 +1,22 @@
 - content_for :primary_nav do
   =render :partial => 'publish/shared/navbar'
 
-%h1 Publisher's payments reports go here
+#content.wide
+  %h1 All your publisher payments
 
-%p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ullamcorper sapien id libero auctor vitae condimentum massa rutrum. Pellentesque sollicitudin sapien id metus facilisis quis gravida arcu auctor.
-%p Maecenas pulvinar magna orci, at rhoncus nisi. Cras vestibulum, justo tristique scelerisque ultricies, lacus neque gravida purus, vitae fringilla enim felis sit amet mauris. Nulla quis augue risus. In semper commodo purus at rhoncus. Etiam in ipsum mauris.
-%p Praesent pharetra, nunc quis placerat pellentesque, tellus quam dignissim sapien, sed bibendum velit nulla quis lectus. Vivamus non nunc et tellus placerat interdum eget sit amet ipsum. Etiam eu enim urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
+  %table.t1
+    %thead
+      %tr
+        %th.first.w5{:scope => 'col'} ID
+        %th Date
+        %th.w50 Payment Method
+        %th
+        %th Amount
+    %tbody
+      - @publisher_payments.each do |publisher_payment|
+        %tr{:class => cycle("odd", "even")}
+          %td= publisher_payment.id
+          %td= publisher_payment.created_at
+          %td= publisher_payment.payment_method
+          %td
+          %td= number_to_currency publisher_payment.amount
