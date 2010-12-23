@@ -1,11 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 johns:
-  sale_id: 1
   publisher_id: 1
   amount: 125
 
 janes:
-  sale_id: 2
   publisher_id: 2
   amount: 250
