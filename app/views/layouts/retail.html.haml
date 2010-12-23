@@ -3,7 +3,7 @@
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
     %title Behind The Station Retail Store
     = stylesheet_link_tag 'styles', :cache => true
-    = stylesheet_link_tag 'skinhome', :cache => true
+    = stylesheet_link_tag 'skin', :cache => true
     = javascript_include_tag 'jquery-1.4.3.min'
     = javascript_include_tag 'jquery.jcarousel.min'
     = javascript_include_tag 'jquery.infieldlabel.min'
@@ -49,7 +49,8 @@
       = yield :splash
       #container
         = yield
-      #sidebar
-        = yield :sidebar
+      - if (sidebar = yield :sidebar)
+        #sidebar
+          = sidebar
     #footer
       %p Copyright &copy;2010 onDemandDVD

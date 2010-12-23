@@ -19,13 +19,13 @@
     %ul#first-carousel.first-and-second-carousel.jcarousel-skin-tango
       - if @products
         - @products.each_with_index do |product, i|
-          = render :partial => 'carousel_product', :locals => { :product => product, :index => i }
+          = render :partial => 'retail/shared/carousel_product', :locals => { :product => product, :index => i }
 
     %h2.hbar
       Featured Catalogs from Publishers
       %a.all{:href => ''} view all
-      %ul#second-carousel.first-and-second-carousel.jcarousel-skin-tango
-        - if @catalogs
-          - @catalogs.each_with_index do |catalog, i|
-            - product = catalog.products.last
-            = render :partial => 'carousel_product', :locals => { :product => product, :index => i }
+    %ul#second-carousel.first-and-second-carousel.jcarousel-skin-tango
+      - if @catalogs
+        - @catalogs.each do |catalog|
+          - product = catalog.products.last
+          = render :partial => 'retail/shared/carousel_catalog', :locals => { :catalog => catalog, :product => product }

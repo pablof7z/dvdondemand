@@ -1,41 +1,22 @@
-- render :partial => 'main_navigation'
+- content_for :primary_nav do
+  =render :partial => 'retail/shared/navbar'
 
-.block
-  .secondary-navigation
-    %ul.wat-cf
-      %li.first.active= link_to "Home", retail_catalogs_path
-  .content
-    %h2.title Featured Random Products
-    .inner
-      %table.table
-        %tr
-          %th.first
-          %th Title
-          %th Media
-          %th Price
-          %th.last
-        - @products.each do |product|
-          %tr{:class => cycle("odd", "even")}
-            %td
-              - if product.cover_art.exists?(:thumb)
-                = image_tag(product.cover_art.url(:thumb))
-              - else
-                = product.id
-            %td= product.title
-            %td= product.media_type.name
-            %td= number_to_currency(product.price)
-            %td.last= product.genre.title
-    %h2.title Featured Catalogs from Publishers
-    .inner
-      %table.table
-        %tr
-          %th.first
-          %th Title
-          %th Publisher
-          %th.last &nbsp;
-        = render :partial => @catalogs
-      .actions-bar.wat-cf
-        .actions
+#content.wide
+  .box
+    %h2
+      Featured Random Products
+      %a.all{:href => '#'} view all
+    %ul#first-carousel.first-and-second-carousel.jcarousel-skin-tango
+      - if @products
+        - @products.each_with_index do |product, i|
+          = render :partial => 'retail/shared/carousel_product', :locals => { :product => product, :index => i }
 
-- content_for :sidebar, render(:partial => 'retail/shared/sidebar')
+    %h2
+      Featured Catalogs from Publishers
+      %a.all{:href => '#'} view all
+    %ul#second-carousel.first-and-second-carousel.jcarousel-skin-tango
+      - if @catalogs
+        - @catalogs.each do |catalog|
+          - product = catalog.products.last
+          = render :partial => 'retail/shared/carousel_catalog', :locals => { :catalog => catalog, :product => product }
 
