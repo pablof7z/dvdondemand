@@ -15,6 +15,21 @@ class Publisher < ActiveRecord::Base
   named_scope :approved, :conditions => { :approved => true }
 
   devise :database_authenticatable, :confirmable, :recoverable, :registerable, :rememberable, :trackable, :validatable
+  
+  define_index do
+    indexes first_name
+    indexes last_name
+    indexes email
+    
+    indexes catalogs.title
+    indexes catalogs.description
+    
+    indexes products.genre.title
+    indexes products.title
+    indexes products.studio
+    indexes products.performers
+    indexes products.description
+  end
 
   def full_name
     "#{first_name} #{last_name}"

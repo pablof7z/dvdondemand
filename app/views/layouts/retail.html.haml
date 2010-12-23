@@ -31,8 +31,8 @@
     #header
       %a{:href => root_path}
         %img.logo{:alt => "", :src => "/images/behind_the_station-logo.png"}/
-      %form#search-form{:action => "", :method => "post"}
-        %input.txt{:name => "search", :size => "20", :type => "text", :value => ""}/
+      - form_tag "/search", :method => :get, :id => 'search-form' do
+        = text_field_tag :id, params[:id], :size => '20', :class => 'txt'
         %input.bt-search{:alt => "Search", :src => "/images/retail/button_search.png", :title => "Search", :type => "image", :value => "Search"}
       %ul.options.customer
         - if customer_signed_in?

@@ -82,7 +82,9 @@ ActionController::Routing::Routes.draw do |map|
     
     wholesale.root :controller => 'home'
   end
-
+  
+  map.connect '/search/:id', :controller => 'retail/home', :action => 'search'
+  
   map.root :controller => 'retail/home'
 end
 
