@@ -101,7 +101,7 @@ label.spc1{
 	background: #DFF2BF url(ico-notice.png) 10px 6px no-repeat;
 	border: 1px solid #538f13; 
 }
-.warning, .alert{
+.warning{
 	color: #D8000C;
 	background: #ffc1c1 url(ico-warning.png) 10px 6px no-repeat;
 	border: 1px solid #D8000C; 
@@ -133,10 +133,12 @@ label.spc1{
 
 
 /* Search Form */
-form#search-form{
+
+/* Header */
+/*form#search-form{
 	position: absolute;
 	top: 30px;
-	right: 0;
+	left: 300px;
 }
 form#search-form input.txt{
 	width: 280px;
@@ -151,8 +153,31 @@ form#search-form input.txt{
 	margin: 0 !important;
 	vertical-align: middle;
 	font-size: 120%;
-}
+}*/
 
+/* Nav */
+form#search-form{
+	position: absolute;
+	top: 10px;
+	left:520px;
+}
+form#search-form input.txt{
+	width: 280px;
+	height: 20px;
+	border: 1px solid #b9b9b9;
+	-webkit-border-top-left-radius: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-radius-topleft: 6px;
+	-moz-border-radius-bottomleft: 6px;
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+	margin: 0 !important;
+	vertical-align: middle;
+	font-size: 120%;
+	color: #999;
+	position: relative;
+}
+form#search-form label  { position:absolute; top:5px; left:5px; width: 150px;height: 50px;z-index: 1000}
 
 /* Shopp */
 form.addCart{

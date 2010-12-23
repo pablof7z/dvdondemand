@@ -1,0 +1,135 @@
+
+p .bts{
+	display: block;
+	padding: 5px 15px;
+	margin: 0 15px 15px 0;
+	clear: left;
+	float: left;
+}
+p.btso{/* button system and text option */
+		clear: both;
+		min-height: 34px;
+		height: auto !important;
+		height: 34px;
+		line-height: 220%;
+		padding: 20px 0;
+		vertical-align: middle;
+		border: 1px solid #000; 
+		height: auto;
+		overflow: hidden;
+}
+
+.btso.bt1{
+	height: 55px !important;
+	background: #ccc !important;
+	border: 1px solid #000 !important; 
+}
+
+
+p.btso.b1 button{
+   border: 1px solid #64ca00;
+   -moz-border-radius: 6px; 
+	-webkit-border-radius: 6px; 
+	border-radius: 6px;
+ 	text-shadow: 0 1px #1a5c19;
+   color: #fff;
+   font-family: Arial, Helvetica, sans-serif !important;
+   font-size: 120%;
+   cursor: pointer;
+	padding: 15px 45px !important;
+	background: -webkit-gradient(linear, left top, left bottom, from(#7AC25A), to(#2FA42C));
+	background: -moz-linear-gradient(top,  #7AC25A,  #2FA42C);
+	vertical-align: top;
+}
+
+p.btso.b1 button:hover{
+border: 1px solid #268624;
+	text-shadow: 0 -1px #1a5c19;
+	background: -webkit-gradient(linear, left top, left bottom, from(#7AC25A), to(#268624));
+	background: -moz-linear-gradient(top,  #7AC25A,  #268624);
+}
+
+
+/* Form */
+button{
+	-moz-box-shadow: inset 0 1px 1px rgba(255,255,255,1);
+   -webkit-box-shadow: inset 0 1px 1px rgba(255,255,255,1);
+   box-shadow: inset 0 1px 1px rgba(255,255,255,1);
+   border: 1px solid #cfcfcf;
+   -moz-border-radius: 6px; 
+	-webkit-border-radius: 6px; 
+	border-radius: 6px;
+ 	text-shadow: 0 1px #fff;
+   color: #444;
+   font-family: Arial, Helvetica, sans-serif !important;
+   cursor: pointer;
+	padding: 6px 25px !important;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#cccccc));
+	background: -moz-linear-gradient(top,  #fff,  #cccccc);
+}
+.bts.b1{
+/*	-moz-box-shadow: inset 0 1px 1px rgba(255,255,255,1);
+   -webkit-box-shadow: inset 0 1px 1px rgba(255,255,255,1);
+   box-shadow: inset 0 1px 1px rgba(255,255,255,1);*/
+   border: 1px solid #64ca00;
+   -moz-border-radius: 6px; 
+	-webkit-border-radius: 6px; 
+	border-radius: 6px;
+ 	text-shadow: 0 1px #fff;
+   color: #444;
+   font-family: Arial, Helvetica, sans-serif !important;
+   font-size: 120%;
+   cursor: pointer;
+	padding: 15px 45px !important;
+	background: -webkit-gradient(linear, left top, left bottom, from(#7AC25A), to(#2FA42C));
+	background: -moz-linear-gradient(top,  #7AC25A,  #2FA42C);
+	vertical-align: top;
+}
+button:hover{
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
+	background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
+}
+ul.tools li{
+	list-style: none;
+}
+/*.bto{
+	-moz-box-shadow: inset 0 1px 1px rgba(255,255,255,1);
+   -webkit-box-shadow: inset 0 1px 1px rgba(255,255,255,1);
+   box-shadow: inset 0 1px 1px rgba(255,255,255,1);
+   border: 1px solid #cfcfcf;
+   -moz-border-radius: 50px; 
+	-webkit-border-radius: 50px; 
+	border-radius: 50px;
+ 	text-shadow: 0 1px #fff;
+   color: #444;
+   font-family: Arial, Helvetica, sans-serif !important;
+   font-size: 80%;
+   cursor: pointer;
+	padding: 6px 25px !important;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#cccccc));
+	background: -moz-linear-gradient(top,  #fff,  #cccccc);
+	width: auto;
+	text-decoration: none;
+}
+.bto:hover{
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
+	background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
+}
+*/
+
+					<label for="media" class="w50">
+						<span>Media:</span>
+						<select class="">
+							<option>CD</option>
+							<option>DVD</option>
+						</select>
+					</label>
+					
+					<label for="genre" class="w50">
+						<span class="wp80">Genre:</span>
+						<select class="wp130">
+							<option>Action</option>
+							<option>Adventure</option>
+							<option>Animation</option>
+						</select>
+					</label>

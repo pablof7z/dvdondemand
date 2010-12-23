@@ -43,7 +43,7 @@
     width: 32px;
     height: 32px;
     cursor: pointer;
-    background: url(../css/buttons_carousel.png) -32px 0 no-repeat;
+    background: url(buttons_carousel.png) -32px 0 no-repeat;
 }
 
 
@@ -69,7 +69,7 @@
     width: 32px;
     height: 32px;
     cursor: pointer;
-    background: url(../css/buttons_carousel.png) 0 0 no-repeat;
+    background: url(buttons_carousel.png) 0 0 no-repeat;
 }
 
 
