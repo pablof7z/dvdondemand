@@ -11,46 +11,49 @@
         %div.notice.message
           %p= link_to "This product is currently available for sale.", retail_catalog_product_path(@product.catalogs.first, @product)
     - else
-      %p
-        This product is not being listed for sale.
-        %span= "#{@product.available_for_retail_listing}."
+      %div.flash
+        %div.warning.message
+          %p This product is not being listed for sale. #{@product.available_for_retail_listing}.
 
-    - if @product.image.exists?(:cropped_medium)
-      %a{:href => @product.image.url, :alt => 'Full size Cover art', :target => 'blank'}
-        =image_tag(@product.image.url(:cropped_medium), :class => 'fl artw')
-    - else
-      - if @product.cd?
-        =image_tag 'medium/missing_cd.png', :class => 'fl artw'
+    .col.x5
+      - if @product.image.exists?(:cropped_medium)
+        %a{:href => @product.image.url, :alt => 'Full size Cover art', :target => 'blank'}
+          =image_tag(@product.image.url(:cropped_medium), :class => 'fl artw')
       - else
-        =image_tag 'medium/missing_dvd.png', :class => 'fl artw'
-    %dl
-      %dt Media Type:
-      %dd= @product.media_type.name
-      %dt Genre:
-      %dd= @product.genre.title
-      %dt Studio:
-      %dd= @product.studio
-      - unless @product.performers.blank?
-        %dt #{@product.dvd? ? 'Actors' : 'Musicians' }:
-        %dd= @product.performers
+        - if @product.cd?
+          =image_tag 'medium/missing_cd.png', :class => 'fl artw'
+        - else
+          =image_tag 'medium/missing_dvd.png', :class => 'fl artw'
 
-      %dt Description:
-      %dd= @product.description
+    .col.x7  
+      %dl
+        %dt Media Type:
+        %dd= @product.media_type.name
+        %dt Genre:
+        %dd= @product.genre.title
+        %dt Studio:
+        %dd= @product.studio
+        - unless @product.performers.blank?
+          %dt #{@product.dvd? ? 'Actors' : 'Musicians' }:
+          %dd= @product.performers
 
-      - unless @product.keywords.blank?
-        %dt Keywords:
-        %dd= @product.keyword_list
+        %dt Description:
+        %dd= @product.description
 
-      %dt Price:
-      %dd= number_to_currency(@product.price)
+        - unless @product.keywords.blank?
+          %dt Keywords:
+          %dd= @product.keyword_list
 
-      - unless @product.running_time.blank?
-        %dt Running Time:
-        %dd= @product.running_time
+        %dt Price:
+        %dd= number_to_currency(@product.price)
 
-      %ul.tools
-        %li= link_to 'Edit', edit_publish_publisher_product_path(current_publisher, @product), :class => 'edit'
-        %li= link_to 'Delete', publish_publisher_product_path(current_publisher,@product), :method => 'delete', :class => 'delete', :confirm => t('web-app-theme.confirm', :default => 'Are you sure?')
+        - unless @product.running_time.blank?
+          %dt Running Time:
+          %dd= @product.running_time
+
+        %ul.tools
+          %li= link_to 'Edit', edit_publish_publisher_product_path(current_publisher, @product), :class => 'bto'
+          %li= link_to 'Delete', publish_publisher_product_path(current_publisher,@product), :method => 'delete', :class => 'bto del', :confirm => t('web-app-theme.confirm', :default => 'Are you sure?')
 
 
   .box.sp
