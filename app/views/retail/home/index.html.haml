@@ -48,3 +48,24 @@
             - if @genres_for_dvd[chunk*7+index]
               %li
                 %a{:href => '#'}= @genres_for_dvd[chunk*7+index].title
+
+
+
+- content_for :sidebar do
+  .box.topdvd
+    %h3.hbar Best selling
+    - @best_selling.each_with_index do |product, index|
+      .hmedia{:class => "n#{index + 1}"}
+        %dl
+          %dt Title
+          %dd
+            %h4.fn
+              %a{:href => retail_catalog_product_path(product.catalogs.first, product)}= product.title
+
+          %dt Tags:
+          - product.keywords.take(3).each do |tag|
+            %dd.tag
+              %a{:href => '#', :rel => 'tag'}= tag.name
+
+          %dt Publisher:
+          %dd.contributor= product.publisher.full_name
