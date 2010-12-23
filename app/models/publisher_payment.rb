@@ -1,7 +1,7 @@
 class PublisherPayment < ActiveRecord::Base
   belongs_to :publisher
-  belongs_to :sale
   belongs_to :bank_information
+  has_many :sales
   
   def payment_method
     return "Bank Wire " if bank_information

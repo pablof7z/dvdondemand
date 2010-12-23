@@ -57,6 +57,8 @@
             %li= link_to "<strong>Edit</strong> publisher", edit_admin_publisher_path(@publisher), :class => (controller.action_name == 'edit'?'current':'')
           %li= link_to "<strong>All</strong> publisher payments", admin_publisher_payments_path, :class => (controller.controller_name == 'publisher_payments' and controller.action_name == 'index'?'current':'')
           %li= link_to "<strong>Generate</strong> publisher payments", generate_admin_publisher_payment_path(1), :class => (controller.controller_name == 'publisher_payments' and controller.action_name == 'process'?'current':'')
+          - if controller.controller_name == 'publisher_payments' and controller.action_name == 'show'
+            %li= link_to "<strong>Payment</strong> #{@publisher_payment.id}", admin_publisher_payment_path(@publisher_payment), :class => (controller.controller_name == 'publisher_payments' and controller.action_name == 'show'?'current':'')
 
       - else
         =link_to 'Publishers', admin_publishers_path

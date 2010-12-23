@@ -8,12 +8,12 @@
       %tr
         %th.first.w5{:scope => 'col'} ID
         %th Date
-        %th.Payment Method
+        %th Payment Method
         %th
         %th Amount
       - @publisher_payments.each do |publisher_payment|
         %tr{:class => cycle("odd", "even")}
-          %td= publisher_payment.id
+          %td= link_to publisher_payment.id, admin_publisher_payment_path(publisher_payment)
           %td= publisher_payment.created_at
           %td= publisher_payment.payment_method_with_data
           %td
