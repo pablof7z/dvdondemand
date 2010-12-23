@@ -6,6 +6,7 @@ class BankInformation < ActiveRecord::Base
   
   validates_presence_of :account_number, :routing_number, :bank_name
   validates_inclusion_of :account_type, :in => %w(Checking Savings), :message => 'account type must be checking or savings account'
+  validates_uniqueness_of :account_number, :scope => [ :routing_number, :publisher_id ]
   
   NotValidated = "Not validated"
   Validated = "Validated"

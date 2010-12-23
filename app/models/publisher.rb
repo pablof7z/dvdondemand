@@ -9,7 +9,8 @@ class Publisher < ActiveRecord::Base
   has_many :retail_sales, :class_name => 'Retail'
 
   has_many :publisher_payments
-  has_many :bank_informations, :conditions => { :validated => true }
+  has_many :bank_informations
+  has_many :validated_bank_informations, :class_name => 'BankInformation', :conditions => { :validated => true }
 
   named_scope :approved, :conditions => { :approved => true }
 
@@ -24,11 +25,11 @@ class Publisher < ActiveRecord::Base
   end
   
   def default_bank_information
-    bank_informations.each do |a|
+    validated_bank_informations.each do |a|
       return a if a.default
     end
     
-    return bank_informations.first
+    return validated_bank_informations.first
   end
   
   def owed
