@@ -49,8 +49,8 @@
       = yield :splash
       #container
         = yield
-      - if (sidebar = yield :sidebar)
-        #sidebar
-          = sidebar
+        - if (sidebar = yield :sidebar)
+          #sidebar
+            = sidebar
     #footer
       %p Copyright &copy;2010 onDemandDVD
