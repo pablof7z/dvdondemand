@@ -5,7 +5,9 @@ class Retail::CatalogsController < RetailController
   def index
     index! do |format|
       format.html do
-        @products = Product.all(:order => :updated_at, :limit => 5)
+        @products = Product.all(:order => :updated_at, :limit => 5).map do |p|
+          p if p.available_for_retail_listing?
+        end.compact
       end
       format.xml do
         render :xml => @catalogs.to_xml(:except => [:private, :password, :publisher_id, :updated_at], :include => { :publisher => {:except => [:id, :email, :approved, :created_at, :updated_at]} })
