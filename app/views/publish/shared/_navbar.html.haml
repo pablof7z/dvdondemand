@@ -35,9 +35,9 @@
       - if controller.controller_name == 'sales'
         =link_to 'Sales', overview_publish_publisher_sales_path(current_publisher), :class => 'current'
         %ul.secondary-nav
-          %li= link_to '<strong>All</strong> sales report', publish_publisher_sales_path(current_publisher), :class => (controller.action_name == 'index'?'current':'')
+          %li= link_to '<strong>All</strong> sales report', overview_publish_publisher_sales_path(current_publisher), :class => (controller.action_name == 'index'?'current':'')
       - else
-        =link_to 'Sales', publish_publisher_sales_path(current_publisher)
+        =link_to 'Sales', overview_publish_publisher_sales_path(current_publisher)
 
     %li
       - if controller.controller_name == 'publisher_payments'
