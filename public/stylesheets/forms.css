@@ -163,7 +163,9 @@ form#search-form{
 }
 form#search-form input.txt{
 	width: 280px;
+/*
 	height: 20px;
+*/
 	border: 1px solid #b9b9b9;
 	-webkit-border-top-left-radius: 6px;
 	-webkit-border-bottom-left-radius: 6px;
