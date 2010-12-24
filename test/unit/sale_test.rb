@@ -48,5 +48,6 @@ class SaleTest < ActiveSupport::TestCase
     assert_equal 224.85, @john.retail_sales.sum(:total).round(2)
     assert_equal 314.79, @john.whole_sales.sum(:total).round(2)
     assert_equal 284.81, @john.get_stocks.sum(:total).round(2)
+    assert_equal 824.45, @john.sales.sum(:total).round(2)
   end
 end
