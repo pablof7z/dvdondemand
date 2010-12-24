@@ -18,5 +18,9 @@ class Sale < ActiveRecord::Base
     # apply given Fee to each product's sale (considering quantity). Round 2 decimals for percentage's sake
     order.items_from(publisher).inject(0) { |sum,i| sum + i.quantity * (fee.percentage ? fee.amount*i.price : fee.amount) }.round(2)
   end
+
+  def pending_payment
+    publisher_payment.blank?
+  end
 end
 
