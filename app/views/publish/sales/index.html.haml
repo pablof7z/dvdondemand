@@ -21,7 +21,7 @@
           - grand_total    = 0
       %tbody
         - (1..12).each do |month|
-          - datum  = Date.new(year, month, 1)
+          - datum  = DateTime.new(year, month, 1)
           - start  = datum.beginning_of_month
           - finish = datum.end_of_month
           -# the tamale

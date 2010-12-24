@@ -19,41 +19,31 @@ END
 one:
   customer: happy
   shipping_option: fast
-  created_at: <%= DateTime.now - 4.month %>
-  date_shipped: <%= DateTime.now - 4.month %>
-  purchased_at: <%= DateTime.now - 4.month %>
+  created_at: <%= DateTime.new(2010,10,1) %>
 <%= addresses %>
 
 two:
   customer: happy
   shipping_option: cheap
-  created_at: <%= DateTime.now - 3.month %>
-  date_shipped: <%= DateTime.now - 3.month %>
-  purchased_at: <%= DateTime.now - 3.month %>
+  created_at: <%= DateTime.new(2010,10,2) %>
 <%= addresses %>
 
 three:
   customer: happy
   shipping_option: cheap
-  created_at: <%= DateTime.now - 2.month %>
-  date_shipped: <%= DateTime.now - 2.month %>
-  purchased_at: <%= DateTime.now - 2.month %>
+  created_at: <%= DateTime.new(2010,11,1) %>
 <%= addresses %>
 
 four:
   customer: happy
   shipping_option: fast
-  created_at: <%= DateTime.now - 1.month %>
-  date_shipped: <%= DateTime.now - 1.month %>
-  purchased_at: <%= DateTime.now - 1.month %>
+  created_at: <%= DateTime.new(2010,11,2) %>
 <%= addresses %>
 
 five:
   customer: happy
   shipping_option: fast
-  created_at: <%= DateTime.now %>
-  date_shipped: <%= DateTime.now %>
-  purchased_at: <%= DateTime.now %>
+  created_at: <%= DateTime.new(2010,12,1) %>
 <%= addresses %>
 
 # Wholesale follows

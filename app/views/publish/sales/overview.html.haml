@@ -20,7 +20,7 @@
           - grand_total    = 0
       %tbody
         - @years.each do |year|
-          - datum  = Date.new(year, 1, 1)
+          - datum  = DateTime.new(year, 1, 1)
           - start  = datum.beginning_of_year
           - finish = datum.end_of_year
           -# the tamale
