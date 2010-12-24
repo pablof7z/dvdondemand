@@ -12,4 +12,11 @@ class PublisherTest < ActiveSupport::TestCase
     assert_equal @jane.catalogs.size, 2
     assert_equal @jane.products.size, 1
   end
+  
+  test 'due payments total for publisher' do
+    assert_equal  19.98, @jane.sales.sum(:total).round(2)
+    assert_equal  15.98, @jane.pending_payments.round(2)
+    assert_equal 824.45, @john.sales.sum(:total).round(2)
+    assert_equal 707.45, @john.pending_payments.round(2)
+  end
 end

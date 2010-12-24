@@ -25,6 +25,15 @@ class Publisher < ActiveRecord::Base
   def artist_name
     nickname || full_name
   end
+
+  # all pending payments totals (minus fees)
+  def pending_payments
+    unless sales.blank?
+      sales.inject(0) { |sum,s| sum + (s.total - s.fees) if s.pending_payment }
+    else
+      0
+    end
+  end
   
   def default_bank_information
     validated_bank_informations.each do |a|
