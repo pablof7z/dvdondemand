@@ -2,9 +2,9 @@
   =render :partial => 'publish/shared/navbar'
 
 #content
-  %h1 Edit Financial Information
+  %h1 New Financial Information
   .box
-    - form_for @bank_information, :url => publish_publisher_bank_informations_path(current_publisher, @bank_information), :html => { :class => :form } do |f|
+    - form_for @financial_information, :url => publish_publisher_financial_informations_path(current_publisher, :type => params[:type]), :html => { :class => :form } do |f|
       = render :partial => "form", :locals => {:f => f}
 
 - content_for :sidebar, render(:partial => 'publish/shared/sidebar')

@@ -8,7 +8,7 @@
     
     %h2 Preview
     
-    - form_tag generate_admin_publisher_payment_path, :class => :form do
+    - form_tag generate_admin_bulk_payment_path, :class => :form do
       %table.t1
         %tr
           %th.first ID
@@ -25,10 +25,10 @@
             %td= number_to_currency publisher.owed
             %td= number_to_currency publisher.owed_fees
             %td
-              - if publisher.default_bank_information != nil
+              - if publisher.default_financial_information != nil
                 = check_box_tag 'publisher[]', publisher.id, :checked => true
               - else
-                No bank information
+                No financial information
     
       %p.btso
         %button.b1{:type => 'submit'}

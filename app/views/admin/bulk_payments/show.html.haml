@@ -2,23 +2,23 @@
   =render :partial => 'admin/shared/navbar'
 
 #content.wide
-  %h1 All Publisher Payments
+  %h1= "All Publishers paid by bulk payment ##{@bulk_payment.id}"
   .box
     %table.t1
       %tr
         %th.first.w5{:scope => 'col'} ID
         %th Date
+        %th Publisher
         %th Payment Method
         %th
         %th Amount
-      - @publisher_payments.each do |publisher_payment|
+      - @bulk_payment.publisher_payments.each do |publisher_payment|
         %tr{:class => cycle("odd", "even")}
-          %td= link_to publisher_payment.id, admin_publisher_payment_path(publisher_payment)
+          %td= link_to publisher_payment.id, admin_bulk_payment_publisher_payment_path(@bulk_payment, publisher_payment)
           %td= publisher_payment.created_at
+          %td= publisher_payment.publisher.full_name
           %td= publisher_payment.payment_method_with_data
-          %td
-            - if publisher_payment.bank_information
-              = publisher_payment.memo
+          %td= publisher_payment.memo
           %td= number_to_currency publisher_payment.amount
     .actions-bar.wat-cf
       .actions

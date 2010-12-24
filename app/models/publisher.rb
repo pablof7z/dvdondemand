@@ -11,8 +11,8 @@ class Publisher < ActiveRecord::Base
   has_many :retail_sales, :class_name => 'Retail'
 
   has_many :publisher_payments
-  has_many :bank_informations
-  has_many :validated_bank_informations, :class_name => 'BankInformation', :conditions => { :validated => true }
+  has_many :financial_informations
+  has_many :validated_financial_informations, :class_name => 'FinancialInformation', :conditions => { :validated => true }
 
   named_scope :approved, :conditions => { :approved => true }
 
@@ -41,12 +41,9 @@ class Publisher < ActiveRecord::Base
     nickname || full_name
   end
   
-  def default_bank_information
-    validated_bank_informations.each do |a|
-      return a if a.default
-    end
-    
-    return validated_bank_informations.first
+  def default_financial_information
+    validated_financial_informations.each { |a| return a if a.default }
+    return validated_financial_informations.first
   end
   
   def owed

@@ -2,8 +2,9 @@
   =render :partial => 'admin/shared/navbar'
 
 #content.wide
-  %h1= "Sales made by #{@publisher_payment.publisher.full_name} paid on ##{@bulk_payment.id}"
+  %h1= "Payment #{@publisher_payment.id}"
   .box
+    %h2 Sales paid with this transaction
     %table.t1
       %tr
         %th.first.w5{:scope => 'col'} ID
