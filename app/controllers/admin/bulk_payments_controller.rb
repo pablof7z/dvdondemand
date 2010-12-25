@@ -37,6 +37,7 @@ class Admin::BulkPaymentsController < AdminController
             
             # Add payment to ach file
             # Add payment to paypal file
+            bulk_payment.publisher_payments << publisher_payment
           end
         end
       end
