@@ -14,9 +14,9 @@ class PublisherTest < ActiveSupport::TestCase
   end
   
   test 'due payments total for publisher' do
-    assert_equal  19.98, @jane.sales.sum(:total).round(2)
-    assert_equal  15.98, @jane.pending_payments.round(2)
-    assert_equal 824.45, @john.sales.sum(:total).round(2)
-    assert_equal 707.45, @john.pending_payments.round(2)
+    assert_equal  19.98, @jane.sales.totals
+    assert_equal  15.98, @jane.pending_payments
+    assert_equal 824.45, @john.sales.totals
+    assert_equal 707.45, @john.pending_payments
   end
 end
