@@ -4,6 +4,7 @@ class Sale < ActiveRecord::Base
   belongs_to :wholesaler_invoice
   belongs_to :publisher_payment
 
+  named_scope :pending_payment, :conditions => { :publisher_payment_id => nil }
   default_scope :order => 'created_at'
 
   def self.totals
