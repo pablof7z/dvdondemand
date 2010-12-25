@@ -1,9 +1,8 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-johns:
-  publisher_id: 1
-  amount: 125
+# Jane publisher has no payments for her single retail sale
 
-janes:
-  publisher_id: 2
-  amount: 250
+# John's payments for Retail sales (2 out of 5)
+johns_for_retail:
+  publisher: john
+  amount: <%= 12.74 + 25.48 %>

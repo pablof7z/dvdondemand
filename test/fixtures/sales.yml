@@ -13,6 +13,7 @@ janes:
 johns_for_order_one:
   order: one
   publisher: john
+  publisher_payment: johns_for_retail
   type: Retail
   quantity: 1
   total: 14.99
@@ -21,6 +22,7 @@ johns_for_order_one:
 johns_for_order_two:
   order: two
   publisher: john
+  publisher_payment: johns_for_retail
   type: Retail
   quantity: 2
   total: <%= 14.99*2 %>
