@@ -18,7 +18,7 @@ class PublisherTest < ActiveSupport::TestCase
     assert_equal  15.98, @jane.pending_payment_totals
     # actually with some payments made
     assert_equal 824.45, @john.sales.totals
-    assert_equal 669.23, @john.pending_payment_totals
+    assert_equal 475.88, @john.pending_payment_totals
   end
 
   test 'due payments count for publisher' do
@@ -30,9 +30,9 @@ class PublisherTest < ActiveSupport::TestCase
     assert_equal  1, @jane.retail_sales.pending_payment.count
     # publisher with many kind of sales
     assert_equal 10, @john.sales.count
-    assert_equal  8, @john.sales.pending_payment.count
-    assert_equal  2, @john.get_stocks.pending_payment.count
-    assert_equal  3, @john.whole_sales.pending_payment.count
+    assert_equal  6, @john.sales.pending_payment.count
+    assert_equal  1, @john.get_stocks.pending_payment.count
+    assert_equal  2, @john.whole_sales.pending_payment.count
     assert_equal  3, @john.retail_sales.pending_payment.count
   end
 end
