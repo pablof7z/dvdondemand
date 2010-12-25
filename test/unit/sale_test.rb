@@ -45,9 +45,9 @@ class SaleTest < ActiveSupport::TestCase
   end
 
   test 'sales totals by publisher by fixtures' do
-    assert_equal 224.85, @john.retail_sales.sum(:total).round(2)
-    assert_equal 314.79, @john.whole_sales.sum(:total).round(2)
-    assert_equal 284.81, @john.get_stocks.sum(:total).round(2)
-    assert_equal 824.45, @john.sales.sum(:total).round(2)
+    assert_equal 224.85, @john.retail_sales.totals
+    assert_equal 314.79, @john.whole_sales.totals
+    assert_equal 284.81, @john.get_stocks.totals
+    assert_equal 824.45, @john.sales.totals
   end
 end
