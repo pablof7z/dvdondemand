@@ -18,6 +18,9 @@
           - retail_total   = 0
           - getstock_total = 0
           - grand_total    = 0
+          -# payments accumulate separately
+          - payment_total       = 0
+          - grand_payment_total = 0
       %tbody
         - @years.each do |year|
           - datum  = DateTime.new(year, 1, 1)
@@ -27,10 +30,12 @@
           - whole    = @whole_sales.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
           - retail   = @retail_sales.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
           - getstock = @get_stocks.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
-          - subtotal = whole + retail + getstock
+          - payment  = @payments.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.amount } 
+          - subtotal        = whole + retail + getstock
           - whole_total    += whole
           - retail_total   += retail
           - getstock_total += getstock
+          - payment_total  += payment
           %tr{:class => cycle("odd", "even")}
             %td
               = link_to_unless(subtotal == 0, year, publish_publisher_sales_path(current_publisher, :year => year))
@@ -45,7 +50,8 @@
             %td{:align => :right}
               = number_to_currency(subtotal) unless subtotal == 0
             %td{:align => :right}
-              = number_to_currency(0)
+              = number_to_currency(payment) unless payment == 0
+              - grand_payment_total += payment
             - grand_total += subtotal
         %tr
           %td
@@ -61,5 +67,5 @@
           %td{:align => :right}
             %strong= number_to_currency(grand_total)
           %td{:align => :right}
-            %strong= number_to_currency(0)
+            %strong= number_to_currency(grand_payment_total)
 
