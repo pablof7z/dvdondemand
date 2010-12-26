@@ -23,6 +23,7 @@ class Publish::SalesController < PublishController
     @retail_sales = current_publisher.retail_sales
     @whole_sales  = current_publisher.whole_sales
     @get_stocks   = current_publisher.get_stocks
+    @payments     = current_publisher.publisher_payments
   end
 end
 
