@@ -87,12 +87,12 @@
       - if controller.controller_name == 'packaging_options'
         =link_to 'Packaging Options', admin_packaging_options_path, :class => 'current'
         %ul.secondary-nav
-          %li= link_to "<strong>All</strong> shipping options", admin_shipping_options_path, :class => (controller.action_name == 'index'?'current':'')
-          %li= link_to "<strong>New</strong> shipping option", new_admin_shipping_option_path, :class => (controller.action_name == 'new'?'current':'')
+          %li= link_to "<strong>All</strong> packaging options", admin_packaging_options_path, :class => (controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>New</strong> packaging option", new_admin_packaging_option_path, :class => (controller.action_name == 'new'?'current':'')
           - if controller.action_name == 'show'
-            %li= link_to "<strong>Show</strong> shipping options", admin_shipping_option_path(@shipping_option), :class => (controller.action_name == 'show'?'current':'')
+            %li= link_to "<strong>Show</strong> packaging options", admin_packaging_option_path(@packaging_option), :class => (controller.action_name == 'show'?'current':'')
           - if controller.action_name == 'edit' or controller.action_name == 'update'
-            %li= link_to "<strong>Edit</strong> shipping option", edit_admin_shipping_option_path(@shipping_option), :class => (controller.action_name == 'edit'?'current':'')
+            %li= link_to "<strong>Edit</strong> packaging option", edit_admin_packaging_option_path(@packaging_option), :class => (controller.action_name == 'edit'?'current':'')
 
       - else
         =link_to 'Packaging Options', admin_packaging_options_path
