@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+for_janes_one:
+  sale: janes
+  fee: production
+  number: 1
+
+for_janes_two:
+  sale: janes
+  fee: processing
+  number: 1
