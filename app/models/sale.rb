@@ -3,6 +3,7 @@ class Sale < ActiveRecord::Base
   belongs_to :order
   belongs_to :wholesaler_invoice
   belongs_to :publisher_payment
+  has_many :fee_versions
 
   named_scope :pending_payment, :conditions => { :publisher_payment_id => nil }
   default_scope :order => 'created_at'
@@ -12,7 +13,10 @@ class Sale < ActiveRecord::Base
   end
 
   def fees
-    Fee.all.inject(0) { |sum,f| sum += collect_fees_for(f) }
+    fee_versions.all.inject(0) do |sum,f| 
+      f.fee.revert_to!(f.number)
+      sum += collect_fees_for(f.fee)
+    end
   end
 
   def collect_fees_for(fee)
