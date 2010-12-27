@@ -34,11 +34,11 @@ class Admin::BulkPaymentsController < AdminController
           sales.each do |sale|
             sale.publisher_payment = publisher_payment
             sale.save!
-            
-            # Add payment to ach file
-            # Add payment to paypal file
-            bulk_payment.add_publisher_payment(publisher_payment)
           end
+          
+          # Add payment to ach file
+          # Add payment to paypal file
+          bulk_payment.add_publisher_payment(publisher_payment)
         end
       end
       
@@ -51,11 +51,11 @@ class Admin::BulkPaymentsController < AdminController
   end
   
   def ach
-    send_data(@bulk_payment.ach, :filename => "#{@bulk_payment.id}_ach.ach")
+    send_data(@bulk_payment.ach_file, :filename => "#{@bulk_payment.id}_ach.ach")
   end
   
   def paypal
-    send_data(@bulk_payment.paypal, :filename => "#{@bulk_payment.id}_paypal.tsv")
+    send_data(@bulk_payment.paypal_file, :filename => "#{@bulk_payment.id}_paypal.tsv")
   end
   
   private

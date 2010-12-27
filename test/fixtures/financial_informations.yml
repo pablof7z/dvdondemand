@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+johns:
+  publisher: john
+  payment_method: paypal
+  paypal_email: test@test.com
+  validated: true
+  default: true
+  deposit1_id: 1
+  deposit2_id: 2
+
+janes:
+  publisher: jane
+  payment_method: paypal
+  paypal_email: test@test.com
+  validated: true
+  default: true
+  deposit1_id: 1
+  deposit2_id: 2

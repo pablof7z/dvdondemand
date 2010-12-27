@@ -44,8 +44,8 @@ class BulkPayment < ActiveRecord::Base
       when 'paypal'
         # add paypal information
         self.paypal_file = "" if self.paypal_file == nil
-        self.paypal_file << "#{financial_information.paypal_email} #{printf '%.02f', publisher_payment.amount} " <<
-                            "#{DEFAULT_CURRENCY} #{publisher_payment.id} #{publisher_payment.memo}"
+        self.paypal_file << "#{financial_information.paypal_email}\t#{sprintf '%.02f', publisher_payment.amount}\t" <<
+                            "#{DEFAULT_CURRENCY}\t#{publisher_payment.id}\t#{publisher_payment.memo}\n"
     end
   end
   
