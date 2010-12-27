@@ -26,7 +26,7 @@ class BulkPayment < ActiveRecord::Base
   def generate
   end
   
-  def publisher_payments<<(publisher_payment)
+  def publisher_payments.<<(publisher_payment)
     super
     
     financial_information = publisher_payment.financial_information
@@ -43,5 +43,6 @@ class BulkPayment < ActiveRecord::Base
         self.paypal_file = "" if self.paypal_file == nil
         self.paypal_file << "#{financial_information.paypal_email} #{printf '%.02f', publisher_payment.amount} " <<
                             "#{DEFAULT_CURRENCY} #{publisher_payment.id} #{publisher_payment.memo}"
+    end
   end
 end
