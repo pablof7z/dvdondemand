@@ -26,8 +26,8 @@ class BulkPayment < ActiveRecord::Base
   def generate
   end
   
-  def publisher_payments.<<(publisher_payment)
-    super
+  def add_publisher_payment(publisher_payment)
+    publisher_payments << publisher_payment
     
     financial_information = publisher_payment.financial_information
     
