@@ -42,6 +42,9 @@ class Admin::BulkPaymentsController < AdminController
         end
       end
       
+      bulk_payment.fixate
+      bulk_payment.save!
+      
       flash[:notice] = "Payments successfully generated"
       redirect_to admin_bulk_payments_path
     end

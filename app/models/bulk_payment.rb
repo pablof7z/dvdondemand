@@ -1,6 +1,12 @@
 class BulkPayment < ActiveRecord::Base
   has_many :publisher_payments, :dependent => :destroy
   
+  def self.new
+    super
+    
+    # ach code
+  end
+  
   def bank_total
     total = 0.0
     publisher_payments.map { |t| total = total + t.amount if t.financial_information.payment_method == 'bank' }
@@ -23,9 +29,6 @@ class BulkPayment < ActiveRecord::Base
     return (publisher_payments.size == 0) ? 0 : total / publisher_payments.size
   end
   
-  def generate
-  end
-  
   def add_publisher_payment(publisher_payment)
     publisher_payments << publisher_payment
     
@@ -44,5 +47,8 @@ class BulkPayment < ActiveRecord::Base
         self.paypal_file << "#{financial_information.paypal_email} #{printf '%.02f', publisher_payment.amount} " <<
                             "#{DEFAULT_CURRENCY} #{publisher_payment.id} #{publisher_payment.memo}"
     end
+  end
+  
+  def fixate
   end
 end
