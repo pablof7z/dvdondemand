@@ -29,6 +29,25 @@
                 = check_box_tag 'publisher[]', publisher.id, :checked => true
               - else
                 No financial information
+      
+      %h2 Financial Information Validation
+    
+      %table.t1
+        %tr
+          %th.first ID
+          %th Publisher
+          %th Name
+          %th Amounts
+          %th
+          %th Include
+        - @validation.each do |validation|
+          %tr{:class => cycle("odd", "even")}
+            %td= validation.id
+            %td= link_to "#{validation.publisher.first_name} #{validation.publisher.last_name}", admin_publisher_path(validation.publisher)
+            %td= validation.account_name
+            %td= number_to_currency validation.deposit1.amount
+            %td= number_to_currency validation.deposit2.amount
+            %td= check_box_tag 'validation[]', validation.id, :checked => true
     
       %p.btso
         %button.b1{:type => 'submit'}

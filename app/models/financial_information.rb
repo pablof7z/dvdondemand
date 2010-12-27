@@ -13,6 +13,8 @@ class FinancialInformation < ActiveRecord::Base
   validates_format_of :paypal_email, :with => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i, :message => 'must be valid',  :if => :paypal?
   validates_uniqueness_of :paypal_email, :scope => :publisher_id, :if => :paypal?
   
+  named_scope :waiting_approval, :conditions => [ "validated IS NULL AND deposit1_id IS NOT NULL AND deposit2_id IS NOT NULL" ]
+  
   NotValidated = "Not validated"
   Validated = "Validated"
   DepositSent = "Awaiting validation"

@@ -54,7 +54,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :orders, :only => [:index, :show]
     admin.resources :publishers, :except => [:create, :new]
     admin.resources :bulk_payments, :as => 'payments', :except => [ :edit, :delete ],
-                    :member => { :generate => [ :get, :post ], :ach => :get, :paypal => :get },
+                    :member => { :generate => [ :get, :post ], :validate => [ :get, :post ], :ach => :get, :paypal => :get },
                     :has_many => :publisher_payments do |bulk_payment|
       bulk_payment.resources :publisher_payments, :only => [ :index ]
     end
