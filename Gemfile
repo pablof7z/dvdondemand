@@ -10,6 +10,7 @@ gem 'haml', '3.0.24'
 gem 'hpricot', '0.8.3'     # html2haml dependency
 gem 'googlecharts', '1.6.0'
 gem 'devise', '1.0.8'
+gem 'vestal_versions', '1.0.2'
 gem 'warden', "~> 0.10.7"
 gem 'inherited_resources', '1.0.6'
 gem 'mime-types', '1.16'
