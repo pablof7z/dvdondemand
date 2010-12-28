@@ -10,3 +10,8 @@ processing:
   amount: 0.05
   percentage: true
 
+deleted:
+  description: Deleted Fee
+  amount: 0.99
+  percentage: false
+  deleted_at: <%= DateTime.new(2000,1,1) %>
