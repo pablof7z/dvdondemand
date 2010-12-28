@@ -31,6 +31,7 @@ janes_deleted:
   title: Does not actually matter
   description: Ghost product
   price: 0.99
+  catalogs: janes
   deleted_at: <%= DateTime.new(2000,1,1) %>
 
 devises:
