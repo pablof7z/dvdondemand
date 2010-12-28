@@ -1,10 +1,9 @@
 class BulkPayment < ActiveRecord::Base
   has_many :publisher_payments, :dependent => :destroy
-  
-  def self.new
+ 
+  def initialize
     super
-    
-    # ach code
+    @ach = ACH.new
   end
   
   def bank_total
@@ -28,6 +27,10 @@ class BulkPayment < ActiveRecord::Base
   def avg
     return (publisher_payments.size == 0) ? 0 : total / publisher_payments.size
   end
+
+  def ach
+    (@ach ||= ACH.parse(ach_file))
+  end
   
   def add_publisher_payment(publisher_payment)
     publisher_payments << publisher_payment
@@ -36,11 +39,12 @@ class BulkPayment < ActiveRecord::Base
     
     case financial_information.payment_method
       when 'bank'
-        # available
-        # financial_information.bank_name
-        # financial_information.bank_account_number
-        # financial_information.bank_routing_number
-        # financial_information.bank_account_type
+        # add ach information
+        ach.add_payment(financial_information.bank_account_type,
+                        financial_information.bank_routing_number,
+                        financial_information.bank_account_number,
+                        publisher_payment.publisher.full_name,
+                        publisher_payment.amount, id)
       when 'paypal'
         # add paypal information
         self.paypal_file = "" if self.paypal_file == nil
@@ -50,5 +54,7 @@ class BulkPayment < ActiveRecord::Base
   end
   
   def fixate
+    ach.generate!
+    self.ach_file = ach.dump
   end
 end
