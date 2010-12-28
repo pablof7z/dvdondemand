@@ -68,8 +68,7 @@ class Order < ActiveRecord::Base
         :total => is.sum { |j| j.quantity*j.price }
       )
       # capture current fee versions for historic calculations
-      Fee.non_deleted.each do |f|
-        # at some point you may actually want to consinder only "enabled" Fees...
+      Fee.applicable.each do |f|
         rs.fee_versions.create!(:fee_id => f.id, :number => f.version)
       end
     end
