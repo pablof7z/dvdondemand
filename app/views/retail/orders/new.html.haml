@@ -77,29 +77,31 @@
           %p.clear
 
           %h3 Shipping Address
-          = check_box_tag :same_as, :value => '1'
+          = check_box_tag :same_as, '1', false
           Same as Billing Address
-          %label{:for => 'shipping_name'}
-            %span Ship to
-            = f.text_field :shipping_name, :value => current_customer.full_name, :class => 'text_field'
-          %label{:for => 'shipping_address1'}
-            %span Address 1
-            = f.text_field :shipping_address1, :value => current_customer.address1, :class => 'text_field'
-          %label{:for => 'shipping_address2'}
-            %span Address 2
-            = f.text_field :shipping_address2, :value => current_customer.address2, :class => 'text_field'
-          %label{:for => 'shipping_city'}
-            %span City
-            = f.text_field :shipping_city, :value => current_customer.city, :class => 'text_field'
-          %label{:for => 'shipping_state'}
-            %span State (US only)
-            = f.select :shipping_state, us_state_options_for_select(current_customer.state, :include_blank => true)
-          %label{:for => 'shipping_zip_code'}
-            %span Zip Code
-            = f.text_field :shipping_zip_code, :value => current_customer.zip_code, :class => 'text_field_small'
-          %label{:for => 'shipping_country'}
-            %span Country
-            = f.select :shipping_country, country_options_for_select(current_customer.country)
+          
+          #shipping
+            %label{:for => 'shipping_name'}
+              %span Ship to
+              = f.text_field :shipping_name, :value => current_customer.full_name, :class => 'text_field'
+            %label{:for => 'shipping_address1'}
+              %span Address 1
+              = f.text_field :shipping_address1, :value => current_customer.address1, :class => 'text_field'
+            %label{:for => 'shipping_address2'}
+              %span Address 2
+              = f.text_field :shipping_address2, :value => current_customer.address2, :class => 'text_field'
+            %label{:for => 'shipping_city'}
+              %span City
+              = f.text_field :shipping_city, :value => current_customer.city, :class => 'text_field'
+            %label{:for => 'shipping_state'}
+              %span State (US only)
+              = f.select :shipping_state, us_state_options_for_select(current_customer.state, :include_blank => true)
+            %label{:for => 'shipping_zip_code'}
+              %span Zip Code
+              = f.text_field :shipping_zip_code, :value => current_customer.zip_code, :class => 'text_field_small'
+            %label{:for => 'shipping_country'}
+              %span Country
+              = f.select :shipping_country, country_options_for_select(current_customer.country)
 
           -# hidden fields for helper attr_accessor methods
           = f.hidden_field :first_name, :value => current_customer.first_name
@@ -117,3 +119,5 @@
               Place Order
             or
             = link_to 'Cancel', retail_customer_cart_path(current_customer)
+
+= observe_field :same_as, :frequency => 0.25, :function => visual_effect(:toggle_appear, "shipping", :duration => 1)
