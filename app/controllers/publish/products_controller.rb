@@ -23,6 +23,11 @@ class Publish::ProductsController < PublishController
     end
   end
 
+  def destroy
+    current_publisher.products.find(params[:id]).update_attribute(:deleted_at, Time.now)
+    redirect_to publish_publisher_products_url(current_publisher)
+  end
+
   protected
 
   def collection
