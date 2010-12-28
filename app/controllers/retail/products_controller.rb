@@ -4,7 +4,7 @@ class Retail::ProductsController < RetailController
 
   def show
     show! do
-      render(:text => 'Forbidden', :status => 403) and return if @catalog.private
+      render(:text => 'Forbidden', :status => 403) and return if (@catalog.private || !@product.available?)
     end
   rescue ActiveRecord::RecordNotFound
     # also raised when accessing a Product with incorrect Catalog association

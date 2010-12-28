@@ -67,6 +67,10 @@ class Product < ActiveRecord::Base
     media_type_id == MediaType::DVD
   end
 
+  def available?
+    deleted_at != nil
+  end
+
   def available_packaging_options
     # "standard" packaging option is always free
     standard = PackagingOption.find(:first, :conditions => {:price => 0})
