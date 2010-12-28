@@ -3,7 +3,7 @@
 johns:
   publisher: john
   media_type_id: 1
-  genre_id: 1
+  genre: 1
   title: Foobar Blues Media Pack
   studio: Almighty Records
   price: 14.99
@@ -23,6 +23,15 @@ janes:
   description: The golden glam age
   # for habtm fixture:
   catalogs: janes, janes_private
+
+janes_deleted:
+  publisher: jane
+  media_type_id: 1
+  genre_id: 2
+  title: Does not actually matter
+  description: Ghost product
+  price: 0.99
+  deleted_at: <%= DateTime.new(2000,1,1) %>
 
 devises:
   id: 3

@@ -28,23 +28,16 @@ class Publish::ProductsControllerTest < ActionController::TestCase
       :catalog_id   => @catalog.id.to_s
   end
 
-  test 'no Product editing w/o associated Publisher' do
-    # completes previous test
-    assert_raise ActiveRecord::RecordNotFound do
-      get :edit, :product_id => @product.id.to_s
-    end
-  end
-
   test 'proper products filtering if given Catalog in path (or not)' do
     # all publisher's products if no catalog given
     get :index, :publisher_id => @publisher.id.to_s
     assert_response :success
-    assert_equal assigns(:products), @publisher.products
+    assert_equal @publisher.products.available, assigns(:products) 
 
     # filer publisher's products otherwise
     get :index, :publisher_id => @publisher.id.to_s, :catalog_id => @catalog.id.to_s
     assert_response :success
-    assert_equal assigns(:products), @catalog.products
+    assert_equal @catalog.products.available, assigns(:products) 
   end
 end
 
