@@ -4,9 +4,6 @@
 #content
   .box
     %h1= @publisher.artist_name
-    %p
-      %b E-mail:
-      = @publisher.email
     - unless @publisher.bio.blank?
       %p
         %b Biography:

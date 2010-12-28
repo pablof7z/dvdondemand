@@ -5,7 +5,7 @@ class Retail::HomeController < RetailController
     end.compact
 
     @catalogs = Catalog.public.all(:order => :updated_at, :limit => 50).map do |c|
-      c if c.available_for_retail_listing
+      c if c.available_for_retail_listing?
     end.compact
 
     @genres_for_cd = Genre.for_cd

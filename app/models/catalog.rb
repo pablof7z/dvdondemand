@@ -10,8 +10,20 @@ class Catalog < ActiveRecord::Base
   named_scope :private, :conditions => { :private => true }
   
   def available_for_retail_listing
+    return false if publisher == nil
+    return false if publisher.approved != true
     return false if products.empty?
+    return false if has_a_product_available_for_retail_listing != true
     return true
+  end
+  
+  def available_for_retail_listing?
+    available_for_retail_listing == true
+  end
+  
+  def has_a_product_available_for_retail_listing
+    products.each { |p| return true if p.available_for_retail_listing? }
+    return false
   end
 end
 
