@@ -5,7 +5,7 @@ class Retail::CatalogsController < RetailController
   def index
     index! do |format|
       format.html do
-        @products = Product.all(:order => :updated_at, :limit => 5).map do |p|
+        @products = Product.available.all(:order => :updated_at, :limit => 5).map do |p|
           p if p.available_for_retail_listing?
         end.compact
       end
