@@ -3,7 +3,7 @@
 johns:
   publisher: john
   media_type_id: 1
-  genre: 1
+  genre_id: 1
   title: Foobar Blues Media Pack
   studio: Almighty Records
   price: 14.99
