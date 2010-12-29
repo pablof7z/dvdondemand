@@ -73,7 +73,7 @@ class ACH
     control.batch_count = batchs.length
     control.block_count = length
     control.entry_count = batchs.reduce(0) do |sub, batch|
-        sub + batch.length
+        sub + batch.entries.length
     end
 
     control.entry_hash = batchs.reduce(0) do |sub, batch|
