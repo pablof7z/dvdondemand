@@ -17,6 +17,6 @@
     %ul#second-carousel.first-and-second-carousel.jcarousel-skin-tango
       - if @catalogs
         - @catalogs.each do |catalog|
-          - product = catalog.products.last
+          - product = catalog.products.available.last
           = render :partial => 'retail/shared/carousel_catalog', :locals => { :catalog => catalog, :product => product }
 
