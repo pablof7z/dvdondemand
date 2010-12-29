@@ -22,8 +22,8 @@
           %td= number_to_currency bulk_payment.avg
           %td= number_to_currency bulk_payment.total
           %td
-            = link_to "ACH File", ach_admin_bulk_payment_path(bulk_payment)
-            = link_to "Paypal File", paypal_admin_bulk_payment_path(bulk_payment)
+            = link_to "ACH File", ach_admin_bulk_payment_path(bulk_payment) if bulk_payment.ach_file.blank? != true
+            = link_to "Paypal File", paypal_admin_bulk_payment_path(bulk_payment) if bulk_payment.paypal_file.blank? != true
     .actions-bar.wat-cf
       .actions
 
