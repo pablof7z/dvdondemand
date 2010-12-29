@@ -68,7 +68,7 @@ class Product < ActiveRecord::Base
   end
 
   def available?
-    deleted_at != nil
+    deleted_at == nil
   end
 
   def available_packaging_options

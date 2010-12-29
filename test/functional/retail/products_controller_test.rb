@@ -5,6 +5,7 @@ class Retail::ProductsControllerTest < ActionController::TestCase
     @foreing = catalogs(:johns)
     @private = catalogs(:janes_private)
     @product = products(:janes)
+    @deleted = products(:janes_deleted)
   end
 
   test "products routes always along with catalogs'" do
@@ -21,5 +22,9 @@ class Retail::ProductsControllerTest < ActionController::TestCase
     assert_response :missing
   end
 
+  test 'forbid direct access to deleted products' do
+    get :show, :catalog_id => @deleted.catalogs.first.id, :id => @deleted.id
+    assert_response :forbidden
+  end
 end
 
