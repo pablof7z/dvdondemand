@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class Retail::ProductsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   def setup
     @foreing = catalogs(:johns)
     @private = catalogs(:janes_private)
