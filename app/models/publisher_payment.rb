@@ -6,6 +6,10 @@ class PublisherPayment < ActiveRecord::Base
   
   validates_presence_of :publisher
   
+  def is_test_deposit?
+    self == financial_information.deposit1 or self == financial_information.deposit2
+  end
+  
   def payment_method
     return "Bank Wire " if financial_information.bank?
     return "Paypal " if financial_information.paypal?
