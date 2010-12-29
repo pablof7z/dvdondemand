@@ -1,0 +1,29 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content.wide
+  %h1 All Publisher Payments
+  .box
+    %table.t1
+      %tr
+        %th.first.w5{:scope => 'col'} ID
+        %th Date
+        %th Bank Payments
+        %th Paypal Payments
+        %th Average Payment
+        %th Total Payments
+        %th
+      - @bulk_payments.each do |bulk_payment|
+        %tr{:class => cycle("odd", "even")}
+          %td= link_to bulk_payment.id, admin_bulk_payment_path(bulk_payment)
+          %td= bulk_payment.created_at
+          %td= number_to_currency bulk_payment.bank_total
+          %td= number_to_currency bulk_payment.paypal_total
+          %td= number_to_currency bulk_payment.avg
+          %td= number_to_currency bulk_payment.total
+          %td
+            = link_to "ACH File", ach_admin_bulk_payment_path(bulk_payment) if bulk_payment.ach_file.blank? != true
+            = link_to "Paypal File", paypal_admin_bulk_payment_path(bulk_payment) if bulk_payment.paypal_file.blank? != true
+    .actions-bar.wat-cf
+      .actions
+

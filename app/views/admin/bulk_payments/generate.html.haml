@@ -1,0 +1,62 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content.wide
+  %h1 Generate Publisher Payments
+  .box
+    %p Here you can generate the payment for the balance of all publishers.
+    
+    %h2 Preview
+    
+    - form_tag generate_admin_bulk_payment_path, :class => :form do
+      %table.t1
+        %tr
+          %th.first ID
+          %th Name
+          %th Sales
+          %th Amount
+          %th Fees
+          %th Include
+        - if @publishers.size > 0
+          - @publishers.each do |publisher|
+            %tr{:class => cycle("odd", "even")}
+              %td= publisher.id
+              %td= link_to "#{publisher.first_name} #{publisher.last_name}", admin_publisher_path(publisher)
+              %td= publisher.sales.size
+              %td= number_to_currency publisher.owed
+              %td= number_to_currency publisher.owed_fees
+              %td
+                - if publisher.default_financial_information != nil
+                  = check_box_tag 'publisher[]', publisher.id, :checked => true
+                - else
+                  No financial information
+        - else
+          %tr{:class => cycle("odd", "even")}
+            %td{:colspan=>'6',:style=>'text-align: center;'} No pending publisher payments
+      
+      %h2 Financial Information Validation
+    
+      %table.t1
+        %tr
+          %th.first ID
+          %th Publisher
+          %th Name
+          %th Amounts
+          %th
+          %th Include
+        - if @validation.size > 0
+          - @validation.each do |validation|
+            %tr{:class => cycle("odd", "even")}
+              %td= validation.id
+              %td= link_to "#{validation.publisher.first_name} #{validation.publisher.last_name}", admin_publisher_path(validation.publisher)
+              %td= validation.account_name
+              %td= number_to_currency validation.deposit1.amount
+              %td= number_to_currency validation.deposit2.amount
+              %td= check_box_tag 'validation[]', validation.id, :checked => true
+        - else
+          %tr{:class => cycle("odd", "even")}
+            %td{:colspan=>'6',:style=>'text-align: center;'} No pending publisher validations
+    
+      %p.btso
+        %button.b1{:type => 'submit'}
+          Generate Payment File

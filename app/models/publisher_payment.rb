@@ -1,15 +1,20 @@
 class PublisherPayment < ActiveRecord::Base
   belongs_to :publisher
-  belongs_to :bank_information
-  has_many :sales
+  belongs_to :financial_information
+  belongs_to :bulk_payment
+  has_many :sales, :dependent => :nullify
+  
+  validates_presence_of :publisher
   
   def payment_method
-    return "Bank Wire " if bank_information
+    return "Bank Wire " if financial_information.bank?
+    return "Paypal " if financial_information.paypal?
     return ""
   end
   
   def payment_method_with_data
-    return "Bank Wire to #{bank_information.account_number}" if bank_information
+    return "Bank Wire to #{financial_information.bank_account_number}" if financial_information.bank?
+    return "Paypaled to #{financial_information.paypal_email}" if financial_information.paypal?
     return ""
   end
 end

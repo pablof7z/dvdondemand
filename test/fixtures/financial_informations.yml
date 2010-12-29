@@ -1,0 +1,22 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+johns:
+  publisher: john
+  payment_method: paypal
+  paypal_email: test@test.com
+  validated: true
+  default: true
+  deposit1_id: 1
+  deposit2_id: 2
+
+janes:
+  publisher: jane
+  payment_method: bank 
+  paypal_email: test@test.com
+  validated: true
+  default: true
+  deposit1_id: 1
+  bank_account_number: 980923924
+  bank_routing_number: 23127108
+  bank_account_type: Savings
+  deposit2_id: 2
