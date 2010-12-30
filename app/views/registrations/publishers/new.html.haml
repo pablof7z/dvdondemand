@@ -1,33 +1,63 @@
 - content_for :primary_nav do
   =render :partial => 'publish/shared/navbar'
 
-%h1 Sign up for your Publisher account
-
-%box.sp
-  - form_for resource_name, resource, :url => registration_path(resource_name) do |f|
-    = f.error_messages
-
-    %label
-      %span
-        E-mail
-      = f.text_field :email
-
-    %label
-      %span
-        Password
-      = f.password_field :password
-
-    %label
-      %span
-        Password confirmation
-      = f.password_field :password_confirmation
+#content
+  %h1 Sign up for your Publisher account
+  
+  %p
+    Behind The Station will revolutionize how you do business, increase your profits, and allow you to bring more titles to market without the ever increasing replication, distribution and warehousing costs associated with traditional distribution channels.    
+  %p
+    Upload your video or audio content and your cover art with no hassles and no set-up fees.
+  
+  %p
+    Your DVD or music CD will be replicated by us one at a time, as it is sold. This means you only get charged our flat replication fee when your DVD or CD sells! You can remove your titles from our site at anytime so there truly is no risk and nothing to lose!
     
-    %p
-      &nbsp;
-    
-    %p.btso
-      %button.b1{:type => 'submit'}
-        Sign up
+  %p
+    You titles will be added to our web store, “Behind The Station” 
+  
+  %p
+    You upload your content and artwork, set the price, and we do the rest! No stocking issues, no web-store worries, no credit card processing hassles, and no need to hire customer service reps. All of this is handled by us! 
+  
+  %p
+    Once uploaded, you will need to do nothing more than collect your profits at the end of the month!
+  
+  %p
+    You can even tie your products in with your MySpace or Facebook account and start selling directly from your social networking pages!
+  
+  %p
+    Your packaging choices range from the economical clamshell case, to the retail ready DVD amaray case with full color printed inserts. We provide Full color on-disc printing, as well as full color sleeves. This is a professional retail-ready product!
+  
+  %p
+    Just follow the easy steps provided on our uploading page after you create your account
+  
+  %p
+    Please see our terms of service for complete details.
+
+  %box.sp
+    - form_for resource_name, resource, :url => registration_path(resource_name) do |f|
+      = f.error_messages
+
+      %label
+        %span
+          E-mail
+        = f.text_field :email
+
+      %label
+        %span
+          Password
+        = f.password_field :password
+
+      %label
+        %span
+          Password confirmation
+        = f.password_field :password_confirmation
+      
+      %p
+        &nbsp;
+      
+      %p.btso
+        %button.b1{:type => 'submit'}
+          Sign up
 
 - content_for :sidebar, render(:partial => "shared/devise_publisher_links")
 
