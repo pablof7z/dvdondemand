@@ -12,8 +12,7 @@
           %th Type
           %th Qty.
           %th Sale Price
-          - for fee in Fee.applicable.all 
-            %th= fee.description
+          %th Applicable Fees
           %th Earnings
           %th Actions
       %tbody
@@ -34,10 +33,12 @@
               %td{:align => :right}
                 - sale_total += sale.total
                 %strong= number_to_currency(sale.total)
-              - for fv in sale.fee_versions
-                - fv.fee.revert_to(fv.number)
                 %td{:align => :right}
-                  = fee_number_to_currency(sale.collect_fees_for(fv.fee))
+                  - af = 0
+                  - for fv in sale.fee_versions
+                    - fv.fee.revert_to(fv.number)
+                    - af += sale.collect_fees_for(fv.fee)
+                  = fee_number_to_currency(af)
               %td{:align => :right}
                 - subtotal << sale.total - sale.fees
                 %strong= number_to_currency(subtotal.last)
@@ -50,7 +51,6 @@
           %td
           %td{:align => :right}
             %strong= number_to_currency(sale_total)
-          %td
           %td
           %td{:align => :right}
             %strong= number_to_currency(total)
