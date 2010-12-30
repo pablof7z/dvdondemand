@@ -2,8 +2,7 @@
   = render :partial => 'publish/shared/navbar'
 
 #content.wide
-  - year = params[:year] ? params[:year].to_i : Time.now.year
-  %h1 Year #{year}
+  %h1 Year #{@year}
   .box
     %table.t1
       %thead
@@ -24,7 +23,7 @@
           - grand_payment_total = 0
       %tbody
         - (1..12).each do |month|
-          - datum  = DateTime.new(year, month, 1)
+          - datum  = DateTime.new(@year, month, 1)
           - start  = datum.beginning_of_month
           - finish = datum.end_of_month
           -# the tamale
@@ -40,13 +39,13 @@
           %tr{:class => cycle("odd", "even")}
             %td= datum.strftime('%B').upcase
             %td
-              = link_to(number_to_currency(retail), ledger_publish_publisher_sales_path(current_publisher, :type => 'retail_sales', :year => year, :month => month)) unless retail == 0
+              = link_to(number_to_currency(retail), ledger_publish_publisher_sales_path(current_publisher, :type => 'retail_sales', :year => @year, :month => month)) unless retail == 0
             %td
               = number_to_currency(0)
             %td
-              = link_to(number_to_currency(whole), ledger_publish_publisher_sales_path(current_publisher, :type => 'whole_sales', :year => year, :month => month)) unless whole == 0
+              = link_to(number_to_currency(whole), ledger_publish_publisher_sales_path(current_publisher, :type => 'whole_sales', :year => @year, :month => month)) unless whole == 0
             %td
-              = link_to(number_to_currency(getstock), ledger_publish_publisher_sales_path(current_publisher, :type => 'get_stocks', :year => year, :month => month)) unless getstock == 0
+              = link_to(number_to_currency(getstock), ledger_publish_publisher_sales_path(current_publisher, :type => 'get_stocks', :year => @year, :month => month)) unless getstock == 0
             %td
               = number_to_currency(subtotal) unless subtotal == 0
             %td
