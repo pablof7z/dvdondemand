@@ -96,12 +96,12 @@ label.spc1{
 	padding: 0 0 0 35px;
 	font-weight: bold;
 }
-.alert{
+.notice{
 	color: #3e6a0f;
 	background: #DFF2BF url(ico-notice.png) 10px 6px no-repeat;
 	border: 1px solid #538f13; 
 }
-.warning{
+.alert{
 	color: #D8000C;
 	background: #ffc1c1 url(ico-warning.png) 10px 6px no-repeat;
 	border: 1px solid #D8000C; 
