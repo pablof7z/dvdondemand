@@ -15,7 +15,7 @@ class Sale < ActiveRecord::Base
   def fees
     # consider saved fee versions (regardless of current) for Sale's total fee calculation
     fee_versions.all.inject(0) do |sum,f| 
-      f.fee.revert_to!(f.number)
+      f.fee.revert_to(f.number)
       sum += collect_fees_for(f.fee)
     end
   end

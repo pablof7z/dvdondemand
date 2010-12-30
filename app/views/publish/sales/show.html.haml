@@ -29,8 +29,8 @@
             %b Total
           %td{:align => :right}
             %b= number_to_currency(@sale.total)
-        - for fv in @sale.fee_versions.all
-          - fv.fee.revert_to!(fv.number)
+        - for fv in @sale.fee_versions
+          - fv.fee.revert_to(fv.number)
           %tr
             %td{:colspan => 3, :align => :right}
               = fv.fee.description
