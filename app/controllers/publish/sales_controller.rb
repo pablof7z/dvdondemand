@@ -11,9 +11,31 @@ class Publish::SalesController < PublishController
     if params[:year].blank?
       # overview multi-year reports
       @years = 2007..2010
-      render :action => :overview
     else
       @year = params[:year].to_i
+    end
+
+    respond_to do |format|
+      format.html { render :action => :overview if @years }
+      format.csv do 
+        # csv output only available per-year (foobar: only current)
+        ary = []
+        @year = Time.now.year
+        (1..12).each do |month|
+          period = DateTime.new(@year, month, 1)
+          start  = period.beginning_of_month
+          finish = period.end_of_month
+          # the tamale
+          whole    = @whole_sales.find(:all, :conditions => { :created_at => start..finish }).inject(0)  { |sum,i| sum + i.total } 
+          retail   = @retail_sales.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
+          getstock = @get_stocks.find(:all, :conditions => { :created_at => start..finish }).inject(0)   { |sum,i| sum + i.total } 
+          payment  = @payments.find(:all, :conditions => { :created_at => start..finish }).inject(0)     { |sum,i| sum + i.amount } 
+          subtotal = whole + retail + getstock
+          # build the row
+          ary << { 'Month' => month, 'Retail Sales' => retail, 'Royalty Sales' => 0, 'Wholesale Sales' => whole, 'Get Stock Purchases' => getstock, 'Totals' => subtotal, 'PPS Payments' => payment }
+        end
+        send_data ary.to_csv
+      end
     end
   end
 
