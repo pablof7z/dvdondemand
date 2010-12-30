@@ -34,8 +34,8 @@
               %td{:align => :right}
                 - sale_total += sale.total
                 %strong= number_to_currency(sale.total)
-              - for fv in sale.fee_versions.all
-                - fv.fee.revert_to!(fv.number)
+              - for fv in sale.fee_versions
+                - fv.fee.revert_to(fv.number)
                 %td{:align => :right}
                   = fee_number_to_currency(sale.collect_fees_for(fv.fee))
               %td{:align => :right}
