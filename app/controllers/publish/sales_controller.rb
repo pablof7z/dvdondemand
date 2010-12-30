@@ -26,13 +26,13 @@ class Publish::SalesController < PublishController
           start  = period.beginning_of_month
           finish = period.end_of_month
           # the tamale
-          whole    = @whole_sales.find(:all, :conditions => { :created_at => start..finish }).inject(0)  { |sum,i| sum + i.total } 
-          retail   = @retail_sales.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
-          getstock = @get_stocks.find(:all, :conditions => { :created_at => start..finish }).inject(0)   { |sum,i| sum + i.total } 
-          payment  = @payments.find(:all, :conditions => { :created_at => start..finish }).inject(0)     { |sum,i| sum + i.amount } 
+          whole    = @whole_sales.totals_for(start,finish)
+          retail   = @retail_sales.totals_for(start,finish)
+          getstock = @get_stocks.totals_for(start,finish)
+          payment  = @payments.totals_for(start,finish)
           subtotal = whole + retail + getstock
           # build the row
-          ary << { 'Month' => month, 'Retail Sales' => retail, 'Royalty Sales' => 0, 'Wholesale Sales' => whole, 'Get Stock Purchases' => getstock, 'Totals' => subtotal, 'PPS Payments' => payment }
+          ary << [ ['Month', start.strftime('%b %Y')], ['Retail Sales', retail], ['Royalty Sales', 0], ['Wholesale Sales', whole], ['Get Stock Purchases', getstock], ['Totals', subtotal], ['PPS Payments', payment] ]
         end
         send_data ary.to_csv
       end
