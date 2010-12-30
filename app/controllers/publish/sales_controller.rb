@@ -18,11 +18,11 @@ class Publish::SalesController < PublishController
     respond_to do |format|
       format.html { render :action => :overview if @years }
       format.csv do 
-        # csv output only available per-year (foobar: only current)
-        ary = []
-        @year = Time.now.year
+        # csv output only available per single year
+        arry = []
+        year = params[:year] ? params[:year].to_i : Time.now.year
         (1..12).each do |month|
-          period = DateTime.new(@year, month, 1)
+          period = DateTime.new(year, month, 1)
           start  = period.beginning_of_month
           finish = period.end_of_month
           # the tamale
@@ -32,9 +32,9 @@ class Publish::SalesController < PublishController
           payment  = @payments.totals_for(start,finish)
           subtotal = whole + retail + getstock
           # build the row
-          ary << [ ['Month', start.strftime('%b %Y')], ['Retail Sales', retail], ['Royalty Sales', 0], ['Wholesale Sales', whole], ['Get Stock Purchases', getstock], ['Totals', subtotal], ['PPS Payments', payment] ]
+          arry << [ ['Month', start.strftime('%b %Y')], ['Retail Sales', retail], ['Royalty Sales', 0], ['Wholesale Sales', whole], ['Get Stock Purchases', getstock], ['Totals', subtotal], ['PPS Payments', payment] ]
         end
-        send_data ary.to_csv
+        send_data arry.to_csv
       end
     end
   end
