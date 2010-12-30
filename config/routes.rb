@@ -37,6 +37,9 @@ ActionController::Routing::Routes.draw do |map|
     retail.resources :catalogs, :only => [:index, :show] do |catalog|
       catalog.resources :products, :only => :show
     end
+    retail.resources :genres, :only => [:index, :show] do |genre|
+      genre.resources :products, :only => :show
+    end
     retail.resources :publishers, :only => [:index, :show]
 
     retail.resources :customers, :has_many => :orders do |customer|

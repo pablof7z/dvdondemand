@@ -37,17 +37,15 @@
         %ul
           - 7.times do |index|
             - if @genres_for_dvd[chunk*7+index]
-              %li
-                %a{:href => '#'}= @genres_for_dvd[chunk*7+index].title
+              %li= link_to @genres_for_dvd[chunk*7+index].title, retail_genre_path(@genres_for_dvd[chunk*7+index])
   .box.sp2
     %h2.hbar2 CD: Genre list
-    - (@genres_for_dvd.length / 7.0).ceil.times do |chunk|
+    - (@genres_for_cd.length / 7.0).ceil.times do |chunk|
       .col.x4
         %ul
           - 7.times do |index|
-            - if @genres_for_dvd[chunk*7+index]
-              %li
-                %a{:href => '#'}= @genres_for_dvd[chunk*7+index].title
+            - if @genres_for_cd[chunk*7+index]
+              %li= link_to @genres_for_cd[chunk*7+index].title, retail_genre_path(@genres_for_cd[chunk*7+index])
 
 
 
