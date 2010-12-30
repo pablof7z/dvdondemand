@@ -20,7 +20,7 @@
           %th Price
           %th
       %tbody
-        = render :partial => 'retail/products/product', :collection => @catalog.products
+        = render :partial => 'retail/products/product', :collection => @catalog.products.available
 
 - unless @catalog.publisher.bio.blank?
   - content_for :sidebar, render(:partial => 'retail/shared/about', :locals => {:publisher => @catalog.publisher})

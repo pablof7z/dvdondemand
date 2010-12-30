@@ -2,8 +2,7 @@
   = render :partial => 'publish/shared/navbar'
 
 #content.wide
-  - year = params[:year] ? params[:year].to_i : Time.now.year
-  %h1 Year #{year}
+  %h1 Year #{@year}
   .box
     %table.t1
       %thead
@@ -19,46 +18,53 @@
           - retail_total   = 0
           - getstock_total = 0
           - grand_total    = 0
+          -# payments accumulate separately
+          - payment_total       = 0
+          - grand_payment_total = 0
       %tbody
         - (1..12).each do |month|
-          - datum  = Date.new(year, month, 1)
+          - datum  = DateTime.new(@year, month, 1)
           - start  = datum.beginning_of_month
           - finish = datum.end_of_month
           -# the tamale
           - whole    = @whole_sales.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
           - retail   = @retail_sales.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
           - getstock = @get_stocks.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
-          - subtotal = whole + retail + getstock
+          - payment  = @payments.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.amount } 
+          - subtotal        = whole + retail + getstock
           - whole_total    += whole
           - retail_total   += retail
           - getstock_total += getstock
+          - payment_total  += payment
           %tr{:class => cycle("odd", "even")}
             %td= datum.strftime('%B').upcase
-            %td{:align => :right}
-              = link_to(number_to_currency(retail), ledger_publish_publisher_sales_path(current_publisher, :type => 'retail_sales', :year => year, :month => month)) unless retail == 0
-            %td{:align => :right}
+            %td
+              = link_to(number_to_currency(retail), ledger_publish_publisher_sales_path(current_publisher, :type => 'retail_sales', :year => @year, :month => month)) unless retail == 0
+            %td
               = number_to_currency(0)
-            %td{:align => :right}
-              = link_to(number_to_currency(whole), ledger_publish_publisher_sales_path(current_publisher, :type => 'whole_sales', :year => year, :month => month)) unless whole == 0
-            %td{:align => :right}
-              = link_to(number_to_currency(getstock), ledger_publish_publisher_sales_path(current_publisher, :type => 'get_stocks', :year => year, :month => month)) unless getstock == 0
-            %td{:align => :right}
+            %td
+              = link_to(number_to_currency(whole), ledger_publish_publisher_sales_path(current_publisher, :type => 'whole_sales', :year => @year, :month => month)) unless whole == 0
+            %td
+              = link_to(number_to_currency(getstock), ledger_publish_publisher_sales_path(current_publisher, :type => 'get_stocks', :year => @year, :month => month)) unless getstock == 0
+            %td
               = number_to_currency(subtotal) unless subtotal == 0
-            %td{:align => :right}= number_to_currency(0)
+            %td
+              = number_to_currency(payment) unless payment == 0
+              - grand_payment_total += payment
             - grand_total += subtotal
         %tr
           %td
             %strong TOTALS
-          %td{:align => :right}
+          %td
             %strong= number_to_currency(retail_total)
-          %td{:align => :right}
+          %td
             %strong= number_to_currency(0)
-          %td{:align => :right}
+          %td
             %strong= number_to_currency(whole_total)
-          %td{:align => :right}
+          %td
             %strong= number_to_currency(getstock_total)
-          %td{:align => :right}
+          %td
             %strong= number_to_currency(grand_total)
-          %td{:align => :right}
-            %strong= number_to_currency(0)
+          %td
+            %strong= number_to_currency(grand_payment_total)
 

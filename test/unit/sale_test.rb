@@ -28,13 +28,13 @@ class SaleTest < ActiveSupport::TestCase
   end
 
   test 'assoc. publisher sales by named ref. fixtures' do
-    assert_equal 1, @jane.sales.count
+    assert_equal  1, @jane.sales.count
     assert_equal 10, @john.sales.count
   end
 
   test "apply each Fee by product's sale" do
-    assert_equal @production.amount*2 + 0.999, @jane.sales.first.fees
-    assert_equal @production.amount*5 + 3.7475, @john.sales.first(:conditions => {:quantity => 5}).fees
+    janes = products(:janes)
+    assert_equal (@production.amount*2 + @processing.amount*janes.price*2).round(2), @jane.sales.first.fees
   end
 
   test 'other STI sales existance by fixtures' do
@@ -42,5 +42,12 @@ class SaleTest < ActiveSupport::TestCase
     assert_equal  3, @john.whole_sales.count
     assert_equal  2, @john.get_stocks.count
     assert_equal 10, @john.sales.count
+  end
+
+  test 'sales totals by publisher by fixtures' do
+    assert_equal 224.85, @john.retail_sales.totals
+    assert_equal 314.79, @john.whole_sales.totals
+    assert_equal 284.81, @john.get_stocks.totals
+    assert_equal 824.45, @john.sales.totals
   end
 end

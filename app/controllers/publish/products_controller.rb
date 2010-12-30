@@ -23,14 +23,19 @@ class Publish::ProductsController < PublishController
     end
   end
 
+  def destroy
+    current_publisher.products.find(params[:id]).update_attribute(:deleted_at, Time.now)
+    redirect_to publish_publisher_products_url(current_publisher)
+  end
+
   protected
 
   def collection
     @products = if parent_type == :catalog
       # optional catalog set, get only associated products
-      current_publisher.catalogs.find(params[:catalog_id]).products
+      current_publisher.catalogs.find(params[:catalog_id]).products.available
     else
-      current_publisher.products
+      current_publisher.products.available
     end
   end
 end

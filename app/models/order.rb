@@ -61,12 +61,16 @@ class Order < ActiveRecord::Base
   def to_retail_sale
     # ref: http://apidock.com/rails/Enumerable/group_by
     items.group_by { |i| i.product.publisher }.each do |p,is|
-      retail_sales.create!(
+      rs = retail_sales.create!(
         :publisher_id => p.id,
         # ref: http://apidock.com/rails/Enumerable/sum
         :quantity => is.sum(&:quantity),
         :total => is.sum { |j| j.quantity*j.price }
       )
+      # capture current fee versions for historic calculations
+      Fee.applicable.each do |f|
+        rs.fee_versions.create!(:fee_id => f.id, :number => f.version)
+      end
     end
   end
 

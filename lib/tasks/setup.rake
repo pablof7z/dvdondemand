@@ -50,6 +50,10 @@ namespace :devise do
     puts 'New Devise Wholesaler created!'
     puts 'E-mail  : ' << wholesaler.email
     puts 'Password: ' << wholesaler.password
+
+    # "John" publisher used to check Sales report, so confirm to allow login
+    p = Publisher.find(:first, :conditions => {:email => 'john@foo.bar'})
+    p.confirm!
   end
 end
 

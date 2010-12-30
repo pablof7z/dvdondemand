@@ -1,0 +1,112 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+for_janes_one:
+  sale: janes
+  fee: production
+  number: 1
+
+for_janes_two:
+  sale: janes
+  fee: processing
+  number: 1
+
+for_johns_one:
+  sale: johns_for_order_one
+  fee: production
+  number: 1
+
+for_johns_one_ii:
+  sale: johns_for_order_one
+  fee: processing
+  number: 1
+
+for_johns_two:
+  sale: johns_for_order_two
+  fee: production
+  number: 1
+
+for_johns_two_ii:
+  sale: johns_for_order_two
+  fee: processing
+  number: 1
+
+for_johns_three:
+  sale: johns_for_order_three
+  fee: production
+  number: 1
+
+for_johns_three_ii:
+  sale: johns_for_order_three
+  fee: processing
+  number: 1
+
+for_johns_four:
+  sale: johns_for_order_four
+  fee: production
+  number: 1
+
+for_johns_four_ii:
+  sale: johns_for_order_four
+  fee: processing
+  number: 1
+
+for_johns_five:
+  sale: johns_for_order_five
+  fee: production
+  number: 1
+
+for_johns_five_ii:
+  sale: johns_for_order_five
+  fee: processing
+  number: 1
+
+for_johns_six:
+  sale: johns_for_order_six
+  fee: production
+  number: 1
+
+for_johns_six_ii:
+  sale: johns_for_order_six
+  fee: processing
+  number: 1
+
+for_johns_seven:
+  sale: johns_for_order_seven
+  fee: production
+  number: 1
+
+for_johns_seven_ii:
+  sale: johns_for_order_seven
+  fee: processing
+  number: 1
+
+for_johns_eight:
+  sale: johns_for_order_eight
+  fee: production
+  number: 1
+
+for_johns_eight_ii:
+  sale: johns_for_order_eight
+  fee: processing
+  number: 1
+
+for_johns_nine:
+  sale: johns_for_order_nine
+  fee: production
+  number: 1
+
+for_johns_nine_ii:
+  sale: johns_for_order_nine
+  fee: processing
+  number: 1
+
+for_johns_ten:
+  sale: johns_for_order_ten
+  fee: production
+  number: 1
+
+for_johns_ten_ii:
+  sale: johns_for_order_ten
+  fee: processing
+  number: 1
+

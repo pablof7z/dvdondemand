@@ -23,23 +23,24 @@
             %td= item.product.id
             %td= item.product.title
             %td= item.quantity
-            %td{:align => :right}= number_to_currency(item.price)
+            %td= number_to_currency(item.price)
         %tr
           %td{:colspan => 3, :align => :right}
             %b Total
-          %td{:align => :right}
+          %td
             %b= number_to_currency(@sale.total)
-        - for fee in Fee.all
+        - for fv in @sale.fee_versions
+          - fv.fee.revert_to(fv.number)
           %tr
             %td{:colspan => 3, :align => :right}
-              = fee.description
+              = fv.fee.description
               (*)
-            %td{:align => :right}
-              = number_to_currency(@sale.collect_fees_for(fee))
+            %td
+              = fee_number_to_currency(@sale.collect_fees_for(fv.fee))
         %tr
           %td{:colspan => 3, :align => :right}
             %b Earnings
-          %td{:align => :right}
+          %td
             %b= number_to_currency(@sale.total - @sale.fees)
 
     %p{:align => :right} (*) Fees apply to each product sold

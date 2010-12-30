@@ -2,6 +2,7 @@ require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
   def setup
+    @publisher = publishers(:jane)
     # default packaging options available
     @standard = packaging_options(:standard)
     @premium  = packaging_options(:premium)
@@ -27,6 +28,11 @@ class ProductTest < ActiveSupport::TestCase
     assert @product_with_no_pack.available_packaging_options.include? @standard
     assert @product_with_premium.available_packaging_options.include? @standard
     assert @product_with_amary.available_packaging_options.include? @standard
+  end
+
+  test 'deleted products are not available' do
+    assert_equal 2, @publisher.products.count
+    assert_equal 1, @publisher.products.available.count
   end
 end
 

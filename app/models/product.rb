@@ -52,21 +52,9 @@ class Product < ActiveRecord::Base
   attr_accessor :cover_art_crop_x, :cover_art_crop_y, :cover_art_crop_w, :cover_art_crop_h
   attr_accessor :cd_sleeve_art_crop_x, :cd_sleeve_art_crop_y, :cd_sleeve_art_crop_w, :cd_sleeve_art_crop_h
   attr_accessor :dvd_sleeve_art_crop_x, :dvd_sleeve_art_crop_y, :dvd_sleeve_art_crop_w, :dvd_sleeve_art_crop_h
-  
-  define_index do
-    indexes publisher.first_name
-    indexes publisher.last_name
-    indexes publisher.email
-    
-    indexes genre.title
-    
-    indexes title
-    indexes studio
-    indexes performers
-    indexes description
-    
-    indexes catalogs.title
-  end
+
+  # please don't use default_scope to hide deleted products. See http://blog.semanticart.com/2009/03/22/using-default-scope-to-recreate-acts-as-paranoid.html
+  named_scope :available, :conditions => {:deleted_at => nil}
 
   def cd?
     # do not check thru MediaType association to make comparison snappier
@@ -75,6 +63,10 @@ class Product < ActiveRecord::Base
 
   def dvd?
     media_type_id == MediaType::DVD
+  end
+
+  def available?
+    deleted_at == nil
   end
 
   def available_packaging_options

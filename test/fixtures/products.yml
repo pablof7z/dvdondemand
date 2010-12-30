@@ -24,6 +24,16 @@ janes:
   # for habtm fixture:
   catalogs: janes, janes_private
 
+janes_deleted:
+  publisher: jane
+  media_type_id: 1
+  genre_id: 2
+  title: Does not actually matter
+  description: Ghost product
+  price: 0.99
+  catalogs: janes
+  deleted_at: <%= DateTime.new(2000,1,1) %>
+
 devises:
   id: 3
   publisher_id: 4
