@@ -8,15 +8,17 @@ class Publish::SalesController < PublishController
     @get_stocks   = current_publisher.get_stocks
     @payments     = current_publisher.publisher_payments
 
-    if params[:year].blank?
-      # overview multi-year reports
-      @years = 2007..2010
-    else
-      @year = params[:year].to_i
-    end
-
     respond_to do |format|
-      format.html { render :action => :overview if @years }
+      format.html do
+        if params[:year].blank?
+          # overview multi-year reports
+          @years = 2007..2010
+        else
+          @year = params[:year].to_i
+        end
+        render :action => :overview if @years
+      end
+
       format.csv do 
         # csv output only available per single year
         arry = []
@@ -34,7 +36,7 @@ class Publish::SalesController < PublishController
           # build the row
           arry << [ ['Month', start.strftime('%b %Y')], ['Retail Sales', retail], ['Royalty Sales', 0], ['Wholesale Sales', whole], ['Get Stock Purchases', getstock], ['Totals', subtotal], ['PPS Payments', payment] ]
         end
-        send_data arry.to_csv
+        send_data(arry.to_csv, :filename => "sales_#{year}.csv")
       end
     end
   end
