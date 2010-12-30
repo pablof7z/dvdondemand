@@ -12,6 +12,14 @@ class Sale < ActiveRecord::Base
     sum(:total).round(2)
   end
 
+  def self.totals_for(start,finish)
+    sum(:total, :conditions => { :created_at => start..finish }).round(2)
+  end
+
+  def pending_payment
+    publisher_payment.blank?
+  end
+
   def fees
     # consider saved fee versions (regardless of current) for Sale's total fee calculation
     fee_versions.all.inject(0) do |sum,f| 
@@ -23,10 +31,6 @@ class Sale < ActiveRecord::Base
   def collect_fees_for(fee)
     # apply given Fee to each product's sale (considering quantity). Round 2 decimals for percentage's sake
     order.items_from(publisher).inject(0) { |sum,i| sum + i.quantity * (fee.percentage ? fee.amount*i.price : fee.amount) }.round(2)
-  end
-
-  def pending_payment
-    publisher_payment.blank?
   end
 end
 

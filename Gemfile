@@ -9,6 +9,8 @@ gem 'acts-as-taggable-on', '2.0.6'
 gem 'haml', '3.0.24'
 gem 'hpricot', '0.8.3'     # html2haml dependency
 gem 'googlecharts', '1.6.0'
+gem 'to-csv', '1.0.3'
+gem 'fastercsv'
 gem 'devise', '1.0.8'
 gem 'vestal_versions', '1.0.2'
 gem 'warden', "~> 0.10.7"

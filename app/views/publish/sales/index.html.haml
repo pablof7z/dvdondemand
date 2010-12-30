@@ -27,10 +27,10 @@
           - start  = datum.beginning_of_month
           - finish = datum.end_of_month
           -# the tamale
-          - whole    = @whole_sales.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
-          - retail   = @retail_sales.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
-          - getstock = @get_stocks.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.total } 
-          - payment  = @payments.find(:all, :conditions => { :created_at => start..finish }).inject(0) { |sum,i| sum + i.amount } 
+          - whole    = @whole_sales.totals_for(start,finish)
+          - retail   = @retail_sales.totals_for(start,finish)
+          - getstock = @get_stocks.totals_for(start,finish)
+          - payment  = @payments.totals_for(start,finish)
           - subtotal        = whole + retail + getstock
           - whole_total    += whole
           - retail_total   += retail
@@ -68,3 +68,4 @@
           %td
             %strong= number_to_currency(grand_payment_total)
 
+    %p{:align => :center}= link_to 'Export to CSV', publish_publisher_sales_path(current_publisher, :year => @year, :format => :csv)
