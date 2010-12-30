@@ -96,7 +96,7 @@ label.spc1{
 	padding: 0 0 0 35px;
 	font-weight: bold;
 }
-.notice{
+.alert{
 	color: #3e6a0f;
 	background: #DFF2BF url(ico-notice.png) 10px 6px no-repeat;
 	border: 1px solid #538f13; 
