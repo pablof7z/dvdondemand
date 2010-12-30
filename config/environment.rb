@@ -21,6 +21,7 @@ Rails::Initializer.run do |config|
   config.gem "activemerchant"
   config.gem "acts-as-taggable-on"
   config.gem "devise"
+  config.gem "to-csv", :lib => 'to_csv'
   config.gem "haml"
   config.gem 'googlecharts', :lib => 'gchart'
   config.gem "inherited_resources"
