@@ -30,29 +30,29 @@
               %td
                 %strong= sale.type
               %td= sale.quantity
-              %td{:align => :right}
+              %td
                 - sale_total += sale.total
                 %strong= number_to_currency(sale.total)
-                %td{:align => :right}
+                %td
                   - af = 0
                   - for fv in sale.fee_versions
                     - fv.fee.revert_to(fv.number)
                     - af += sale.collect_fees_for(fv.fee)
                   = fee_number_to_currency(af)
-              %td{:align => :right}
+              %td
                 - subtotal << sale.total - sale.fees
                 %strong= number_to_currency(subtotal.last)
               %td
                 = link_to "Show", publish_publisher_sale_path(current_publisher,sale)
               - total += subtotal.last
         %tr
-          %td{:colspan => 3, :align => :right}
+          %td{:colspan => 3}
             %strong TOTAL
           %td
-          %td{:align => :right}
+          %td
             %strong= number_to_currency(sale_total)
           %td
-          %td{:align => :right}
+          %td
             %strong= number_to_currency(total)
           %td
 
