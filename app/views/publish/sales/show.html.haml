@@ -25,20 +25,20 @@
             %td= item.quantity
             %td= number_to_currency(item.price)
         %tr
-          %td{:colspan => 3}
+          %td{:colspan => 3, :align => :right}
             %b Total
           %td
             %b= number_to_currency(@sale.total)
         - for fv in @sale.fee_versions
           - fv.fee.revert_to(fv.number)
           %tr
-            %td{:colspan => 3}
+            %td{:colspan => 3, :align => :right}
               = fv.fee.description
               (*)
             %td
               = fee_number_to_currency(@sale.collect_fees_for(fv.fee))
         %tr
-          %td{:colspan => 3}
+          %td{:colspan => 3, :align => :right}
             %b Earnings
           %td
             %b= number_to_currency(@sale.total - @sale.fees)
