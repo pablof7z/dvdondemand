@@ -58,7 +58,12 @@
     %h2 ISO for this product
 
     - unless @product.iso? == false
-      = render :partial => 'publish/isos/iso', :locals => {:product => @product, :with_remote_delete => true}
+      %p.iso{:id => "up_iso_#{@product.iso_file_name}"}
+        = @product.iso_file_name
+        (#{number_to_human_size(@product.iso_file_size)})
+        &nbsp;
+        = link_to '[Delete]', remove_iso_publish_publisher_product_path(current_publisher, @product), :class => 'remote-delete'
+
     - else
       %p No ISO image(s) uploaded yet.
 

@@ -26,7 +26,7 @@ ActionController::Routing::Routes.draw do |map|
     
     publish.resources :products_options
     publish.resources :catalogs_products
-    publish.resources :products, :has_many => :isos
+    publish.resources :products
 
     # leave this route auth-less for publisher sign-up marketing
     publish.root :controller => 'home'
