@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
     publish.resources :publishers, :only => [:edit, :show] do |publisher|
       publisher.resources :catalogs, :has_many => :products
 
-      publisher.resources :products, :has_many => :items do |product|
+      publisher.resources :products, :member => { :iso => :post, :remove_iso => :get }, :has_many => :items do |product|
         product.modal '/modal/:action/:id', :controller => 'modal'
       end
 
