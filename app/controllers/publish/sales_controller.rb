@@ -9,7 +9,7 @@ class Publish::SalesController < PublishController
     @payments     = current_publisher.publisher_payments
 
     if params[:year].blank?
-      @years = 2007..2010   # overview multi-year reports
+      @years = 2007..Time.now.year   # overview multi-year reports
     else
       @year = params[:year].to_i
     end
