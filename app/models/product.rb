@@ -3,7 +3,6 @@ class Product < ActiveRecord::Base
   belongs_to :publisher
   belongs_to :genre
 
-  has_many :isos
   has_many :order_items
   has_many :product_flags  # customers may flag a product for provided reasons
 
@@ -84,7 +83,7 @@ class Product < ActiveRecord::Base
     return "No publisher selected" if publisher == nil
     return "Publisher not yet approved" if publisher.approved != true
     return "Product is not associated with any catalog" if catalogs.empty?
-    return "Product has no ISO file" if isos.empty?
+    return "Product has no ISO file" if iso? == false
     return true
   end
   

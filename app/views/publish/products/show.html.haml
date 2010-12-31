@@ -55,18 +55,15 @@
 
 
   .box.sp
-    %h2 ISO(s) for this product
+    %h2 ISO for this product
 
-    :javascript
-      $(function() {
-        $('a.remote-delete').click(function() {
-          $.post(this.href, { _method: 'delete' }, null, "script");
-          return false;
-        });
-      });
+    - unless @product.iso? == false
+      %p.iso{:id => "up_iso_#{@product.iso_file_name}"}
+        = @product.iso_file_name
+        (#{number_to_human_size(@product.iso_file_size)})
+        &nbsp;
+        = link_to '[Delete]', remove_iso_publish_publisher_product_path(current_publisher, @product), :class => 'remote-delete'
 
-    - unless @product.isos.empty?
-      = render :partial => 'publish/isos/iso', :collection => @product.isos, :locals => {:with_remote_delete => true}
     - else
       %p No ISO image(s) uploaded yet.
 
@@ -74,11 +71,11 @@
   .box.sp
     %h2 Upload new ISO
 
-    - form_for Iso.new, :url => publish_product_isos_path(@product), :html => { :multipart => true } do |f|
+    - form_for @product, :url => iso_publish_publisher_product_path(current_publisher, @product), :html => { :multipart => true } do |f|
       .group
         = f.label :iso, "ISO File", :class => :label
         = f.file_field :iso
-        = render_uploadify :id => 'iso_iso', :url => publish_product_isos_path(@product), :allowed_extensions => [:iso], :max_size => 4.gigabytes, :allow_multiple_files => false
+        = render_uploadify :id => 'product_iso', :url => iso_publish_publisher_product_path(current_publisher, @product), :allowed_extensions => [:iso], :max_size => 4.gigabytes, :allow_multiple_files => false
       .group.navform.wat-cf
         = uploadify_submit("Upload")
         = uploadify_cancel("Stop")

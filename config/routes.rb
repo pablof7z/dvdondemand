@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
     publish.resources :publishers, :only => [:edit, :show] do |publisher|
       publisher.resources :catalogs, :has_many => :products
 
-      publisher.resources :products, :has_many => :items do |product|
+      publisher.resources :products, :member => { :iso => :post, :remove_iso => :get }, :has_many => :items do |product|
         product.modal '/modal/:action/:id', :controller => 'modal'
       end
 
@@ -26,7 +26,7 @@ ActionController::Routing::Routes.draw do |map|
     
     publish.resources :products_options
     publish.resources :catalogs_products
-    publish.resources :products, :has_many => :isos
+    publish.resources :products
 
     # leave this route auth-less for publisher sign-up marketing
     publish.root :controller => 'home'
