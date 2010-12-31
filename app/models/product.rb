@@ -22,17 +22,20 @@ class Product < ActiveRecord::Base
                                          :small => { :jcrop => true, :geometry => "90x121>" },
                                          :thumb => { :jcrop => true, :geometry => "35x35>" } }, :processors => [:jcropper]
 
-  has_attached_file :cover_art, :styles => { :cropped => { :jcrop => true },
+  has_attached_file :cover_art, :path => ':rails_root/public/system/:id/cover_:style.:extension',
+                               :styles => { :cropped => { :jcrop => true },
                                              :cropped_medium => { :jcrop => true, :geometry => "240x240>" },
                                              :medium => "300x300>",
                                              :thumb => "100x100>" }, :processors => [:jcropper]
 
-  has_attached_file :cd_sleeve_art, :styles => { :cropped => { :jcrop => true },
+  has_attached_file :cd_sleeve_art, :path => ':rails_root/public/system/:id/sleeve_:style.:extension',
+                                    :styles => { :cropped => { :jcrop => true },
                                                  :cropped_medium => { :jcrop => true, :geometry => "240x240>" },
                                                  :medium => "300x300>",
                                                  :thumb => "100x100>" }, :processors => [:jcropper]
 
-  has_attached_file :dvd_sleeve_art, :styles => { :cropped => { :jcrop => true },
+  has_attached_file :dvd_sleeve_art, :path => ':rails_root/public/system/:id/sleeve_:style.:extension',
+                                     :styles => { :cropped => { :jcrop => true },
                                                   :cropped_medium => { :jcrop => true, :geometry => "240x240>" },
                                                   :medium => "300x300>",
                                                   :thumb => "100x100>" }, :processors => [:jcropper]
@@ -41,7 +44,7 @@ class Product < ActiveRecord::Base
   validates_attachment_content_type :cd_sleeve_art,  :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'], :if => :cd? 
   validates_attachment_content_type :dvd_sleeve_art, :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'], :if => :dvd?
 
-  has_attached_file :iso
+  has_attached_file :iso, :path => ':rails_root/public/system/:id/disc.iso'
 
   acts_as_taggable
   acts_as_taggable_on :keywords
