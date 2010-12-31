@@ -15,7 +15,8 @@ class Product < ActiveRecord::Base
   validates_presence_of :media_type, :genre, :title, :description
   validates_numericality_of :price, :greater_than => 0
 
-  has_attached_file :image, :styles => { :cropped => { :jcrop => true },
+  has_attached_file :image,  :path => ':rails_root/public/system/images/:id/:basename_:style.:extension',
+                             :styles => { :cropped => { :jcrop => true },
                                          :cropped_medium => { :jcrop => true, :geometry => "210x283>" },
                                          :cropped_small => { :jcrop => true, :geometry => "90x121>" },
                                          :medium => "300x300>",
