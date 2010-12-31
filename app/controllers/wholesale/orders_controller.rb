@@ -1,4 +1,9 @@
+require 'activemessaging/processor'
+
 class Wholesale::OrdersController < WholesaleController
+  include ActiveMessaging::MessageSender
+
+  publishes_to :job_creator
   before_filter :authenticate_wholesaler!, :except => [ :create ]
   belongs_to :wholesaler
   respond_to :xml
