@@ -26,14 +26,7 @@ class Publish::SalesController < PublishController
             period = DateTime.new(year, 1, 1)
             start  = period.beginning_of_year
             finish = period.end_of_year
-            # the tamale
-            whole    = @whole_sales.totals_for(start,finish)
-            retail   = @retail_sales.totals_for(start,finish)
-            getstock = @get_stocks.totals_for(start,finish)
-            payment  = @payments.totals_for(start,finish)
-            subtotal = whole + retail + getstock
-            # build the row
-            arry << [ ['Year', start.strftime('%Y')], ['Retail Sales', retail], ['Royalty Sales', 0], ['Wholesale Sales', whole], ['Get Stock Purchases', getstock], ['Totals', subtotal], ['PPS Payments', payment] ]
+            arry << csv_row(start,finish) { ['Year', start.strftime('%Y')] }
           end
           send_data(arry.to_csv, :filename => "sales.csv")
         else
@@ -41,14 +34,7 @@ class Publish::SalesController < PublishController
             period = DateTime.new(@year, month, 1)
             start  = period.beginning_of_month
             finish = period.end_of_month
-            # the tamale
-            whole    = @whole_sales.totals_for(start,finish)
-            retail   = @retail_sales.totals_for(start,finish)
-            getstock = @get_stocks.totals_for(start,finish)
-            payment  = @payments.totals_for(start,finish)
-            subtotal = whole + retail + getstock
-            # build the row
-            arry << [ ['Month', start.strftime('%b %Y')], ['Retail Sales', retail], ['Royalty Sales', 0], ['Wholesale Sales', whole], ['Get Stock Purchases', getstock], ['Totals', subtotal], ['PPS Payments', payment] ]
+            arry << csv_row(start,finish) { ['Month', start.strftime('%b %Y')] }
           end
           send_data(arry.to_csv, :filename => "sales_#{@year}.csv")
         end
@@ -64,6 +50,25 @@ class Publish::SalesController < PublishController
     finish = dd.end_of_month
     @sales = current_publisher.send(params[:type] || 'retail_sales').find(:all, :conditions => {:created_at => start..finish})
     @group = @sales.group_by { |s| s.created_at.beginning_of_month }
+  end
+
+  private
+
+  def csv_row(start,finish)
+    whole    = @whole_sales.totals_for(start,finish)
+    retail   = @retail_sales.totals_for(start,finish)
+    getstock = @get_stocks.totals_for(start,finish)
+    payment  = @payments.totals_for(start,finish)
+    subtotal = whole + retail + getstock
+    [ 
+      yield, 
+      ['Retail Sales', retail],
+      ['Royalty Sales', 0],
+      ['Wholesale Sales', whole],
+      ['Get Stock Purchases', getstock],
+      ['Totals', subtotal],
+      ['PPS Payments', payment] 
+    ]
   end
 end
 
