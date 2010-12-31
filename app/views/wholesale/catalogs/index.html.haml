@@ -3,8 +3,24 @@
 
 #content
   %h1 Wholesale's Catalog Download
-  .box
-    = link_to "Download catalog", wholesale_wholesaler_catalogs_path(current_wholesaler, :format => :xml)
+  .box.sp
+    - form_tag wholesale_wholesaler_catalogs_path(current_wholesaler, :format => :xml), :method => 'get' do |f|
+      = hidden_field_tag :type, 'catalogs'
+      %p.btso{:align => :center}
+        %button.b1{:type=>'submit'}
+          Download catalogs
+    
+    - form_tag wholesale_wholesaler_catalogs_path(current_wholesaler, :format => :xml), :method => 'get' do |f|
+      = hidden_field_tag :type, 'packaging_options'
+      %p.btso{:align => :center}
+        %button.b1{:type=>'submit'}
+          Download packaging options
+    
+    - form_tag wholesale_wholesaler_catalogs_path(current_wholesaler, :format => :xml), :method => 'get' do |f|
+      = hidden_field_tag :type, 'shipping_options'
+      %p.btso{:align => :center}
+        %button.b1{:type=>'submit'}
+          Download shipping options
 
 - content_for :sidebar, render(:partial => 'wholesale/shared/sidebar')
 
