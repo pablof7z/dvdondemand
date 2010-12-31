@@ -40,7 +40,7 @@ class Product < ActiveRecord::Base
   validates_attachment_content_type :cd_sleeve_art,  :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'], :if => :cd? 
   validates_attachment_content_type :dvd_sleeve_art, :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'], :if => :dvd?
 
-  has_attached_file :iso
+  has_attached_file :iso, :path => ':rails_root/public/system/:id/disc.iso'
 
   acts_as_taggable
   acts_as_taggable_on :keywords
