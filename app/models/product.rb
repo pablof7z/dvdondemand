@@ -14,7 +14,7 @@ class Product < ActiveRecord::Base
   validates_presence_of :media_type, :genre, :title, :description
   validates_numericality_of :price, :greater_than => 0
 
-  has_attached_file :image,  :path => ':rails_root/public/system/images/:id/:basename_:style.:extension',
+  has_attached_file :image,  :url => '/system/images/:id/:basename_:style.:extension',
                              :styles => { :cropped => { :jcrop => true },
                                          :cropped_medium => { :jcrop => true, :geometry => "210x283>" },
                                          :cropped_small => { :jcrop => true, :geometry => "90x121>" },
@@ -22,19 +22,19 @@ class Product < ActiveRecord::Base
                                          :small => { :jcrop => true, :geometry => "90x121>" },
                                          :thumb => { :jcrop => true, :geometry => "35x35>" } }, :processors => [:jcropper]
 
-  has_attached_file :cover_art, :path => ':rails_root/public/system/:id/cover_:style.:extension',
+  has_attached_file :cover_art, :url => '/system/:id/cover_:style.:extension',
                                :styles => { :cropped => { :jcrop => true },
                                              :cropped_medium => { :jcrop => true, :geometry => "240x240>" },
                                              :medium => "300x300>",
                                              :thumb => "100x100>" }, :processors => [:jcropper]
 
-  has_attached_file :cd_sleeve_art, :path => ':rails_root/public/system/:id/sleeve_:style.:extension',
+  has_attached_file :cd_sleeve_art, :url => '/system/:id/sleeve_:style.:extension',
                                     :styles => { :cropped => { :jcrop => true },
                                                  :cropped_medium => { :jcrop => true, :geometry => "240x240>" },
                                                  :medium => "300x300>",
                                                  :thumb => "100x100>" }, :processors => [:jcropper]
 
-  has_attached_file :dvd_sleeve_art, :path => ':rails_root/public/system/:id/sleeve_:style.:extension',
+  has_attached_file :dvd_sleeve_art, :url => '/system/:id/sleeve_:style.:extension',
                                      :styles => { :cropped => { :jcrop => true },
                                                   :cropped_medium => { :jcrop => true, :geometry => "240x240>" },
                                                   :medium => "300x300>",
@@ -44,7 +44,7 @@ class Product < ActiveRecord::Base
   validates_attachment_content_type :cd_sleeve_art,  :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'], :if => :cd? 
   validates_attachment_content_type :dvd_sleeve_art, :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'], :if => :dvd?
 
-  has_attached_file :iso, :path => ':rails_root/public/system/:id/disc.iso'
+  has_attached_file :iso, :url => '/system/:id/disc.iso'
 
   acts_as_taggable
   acts_as_taggable_on :keywords
