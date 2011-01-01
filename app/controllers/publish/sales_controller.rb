@@ -15,10 +15,7 @@ class Publish::SalesController < PublishController
     end
 
     respond_to do |format|
-      format.html do
-        render :action => :overview if @years
-      end
-
+      format.html
       format.csv do 
         if @years
           send_data(csv_builder(:yearly), :filename => "sales.csv")
