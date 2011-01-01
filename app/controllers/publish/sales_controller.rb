@@ -20,23 +20,10 @@ class Publish::SalesController < PublishController
       end
 
       format.csv do 
-        arry = []
         if @years
-          @years.each do |year|
-            period = DateTime.new(year, 1, 1)
-            start  = period.beginning_of_year
-            finish = period.end_of_year
-            arry << csv_row(start,finish) { ['Year', start.strftime('%Y')] }
-          end
-          send_data(arry.to_csv, :filename => "sales.csv")
+          send_data(csv_builder(:yearly), :filename => "sales.csv")
         else
-          (1..12).each do |month|
-            period = DateTime.new(@year, month, 1)
-            start  = period.beginning_of_month
-            finish = period.end_of_month
-            arry << csv_row(start,finish) { ['Month', start.strftime('%b %Y')] }
-          end
-          send_data(arry.to_csv, :filename => "sales_#{@year}.csv")
+          send_data(csv_builder(:monthly), :filename => "sales_#{@year}.csv")
         end
       end
     end
@@ -54,19 +41,37 @@ class Publish::SalesController < PublishController
 
   private
 
+  def csv_builder(yearly_or_monthly)
+    arry  = []
+    (yearly_or_monthly==:yearly ? @years : (1..12)).each do |i|
+      case yearly_or_monthly
+        when :yearly:
+          period = DateTime.new(i, 1, 1)
+          start  = period.beginning_of_year
+          finish = period.end_of_year
+          arry << csv_row(start,finish) { ['Year', start.strftime('%Y')] }
+        when :monthly:
+          period = DateTime.new(@year, i, 1)
+          start  = period.beginning_of_month
+          finish = period.end_of_month
+          arry << csv_row(start,finish) { ['Month', start.strftime('%b %Y')] }
+      end
+    end
+    arry.to_csv
+  end
+
   def csv_row(start,finish)
     whole    = @whole_sales.totals_for(start,finish)
     retail   = @retail_sales.totals_for(start,finish)
     getstock = @get_stocks.totals_for(start,finish)
     payment  = @payments.totals_for(start,finish)
-    subtotal = whole + retail + getstock
     [ 
       yield, 
       ['Retail Sales', retail],
       ['Royalty Sales', 0],
       ['Wholesale Sales', whole],
       ['Get Stock Purchases', getstock],
-      ['Totals', subtotal],
+      ['Totals', whole + retail + getstock],
       ['PPS Payments', payment] 
     ]
   end
