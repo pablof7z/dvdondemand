@@ -30,13 +30,35 @@ class Publish::SalesController < PublishController
   end
 
   def ledger
-    yy = params[:year]  || Time.now.year
-    mm = params[:month] || Time.now.month
-    dd = DateTime.new(yy.to_i, mm.to_i, 1)
-    start  = dd.beginning_of_month
-    finish = dd.end_of_month
-    @sales = current_publisher.send(params[:type] || 'retail_sales').find(:all, :conditions => {:created_at => start..finish})
+    @type  = params[:type] || 'retail_sales' 
+    @year  = params[:year].blank?  ? Time.now.year  : params[:year].to_i
+    @month = params[:month].blank? ? Time.now.month : params[:month].to_i 
+    date   = DateTime.new(@year, @month, 1)
+    start  = date.beginning_of_month
+    finish = date.end_of_month
+    @sales = current_publisher.send(@type).find(:all, :conditions => {:created_at => start..finish})
     @group = @sales.group_by { |s| s.created_at.beginning_of_month }
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        arry = []
+        @group.each do |month,sales|
+          sales.each do |sale|
+            arry << [
+                      ['Date', sale.created_at.strftime('%m/%d/%Y')],
+                      ['Transaction', sale.id],
+                      ['Type', sale.type],
+                      ['Qty.', sale.quantity],
+                      ['Sale Price', sale.total],
+                      ['Applicable Fees', "(#{sale.fees})"],
+                      ['Earnings', sale.total-sale.fees]
+                    ]
+          end
+        end
+        send_data(arry.to_csv, :filename => "sales_#{@year}_#{@month}.csv")
+      end
+    end
   end
 
   private
@@ -46,14 +68,14 @@ class Publish::SalesController < PublishController
     (yearly_or_monthly==:yearly ? @years : (1..12)).each do |i|
       case yearly_or_monthly
         when :yearly:
-          period = DateTime.new(i, 1, 1)
+          date   = DateTime.new(i, 1, 1)
           start  = period.beginning_of_year
           finish = period.end_of_year
           arry << csv_row(start,finish) { ['Year', start.strftime('%Y')] }
         when :monthly:
-          period = DateTime.new(@year, i, 1)
-          start  = period.beginning_of_month
-          finish = period.end_of_month
+          date   = DateTime.new(@year, i, 1)
+          start  = date.beginning_of_month
+          finish = date.end_of_month
           arry << csv_row(start,finish) { ['Month', start.strftime('%b %Y')] }
       end
     end
