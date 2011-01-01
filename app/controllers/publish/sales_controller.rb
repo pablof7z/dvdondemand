@@ -26,6 +26,13 @@ class Publish::SalesController < PublishController
     end
   end
 
+  def show
+    show! do
+      # for nav_bar's partial sake
+      @year, @month = @sale.created_at.year, @sale.created_at.month
+    end
+  end
+
   def ledger
     @type  = params[:type] || 'retail_sales' 
     @year  = params[:year].blank?  ? Time.now.year  : params[:year].to_i
