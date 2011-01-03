@@ -33,12 +33,8 @@
               %td
                 - sale_total += sale.total
                 %strong= number_to_currency(sale.total)
-                %td
-                  - af = 0
-                  - for fv in sale.fee_versions
-                    - fv.fee.revert_to(fv.number)
-                    - af += sale.collect_fees_for(fv.fee)
-                  = fee_number_to_currency(af)
+              %td
+                = fee_number_to_currency(sale.fees)
               %td
                 - subtotal << sale.total - sale.fees
                 %strong= number_to_currency(subtotal.last)
@@ -57,6 +53,11 @@
           %td
 
     %p{:align => :right} (*) Fees apply to each product sold
+
+    - form_tag ledger_publish_publisher_sales_path(current_publisher, :type => @type, :year => @year, :month => @month, :format => :csv), :method => 'get' do |f|
+      %p.btso{:align => :center}
+        %button.b1{:type=>'submit'}
+          Export to CSV
 
     %p= render :partial => 'gchart', :locals => { :sales => @sales.map { |s| s.total } }
 

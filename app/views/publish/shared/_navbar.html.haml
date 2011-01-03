@@ -34,11 +34,19 @@
 
     %li
       - if controller.controller_name == 'sales'
-        =link_to 'Sales', publish_publisher_sales_path(current_publisher), :class => 'current'
-        %ul.secondary-nav
-          %li= link_to '<strong>All</strong> sales report', publish_publisher_sales_path(current_publisher), :class => (controller.action_name == 'index'?'current':'')
+          %li
+            = link_to '<strong>All</strong> sales report', publish_publisher_sales_path(current_publisher), current_or_not { @year.blank? }
+          - if @year
+            %li
+              = link_to "<strong>Year</strong> #{@year}", publish_publisher_sales_path(current_publisher, :year => @year), current_or_not { @month.blank? }
+          - if @month
+            %li
+              = link_to "<strong>#{Date.new(@year,@month,1).strftime('%B')}</strong> #{@year}", ledger_publish_publisher_sales_path(current_publisher, :type => @type, :year => @year, :month => @month), current_or_not { @sale.blank? }
+          - if @sale
+            %li
+              = link_to "<strong>Sale</strong> #{@sale.id}", root_url, :class => 'current'
       - else
-        =link_to 'Sales', publish_publisher_sales_path(current_publisher)
+        = link_to 'Sales', publish_publisher_sales_path(current_publisher)
 
     %li
       - if controller.controller_name == 'publisher_payments'

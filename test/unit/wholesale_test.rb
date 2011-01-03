@@ -7,6 +7,6 @@ class WholesaleTest < ActiveSupport::TestCase
 
   test 'Wholesale sales named fixtures and STI' do
     assert_equal 10, @john.sales.count
-    assert_equal 5, @john.whole_sales.count
+    assert_equal 3, @john.whole_sales.count
   end
 end
