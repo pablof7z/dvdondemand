@@ -154,13 +154,12 @@ class Order < ActiveRecord::Base
 
   # build composite address for billing/shipping
   def address_for(where)
-    returning address = [] do
-      address << send("#{where.to_s}_address1")
-      address << send("#{where.to_s}_address2") unless send("#{where.to_s}_address2").blank?
-      address << send("#{where.to_s}_city")     unless send("#{where.to_s}_city").blank?
-      address << send("#{where.to_s}_state")    unless send("#{where.to_s}_state").blank?
-      address << send("#{where.to_s}_country")  unless send("#{where.to_s}_country").blank?
-    end
+    address = []
+    address << send("#{where.to_s}_address1")
+    address << send("#{where.to_s}_address2") unless send("#{where.to_s}_address2").blank?
+    address << send("#{where.to_s}_city")     unless send("#{where.to_s}_city").blank?
+    address << send("#{where.to_s}_state")    unless send("#{where.to_s}_state").blank?
+    address << send("#{where.to_s}_country")  unless send("#{where.to_s}_country").blank?
     address.join('<br />')
   end
 end

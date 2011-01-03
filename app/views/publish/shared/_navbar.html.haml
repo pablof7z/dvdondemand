@@ -41,7 +41,7 @@
               = link_to "<strong>Year</strong> #{@year}", publish_publisher_sales_path(current_publisher, :year => @year), current_or_not { @month.blank? }
           - if @month
             %li
-              = link_to "<strong>#{Date.new(@year,@month,1).strftime('%B')}</strong> #{@year}", ledger_publish_publisher_sales_path(current_publisher, :type => @type, :year => @year, :month => @month), current_or_not { @sale.blank? }
+              = link_to "<strong>#{Date.new(@year,@month,1).strftime('%B')}</strong> #{@type.classify}", ledger_publish_publisher_sales_path(current_publisher, :type => @type, :year => @year, :month => @month), current_or_not { @sale.blank? }
           - if @sale
             %li
               = link_to "<strong>Sale</strong> #{@sale.id}", root_url, :class => 'current'
