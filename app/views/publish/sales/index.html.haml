@@ -63,7 +63,4 @@
           %td
             %strong= number_to_currency(grand_payment_total)
 
-    - form_tag publish_publisher_sales_path(current_publisher, :year => @year, :format => :csv), :method => 'get' do |f|
-      %p.btso{:align => :center}
-        %button.b1{:type=>'submit'}
-          Export to CSV
+    - buttonize publish_publisher_sales_path(current_publisher, :year => @year, :format => :csv), 'Export to CSV'

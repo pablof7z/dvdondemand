@@ -54,10 +54,7 @@
 
     %p{:align => :right} (*) Fees apply to each product sold
 
-    - form_tag ledger_publish_publisher_sales_path(current_publisher, :type => @type, :year => @year, :month => @month, :format => :csv), :method => 'get' do |f|
-      %p.btso{:align => :center}
-        %button.b1{:type=>'submit'}
-          Export to CSV
+    - buttonize ledger_publish_publisher_sales_path(current_publisher, :type => @type, :year => @year, :month => @month, :format => :csv), 'Export to CSV'
 
     %p= render :partial => 'gchart', :locals => { :sales => @sales.map { |s| s.total } }
 

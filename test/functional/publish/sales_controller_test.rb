@@ -13,8 +13,13 @@ class Publish::SalesControllerTest < ActionController::TestCase
   test 'restricted routing rules' do
     get :index, :publisher_id => @publisher.id
     assert_response :success
+
+    get :ledger, :publisher_id => @publisher.id
+    assert_response :success
+
     get :show, :publisher_id => @publisher.id, :id => @sale.id
     assert_response :success
+
     assert_raise ActionController::RoutingError do
       get :edit, :publisher_id => @publisher.id
     end
