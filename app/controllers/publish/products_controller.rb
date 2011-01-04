@@ -47,7 +47,7 @@ class Publish::ProductsController < PublishController
     redirect_to publish_publisher_product_path(current_publisher, @product)
   end
   
-  protected
+  private
 
   def collection
     @products = if parent_type == :catalog

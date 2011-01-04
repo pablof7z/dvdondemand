@@ -7,7 +7,7 @@ class Publish::CatalogsController < PublishController
     end
   end
 
-  protected
+  private
 
   def collection
     @catalogs = current_publisher.catalogs

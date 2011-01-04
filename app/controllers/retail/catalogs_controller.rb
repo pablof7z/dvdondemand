@@ -25,7 +25,7 @@ class Retail::CatalogsController < RetailController
     end
   end
 
-  protected
+  private
 
   def collection
     # by default, only show non-private (public) Catalogs

@@ -10,7 +10,7 @@ class Publish::CatalogsControllerTest < ActionController::TestCase
   end
 
   test 'Catalogs index always require a Publisher' do
-    assert_raise ActiveRecord::RecordNotFound do
+    assert_raise ActionController::RoutingError do
       get :index
     end
     # so proper routing should be in order
