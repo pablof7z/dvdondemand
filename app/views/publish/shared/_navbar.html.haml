@@ -35,7 +35,7 @@
     %li
       - if controller.controller_name == 'sales'
         = link_to 'Sales', publish_publisher_sales_path(current_publisher), :class => 'current'
-        %ul.secondary-nav
+        %ul.secondary-nav.for_sales
           %li
             = link_to '<strong>All</strong> sales report', publish_publisher_sales_path(current_publisher), current_or_not { @year.blank? }
           - if @year
@@ -46,7 +46,7 @@
               = link_to "<strong>#{Date.new(@year,@month,1).strftime('%B')}</strong> #{@type.classify}", ledger_publish_publisher_sales_path(current_publisher, :type => @type, :year => @year, :month => @month)
           - if @sale
             %li
-              = link_to "<strong>Sale</strong> ##{@sale.id}", root_url, :class => 'current'
+              = link_to "<strong>Sale</strong> ##{@sale.id}", request.url, :class => 'current'
       - else
         = link_to 'Sales', publish_publisher_sales_path(current_publisher)
 
