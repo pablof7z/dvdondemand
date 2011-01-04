@@ -33,6 +33,12 @@
         = link_to 'Products', publish_publisher_products_path(current_publisher)
 
     %li
+      - if controller.controller_name == 'getstock'
+        = link_to 'Get Stock', publish_publisher_get_stocks_path(current_publisher), :class => 'current'
+      - else
+        = link_to 'Get Stock', publish_publisher_get_stocks_path(current_publisher)
+
+    %li
       - if controller.controller_name == 'sales'
         = link_to 'Sales', publish_publisher_sales_path(current_publisher), :class => 'current'
         %ul.secondary-nav.for_sales
