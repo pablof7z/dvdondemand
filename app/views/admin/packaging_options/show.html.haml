@@ -12,6 +12,9 @@
     %p
       %b Weight:
       = @packaging_option.weight
+    %p
+      %b Print Sleeve?
+      = @packaging_option.print_sleeve? ? 'Yes' : 'No'
     - unless @packaging_option.description.blank?
       %p
         %b Description:

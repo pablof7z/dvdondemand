@@ -7,8 +7,9 @@
     %table.t1
       %tr
         %th.first ID
-        %th Title
+        %th.w40 Title
         %th Weight
+        %th Print Sleeve
         %th Price
         %th.last &nbsp;
       - for packaging in @packaging_options
@@ -16,6 +17,7 @@
           %td= packaging.id
           %td= link_to packaging.title, admin_packaging_option_path(packaging)
           %td= packaging.weight
+          %td= packaging.print_sleeve? ? 'Yes' : 'No'
           %td= number_to_currency(packaging.price)
           %td.last
             = link_to "Show", admin_packaging_option_path(packaging)
