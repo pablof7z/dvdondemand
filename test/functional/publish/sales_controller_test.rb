@@ -29,4 +29,12 @@ class Publish::SalesControllerTest < ActionController::TestCase
     get :show, :publisher_id => @publisher.id, :id => @sale.id
     assert_select 'ul.secondary-nav.for_sales li', 4
   end
+
+  test 'nice Export-to-CSV button on most views' do
+    get :index, :publisher_id => @publisher.id
+    assert_select 'p.btso button.b1', :text => 'Export to CSV'
+
+    get :ledger, :publisher_id => @publisher.id
+    assert_select 'p.btso button.b1', :text => 'Export to CSV'
+  end
 end
