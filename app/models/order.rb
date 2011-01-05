@@ -5,6 +5,7 @@ class Order < ActiveRecord::Base
   belongs_to :wholesaler
 
   has_many :sales                                    # 'cause it's one sale per publisher ordered product
+  has_many :get_stocks, :class_name => 'GetStock'    # please help refactor this sucker
   has_many :whole_sales, :class_name => 'Wholesale'  # not sure if it'll ever be needed
   has_many :retail_sales, :class_name => 'Retail'    # most likely case (bought many products from many publishers)
 
@@ -75,6 +76,14 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def to_get_stock
+    gs = get_stocks.create!(:publisher_id => publisher_id, :quantity => items_full_count, :total => total)
+    # capture current fee versions for historic calculations
+    Fee.applicable.each do |f|
+      gs.fee_versions.create!(:fee_id => f.id, :number => f.version)
+    end
+  end
+
   private
 
   def valid_credit_card
@@ -112,15 +121,15 @@ class Order < ActiveRecord::Base
   def options
     {
       :billing_address => {
-        :name     => customer.full_name,
+        :name     => first_name + ' ' + last_name,
         :address1 => billing_address1,
         :address2 => billing_address2,
         :city     => billing_city,
         :state    => billing_state,
         :zip      => billing_zip_code,
-        :country  => billing_country,
-        :company  => customer.company,   # same as Customer's?
-        :email    => customer.email      # same as Customer's?
+        :country  => billing_country #,
+        # :company  => customer.company,   # same as Customer's?
+        # :email    => customer.email      # same as Customer's?
       },
       :shipping_address => {
         :name     => shipping_name,
@@ -133,7 +142,7 @@ class Order < ActiveRecord::Base
       },
       :line_items => line_items,
       :order_id   => id,
-      :email      => customer.email,
+      # :email      => customer.email,
       :ip         => ip_address,
       # WTF: chargetotal is the only following field that FirstData uses
       # see http://railsdog.lighthouseapp.com/projects/31096/tickets/1411-credit-payment-to-linkpoint-gateway-fails 
