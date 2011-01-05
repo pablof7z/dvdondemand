@@ -41,6 +41,11 @@
         %span
           Address 2
         = f.text_field :address2
+      
+      %label
+        %span
+          Phone #
+        = f.text_field :phone
 
       %label
         %span
@@ -60,12 +65,12 @@
       %label
         %span
           Zip Code
-        = f.text_field :zip_code, :class => 'text_field_small'
+        = f.text_field :zip_code, :size => '6'
 
       %label
         %span
           Country
-        = f.country_select :country
+        = f.country_select :country, { "United States" => "US" }
 
       %p.btso
         %button.b1{:type => 'submit'}
