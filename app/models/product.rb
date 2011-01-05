@@ -40,9 +40,9 @@ class Product < ActiveRecord::Base
                                                   :medium => "300x300>",
                                                   :thumb => "100x100>" }, :processors => [:jcropper]
 
-  validates_attachment_content_type :cover_art,      :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'] # latter for IE support
-  validates_attachment_content_type :cd_sleeve_art,  :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'], :if => :cd? 
-  validates_attachment_content_type :dvd_sleeve_art, :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'], :if => :dvd?
+  validates_attachment_content_type :cover_art,      :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'], :allow_nil => true # latter for IE support
+  validates_attachment_content_type :cd_sleeve_art,  :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'], :if => :cd?, :allow_nil => true
+  validates_attachment_content_type :dvd_sleeve_art, :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'], :if => :dvd?, :allow_nil => true
 
   has_attached_file :iso, :url => '/system/:id/disc.iso'
 
@@ -66,6 +66,18 @@ class Product < ActiveRecord::Base
 
   def dvd?
     media_type_id == MediaType::DVD
+  end
+  
+  def image_thumb
+    if image.exists?(:thumb)
+      image.url(:thumb)
+    else
+      if cd?
+        "cd-front-26x26.png"
+      elsif dvd?
+        "dvd-front-26x35.png"
+      end
+    end
   end
 
   def available?

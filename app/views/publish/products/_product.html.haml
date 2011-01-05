@@ -1,13 +1,10 @@
 %tr{:class => cycle("odd", "even")}
   %td
-    - if product.image.exists?(:thumb)
-      = image_tag(product.image.url(:thumb))
-    - else
-      = product.id
+    = image_tag(product.image_thumb)
   %td= link_to product.title, publish_publisher_product_path(current_publisher,product)
   %td= product.media_type.name
   %td= product.genre.title
-  %td= product.available_for_retail_listing ? "Yes" : "No"
+  %td= product.available_for_retail_listing? ? "Yes" : "No"
   %td.last
     %ul.tools
       %li
