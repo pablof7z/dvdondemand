@@ -3,6 +3,9 @@ class Publish::GetStocksController < PublishController
   actions :index
   
   def index
-    @products = current_publisher.products
+    @order = current_publisher.get_orders.build
+    current_publisher.products.available.each do |p|
+      @order.items.build(:product => p, :packaging_option => nil, :quantity => 0)
+    end
   end
 end

@@ -1,0 +1,23 @@
+- content_for :primary_nav do
+  = render :partial => 'publish/shared/navbar'
+
+#content.wide
+  .box
+    - form_for @order, :url => root_url do |f|
+      %table.t1
+        %thead
+          %tr
+            %th ID
+            %th Title
+            %th Packaging
+            %th Quantity
+        %tbody
+          - f.fields_for :items, @order.items do |item|
+            %tr{:class => cycle("odd", "even")}
+              %td= item.object.product.id
+              %td= link_to item.object.product.title, publish_publisher_product_path(current_publisher,item.object.product)
+              %td= item.select :packaging_option_id, options_from_collection_for_select(item.object.product.available_packaging_options, :id, :title_with_price), :id => 'packg'
+              %td= item.text_field :quantity
+      %p{:align => 'center'}
+        %button.b1{:type => 'submit'} Get Stock!
+
