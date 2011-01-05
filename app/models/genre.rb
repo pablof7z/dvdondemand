@@ -8,5 +8,11 @@ class Genre < ActiveRecord::Base
   default_scope :order => 'media_type_id, title'
   named_scope :for_cd,  :conditions => { :media_type_id => MediaType::CD }
   named_scope :for_dvd, :conditions => { :media_type_id => MediaType::DVD }
+  
+  def available_for_retail_products
+    @products = Product.all(:order => :updated_at, :limit => 5).map do |p|
+      p if p.available_for_retail_listing?
+    end.compact
+  end
 end
 

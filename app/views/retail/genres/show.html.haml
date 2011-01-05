@@ -12,7 +12,7 @@
         %th Price
         %th
     %tbody
-      = render :partial => 'retail/products/product', :collection => @genre.products
+      = render :partial => 'retail/products/product', :collection => @genre.available_for_retail_products
 
 - content_for :sidebar, render(:partial => 'retail/shared/sidebar')
 
