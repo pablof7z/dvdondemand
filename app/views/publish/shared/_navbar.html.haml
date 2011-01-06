@@ -33,7 +33,7 @@
         = link_to 'Products', publish_publisher_products_path(current_publisher)
 
     %li
-      - if controller.controller_name == 'get_stocks'
+      - if controller.controller_name == 'get_stocks' && @type.blank? && @year.blank? && @month.blank?
         = link_to 'Get Stock', publish_publisher_get_stocks_path(current_publisher), :class => 'current'
         %ul.secondary-nav
           %li= link_to '<strong>Home</strong> sweet home', request.url, :class => 'current'
@@ -41,7 +41,7 @@
         = link_to 'Get Stock', publish_publisher_get_stocks_path(current_publisher)
 
     %li
-      - if controller.controller_name == 'sales'
+      - if controller.controller_name == 'sales' || (controller.controller_name == 'get_stocks' && !@type.blank? && !@year.blank? && !@month.blank?)
         = link_to 'Sales', publish_publisher_sales_path(current_publisher), :class => 'current'
         %ul.secondary-nav.for_sales
           %li

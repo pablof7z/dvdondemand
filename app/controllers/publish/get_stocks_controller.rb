@@ -1,6 +1,6 @@
 class Publish::GetStocksController < PublishController
   belongs_to :publisher
-  actions :index, :create
+  actions :index, :create, :show
   
   def index
     @order = current_publisher.get_orders.build

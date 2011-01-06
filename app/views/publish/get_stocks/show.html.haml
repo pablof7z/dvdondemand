@@ -1,0 +1,46 @@
+- @type, @year, @month = saleize(@get_stock), @get_stock.created_at.year, @get_stock.created_at.month
+
+- content_for :primary_nav do
+  = render :partial => 'publish/shared/navbar'
+
+#content.wide
+  %h1 GetStock ##{@get_stock.id}
+  .box
+    %p
+      %b Date:
+      = @get_stock.created_at.to_s(:long)
+    %h2 Your products details
+    %table.t1
+      %thead
+        %th ID
+        %th Title
+        %th Quantity
+        %th Price
+      %tbody
+        - for item in @get_stock.order.items_from(current_publisher)
+          %tr{:class => cycle("odd", "even")}
+            %td= item.product.id
+            %td= item.product.title
+            %td= item.quantity
+            %td= number_to_currency(item.price)
+        %tr
+          %td{:colspan => 3, :align => :right}
+            %b Subtotal
+          %td
+            %b= number_to_currency(@get_stock.total)
+        - for fv in @get_stock.fee_versions
+          - fv.fee.revert_to(fv.number)
+          %tr
+            %td{:colspan => 3, :align => :right}
+              = fv.fee.description
+              (*)
+            %td
+              = number_to_currency(@get_stock.collect_fees_for(fv.fee))
+        %tr
+          %td{:colspan => 3, :align => :right}
+            %b Total
+          %td
+            %b= number_to_currency(@get_stock.total + @get_stock.fees)
+
+    %p{:align => :right} (*) Fees apply to each product sold
+
