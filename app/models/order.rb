@@ -14,7 +14,7 @@ class Order < ActiveRecord::Base
   has_many :transactions, :class_name => 'OrderTransaction', :dependent => :delete_all
 
   has_many :items, :class_name => 'OrderItem', :dependent => :delete_all
-  accepts_nested_attributes_for :items
+  accepts_nested_attributes_for :items, :reject_if => lambda { |i| i[:quantity].to_i == 0 }
 
   attr_accessor :card_number, :card_verification     # to not persist'em in the db
   attr_accessor :first_name, :last_name              # just for credit_card validations

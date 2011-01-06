@@ -17,7 +17,8 @@
             %tr{:class => cycle("odd", "even")}
               %td
                 = item.hidden_field :product_id
-                = item.hidden_field :price, :value => item.object.product.price
+                -# Kelly says: The publisher can’t set his get stock price
+                = item.hidden_field :price, :value => 0
                 = item.object.product.id
               %td
                 = link_to item.object.product.title, publish_publisher_product_path(current_publisher,item.object.product)
