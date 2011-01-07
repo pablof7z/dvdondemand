@@ -47,11 +47,11 @@ class Sale < ActiveRecord::Base
 
   # apply each processing fee percentage to the publiher's sale totals
   def apply_processing_fees
-    publisher_totals = order.items_from(publisher).sum { |i| i.quantity*i.price }
+    publisher_sale_totals = order.items_from(publisher).sum { |i| i.quantity*i.price }
     fee_versions.inject(0) do |sum,f| 
       # consider saved fee versions (regardless of current) for sale's total fee calculation
       f.fee.revert_to(f.number)
-      sum + (f.fee.percentage ? publisher_totals*f.fee.amount : 0)
+      sum + (f.fee.percentage ? publisher_sale_totals*f.fee.amount : 0)
     end
   end
 end

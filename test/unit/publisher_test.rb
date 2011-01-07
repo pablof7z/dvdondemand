@@ -11,7 +11,7 @@ class PublisherTest < ActiveSupport::TestCase
     assert_equal  15.98, @jane.pending_payment_totals
     # actually with some payments made
     assert_equal 539.64, @john.sales.totals
-    assert_equal 475.88, @john.pending_payment_totals
+    assert_equal 343.98, @john.pending_payment_totals
   end
 
   test 'due payments count for publisher' do
