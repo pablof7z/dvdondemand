@@ -14,8 +14,3 @@ johns_for_wholesale:
   amount: <%= 76.44 %>
   created_at: <%= DateTime.now - 4.month %>
 
-# John's payments for GetStock sales (1 out of 2)
-johns_for_getstock:
-  publisher: john
-  amount: <%= 116.91 %>
-  created_at: <%= DateTime.now - 1.month %>

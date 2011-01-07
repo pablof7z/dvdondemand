@@ -28,8 +28,8 @@ class Publisher < ActiveRecord::Base
 
   # all pending payments totals (minus fees)
   def pending_payment_totals
-    unless sales.blank?
-      sales.inject(0) { |sum,s| sum + (s.pending_payment ? s.total - s.fees : 0) }.round(2)
+    unless sales.pending_payment.blank?
+      sales.pending_payment.inject(0) { |sum,s| sum + (s.total - s.fees) }.round(2)
     else
       0
     end

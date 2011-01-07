@@ -82,7 +82,6 @@ johns_for_order_eight:
 johns_for_order_nine:
   order: eight
   publisher: john
-  publisher_payment: johns_for_getstock
   type: GetStock
   quantity: 9
   total: <%= 14.99*9 %>

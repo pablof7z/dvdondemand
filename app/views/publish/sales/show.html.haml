@@ -38,7 +38,10 @@
               = fv.fee.description
               (*)
             %td
-              = fee_number_to_currency(@sale.collect_fees_for(fv.fee))
+              - if fv.fee.percentage
+                = fee_number_to_currency(@sale.apply_processing_fees)
+              - else
+                = fee_number_to_currency(@sale.apply_production_fee(fv.fee))
         %tr
           %td{:colspan => 3, :align => :right}
             %b Earnings
