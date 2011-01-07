@@ -5,7 +5,8 @@ class Sale < ActiveRecord::Base
   belongs_to :publisher_payment
   has_many :fee_versions
 
-  named_scope :pending_payment, :conditions => { :publisher_payment_id => nil }
+  named_scope :pending_payment, :conditions => {:type => ['Retail','Whole'], :publisher_payment_id => nil}
+
   default_scope :order => 'created_at'
 
   def self.totals
@@ -17,20 +18,42 @@ class Sale < ActiveRecord::Base
   end
 
   def pending_payment
-    publisher_payment.blank?
+    !kind_of?(GetStock) && publisher_payment.blank?
   end
 
   def fees
-    # consider saved fee versions (regardless of current) for Sale's total fee calculation
+    (production_fees + processing_fees).round(2)
+  end
+
+  def production_fees
     fee_versions.inject(0) do |sum,f| 
+      # consider saved fee versions (regardless of current) for sale's total fee calculation
       f.fee.revert_to(f.number)
-      sum += collect_fees_for(f.fee)
+      sum += apply_production_fee(f.fee)
     end
   end
 
-  def collect_fees_for(fee)
-    # apply given Fee to each product's sale (considering quantity). Round 2 decimals for percentage's sake
-    order.items_from(publisher).inject(0) { |sum,i| sum + i.quantity * (fee.percentage ? fee.amount*i.price : fee.amount) }.round(2)
+  def processing_fees
+    apply_processing_fees
+  end
+
+  private
+
+  # apply each production fee fix amount to every item in the sale
+  def apply_production_fee(fee)
+    order.items_from(publisher).inject(0) do |sum,i| 
+      sum + (fee.percentage ? 0 : i.quantity*fee.amount)
+    end
+  end
+
+  # apply each processing fee percentage to the publiher's sale totals
+  def apply_processing_fees
+    publisher_totals = order.items_from(publisher).sum { |i| i.quantity*i.price }
+    fee_versions.inject(0) do |sum,f| 
+      # consider saved fee versions (regardless of current) for sale's total fee calculation
+      f.fee.revert_to(f.number)
+      sum + (f.fee.percentage ? publisher_totals*f.fee.amount : 0)
+    end
   end
 end
 

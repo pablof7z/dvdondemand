@@ -41,7 +41,7 @@ class Order < ActiveRecord::Base
   end
 
   def items_from(publisher)
-    items.delete_if { |i| i.product.publisher != publisher }
+    items.reject { |i| i.product.publisher != publisher }
   end
 
   # follow ActiveMerchant-specific methods for FirstData integration
