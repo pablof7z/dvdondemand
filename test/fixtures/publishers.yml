@@ -4,7 +4,11 @@ john:
   first_name: John
   last_name: Foobar
   email: john@foo.bar
-  address: North of the border
+  address1: where the streets have no name
+  city: Smallville
+  state: UT
+  zip_code: 84008
+  country: US
   approved: true
   encrypted_password: 1e56aad2604f37776a8e5d017c7a858ab1d984b5
   password_salt: S3tzIHrAOBq14RUJDneo
@@ -13,7 +17,11 @@ jane:
   first_name: Jane
   last_name: Barfoo
   email: jane@bar.foo
-  address: South of the border
+  address1: where the streets have no name
+  city: Bigville
+  state: UT
+  zip_code: 84008
+  country: US
   approved: true
   encrypted_password: 1e56aad2604f37776a8e5d017c7a858ab1d984b5
   password_salt: S3tzIHrAOBq14RUJDneo
@@ -22,6 +30,5 @@ newbie:
   first_name: Dummy
   last_name: Newbie
   email: dummy@new.bie
-  address: In the middle of the border
   approved: false
 

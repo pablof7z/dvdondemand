@@ -48,22 +48,22 @@
         = f.text_field :shipping_name, :value => current_publisher.full_name
       %label{:for => 'shipping_address1'}
         %span Address 1
-        = f.text_field :shipping_address1
+        = f.text_field :shipping_address1, :value => current_publisher.address1
       %label{:for => 'shipping_address2'}
         %span Address 2
-        = f.text_field :shipping_address2
+        = f.text_field :shipping_address2, :value => current_publisher.address2
       %label{:for => 'shipping_city'}
         %span City
-        = f.text_field :shipping_city
+        = f.text_field :shipping_city, :value => current_publisher.city
       %label{:for => 'shipping_state'}
         %span State (US only)
-        = f.select :shipping_state, us_state_options_for_select(:include_blank => true)
+        = f.select :shipping_state, us_state_options_for_select(current_publisher.state, :include_blank => true)
       %label{:for => 'shipping_zip_code'}
         %span Zip Code
-        = f.text_field :shipping_zip_code, :size => '6'
+        = f.text_field :shipping_zip_code. :value => current_publisher.zip_code, :size => '6'
       %label{:for => 'shipping_country'}
         %span Country
-        = f.select :shipping_country, country_options_for_select
+        = f.select :shipping_country, country_options_for_select(current_publisher.country)
 
     .box
       %h3 Shipping Options available
