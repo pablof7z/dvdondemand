@@ -19,11 +19,10 @@ class Admin::BulkPaymentsController < AdminController
       params[:publisher].each do |i|
         # Get the publisher
         publisher = Publisher.find(i)
-        sales = publisher.sales_owed
         
         # Create the payment
         publisher_payment = PublisherPayment.new(:publisher => publisher,
-                                                 :amount => publisher.owed,
+                                                 :amount => publisher.pending_payment_totals,
                                                  :memo => "Payment created by #{current_admin.email}",
                                                  :financial_information => publisher.default_financial_information,
                                                  :bulk_payment => bulk_payment)
@@ -34,7 +33,7 @@ class Admin::BulkPaymentsController < AdminController
           bulk_payment.destroy
           redirect_to generate_admin_publisher_payment_path(1) and return
         else
-          sales.each do |sale|
+          publisher.sales.pending_payment.each do |sale|
             sale.publisher_payment = publisher_payment
             sale.save!
           end

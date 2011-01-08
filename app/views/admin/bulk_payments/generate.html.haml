@@ -13,18 +13,16 @@
         %tr
           %th.first ID
           %th Name
-          %th Sales
-          %th Amount
-          %th Fees
+          %th Pending Sales
+          %th Pending Payment
           %th Include
         - if @publishers.size > 0
           - @publishers.each do |publisher|
             %tr{:class => cycle("odd", "even")}
               %td= publisher.id
               %td= link_to "#{publisher.first_name} #{publisher.last_name}", admin_publisher_path(publisher)
-              %td= publisher.sales.size
-              %td= number_to_currency publisher.owed
-              %td= number_to_currency publisher.owed_fees
+              %td= publisher.sales.pending_payment.count
+              %td= number_to_currency publisher.pending_payment_totals
               %td
                 - if publisher.default_financial_information != nil
                   = check_box_tag 'publisher[]', publisher.id, :checked => true
