@@ -2,8 +2,8 @@ class Publish::FinancialInformationsController < PublishController
   belongs_to :publisher
   
   def create
-    super do |format|
-      format.html { redirect_to publish_publisher_financial_informations_path(current_publisher) }
+    create! do |success, failure|
+      success.html { redirect_to publish_publisher_financial_informations_path(current_publisher) }
     end
   end
   
