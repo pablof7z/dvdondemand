@@ -18,6 +18,10 @@ class Sale < ActiveRecord::Base
     sum(:total, :conditions => { :created_at => start..finish }).round(2)
   end
 
+  def self.pending_payment_publishers
+    pending_payment.map { |s| s.publisher }.uniq
+  end
+
   def pending_payment
     !kind_of?(GetStock) && publisher_payment.blank?
   end

@@ -3,7 +3,7 @@ class Admin::BulkPaymentsController < AdminController
   
   def generate
     unless request.post?
-      @publishers = Publisher.approved.all.map { |p| p if p.owed > 0 }.compact
+      @publishers = Sale.pending_payment_publishers
       @validation = FinancialInformation.waiting_approval.map { |i| i if i.deposit1.bulk_payment == nil and i.deposit2.bulk_payment == nil }.compact
     else
       if (params[:publisher] == nil or params[:publisher].empty?) and
