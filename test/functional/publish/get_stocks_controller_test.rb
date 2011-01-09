@@ -1,8 +1,16 @@
 require 'test_helper'
 
 class Publish::GetStocksControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  include Devise::TestHelpers
+
+  def setup
+    @publisher = publishers(:john)
+    @publisher.confirm!
+    sign_in @publisher
+  end
+
+  test 'a bare proper index page' do
+    get :index, :publisher_id => @publisher.id
+    assert_response :success
   end
 end

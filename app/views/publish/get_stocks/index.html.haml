@@ -60,7 +60,7 @@
         = f.select :shipping_state, us_state_options_for_select(current_publisher.state, :include_blank => true)
       %label{:for => 'shipping_zip_code'}
         %span Zip Code
-        = f.text_field :shipping_zip_code. :value => current_publisher.zip_code, :size => '6'
+        = f.text_field :shipping_zip_code, :value => current_publisher.zip_code, :size => '6'
       %label{:for => 'shipping_country'}
         %span Country
         = f.select :shipping_country, country_options_for_select(current_publisher.country)
