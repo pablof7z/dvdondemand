@@ -13,6 +13,8 @@ class Publisher < ActiveRecord::Base
   has_many :publisher_payments
   has_many :financial_informations
   has_many :validated_financial_informations, :class_name => 'FinancialInformation', :conditions => { :validated => true }
+  
+  belongs_to :introduced_by_affiliate, :class_name => 'Affiliate'
 
   named_scope :approved, :conditions => { :approved => true }
 

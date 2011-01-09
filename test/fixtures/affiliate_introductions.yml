@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  affiliate_id: 1
+  hash: MyString
+  used: false
+
+two:
+  affiliate_id: 1
+  hash: MyString
+  used: false

@@ -89,6 +89,12 @@ ActionController::Routing::Routes.draw do |map|
     
     wholesale.root :controller => 'home'
   end
+  
+  map.devise_for :affiliates
+  map.namespace :affiliate do |affiliate|
+    affiliate.resources :introudctions
+    affiliate.root :controller => 'home'
+  end
 
   map.root :controller => 'retail/home'
 end
