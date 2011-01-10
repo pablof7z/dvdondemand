@@ -98,6 +98,7 @@ ActionController::Routing::Routes.draw do |map|
       affiliate1.resources :affiliate_introductions, :as => 'introductions', :only => [ :new, :create, :index ], :member => { :use => :get }
       affiliate1.resources :publishers, :only => [ :index ]
       affiliate1.resources :financial_informations, :as => :financial, :member => { :send_deposit => :post, :make_default => :post, :validate => [ :get, :post, :put ] }, :except => [ :show, :edit, :destroy ]
+      affiliate1.resources :payments, :as => :payments, :only => [:index, :show]
     end
     affiliate.root :controller => 'home'
   end

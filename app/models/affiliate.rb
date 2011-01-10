@@ -33,6 +33,17 @@ class Affiliate < ActiveRecord::Base
     s
   end
   
+  def paid_for_publisher(publisher)
+    s = 0.0
+    
+    publisher.sales_paid_to_affiliate.each do |sale|
+      s = s + (((sale.total - sale.fees) * commission_percentage)/100)
+      s = s + sale.quantity * commission_per_unit
+    end
+    
+    s
+  end
+  
   def owed_for_publisher(publisher)
     s = 0.0
     

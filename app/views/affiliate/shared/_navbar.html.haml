@@ -29,17 +29,11 @@
       - else
         =link_to 'Introductions', affiliate_affiliate_affiliate_introductions_path(current_affiliate)
     
-    - if false
-      %li
-        - if controller.controller_name == 'affiliate_invoices'
-          =link_to 'Invoices', affiliate_affiliate_affiliate_invoices_path(current_affiliate), :class => 'current'
-          %ul.secondary-nav
-            %li= link_to "<strong>All</strong> invoices", affiliate_affiliate_affiliate_invoices_path(current_affiliate), :class => (controller.action_name == 'index'?'current':'')
-            - if controller.action_name == 'show'
-              %li= link_to "<strong>Invoice</strong> #{@affiliate_invoice.id}", affiliate_affiliate_affiliate_invoice_path(current_affiliate, @affiliate_invoice.id), :class => (controller.action_name == 'edit'?'current':'')
-            - if controller.action_name == 'pay'
-              %li= link_to "<strong>Invoice</strong> #{@affiliate_invoice.id}", affiliate_affiliate_affiliate_invoice_path(current_affiliate, @affiliate_invoice.id)
-              %li= link_to "<strong>Add</strong> payment", pay_affiliate_affiliate_affiliate_invoice_path(current_affiliate,@affiliate_invoice), :class => (controller.action_name == 'pay'?'current':'')
-        - else
-          =link_to 'Invoices', affiliate_affiliate_affiliate_invoices_path(current_affiliate)
-    
+    %li
+      - if controller.controller_name == 'payments'
+        =link_to 'Payments', affiliate_affiliate_payments_path(current_affiliate), :class => 'current'
+        %ul.secondary-nav
+          %li= link_to "<strong>All</strong> payments", affiliate_affiliate_payments_path(current_affiliate), :class => (controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>Financial</strong> information", affiliate_affiliate_financial_informations_path(current_affiliate)
+      - else
+        =link_to 'Payments', affiliate_affiliate_payments_path(current_affiliate)
