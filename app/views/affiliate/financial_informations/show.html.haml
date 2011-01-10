@@ -1,5 +1,5 @@
 - content_for :primary_nav do
-  =render :partial => 'publish/shared/navbar'
+  =render :partial => 'affiliate/shared/navbar'
 
 #content
   %box
@@ -13,7 +13,7 @@
       %b Validation Status:
       = @bank_information.validation_status
     .wat-cf
-      #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", publish_publisher_bank_information_path(current_publisher,@bank_information), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
+      #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", affiliate_affiliate_bank_information_path(current_affiliate,@bank_information), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
 
-- content_for :sidebar, render(:partial => 'publish/shared/sidebar')
+- content_for :sidebar, render(:partial => 'affiliate/shared/sidebar')
 

@@ -40,6 +40,8 @@
           %li= link_to 'Sign Up', new_affiliate_registration_path, :class => 'log'
           %li= link_to 'My Account', new_affiliate_session_path, :class => 'account'
         - else
+          - unless current_affiliate.approved
+            %li= link_to 'Validation Pending', affiliate_affiliate_financial_informations_path(current_affiliate), :class => 'log'
           %li= link_to 'Logout', destroy_affiliate_session_path, :class => 'log'
           %li= link_to 'Edit Account', edit_affiliate_registration_path, :class => 'account'
 

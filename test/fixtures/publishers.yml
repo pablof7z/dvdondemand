@@ -17,6 +17,8 @@ jane:
   approved: true
   encrypted_password: 1e56aad2604f37776a8e5d017c7a858ab1d984b5
   password_salt: S3tzIHrAOBq14RUJDneo
+  affiliate_id: 1
+  affiliate_introduction: janes
 
 newbie:
   first_name: Dummy

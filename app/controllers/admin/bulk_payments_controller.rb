@@ -4,11 +4,13 @@ class Admin::BulkPaymentsController < AdminController
   def generate
     unless request.post?
       @publishers = Publisher.approved.all.map { |p| p if p.owed > 0 }.compact
+      @affiliates = Affiliate.approved.all.map { |p| p if p.owed > 0 }.compact
       @validation = FinancialInformation.waiting_approval.map { |i| i if i.deposit1.bulk_payment == nil and i.deposit2.bulk_payment == nil }.compact
     else
       if (params[:publisher] == nil or params[:publisher].empty?) and
+         (params[:affiliate] == nil or params[:affiliate].empty?) and
          (params[:validation] == nil or params[:validation].empty?)
-        flash[:warning] = "No publisher accounts selected"
+        flash[:warning] = "No accounts selected"
         redirect_to generate_admin_bulk_payment_path(1) and return
       end
       
@@ -42,6 +44,34 @@ class Admin::BulkPaymentsController < AdminController
           bulk_payment.add_payment(payment)
         end
       end if params[:publisher] != nil
+      
+      # Go through each selected affiliate
+      params[:affiliate].each do |i|
+        # Get the affiliate
+        affiliate = Affiliate.find(i)
+        sales = affiliate.sales_owed
+        
+        # Create the payment
+        payment = Payment.new(:owner => affiliate,
+                              :amount => affiliate.owed,
+                              :memo => "Payment created by #{current_admin.email}",
+                              :financial_information => affiliate.default_financial_information,
+                              :bulk_payment => bulk_payment)
+        
+        # Save payment
+        if ! payment.save
+          flash[:warning] = "Payment couldn't be created for #{affiliate.full_name}"
+          bulk_payment.destroy
+          redirect_to generate_admin_payment_path(1) and return
+        else
+          sales.each do |sale|
+            sale.affiliate_payment = payment
+            sale.save!
+          end
+          
+          bulk_payment.add_payment(payment)
+        end
+      end if params[:affiliate] != nil
       
       # Go through each selected validation
       params[:validation].each do |i|

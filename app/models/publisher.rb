@@ -5,6 +5,7 @@ class Publisher < ActiveRecord::Base
 
   has_many :sales
   has_many :sales_owed, :class_name => 'Sale', :conditions => { :payment_id => nil }
+  has_many :sales_owed_to_affiliate, :class_name => 'Sale', :conditions => { :affiliate_payment_id => nil }
 
   has_many :get_stocks, :class_name => 'GetStock'
   has_many :whole_sales, :class_name => 'Wholesale'

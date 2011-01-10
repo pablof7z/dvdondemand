@@ -3,10 +3,12 @@ class Sale < ActiveRecord::Base
   belongs_to :order
   belongs_to :wholesaler_invoice
   belongs_to :payment
+  belongs_to :affiliate_payment, :class_name => 'Payment'
   has_many :fee_versions
 
   named_scope :payable, :conditions => {:type => ['Retail','Wholesale']}
   named_scope :pending_payment, :conditions => {:type => ['Retail','Wholesale'], :payment_id => nil}
+  named_scope :pending_affiliate_payment, :conditions => {:type => ['Retail','Wholesale'], :affiliate_payment_id => nil}
 
   default_scope :order => 'created_at'
 

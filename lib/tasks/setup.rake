@@ -56,6 +56,8 @@ namespace :devise do
       u.email      = 'devise@affiliate.com'
       u.password   = '123456'
       u.password_confirmation = '123456'
+      u.approved   = true
+      u.approval_source = "Automatic"
     end
     puts 'New Devise Wholesaler created!'
     puts 'E-mail  : ' << affiliate.email

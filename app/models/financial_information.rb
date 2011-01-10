@@ -83,10 +83,8 @@ class FinancialInformation < ActiveRecord::Base
   rescue
     self.validated = true
     self.default = true if owner.default_financial_information == nil
-    if publisher?
-      self.owner.approved = true
-      self.owner.approval_source = "Approved through amount confirmation on #{DateTime.now}"
-    end
+    self.owner.approved = true
+    self.owner.approval_source = "Approved through amount confirmation on #{DateTime.now}"
     
     self.save! and self.owner.save!
   end

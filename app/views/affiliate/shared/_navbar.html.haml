@@ -1,7 +1,7 @@
 %ul.primary-nav
   - if affiliate_signed_in? 
     %li
-      - if controller.controller_name == 'affiliates' or controller.controller_name == 'registrations' or controller.controller_name == 'home' or controller.controller_name == 'credit_cards'
+      - if controller.controller_name == 'affiliates' or controller.controller_name == 'registrations' or controller.controller_name == 'home' or controller.controller_name == 'financial_informations'
         =link_to 'Dashboard', affiliate_root_path, :class => 'current'
         %ul.secondary-nav
           %li= link_to "<strong>Affiliate Account</strong> home", affiliate_root_path, :class => (controller.controller_name != 'credit_cards' and controller.action_name == 'index'?'current':'')

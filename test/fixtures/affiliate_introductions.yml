@@ -1,2 +1,8 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
+janes:
+  first_name: Jane
+  last_name: Bar
+  email: jane@barfoo.com2
+  affiliate_id: 1
+  signup_hash: randomgijoe
