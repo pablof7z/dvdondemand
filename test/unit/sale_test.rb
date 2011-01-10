@@ -47,7 +47,8 @@ class SaleTest < ActiveSupport::TestCase
   test 'sales totals by publisher by fixtures' do
     assert_equal 224.85, @john.retail_sales.totals
     assert_equal 314.79, @john.whole_sales.totals
-    assert_equal 284.81, @john.get_stocks.totals
-    assert_equal 824.45, @john.sales.totals
+    # sales' totals only for payables, so, exclude get_stocks
+    assert_equal 539.64, @john.sales.totals
+    assert_equal      0, @john.get_stocks.totals
   end
 end
