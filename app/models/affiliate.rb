@@ -1,9 +1,9 @@
 class Affiliate < ActiveRecord::Base
-  has_many :publishers
-  has_many :affiliate_introductions
+  has_many :publishers, :dependent => :nullify
+  has_many :affiliate_introductions, :dependent => :destroy
   has_many :payments, :as => :owner
   
-  has_many :financial_informations, :as => :owner
+  has_many :financial_informations, :as => :owner, :dependent => :destroy
   has_many :validated_financial_informations, :as => :owner, :class_name => 'FinancialInformation', :conditions => { :validated => true }
   
   named_scope :approved, :conditions => { :approved => true }

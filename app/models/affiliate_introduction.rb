@@ -1,6 +1,6 @@
 class AffiliateIntroduction < ActiveRecord::Base
   belongs_to :affiliate
-  has_one :publisher
+  has_one :publisher, :dependent => :nullify
   
   validates_presence_of :affiliate_id, :first_name, :last_name, :email, :signup_hash
   validates_uniqueness_of :signup_hash
