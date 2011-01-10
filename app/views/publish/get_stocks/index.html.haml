@@ -25,7 +25,7 @@
               %td
                 = item.select :packaging_option_id, options_from_collection_for_select(item.object.product.available_packaging_options, :id, :title_with_price)
               %td
-                = item.text_field :quantity
+                = item.text_field :quantity, :size => '6'
     .box
       %h3 Credit Card
       %label{:for => 'card_type'}
