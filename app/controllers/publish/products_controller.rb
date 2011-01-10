@@ -24,6 +24,7 @@ class Publish::ProductsController < PublishController
   
   def update
     update! do |success, failure|
+      success.html { redirect_to publish_publisher_product_path(current_publisher, @product) }
       failure.html { @genres = @product.cd? ? Genre.for_cd : Genre.for_dvd; render :action => 'edit' }
     end
   end
