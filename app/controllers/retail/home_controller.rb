@@ -11,6 +11,6 @@ class Retail::HomeController < RetailController
     @genres_for_cd = Genre.for_cd
     @genres_for_dvd = Genre.for_dvd
 
-    @best_selling = @products.take(5)
+    @best_selling = Product.best_selling
   end
 end
