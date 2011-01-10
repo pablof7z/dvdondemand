@@ -7,6 +7,8 @@ class Affiliate < ActiveRecord::Base
   has_many :financial_informations, :as => :owner, :dependent => :destroy
   has_many :validated_financial_informations, :as => :owner, :class_name => 'FinancialInformation', :conditions => { :validated => true }
   
+  validates_presence_of :name
+  
   named_scope :approved, :conditions => { :approved => true }
   
   devise :registerable, :database_authenticatable, :rememberable, :trackable
