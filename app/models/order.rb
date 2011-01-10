@@ -87,7 +87,7 @@ class Order < ActiveRecord::Base
   private
 
   def valid_credit_card
-    if wholesaler_id == nil and credit_card.valid?
+    unless credit_card.valid?
       credit_card.errors.full_messages.each do |message|
         errors.add_to_base message
       end
@@ -127,9 +127,8 @@ class Order < ActiveRecord::Base
         :city     => billing_city,
         :state    => billing_state,
         :zip      => billing_zip_code,
-        :country  => billing_country #,
+        :country  => billing_country
         # :company  => customer.company,   # same as Customer's?
-        # :email    => customer.email      # same as Customer's?
       },
       :shipping_address => {
         :name     => shipping_name,
@@ -142,7 +141,6 @@ class Order < ActiveRecord::Base
       },
       :line_items => line_items,
       :order_id   => id,
-      # :email      => customer.email,
       :ip         => ip_address,
       # WTF: chargetotal is the only following field that FirstData uses
       # see http://railsdog.lighthouseapp.com/projects/31096/tickets/1411-credit-payment-to-linkpoint-gateway-fails 
