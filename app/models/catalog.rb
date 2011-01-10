@@ -9,6 +9,10 @@ class Catalog < ActiveRecord::Base
   named_scope :public, :conditions => { :private => false }
   named_scope :private, :conditions => { :private => true }
   
+  def self.products_available_for_retail_listing
+    products.map { |p| p if p.available_for_retail_listing? }.compact
+  end
+  
   def available_for_retail_listing
     return false if publisher == nil
     return false if publisher.approved != true
