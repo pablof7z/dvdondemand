@@ -1,0 +1,2 @@
+module Publish::GetStocksHelper
+end

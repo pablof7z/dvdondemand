@@ -1,9 +1,11 @@
 class Order < ActiveRecord::Base
   belongs_to :customer
+  belongs_to :publisher
   belongs_to :shipping_option
   belongs_to :wholesaler
 
   has_many :sales                                    # 'cause it's one sale per publisher ordered product
+  has_many :get_stocks, :class_name => 'GetStock'    # please help refactor this sucker
   has_many :whole_sales, :class_name => 'Wholesale'  # not sure if it'll ever be needed
   has_many :retail_sales, :class_name => 'Retail'    # most likely case (bought many products from many publishers)
 
@@ -12,7 +14,7 @@ class Order < ActiveRecord::Base
   has_many :transactions, :class_name => 'OrderTransaction', :dependent => :delete_all
 
   has_many :items, :class_name => 'OrderItem', :dependent => :delete_all
-  accepts_nested_attributes_for :items
+  accepts_nested_attributes_for :items, :reject_if => lambda { |i| i[:quantity].to_i == 0 }
 
   attr_accessor :card_number, :card_verification     # to not persist'em in the db
   attr_accessor :first_name, :last_name              # just for credit_card validations
@@ -74,10 +76,18 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def to_get_stock
+    gs = get_stocks.create!(:publisher_id => publisher_id, :quantity => items_full_count, :total => total)
+    # capture current fee versions for historic calculations
+    Fee.applicable.each do |f|
+      gs.fee_versions.create!(:fee_id => f.id, :number => f.version)
+    end
+  end
+
   private
 
   def valid_credit_card
-    if wholesaler_id == nil and credit_card.valid?
+    unless credit_card.valid?
       credit_card.errors.full_messages.each do |message|
         errors.add_to_base message
       end
@@ -111,15 +121,14 @@ class Order < ActiveRecord::Base
   def options
     {
       :billing_address => {
-        :name     => customer.full_name,
+        :name     => first_name + ' ' + last_name,
         :address1 => billing_address1,
         :address2 => billing_address2,
         :city     => billing_city,
         :state    => billing_state,
         :zip      => billing_zip_code,
-        :country  => billing_country,
-        :company  => customer.company,   # same as Customer's?
-        :email    => customer.email      # same as Customer's?
+        :country  => billing_country
+        # :company  => customer.company,   # same as Customer's?
       },
       :shipping_address => {
         :name     => shipping_name,
@@ -132,7 +141,6 @@ class Order < ActiveRecord::Base
       },
       :line_items => line_items,
       :order_id   => id,
-      :email      => customer.email,
       :ip         => ip_address,
       # WTF: chargetotal is the only following field that FirstData uses
       # see http://railsdog.lighthouseapp.com/projects/31096/tickets/1411-credit-payment-to-linkpoint-gateway-fails 

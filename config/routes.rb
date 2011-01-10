@@ -18,6 +18,7 @@ ActionController::Routing::Routes.draw do |map|
       publisher.resources :product_placements, :as => 'placements', :only => [:create]
 
       publisher.resources :genres, :only => :index
+      publisher.resources :get_stocks, :only => [:index, :create, :show]
       publisher.resources :sales, :only => [:index, :show], :collection => {:ledger => :get}
 
       publisher.resources :financial_informations, :as => :financial, :member => { :send_deposit => :post, :make_default => :post, :validate => [ :get, :post, :put ] }, :except => [ :show, :edit, :destroy ]

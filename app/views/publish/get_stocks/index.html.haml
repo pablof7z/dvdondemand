@@ -1,0 +1,81 @@
+- content_for :primary_nav do
+  = render :partial => 'publish/shared/navbar'
+
+#content.wide
+  - form_for @order, :url => publish_publisher_get_stocks_path(current_publisher), :html => { :class => :form } do |f|
+    = f.error_messages
+    .box
+      %table.t1
+        %thead
+          %tr
+            %th ID
+            %th Title
+            %th Packaging
+            %th Quantity
+        %tbody
+          - f.fields_for :items, @order.items do |item|
+            %tr{:class => cycle("odd", "even")}
+              %td
+                = item.hidden_field :product_id
+                -# Kelly says: The publisher can’t set his get stock price
+                = item.hidden_field :price, :value => 0
+                = item.object.product.id
+              %td
+                = link_to item.object.product.title, publish_publisher_product_path(current_publisher,item.object.product)
+              %td
+                = item.select :packaging_option_id, options_from_collection_for_select(item.object.product.available_packaging_options, :id, :title_with_price)
+              %td
+                = item.text_field :quantity
+    .box
+      %h3 Credit Card
+      %label{:for => 'card_type'}
+        %span Card Type
+        = f.select :card_type, [['Visa','visa'], ['MasterCard','mastercard'], ['Discover','discover'], ['American Express', 'american_express']]
+      %label{:for => 'card_number'}
+        %span Card Number
+        = f.text_field :card_number
+      %label{:for => 'card_verification'}
+        %span Card Verification
+        = f.text_field :card_verification, :size => '6'
+      %label{:for => 'card_expires_on'}
+        %span Card Expires On
+        = f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :add_month_numbers => true
+
+    .box
+      %h3 Shipping Address
+      %label{:for => 'shipping_name'}
+        %span Ship to
+        = f.text_field :shipping_name, :value => current_publisher.full_name
+      %label{:for => 'shipping_address1'}
+        %span Address 1
+        = f.text_field :shipping_address1, :value => current_publisher.address1
+      %label{:for => 'shipping_address2'}
+        %span Address 2
+        = f.text_field :shipping_address2, :value => current_publisher.address2
+      %label{:for => 'shipping_city'}
+        %span City
+        = f.text_field :shipping_city, :value => current_publisher.city
+      %label{:for => 'shipping_state'}
+        %span State (US only)
+        = f.select :shipping_state, us_state_options_for_select(current_publisher.state, :include_blank => true)
+      %label{:for => 'shipping_zip_code'}
+        %span Zip Code
+        = f.text_field :shipping_zip_code, :value => current_publisher.zip_code, :size => '6'
+      %label{:for => 'shipping_country'}
+        %span Country
+        = f.select :shipping_country, country_options_for_select(current_publisher.country)
+
+    .box
+      %h3 Shipping Options available
+      %p
+        = f.select :shipping_option_id, options_from_collection_for_select(ShippingOption.all, :id, :title_with_price)
+
+    -# hidden fields for helper attr_accessor methods
+    = f.hidden_field :publisher_id, :value => current_publisher.id
+    = f.hidden_field :first_name,   :value => current_publisher.first_name
+    = f.hidden_field :last_name,    :value => current_publisher.last_name
+    = f.hidden_field :ip_address,   :value => request.remote_ip
+
+    %p{:align => 'center'}
+      %button.b1{:type => 'submit'} Get Stock!
+
