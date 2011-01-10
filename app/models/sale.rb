@@ -1,12 +1,16 @@
 class Sale < ActiveRecord::Base
   belongs_to :publisher
+  has_one :affiliate, :through => :publisher
   belongs_to :order
   belongs_to :wholesaler_invoice
-  belongs_to :publisher_payment
+  belongs_to :payment
+  belongs_to :affiliate_payment, :class_name => 'Payment'
   has_many :fee_versions
 
   named_scope :payable, :conditions => {:type => ['Retail','Wholesale']}
-  named_scope :pending_payment, :conditions => {:type => ['Retail','Wholesale'], :publisher_payment_id => nil}
+  named_scope :pending_payment_publisher, :conditions => {:type => ['Retail','Wholesale'], :payment_id => nil}
+  named_scope :pending_payment_affiliate, :conditions => {:type => ['Retail','Wholesale'], :affiliate_payment_id => nil}
+  named_scope :done_payment_affiliate, :conditions => [ "(type = 'Retail' OR type = 'Wholesale') AND affiliate_payment_id IS NOT NULL" ]
 
   default_scope :order => 'created_at'
 
@@ -19,11 +23,15 @@ class Sale < ActiveRecord::Base
   end
 
   def self.pending_payment_publishers
-    pending_payment.map { |s| s.publisher }.uniq
+    pending_payment_publisher.map { |s| s.publisher }.uniq.compact
+  end
+  
+  def self.pending_payment_affiliates
+    pending_payment_affiliate.map { |s| s.affiliate }.uniq.compact
   end
 
   def pending_payment
-    !kind_of?(GetStock) && publisher_payment.blank?
+    !kind_of?(GetStock) && payment.blank?
   end
 
   def fees

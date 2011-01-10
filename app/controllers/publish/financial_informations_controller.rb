@@ -1,5 +1,5 @@
 class Publish::FinancialInformationsController < PublishController
-  belongs_to :publisher
+  belongs_to :publisher, :polymorphic => true
   
   def create
     create! do |success, failure|

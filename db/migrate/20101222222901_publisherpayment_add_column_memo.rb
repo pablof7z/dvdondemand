@@ -1,9 +1,9 @@
 class PublisherpaymentAddColumnMemo < ActiveRecord::Migration
   def self.up
-    add_column :publisher_payments, :memo, :text
+    add_column :payments, :memo, :text
   end
 
   def self.down
-    remove_column :publisher_payments, :memo
+    remove_column :payments, :memo
   end
 end

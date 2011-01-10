@@ -12,14 +12,14 @@
         %th Payment Method
         %th
         %th Amount
-      - @bulk_payment.publisher_payments.each do |publisher_payment|
+      - @bulk_payment.payments.each do |payment|
         %tr{:class => cycle("odd", "even")}
-          %td= link_to publisher_payment.id, admin_bulk_payment_publisher_payment_path(@bulk_payment, publisher_payment)
-          %td= publisher_payment.created_at
-          %td= publisher_payment.publisher.full_name
-          %td= publisher_payment.payment_method_with_data
-          %td= publisher_payment.memo
-          %td= number_to_currency publisher_payment.amount
+          %td= link_to payment.id, admin_bulk_payment_payment_path(@bulk_payment, payment)
+          %td= payment.created_at
+          %td= payment.owner.full_name
+          %td= payment.payment_method_with_data
+          %td= payment.memo
+          %td= number_to_currency payment.amount
     .actions-bar.wat-cf
       .actions
 

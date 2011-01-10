@@ -25,3 +25,6 @@ config.after_initialize do
   ::GATEWAY = ActiveMerchant::Billing::LinkpointGateway.new(:login => "1909055592")
 end
 
+DOMAIN="behindthestation.com"
+SITE="Behind The Station"
+URL="http://www.behindthestation.com"

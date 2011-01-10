@@ -3,7 +3,7 @@ class Wholesaler < ActiveRecord::Base
   has_many :invoices, :class_name => 'WholesalerInvoice', :order => 'created_at DESC'
   has_many :wholesaler_invoices, :order => 'created_at DESC'
   has_many :sales, :through => :invoices
-  has_many :payments, :through => :invoices
+  has_many :wholesaler_payments, :through => :invoices
   has_many :credit_cards
   
   devise :registerable, :database_authenticatable, :rememberable, :trackable

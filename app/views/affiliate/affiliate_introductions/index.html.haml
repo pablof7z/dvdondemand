@@ -1,0 +1,17 @@
+- content_for :primary_nav do
+  =render :partial => 'affiliate/shared/navbar'
+
+#content.wide
+  %h1 All your introductions
+  .box
+    %table.t1
+      %tr
+        %th.first ID
+        %th Date
+        %th Name
+        %th Email
+        %th Accepted
+      = render :partial => @affiliate_introductions
+    .actions-bar.wat-cf
+      .actions
+

@@ -50,6 +50,18 @@ namespace :devise do
     puts 'New Devise Wholesaler created!'
     puts 'E-mail  : ' << wholesaler.email
     puts 'Password: ' << wholesaler.password
+    
+    affiliate = Affiliate.create! do |u|
+      u.name       = "Affiliate Account"
+      u.email      = 'devise@affiliate.com'
+      u.password   = '123456'
+      u.password_confirmation = '123456'
+      u.approved   = true
+      u.approval_source = "Automatic"
+    end
+    puts 'New Devise Wholesaler created!'
+    puts 'E-mail  : ' << affiliate.email
+    puts 'Password: ' << affiliate.password
 
     # "John" publisher used to check Sales report, so confirm to allow login
     p = Publisher.find(:first, :conditions => {:email => 'john@foo.bar'})

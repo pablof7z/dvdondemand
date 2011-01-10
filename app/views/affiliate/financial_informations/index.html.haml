@@ -1,0 +1,42 @@
+- content_for :primary_nav do
+  =render :partial => 'affiliate/shared/navbar'
+
+#content.wide
+  %h1 Financial Information
+  .box
+    %table.t1
+      %tr
+        %th.first ID
+        %th Name
+        %th Account #
+        %th Validation Status
+        %th Default
+        %th Date
+        %th.last &nbsp;
+      - @financial_informations.each do |financial_information|
+        %tr{:class => cycle("odd", "even")}
+          %td= financial_information.id
+          %td= financial_information.account_name
+          %td= financial_information.account_number
+          %td= financial_information.validation_status
+          %td= financial_information.default ? "Yes" : "No"
+          %td= financial_information.created_at
+          %td.last
+            - if financial_information.validation_status == FinancialInformation::NotValidated
+              = link_to "Send Validation Deposit", send_deposit_affiliate_affiliate_financial_information_path(current_affiliate,financial_information), :method => :post, :confirm => "#{t("web-app-theme.confirm", :default => "We are going to send two small deposits to this account. Once you receive the accounts you can simply enter the received amounts to verify this financial information.\n\nContinue?")}"
+            - if financial_information.validation_status == FinancialInformation::DepositSent
+              = link_to "Validate", validate_affiliate_affiliate_financial_information_path(current_affiliate,financial_information)
+            - if financial_information.validation_status == FinancialInformation::Validated and ! financial_information.default
+              = link_to "Make Default", make_default_affiliate_affiliate_financial_information_path(current_affiliate,financial_information), :method => :post
+      - if @financial_informations.size == 0
+        %tr{:class => cycle("odd", "even")}
+          %td{:colspan=>"5",:style=>'text-align: center;'}
+            You have not added any financial information yet.
+            Add a
+            = link_to "bank", new_affiliate_affiliate_financial_information_path(current_affiliate, :type => :bank)
+            or
+            = link_to "paypal", new_affiliate_affiliate_financial_information_path(current_affiliate, :type => :paypal)
+            account.
+    .actions-bar.wat-cf
+      .actions
+

@@ -1,7 +1,7 @@
 class UseFinancial < ActiveRecord::Migration
   def self.up
     create_table :financial_informations do |t|
-      t.integer :publisher_id
+      t.references :owner, :polymorphic => true
       t.string :payment_method
       t.string :paypal_email
       t.string :bank_account_number
@@ -15,11 +15,11 @@ class UseFinancial < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_column :publisher_payments, :financial_information_id, :integer
+    add_column :payments, :financial_information_id, :integer
   end
 
   def self.down
     drop_table :financial_informations
-    remove_column :publisher_payments, :financial_information_id
+    remove_column :payments, :financial_information_id
   end
 end

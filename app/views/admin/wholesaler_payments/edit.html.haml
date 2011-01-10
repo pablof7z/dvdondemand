@@ -1,0 +1,11 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content
+  %h1 Edit Payment
+  .box.sp
+    - form_for @wholesaler_payment, :url => admin_wholesaler_invoice_wholesaler_payment_path(@wholesaler, @invoice, @wholesaler_payment), :html => { :class => :form } do |f|
+      = render :partial => "form", :locals => {:f => f}
+
+- content_for :sidebar, render(:partial => 'admin/shared/sidebar')
+
