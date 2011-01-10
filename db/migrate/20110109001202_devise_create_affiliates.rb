@@ -11,11 +11,13 @@ class DeviseCreateAffiliates < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_column :publishers, :introduced_by_affiliate_id, :integer
+    add_column :publishers, :affiliate_id, :integer
+    add_column :publishers, :affiliate_introduction_id, :integer
   end
 
   def self.down
     drop_table :affiliates
-    remove_column :publishers, :introduced_by_affiliate_id
+    remove_column :publishers, :affiliate_id
+    remove_column :publishers, :affiliate_introduction_id
   end
 end

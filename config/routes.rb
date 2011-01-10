@@ -31,6 +31,7 @@ ActionController::Routing::Routes.draw do |map|
     # leave this route auth-less for publisher sign-up marketing
     publish.root :controller => 'home'
   end
+  map.connect '/introduction/:id', :controller => 'affiliate/affiliate_introductions', :action => 'use'
 
   # remove non-nested resources once authentication is worked out
   map.namespace :retail do |retail|
@@ -92,7 +93,11 @@ ActionController::Routing::Routes.draw do |map|
   
   map.devise_for :affiliates
   map.namespace :affiliate do |affiliate|
-    affiliate.resources :introudctions
+    affiliate.resources :affiliates, :only => [ :edit, :show ] do |affiliate1|
+      affiliate1.resources :affiliate_introductions, :as => 'introductions', :only => [ :new, :create, :index ], :member => { :use => :get }
+      affiliate1.resources :publishers, :only => [ :index ]
+      affiliate1.resources :financial_informations, :as => :financial, :member => { :send_deposit => :post, :make_default => :post, :validate => [ :get, :post, :put ] }, :except => [ :show, :edit, :destroy ]
+    end
     affiliate.root :controller => 'home'
   end
 

@@ -1,0 +1,2 @@
+module Affiliate::IntroductionsHelper
+end

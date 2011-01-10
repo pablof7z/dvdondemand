@@ -2,8 +2,10 @@ class CreateAffiliateIntroductions < ActiveRecord::Migration
   def self.up
     create_table :affiliate_introductions do |t|
       t.integer :affiliate_id
-      t.string :hash
-      t.boolean :used
+      t.string :first_name
+      t.string :last_name
+      t.string :email
+      t.string :signup_hash
 
       t.timestamps
     end

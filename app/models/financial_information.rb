@@ -2,6 +2,7 @@ class FinancialInformation < ActiveRecord::Base
   belongs_to :deposit1, :class_name => 'PublisherPayment'
   belongs_to :deposit2, :class_name => 'PublisherPayment'
   belongs_to :publisher
+  belongs_to :affiliate
   has_many :publisher_payment
   
   validates_inclusion_of :payment_method, :in => %w(bank paypal), :message => 'payment method must be bank | paypal'
@@ -18,6 +19,14 @@ class FinancialInformation < ActiveRecord::Base
   NotValidated = "Not validated"
   Validated = "Validated"
   DepositSent = "Awaiting validation"
+  
+  def publisher?
+    publisher != nil
+  end
+  
+  def affiliate?
+    affiliate != nil
+  end
   
   def bank?
     payment_method == "bank"
@@ -55,8 +64,14 @@ class FinancialInformation < ActiveRecord::Base
       return false
     end
     
-    self.deposit1 = PublisherPayment.new(:publisher => publisher, :financial_information => self, :amount => random_deposit, :memo => "Account validation deposit")
-    self.deposit2 = PublisherPayment.new(:publisher => publisher, :financial_information => self, :amount => random_deposit, :memo => "Account validation deposit")
+    if publisher?
+      self.deposit1 = PublisherPayment.new(:publisher => publisher, :financial_information => self, :amount => random_deposit, :memo => "Account validation deposit")
+      self.deposit2 = PublisherPayment.new(:publisher => publisher, :financial_information => self, :amount => random_deposit, :memo => "Account validation deposit")
+    elsif affiliate?
+#      self.deposit1 = AffiliatePayment.new(:affiliate => affiliate, :financial_information => self, :amount => random_deposit, :memo => "Account validation deposit")
+#      self.deposit2 = AffiliatePayment.new(:affiliate => affiliate, :financial_information => self, :amount => random_deposit, :memo => "Account validation deposit")
+    end
+    
     self.deposit1.save!
     self.deposit2.save!
     self.save!
@@ -73,11 +88,19 @@ class FinancialInformation < ActiveRecord::Base
     
   rescue
     self.validated = true
-    self.default = true if publisher.default_financial_information == nil
+    if publisher?
+      self.default = true if publisher.default_financial_information == nil
+    elsif affiliate?
+      self.default = true if affiliate.default_financial_information == nil
+    end
     self.publisher.approved = true
     self.publisher.approval_source = "Approved through amount confirmation on #{DateTime.now}"
     
-    self.save! and self.publisher.save!
+    if publisher?
+      self.save! and self.publisher.save!
+    elsif affiliate?
+      self.save! and self.publisher.save!
+    end
   end
   
   private

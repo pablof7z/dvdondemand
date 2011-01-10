@@ -1,3 +1,12 @@
+- if params[:id] != nil
+  - affiliate_introduction = AffiliateIntroduction.find_by_signup_hash(params[:id])
+  - if affiliate_introduction != nil
+    - resource.first_name = affiliate_introduction.first_name unless resource.first_name.blank? == false
+    - resource.last_name = affiliate_introduction.last_name unless resource.last_name.blank? == false
+    - resource.email = affiliate_introduction.email unless resource.email.blank? == false
+    - resource.affiliate_id = affiliate_introduction.affiliate_id
+    - resource.affiliate_introduction_id = affiliate_introduction.id
+
 - content_for :primary_nav do
   =render :partial => 'publish/shared/navbar'
 
@@ -36,6 +45,18 @@
   %box.sp
     - form_for resource_name, resource, :url => registration_path(resource_name) do |f|
       = f.error_messages
+      = f.hidden_field :affiliate_id
+      = f.hidden_field :affiliate_introduction_id
+      
+      %label
+        %span
+          First Name
+        = f.text_field :first_name
+      
+      %label
+        %span
+          Last Name
+        = f.text_field :last_name
 
       %label
         %span

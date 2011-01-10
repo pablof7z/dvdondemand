@@ -14,9 +14,12 @@ class Publisher < ActiveRecord::Base
   has_many :financial_informations
   has_many :validated_financial_informations, :class_name => 'FinancialInformation', :conditions => { :validated => true }
   
-  belongs_to :introduced_by_affiliate, :class_name => 'Affiliate'
+  belongs_to :affiliate
+  belongs_to :affiliate_introduction
 
   named_scope :approved, :conditions => { :approved => true }
+  
+  validates_uniqueness_of :affiliate_introduction_id, :allow_nil => true
 
   devise :database_authenticatable, :confirmable, :recoverable, :registerable, :rememberable, :trackable, :validatable
 
