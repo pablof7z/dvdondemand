@@ -103,6 +103,10 @@ class Product < ActiveRecord::Base
     available_for_retail_listing == true
   end
 
+  def self.best_selling(limit = 5)
+    find(:all, :order => 'times_sold DESC', :limit => limit)
+  end
+
   private
 
   def reprocess_arts
