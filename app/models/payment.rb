@@ -6,10 +6,6 @@ class Payment < ActiveRecord::Base
   
   validates_presence_of :owner_id
   
-  def is_test_deposit?
-    self == financial_information.deposit1 or self == financial_information.deposit2
-  end
-  
   def self.totals_for(start,finish)
     sum(:amount, :conditions => { :created_at => start..finish }).round(2)
   end

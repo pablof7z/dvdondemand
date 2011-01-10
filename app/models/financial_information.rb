@@ -63,8 +63,8 @@ class FinancialInformation < ActiveRecord::Base
       return false
     end
     
-    self.deposit1 = Payment.new(:owner => owner, :financial_information => self, :amount => random_deposit, :memo => "Account validation deposit")
-    self.deposit2 = Payment.new(:owner => owner, :financial_information => self, :amount => random_deposit, :memo => "Account validation deposit")
+    self.deposit1 = Payment.new(:owner => owner, :financial_information => self, :amount => random_deposit, :memo => "Account validation deposit", :is_test_deposit => true)
+    self.deposit2 = Payment.new(:owner => owner, :financial_information => self, :amount => random_deposit, :memo => "Account validation deposit", :is_test_deposit => true)
     
     self.deposit1.save!
     self.deposit2.save!

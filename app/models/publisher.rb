@@ -12,7 +12,8 @@ class Publisher < ActiveRecord::Base
   has_many :whole_sales, :class_name => 'Wholesale'
   has_many :retail_sales, :class_name => 'Retail'
 
-  has_many :payments, :as => :owner
+  has_many :payments, :as => :owner, :conditions => { :is_test_deposit => false }
+  has_many :all_payments, :as => :owner
   has_many :financial_informations, :as => :owner
   has_many :validated_financial_informations, :as => :owner, :class_name => 'FinancialInformation', :conditions => { :validated => true }
   
