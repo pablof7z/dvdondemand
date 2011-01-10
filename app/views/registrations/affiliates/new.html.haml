@@ -4,7 +4,7 @@
 #content
   %h1 Sign up for your Affiliate account
   .box.sp
-    - form_for resource_name, resource, :url => registration_path(resource_name), :html => { :class => :form, :method => :put } do |f|
+    - form_for resource_name, resource, :url => registration_path(resource_name), :html => { :class => :form } do |f|
       = f.error_messages
 
       %label
