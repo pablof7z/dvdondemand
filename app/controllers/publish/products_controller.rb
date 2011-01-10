@@ -14,6 +14,11 @@ class Publish::ProductsController < PublishController
   def create
     create! do |success, failure|
       failure.html { @genres = @product.cd? ? Genre.for_cd : Genre.for_dvd; render :action => 'new' }
+      success.html do
+        @product.catalogs << current_publisher.catalogs.first
+        @product.save!
+        redirect_to publish_publisher_product_path(current_publisher, @product)
+      end
     end
   end
   
