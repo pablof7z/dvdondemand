@@ -1,10 +1,10 @@
-class PublisherPayment < ActiveRecord::Base
-  belongs_to :publisher
+class Payment < ActiveRecord::Base
+  belongs_to :owner, :polymorphic => true
   belongs_to :financial_information
   belongs_to :bulk_payment
   has_many :sales, :dependent => :nullify
   
-  validates_presence_of :publisher
+  validates_presence_of :owner_id
   
   def is_test_deposit?
     self == financial_information.deposit1 or self == financial_information.deposit2

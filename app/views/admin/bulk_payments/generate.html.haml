@@ -48,7 +48,7 @@
           - @validation.each do |validation|
             %tr{:class => cycle("odd", "even")}
               %td= validation.id
-              %td= link_to "#{validation.publisher.first_name} #{validation.publisher.last_name}", admin_publisher_path(validation.publisher)
+              %td= link_to "#{validation.owner.full_name}", admin_publisher_path(validation.owner)
               %td= validation.account_name
               %td= number_to_currency validation.deposit1.amount
               %td= number_to_currency validation.deposit2.amount

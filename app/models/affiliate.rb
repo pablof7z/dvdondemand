@@ -1,6 +1,7 @@
 class Affiliate < ActiveRecord::Base
   has_many :publishers
   has_many :affiliate_introductions
+  has_many :payments, :as => :owner
   
   has_many :financial_informations
   has_many :validated_financial_informations, :class_name => 'FinancialInformation', :conditions => { :validated => true }

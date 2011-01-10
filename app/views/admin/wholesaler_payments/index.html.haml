@@ -1,0 +1,24 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content.wide
+  %h1= "Invoices for #{@wholesaler.name}"
+  .inner
+    %table.t1
+      %tr
+        %th.first Payment
+        %th Date
+        %th Amount
+        %th.last &nbsp;
+      - @wholesaler_payments.each do |wholesaler_payment|
+        %tr{:class => cycle("odd", "even")}
+          %td
+            = wholesaler_payment.id
+          %td
+            = wholesaler_payment.created_at
+          %td
+            = number_to_currency(wholesaler_payment.amount)
+          %td.last
+            #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_admin_wholesaler_invoice_wholesaler_payment_path(@wholesaler, @invoice, wholesaler_payment), :class => "button" }
+            #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", admin_wholesaler_invoice_wholesaler_payment_path(@wholesaler, @invoice, wholesaler_payment), :method => "delete", :class => "button", :confirm => "Are you sure?" }
+

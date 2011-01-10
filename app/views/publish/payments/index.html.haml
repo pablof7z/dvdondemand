@@ -2,7 +2,7 @@
   =render :partial => 'publish/shared/navbar'
 
 #content.wide
-  %h1 All your publisher payments
+  %h1 All your payments
 
   %table.t1
     %thead
@@ -13,10 +13,10 @@
         %th
         %th Amount
     %tbody
-      - @publisher_payments.each do |publisher_payment|
+      - @payments.each do |payment|
         %tr{:class => cycle("odd", "even")}
-          %td= publisher_payment.id
-          %td= publisher_payment.created_at
-          %td= publisher_payment.payment_method
+          %td= payment.id
+          %td= payment.created_at
+          %td= payment.payment_method
           %td
-          %td= number_to_currency publisher_payment.amount
+          %td= number_to_currency payment.amount

@@ -22,24 +22,24 @@ class Admin::BulkPaymentsController < AdminController
         sales = publisher.sales_owed
         
         # Create the payment
-        publisher_payment = PublisherPayment.new(:publisher => publisher,
-                                                 :amount => publisher.owed,
-                                                 :memo => "Payment created by #{current_admin.email}",
-                                                 :financial_information => publisher.default_financial_information,
-                                                 :bulk_payment => bulk_payment)
+        payment = Payment.new(:owner => publisher,
+                              :amount => publisher.owed,
+                              :memo => "Payment created by #{current_admin.email}",
+                              :financial_information => publisher.default_financial_information,
+                              :bulk_payment => bulk_payment)
         
         # Save payment
-        if ! publisher_payment.save
-          flash[:warning] = "Publisher payment couldn't be created for #{publisher.full_name}"
+        if ! payment.save
+          flash[:warning] = "Payment couldn't be created for #{publisher.full_name}"
           bulk_payment.destroy
-          redirect_to generate_admin_publisher_payment_path(1) and return
+          redirect_to generate_admin_payment_path(1) and return
         else
           sales.each do |sale|
-            sale.publisher_payment = publisher_payment
+            sale.payment = payment
             sale.save!
           end
           
-          bulk_payment.add_publisher_payment(publisher_payment)
+          bulk_payment.add_payment(payment)
         end
       end if params[:publisher] != nil
       
@@ -54,8 +54,8 @@ class Admin::BulkPaymentsController < AdminController
         financial_information.deposit1.save!
         financial_information.deposit2.save!
         
-        bulk_payment.add_publisher_payment(financial_information.deposit1)
-        bulk_payment.add_publisher_payment(financial_information.deposit2)
+        bulk_payment.add_payment(financial_information.deposit1)
+        bulk_payment.add_payment(financial_information.deposit2)
       end if params[:validation] != nil
       
       bulk_payment.fixate

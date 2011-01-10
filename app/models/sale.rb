@@ -2,11 +2,11 @@ class Sale < ActiveRecord::Base
   belongs_to :publisher
   belongs_to :order
   belongs_to :wholesaler_invoice
-  belongs_to :publisher_payment
+  belongs_to :payment
   has_many :fee_versions
 
   named_scope :payable, :conditions => {:type => ['Retail','Wholesale']}
-  named_scope :pending_payment, :conditions => {:type => ['Retail','Wholesale'], :publisher_payment_id => nil}
+  named_scope :pending_payment, :conditions => {:type => ['Retail','Wholesale'], :payment_id => nil}
 
   default_scope :order => 'created_at'
 
@@ -19,7 +19,7 @@ class Sale < ActiveRecord::Base
   end
 
   def pending_payment
-    !kind_of?(GetStock) && publisher_payment.blank?
+    !kind_of?(GetStock) && payment.blank?
   end
 
   def fees

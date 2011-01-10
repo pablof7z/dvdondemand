@@ -21,7 +21,7 @@ ActionController::Routing::Routes.draw do |map|
       publisher.resources :sales, :only => [:index, :show], :collection => {:ledger => :get}
 
       publisher.resources :financial_informations, :as => :financial, :member => { :send_deposit => :post, :make_default => :post, :validate => [ :get, :post, :put ] }, :except => [ :show, :edit, :destroy ]
-      publisher.resources :publisher_payments, :as => :payments, :only => [:index, :show]
+      publisher.resources :payments, :as => :payments, :only => [:index, :show]
     end
     
     publish.resources :products_options
@@ -59,12 +59,12 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :publishers, :except => [:create, :new]
     admin.resources :bulk_payments, :as => 'payments', :except => [ :edit, :delete ],
                     :member => { :generate => [ :get, :post ], :validate => [ :get, :post ], :ach => :get, :paypal => :get },
-                    :has_many => :publisher_payments do |bulk_payment|
-      bulk_payment.resources :publisher_payments, :only => [ :index ]
+                    :has_many => :payments do |bulk_payment|
+      bulk_payment.resources :payments, :only => [ :index ]
     end
     admin.resources :wholesalers, :except => [:create, :new], :has_many => :wholesaler_invoices do |wholesaler|
       wholesaler.resources :invoices, :except => [:create, :new, :delete], :as => 'invoices', :has_many => :wholesaler_payments do |invoice|
-        invoice.resources :payments, :as => 'payments'
+        invoice.resources :wholesaler_payments, :as => 'payments'
       end
     end
     admin.resources :packaging_options, :as => 'packaging'

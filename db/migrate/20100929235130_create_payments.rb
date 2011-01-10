@@ -1,7 +1,7 @@
-class CreatePublisherPayments < ActiveRecord::Migration
+class CreatePayments < ActiveRecord::Migration
   def self.up
-    create_table :publisher_payments do |t|
-      t.references :publisher
+    create_table :payments do |t|
+      t.references :owner, :polymorphic => true
       t.references :sale
       t.float      :amount
       # this columns are dummies and should be nuked ASAP
@@ -16,6 +16,6 @@ class CreatePublisherPayments < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :publisher_payments
+    drop_table :payments
   end
 end

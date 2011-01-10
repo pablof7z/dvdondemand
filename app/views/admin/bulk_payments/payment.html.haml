@@ -2,7 +2,7 @@
   =render :partial => 'admin/shared/navbar'
 
 #content.wide
-  %h1= "Payment #{@publisher_payment.id}"
+  %h1= "Payment #{@payment.id}"
   .box
     %h2 Sales paid with this transaction
     %table.t1
@@ -12,7 +12,7 @@
         %th Publisher
         %th Amount
         %th Fees
-      - @publisher_payment.sales.each do |sale|
+      - @payment.sales.each do |sale|
         %tr{:class => cycle("odd", "even")}
           %td= sale.id
           %td= sale.created_at

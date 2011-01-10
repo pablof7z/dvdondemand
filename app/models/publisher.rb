@@ -4,15 +4,15 @@ class Publisher < ActiveRecord::Base
   has_many :items
 
   has_many :sales
-  has_many :sales_owed, :class_name => 'Sale', :conditions => { :publisher_payment_id => nil }
+  has_many :sales_owed, :class_name => 'Sale', :conditions => { :payment_id => nil }
 
   has_many :get_stocks, :class_name => 'GetStock'
   has_many :whole_sales, :class_name => 'Wholesale'
   has_many :retail_sales, :class_name => 'Retail'
 
-  has_many :publisher_payments
-  has_many :financial_informations
-  has_many :validated_financial_informations, :class_name => 'FinancialInformation', :conditions => { :validated => true }
+  has_many :payments, :as => :owner
+  has_many :financial_informations, :as => :owner
+  has_many :validated_financial_informations, :as => :owner, :class_name => 'FinancialInformation', :conditions => { :validated => true }
   
   belongs_to :affiliate
   belongs_to :affiliate_introduction
