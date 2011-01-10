@@ -24,6 +24,8 @@ class Publisher < ActiveRecord::Base
 
   devise :database_authenticatable, :confirmable, :recoverable, :registerable, :rememberable, :trackable, :validatable
 
+  after_create :add_default_catalog
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -45,5 +47,13 @@ class Publisher < ActiveRecord::Base
     validated_financial_informations.each { |a| return a if a.default }
     return validated_financial_informations.first
   end
+
+  private
+  
+  def add_default_catalog
+    catalog = Catalog.new(:title => 'Default Catalog', :publisher => self)
+    catalog.save!
+  end
 end
+
 
