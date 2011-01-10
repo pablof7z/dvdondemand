@@ -47,31 +47,22 @@
         =link_to 'Orders', admin_orders_path
     
     %li
-      - if controller.controller_name == 'affiliates'
-        =link_to 'Affiliates', admin_affiliates_path, :class => 'current'
-        %ul.secondary-nav
-          %li= link_to "<strong>All</strong> affiliates", admin_affiliates_path, :class => (controller.controller_name == 'affiliates' and controller.action_name == 'index'?'current':'')
-          - if controller.controller_name == 'affiliates' and controller.action_name == 'show'
-            %li= link_to "<strong>Show</strong> affiliate", admin_affiliates_path(@affiliate), :class => (controller.controller_name == 'affiliates' and controller.action_name == 'show'?'current':'')
-          - if controller.action_name == 'edit' or controller.action_name == 'update'
-            %li= link_to "<strong>Edit</strong> affiliate", edit_admin_affiliate_path(@affiliate), :class => (controller.action_name == 'edit'?'current':'')
-          %li= link_to "<strong>All</strong> payments", admin_bulk_payments_path, :class => (controller.controller_name == 'bulk_payments' and controller.action_name == 'index'?'current':'')
-          %li= link_to "<strong>Generate</strong> payments", generate_admin_bulk_payment_path(1), :class => (controller.controller_name == 'bulk_payments' and controller.action_name == 'process'?'current':'')
-      - else
-        =link_to 'Affiliates', admin_affiliates_path
-    
-    %li
-      - if controller.controller_name == 'publishers' or controller.controller_name == 'bulk_payments' or controller.controller_name == 'publisher_payments'
+      - if controller.controller_name == 'publishers' or controller.controller_name == 'affiliates' or controller.controller_name == 'bulk_payments' or controller.controller_name == 'payments'
         =link_to 'Publishers', admin_publishers_path, :class => 'current'
         %ul.secondary-nav
           %li= link_to "<strong>All</strong> publishers", admin_publishers_path, :class => (controller.controller_name == 'publishers' and controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>All</strong> affiliates", admin_affiliates_path, :class => (controller.controller_name == 'affiliates' and controller.action_name == 'index'?'current':'')
           - if controller.controller_name == 'publishers' and controller.action_name == 'show'
             %li= link_to "<strong>Show</strong> publisher", admin_publisher_path(@publisher), :class => (controller.controller_name == 'publishers' and controller.action_name == 'show'?'current':'')
-          - if controller.action_name == 'edit' or controller.action_name == 'update'
+          - if controller.controller_name == 'affiliates' and controller.action_name == 'show'
+            %li= link_to "<strong>Show</strong> affiliate", admin_affiliate_path(@affiliate), :class => (controller.controller_name == 'affiliates' and controller.action_name == 'show'?'current':'')
+          - if controller.controller_name == 'publishers' and (controller.action_name == 'edit' or controller.action_name == 'update')
             %li= link_to "<strong>Edit</strong> publisher", edit_admin_publisher_path(@publisher), :class => (controller.action_name == 'edit'?'current':'')
+          - if controller.controller_name == 'affiliates' and (controller.action_name == 'edit' or controller.action_name == 'update')
+            %li= link_to "<strong>Edit</strong> affiliate", edit_admin_affiliate_path(@affiliate), :class => (controller.action_name == 'edit'?'current':'')
           %li= link_to "<strong>All</strong> payments", admin_bulk_payments_path, :class => (controller.controller_name == 'bulk_payments' and controller.action_name == 'index'?'current':'')
           %li= link_to "<strong>Generate</strong> payments", generate_admin_bulk_payment_path(1), :class => (controller.controller_name == 'bulk_payments' and controller.action_name == 'process'?'current':'')
-          - if (controller.controller_name == 'bulk_payments' or controller.controller_name == 'publisher_payments') and controller.action_name == 'show'
+          - if (controller.controller_name == 'bulk_payments' or controller.controller_name == 'payments') and controller.action_name == 'show'
             %li= link_to "<strong>Bulk Payment</strong> ##{@bulk_payment.id}", admin_bulk_payment_path(@bulk_payment), :class => (controller.controller_name == 'bulk_payments' and controller.action_name == 'show'?'current':'')
           - if controller.controller_name == 'payments'
             %li= link_to "<strong>Sales of</strong> #{@payment.owner.full_name}", admin_bulk_payment_payment_path(@bulk_payment, @payment), :class => (controller.action_name == 'show'?'current':'')
@@ -102,7 +93,7 @@
     
     %li
       - if controller.controller_name == 'packaging_options'
-        =link_to 'Packaging Options', admin_packaging_options_path, :class => 'current'
+        =link_to 'Packaging', admin_packaging_options_path, :class => 'current'
         %ul.secondary-nav
           %li= link_to "<strong>All</strong> packaging options", admin_packaging_options_path, :class => (controller.action_name == 'index'?'current':'')
           %li= link_to "<strong>New</strong> packaging option", new_admin_packaging_option_path, :class => (controller.action_name == 'new'?'current':'')
@@ -112,11 +103,11 @@
             %li= link_to "<strong>Edit</strong> packaging option", edit_admin_packaging_option_path(@packaging_option), :class => (controller.action_name == 'edit'?'current':'')
 
       - else
-        =link_to 'Packaging Options', admin_packaging_options_path
+        =link_to 'Packaging', admin_packaging_options_path
     
     %li
       - if controller.controller_name == 'shipping_options'
-        =link_to 'Shipping Options', admin_shipping_options_path, :class => 'current'
+        =link_to 'Shipping', admin_shipping_options_path, :class => 'current'
         %ul.secondary-nav
           %li= link_to "<strong>All</strong> shipping options", admin_shipping_options_path, :class => (controller.action_name == 'index'?'current':'')
           %li= link_to "<strong>New</strong> shipping option", new_admin_shipping_option_path, :class => (controller.action_name == 'new'?'current':'')
@@ -126,7 +117,7 @@
             %li= link_to "<strong>Edit</strong> shipping option", edit_admin_shipping_option_path(@packaging_option), :class => (controller.action_name == 'edit'?'current':'')
 
       - else
-        =link_to 'Shipping Options', admin_shipping_options_path
+        =link_to 'Shipping', admin_shipping_options_path
     
     %li
       - if controller.controller_name == 'wholesale_prices'

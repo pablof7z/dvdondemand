@@ -24,7 +24,7 @@ class Admin::BulkPaymentsController < AdminController
         
         # Create the payment
         payment = Payment.new(:owner => publisher,
-                              :amount => publisher.owed,
+                              :amount => publisher.pending_payment_totals,
                               :memo => "Payment created by #{current_admin.email}",
                               :financial_information => publisher.default_financial_information,
                               :bulk_payment => bulk_payment)
@@ -36,7 +36,7 @@ class Admin::BulkPaymentsController < AdminController
           redirect_to generate_admin_payment_path(1) and return
         else
           publisher.sales.pending_payment_publisher.each do |sale|
-            sale.publisher_payment = payment
+            sale.payment = payment
             sale.save!
           end
           
@@ -51,7 +51,7 @@ class Admin::BulkPaymentsController < AdminController
         
         # Create the payment
         payment = Payment.new(:owner => affiliate,
-                              :amount => affiliate.owed,
+                              :amount => affiliate.pending_payment_affiliate_totals,
                               :memo => "Payment created by #{current_admin.email}",
                               :financial_information => affiliate.default_financial_information,
                               :bulk_payment => bulk_payment)

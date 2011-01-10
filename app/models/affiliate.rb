@@ -32,7 +32,7 @@ class Affiliate < ActiveRecord::Base
     return validated_financial_informations.first
   end
   
-  def owed
+  def owed_previous
     s = 0.0
     
     publishers.each { |p| s = s + owed_for_publisher(p) }
