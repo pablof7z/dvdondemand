@@ -8,6 +8,7 @@ class Affiliate < ActiveRecord::Base
   has_many :validated_financial_informations, :as => :owner, :class_name => 'FinancialInformation', :conditions => { :validated => true }
   
   validates_presence_of :name
+  validates_format_of :email, :with => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i
   
   named_scope :approved, :conditions => { :approved => true }
   
