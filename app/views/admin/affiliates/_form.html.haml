@@ -1,0 +1,33 @@
+%label
+  %span
+    Name
+  = f.text_field :name
+
+%label
+  %span
+    Email
+  = f.text_field :email
+
+%label
+  %span
+    Comission Percentage
+  = "#{f.text_field :commission_percentage, :size => '6'}%"
+
+%label
+  %span
+    Comission Per Unit
+  = f.text_field :commission_per_unit, :value => sprintf("%.02f", @affiliate.commission_per_unit), :size => '6'
+
+%label
+  %span
+    Approved
+  = f.check_box :approved
+  Yes
+
+%p.btso
+  %button.b1{:type => 'submit'}
+    Save
+  %span
+    or
+    = link_to "Cancel", admin_affiliates_path
+

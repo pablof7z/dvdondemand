@@ -13,33 +13,47 @@
         %tr
           %th.first ID
           %th Name
-          %th Sales
-          %th Amount
-          %th Fees
+          %th Type
+          %th Pending Sales
+          %th Pending Payment
           %th Include
         - if @publishers.size > 0
           - @publishers.each do |publisher|
             %tr{:class => cycle("odd", "even")}
               %td= publisher.id
-              %td= link_to "#{publisher.first_name} #{publisher.last_name}", admin_publisher_path(publisher)
-              %td= publisher.sales.size
-              %td= number_to_currency publisher.owed
-              %td= number_to_currency publisher.owed_fees
+              %td= link_to "#{publisher.full_name}", admin_publisher_path(publisher)
+              %td Publisher
+              %td= publisher.sales.pending_payment_publisher.count
+              %td= number_to_currency publisher.pending_payment_totals
               %td
                 - if publisher.default_financial_information != nil
                   = check_box_tag 'publisher[]', publisher.id, :checked => true
                 - else
                   No financial information
-        - else
+        - if @affiliates.size > 0
+          - @affiliates.each do |affiliate|
+            %tr{:class => cycle("odd", "even")}
+              %td= affiliate.id
+              %td= link_to "#{affiliate.full_name}", admin_affiliate_path(affiliate)
+              %td Affiliate
+              %td
+              %td= number_to_currency affiliate.pending_payment_totals
+              %td
+                - if affiliate.default_financial_information != nil
+                  = check_box_tag 'affiliate[]', affiliate.id, :checked => true
+                - else
+                  No financial information
+        - if @publishers.size <= 0 and @affiliates.size <= 0
           %tr{:class => cycle("odd", "even")}
-            %td{:colspan=>'6',:style=>'text-align: center;'} No pending publisher payments
+            %td{:colspan=>'7',:style=>'text-align: center;'} No payments pending
       
       %h2 Financial Information Validation
     
       %table.t1
         %tr
           %th.first ID
-          %th Publisher
+          %th User
+          %th Type
           %th Name
           %th Amounts
           %th
@@ -48,7 +62,11 @@
           - @validation.each do |validation|
             %tr{:class => cycle("odd", "even")}
               %td= validation.id
-              %td= link_to "#{validation.publisher.first_name} #{validation.publisher.last_name}", admin_publisher_path(validation.publisher)
+              - if validation.owner_type == "Publisher"
+                %td= link_to "#{validation.owner.full_name}", admin_publisher_path(validation.owner)
+              - else
+                %td= "#{validation.owner.full_name}"
+              %td= "#{validation.owner_type}"
               %td= validation.account_name
               %td= number_to_currency validation.deposit1.amount
               %td= number_to_currency validation.deposit2.amount

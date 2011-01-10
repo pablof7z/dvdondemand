@@ -1,0 +1,11 @@
+- content_for :primary_nav do
+  =render :partial => 'affiliate/shared/navbar'
+
+#content
+  %h1 New Financial Information
+  .box
+    - form_for @financial_information, :url => affiliate_affiliate_financial_informations_path(current_affiliate, :type => params[:type]), :html => { :class => :form } do |f|
+      = render :partial => "form", :locals => {:f => f}
+
+- content_for :sidebar, render(:partial => 'affiliate/shared/sidebar')
+

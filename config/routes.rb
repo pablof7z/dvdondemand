@@ -18,10 +18,11 @@ ActionController::Routing::Routes.draw do |map|
       publisher.resources :product_placements, :as => 'placements', :only => [:create]
 
       publisher.resources :genres, :only => :index
+      publisher.resources :get_stocks, :only => [:index, :create, :show]
       publisher.resources :sales, :only => [:index, :show], :collection => {:ledger => :get}
 
       publisher.resources :financial_informations, :as => :financial, :member => { :send_deposit => :post, :make_default => :post, :validate => [ :get, :post, :put ] }, :except => [ :show, :edit, :destroy ]
-      publisher.resources :publisher_payments, :as => :payments, :only => [:index, :show]
+      publisher.resources :payments, :as => :payments, :only => [:index, :show]
     end
     
     publish.resources :products_options
@@ -31,6 +32,7 @@ ActionController::Routing::Routes.draw do |map|
     # leave this route auth-less for publisher sign-up marketing
     publish.root :controller => 'home'
   end
+  map.connect '/introduction/:id', :controller => 'affiliate/affiliate_introductions', :action => 'use'
 
   # remove non-nested resources once authentication is worked out
   map.namespace :retail do |retail|
@@ -55,15 +57,16 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :admin do |admin|
     admin.resources :fees, :genres
     admin.resources :orders, :only => [:index, :show]
+    admin.resources :affiliates, :except => [:create, :new]
     admin.resources :publishers, :except => [:create, :new]
     admin.resources :bulk_payments, :as => 'payments', :except => [ :edit, :delete ],
                     :member => { :generate => [ :get, :post ], :validate => [ :get, :post ], :ach => :get, :paypal => :get },
-                    :has_many => :publisher_payments do |bulk_payment|
-      bulk_payment.resources :publisher_payments, :only => [ :index ]
+                    :has_many => :payments do |bulk_payment|
+      bulk_payment.resources :payments, :only => [ :index ]
     end
     admin.resources :wholesalers, :except => [:create, :new], :has_many => :wholesaler_invoices do |wholesaler|
       wholesaler.resources :invoices, :except => [:create, :new, :delete], :as => 'invoices', :has_many => :wholesaler_payments do |invoice|
-        invoice.resources :payments, :as => 'payments'
+        invoice.resources :wholesaler_payments, :as => 'payments'
       end
     end
     admin.resources :packaging_options, :as => 'packaging'
@@ -88,6 +91,17 @@ ActionController::Routing::Routes.draw do |map|
     end
     
     wholesale.root :controller => 'home'
+  end
+  
+  map.devise_for :affiliates
+  map.namespace :affiliate do |affiliate|
+    affiliate.resources :affiliates, :only => [ :edit, :show ] do |affiliate1|
+      affiliate1.resources :affiliate_introductions, :as => 'introductions', :only => [ :new, :create, :index ], :member => { :use => :get }
+      affiliate1.resources :publishers, :only => [ :index ]
+      affiliate1.resources :financial_informations, :as => :financial, :member => { :send_deposit => :post, :make_default => :post, :validate => [ :get, :post, :put ] }, :except => [ :show, :edit, :destroy ]
+      affiliate1.resources :payments, :as => :payments, :only => [:index, :show]
+    end
+    affiliate.root :controller => 'home'
   end
 
   map.root :controller => 'retail/home'

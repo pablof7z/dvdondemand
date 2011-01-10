@@ -1,2 +1,0 @@
-module Publish::PublisherPaymentsHelper
-end

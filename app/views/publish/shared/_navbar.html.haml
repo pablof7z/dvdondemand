@@ -33,7 +33,15 @@
         = link_to 'Products', publish_publisher_products_path(current_publisher)
 
     %li
-      - if controller.controller_name == 'sales'
+      - if controller.controller_name == 'get_stocks' && @type.blank? && @year.blank? && @month.blank?
+        = link_to 'Get Stock', publish_publisher_get_stocks_path(current_publisher), :class => 'current'
+        %ul.secondary-nav
+          %li= link_to '<strong>Home</strong> sweet home', request.url, :class => 'current'
+      - else
+        = link_to 'Get Stock', publish_publisher_get_stocks_path(current_publisher)
+
+    %li
+      - if controller.controller_name == 'sales' || (controller.controller_name == 'get_stocks' && !@type.blank? && !@year.blank? && !@month.blank?)
         = link_to 'Sales', publish_publisher_sales_path(current_publisher), :class => 'current'
         %ul.secondary-nav.for_sales
           %li
@@ -51,13 +59,13 @@
         = link_to 'Sales', publish_publisher_sales_path(current_publisher)
 
     %li
-      - if controller.controller_name == 'publisher_payments'
-        =link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher), :class => 'current'
+      - if controller.controller_name == 'payments'
+        =link_to 'Payments', publish_publisher_payments_path(current_publisher), :class => 'current'
         %ul.secondary-nav
-          %li= link_to "<strong>All</strong> payments", publish_publisher_publisher_payments_path(current_publisher), :class => (controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>All</strong> payments", publish_publisher_payments_path(current_publisher), :class => (controller.action_name == 'index'?'current':'')
           %li= link_to "<strong>Financial</strong> information", publish_publisher_financial_informations_path(current_publisher)
       - else
-        =link_to 'Payments', publish_publisher_publisher_payments_path(current_publisher)
+        =link_to 'Payments', publish_publisher_payments_path(current_publisher)
 
   - else
     %li

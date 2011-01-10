@@ -1,0 +1,10 @@
+%html
+  %head
+  %body
+    %h1= "You have been invited to join #{SITE}"
+    
+    %p
+      = "#{@introduction.affiliate.name} has sent you an invitation to join #{SITE},"
+      %a{:href=>"#{URL}/introduction/#{@introduction.signup_hash}"}
+        click here to sign up.
+

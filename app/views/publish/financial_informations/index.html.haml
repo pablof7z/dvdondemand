@@ -23,19 +23,19 @@
           %td= financial_information.created_at
           %td.last
             - if financial_information.validation_status == FinancialInformation::NotValidated
-              = link_to "Send Validation Deposit", send_deposit_publish_publisher_financial_information_path(@publisher,financial_information), :method => :post, :confirm => "#{t("web-app-theme.confirm", :default => "We are going to send two small deposits to this account. Once you receive the accounts you can simply enter the received amounts to verify this financial information.\n\nContinue?")}"
+              = link_to "Send Validation Deposit", send_deposit_publish_publisher_financial_information_path(current_publisher,financial_information), :method => :post, :confirm => "#{t("web-app-theme.confirm", :default => "We are going to send two small deposits to this account. Once you receive the accounts you can simply enter the received amounts to verify this financial information.\n\nContinue?")}"
             - if financial_information.validation_status == FinancialInformation::DepositSent
-              = link_to "Validate", validate_publish_publisher_financial_information_path(@publisher,financial_information)
+              = link_to "Validate", validate_publish_publisher_financial_information_path(current_publisher,financial_information)
             - if financial_information.validation_status == FinancialInformation::Validated and ! financial_information.default
-              = link_to "Make Default", make_default_publish_publisher_financial_information_path(@publisher,financial_information), :method => :post
+              = link_to "Make Default", make_default_publish_publisher_financial_information_path(current_publisher,financial_information), :method => :post
       - if @financial_informations.size == 0
         %tr{:class => cycle("odd", "even")}
           %td{:colspan=>"5",:style=>'text-align: center;'}
             You have not added any financial information yet.
             Add a
-            = link_to "bank", new_publish_publisher_financial_information_path(@publisher, :type => :bank)
+            = link_to "bank", new_publish_publisher_financial_information_path(current_publisher, :type => :bank)
             or
-            = link_to "paypal", new_publish_publisher_financial_information_path(@publisher, :type => :paypal)
+            = link_to "paypal", new_publish_publisher_financial_information_path(current_publisher, :type => :paypal)
             account.
     .actions-bar.wat-cf
       .actions

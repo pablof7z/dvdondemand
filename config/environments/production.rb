@@ -26,3 +26,7 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+DOMAIN="behindthestation.com"
+SITE="Behind The Station"
+URL="http://www.behindthestation.com"

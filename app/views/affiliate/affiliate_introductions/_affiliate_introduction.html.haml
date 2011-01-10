@@ -1,0 +1,7 @@
+%tr{:class => cycle("odd", "even")}
+  %td
+    = affiliate_introduction.id
+  %td= affiliate_introduction.created_at
+  %td= affiliate_introduction.full_name
+  %td= affiliate_introduction.email
+  %td= affiliate_introduction.used? ? "Yes" : "No"

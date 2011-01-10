@@ -1,0 +1,23 @@
+.group
+  = f.error_messages
+
+%label
+  %span
+    First Name
+  = f.text_field :first_name
+%label
+  %span
+    Last Name
+  = f.text_field :last_name
+%label
+  %span
+    Email
+  = f.text_field :email
+
+%p.btso
+  %button.b1{:type => 'submit'}
+    Send
+  %span
+    or
+    = link_to "Cancel", affiliate_affiliate_affiliate_introductions_path(current_affiliate), :class => "button"
+

@@ -6,11 +6,11 @@ class CreateBulkPayments < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_column :publisher_payments, :bulk_payment_id, :integer
+    add_column :payments, :bulk_payment_id, :integer
   end
 
   def self.down
     drop_table :bulk_payments
-    remove_column :publisher_payments, :bulk_payment_id
+    remove_column :payments, :bulk_payment_id
   end
 end

@@ -39,7 +39,10 @@
                 - subtotal << sale.total - sale.fees
                 %strong= number_to_currency(subtotal.last)
               %td
-                = link_to "Show", publish_publisher_sale_path(current_publisher,sale)
+                - if sale.instance_of? GetStock
+                  = link_to "Show", publish_publisher_get_stock_path(current_publisher,sale)
+                - else
+                  = link_to "Show", publish_publisher_sale_path(current_publisher,sale)
               - total += subtotal.last
         %tr
           %td{:colspan => 3}

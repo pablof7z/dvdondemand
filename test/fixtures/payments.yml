@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# Jane publisher has no payments for her single retail sale
+
+# John's payments for Retail sales (2 out of 5)
+johns_for_retail:
+  owner: john (Publisher)
+  amount: <%= 12.74 + 25.48 %>
+  created_at: <%= DateTime.new(2010,10,2) %>
+  financial_information: johns
+
+# John's payments for Wholesale sales (1 out of 3)
+johns_for_wholesale:
+  owner: john (Publisher)
+  amount: <%= 76.44 %>
+  created_at: <%= DateTime.now - 4.month %>
+  financial_information: johns

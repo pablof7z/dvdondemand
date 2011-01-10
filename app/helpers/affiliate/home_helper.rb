@@ -1,0 +1,2 @@
+module Affiliate::HomeHelper
+end

@@ -18,5 +18,5 @@
         %td= number_to_currency(invoice.total)
         %td= number_to_currency(invoice.owed)
         %td.last
-          = link_to "Payments", admin_wholesaler_invoice_payments_path(@wholesaler, invoice)
+          = link_to "Payments", admin_wholesaler_invoice_wholesaler_payments_path(@wholesaler, invoice)
 
