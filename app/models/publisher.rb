@@ -53,7 +53,7 @@ class Publisher < ActiveRecord::Base
   private
   
   def add_default_catalog
-    catalog = Catalog.new(:title => 'Default Catalog', :publisher => self)
+    catalog = Catalog.new(:title => "#{full_name}'s Collection", :publisher => self)
     catalog.save!
   end
 end
