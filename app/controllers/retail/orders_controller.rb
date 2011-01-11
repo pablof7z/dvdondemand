@@ -6,7 +6,7 @@ class Retail::OrdersController < RetailController
 
   def new
     @order ||= current_customer.orders.build
-    unless @order.items.blank?
+#    unless @order.items.blank?
       current_customer.cart.items.each do |item|
         @order.items.build(
           :packaging_option_id => item.packaging_option.id,
@@ -15,7 +15,7 @@ class Retail::OrdersController < RetailController
           :price               => item.product.price
         )
       end
-    end
+#    end
     new!
   end
 
