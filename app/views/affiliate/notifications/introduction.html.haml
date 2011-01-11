@@ -5,7 +5,8 @@
 
     %p    
       = "#{@introduction.affiliate.name} has sent you an invitation to join #{SITE},"
-      = "you can use this invitation on #{URL}/introduction/#{@introduction.signup_hash}"
+      = "you can use this invitation on "
+      = link_to "#{URL}/introduction/#{@introduction.signup_hash}", "#{URL}/introduction/#{@introduction.signup_hash}"
 
     %p
       = "Thanks, #{SITE}"
