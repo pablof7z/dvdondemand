@@ -51,7 +51,7 @@ class Admin::BulkPaymentsController < AdminController
         
         # Create the payment
         payment = Payment.new(:owner => affiliate,
-                              :amount => affiliate.pending_payment_affiliate_totals,
+                              :amount => affiliate.pending_payment_totals,
                               :memo => "Payment created by #{current_admin.email}",
                               :financial_information => affiliate.default_financial_information,
                               :bulk_payment => bulk_payment)
