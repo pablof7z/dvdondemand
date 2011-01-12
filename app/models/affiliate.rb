@@ -12,7 +12,7 @@ class Affiliate < ActiveRecord::Base
   
   named_scope :approved, :conditions => { :approved => true }
   
-  devise :registerable, :database_authenticatable, :rememberable, :trackable
+  devise :database_authenticatable, :rememberable, :trackable
 
   def full_name
     "#{name}"

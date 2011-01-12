@@ -52,6 +52,7 @@
         %ul.secondary-nav
           %li= link_to "<strong>All</strong> publishers", admin_publishers_path, :class => (controller.controller_name == 'publishers' and controller.action_name == 'index'?'current':'')
           %li= link_to "<strong>All</strong> affiliates", admin_affiliates_path, :class => (controller.controller_name == 'affiliates' and controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>New</strong> affiliate", new_admin_affiliate_path, :class => (controller.controller_name == 'affiliates' and (controller.action_name == 'new' or controller.action_name == 'create')?'current':'')
           - if controller.controller_name == 'publishers' and controller.action_name == 'show'
             %li= link_to "<strong>Show</strong> publisher", admin_publisher_path(@publisher), :class => (controller.controller_name == 'publishers' and controller.action_name == 'show'?'current':'')
           - if controller.controller_name == 'affiliates' and controller.action_name == 'show'
