@@ -13,11 +13,31 @@
     Email
   = f.text_field :email
 
-%label.lb
+%label
   %span
-    Address
-  = f.text_area :address, :rows => 5
+    Address1
+  = f.text_field :address1
   %span.descr Ex: a simple text
+
+%label
+  %span
+    Address2
+  = f.text_field :address2
+
+%label
+  %span
+    City
+  = f.text_field :city
+
+%label
+  %span
+    State
+  = f.text_field :state
+
+%label
+  %span
+    Country
+  = f.country_select :country
 
 %label
   %span
