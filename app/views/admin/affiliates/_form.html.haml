@@ -13,6 +13,11 @@
 
 %label
   %span
+    Password
+  = f.password_field :password
+
+%label
+  %span
     Comission Percentage
   = "#{f.text_field :commission_percentage, :size => '6'}%"
 
