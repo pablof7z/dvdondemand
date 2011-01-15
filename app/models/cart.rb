@@ -15,5 +15,17 @@ class Cart < ActiveRecord::Base
     items.each { |i| return true if i.product == product }
     false
   end
+
+  def assign_customer(customer)
+    customer.cart = self
+    customer.save!
+
+    write_attribute(:customer_id, customer.id)
+    items.each do |item|
+      item.customer_id = customer.id
+      item.save!
+    end
+    self.save!
+  end
 end
 
