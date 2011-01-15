@@ -15,5 +15,20 @@ class Customer < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def self.anonymous
+    anonymous = create! do |c|
+      c.first_name = 'Anonymous'
+      c.last_name = 'User'
+      c.address1 = '123 Anonymous St.'
+      c.city = 'Anonymouspolis'
+      c.country = 'Anonymousland'
+      c.email = "#{rand(999999)}@anonymous.nil"
+      c.password = 'anonymous'
+      c.anonymous = true
+    end
+    anonymous.confirm!
+    anonymous
+  end
 end
 
