@@ -1,5 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
-  map.devise_for :customers, :as => 'users'  # first to avoid the :customers resources to catch devise's auto-generated routes
+  map.customer_sign_in '/sign_in', :controller => 'retail/session', :action => 'login', :method => :get
+  map.customer_sign_up '/sign_up', :controller => 'retail/session', :action => 'sign_up', :method => :get
+  map.customer_register '/register', :controller => 'retail/session', :action => 'register', :method => :post
+  map.devise_for :customers, :as => 'users' # first to avoid the :customers resources to catch devise's auto-generated routes
   map.resources :customers, :as => 'users' do |customer|
     customer.resources :customer_payments, :as => :payments
   end
