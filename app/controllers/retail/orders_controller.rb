@@ -5,6 +5,7 @@ class Retail::OrdersController < RetailController
   actions :new, :create
 
   def new
+    redirect_to customer_sign_up_path(:checkout => true) and return if current_customer.anonymous
     @order ||= current_customer.orders.build
 #    unless @order.items.blank?
       current_customer.cart.items.each do |item|
