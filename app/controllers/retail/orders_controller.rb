@@ -5,7 +5,6 @@ class Retail::OrdersController < RetailController
   actions :new, :create
 
   def new
-#    redirect_to customer_sign_up_path(:checkout => true) and return if current_customer.anonymous
     if current_customer.anonymous
       current_customer.first_name =
       current_customer.last_name  =
