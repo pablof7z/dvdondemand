@@ -11,15 +11,8 @@ class Retail::SessionController < ApplicationController
 
   def sign_up
     session[:cart_id] = current_customer.cart unless current_customer.cart.blank?
-    if params[:checkout] == 'true'
-      current_customer.destroy if current_customer
-      @user = Customer.new
-    else
-      if current_customer and current_customer.anonymous
-        current_customer.destroy
-      end
-      redirect_to new_customer_registration_path
-    end
+    current_customer.destroy if current_customer
+    @user = Customer.new
   end
 
   def register
@@ -27,10 +20,9 @@ class Retail::SessionController < ApplicationController
     if @user.save
       @user.confirm!
       sign_in(:customer, @user)
-      redirect_to new_retail_customer_order_path(@user)
+      redirect_to root_path
     else
       render :action => :sign_up
     end
   end
-
 end
