@@ -36,6 +36,37 @@
                 %td= item.quantity
                 %td= number_to_currency(item.price*item.quantity + item.packaging_option.price)
 
+        - if current_customer.anonymous
+          .box
+            %h3
+              User information
+              = link_to 'I already have an account', customer_sign_up_path, :class => 'all'
+            %label
+              %span
+                First Name
+              %input{:type => 'text', :name => 'user[first_name]', :value => current_customer.first_name}
+
+            %label
+              %span
+                Last Name
+              %input{:type => 'text', :name => 'user[last_name]', :value => current_customer.last_name}
+
+            %label
+              %span
+                E-mail
+              %input{:type => 'text', :name => 'user[email]', :value => current_customer.email}
+
+            %label
+              %span
+                Password
+              %input{:type => 'password', :name => 'user[password]', :size => '6'}
+
+            %label
+              %span
+                Password confirmation
+              %input{:type => 'password', :name => 'user[password_confirmation]', :size => '6'}
+
+
         .box
           %h3 Credit Card
           %label{:for => 'card_type'}
