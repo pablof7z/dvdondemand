@@ -4,6 +4,7 @@ class Retail::SessionController < ApplicationController
   def login
     if current_customer and current_customer.anonymous
       session[:cart_id] = current_customer.cart unless current_customer.cart.blank?
+      session[:checkout] = true if params[:checkout]
       current_customer.destroy
     end
     redirect_to new_customer_session_path
