@@ -40,7 +40,7 @@
           .box
             %h3
               User information
-              = link_to 'I already have an account', customer_sign_up_path, :class => 'all'
+              = link_to 'I already have an account', customer_sign_in_path(:checkout => true), :class => 'all'
             %label
               %span
                 First Name
