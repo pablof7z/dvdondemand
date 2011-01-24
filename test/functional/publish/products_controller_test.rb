@@ -32,12 +32,12 @@ class Publish::ProductsControllerTest < ActionController::TestCase
     # all publisher's products if no catalog given
     get :index, :publisher_id => @publisher.id.to_s
     assert_response :success
-    assert_equal @publisher.products.available, assigns(:products) 
+    assert_equal [], @publisher.products.available - assigns(:products) 
 
     # filer publisher's products otherwise
     get :index, :publisher_id => @publisher.id.to_s, :catalog_id => @catalog.id.to_s
     assert_response :success
-    assert_equal @catalog.products.available, assigns(:products) 
+    assert_equal [], @catalog.products.available - assigns(:products)
   end
 
   test 'soft-deletion of product reduces products availability' do
@@ -54,4 +54,3 @@ class Publish::ProductsControllerTest < ActionController::TestCase
     assert_redirected_to publish_publisher_products_url(@publisher)
   end
 end
-

@@ -55,13 +55,11 @@ class Publish::ProductsController < PublishController
   
   private
 
+  def begin_of_association_chain
+    current_publisher.catalogs.find(params[:catalog_id]) if params[:catalog_id]
+  end
+
   def collection
-    @products = if parent_type == :catalog
-      # optional catalog set, get only associated products
-      current_publisher.catalogs.find(params[:catalog_id]).products.available
-    else
-      current_publisher.products.available
-    end
+    @products ||= end_of_association_chain.available
   end
 end
-

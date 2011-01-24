@@ -40,6 +40,7 @@ namespace :devise do
     puts 'New Devise Admin created!'
     puts 'E-mail  : ' << admin.email
     puts 'Password: ' << admin.password
+    puts
     
     wholesaler = Wholesaler.create! do |u|
       u.name       = "Wholesale Account"
@@ -63,8 +64,10 @@ namespace :devise do
     puts 'E-mail  : ' << affiliate.email
     puts 'Password: ' << affiliate.password
 
-    # "John" publisher used to check Sales report, so confirm to allow login
+    # confirm test publishers for various browser-checks
     p = Publisher.find(:first, :conditions => {:email => 'john@foo.bar'})
+    p.confirm!
+    p = Publisher.find(:first, :conditions => {:email => 'jane@bar.foo'})
     p.confirm!
   end
 end

@@ -24,6 +24,17 @@ janes:
   # for habtm fixture:
   catalogs: janes, janes_private
 
+<% %w(janes_bulk_1 janes_bulk_2 janes_bulk_3).each do |p| %>
+<%= p %>:
+  publisher: jane
+  media_type_id: 1
+  genre_id: 2
+  title: Unimportant assorted bulk product
+  description: Some bulk product
+  price: 0.99
+  catalogs: janes
+<% end %>
+
 janes_deleted:
   publisher: jane
   media_type_id: 1
