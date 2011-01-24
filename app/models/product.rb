@@ -59,6 +59,11 @@ class Product < ActiveRecord::Base
   # please don't use default_scope to hide deleted products. See http://blog.semanticart.com/2009/03/22/using-default-scope-to-recreate-acts-as-paranoid.html
   named_scope :available, :conditions => {:deleted_at => nil}
 
+  # set the pagination limit here, but mind the tests
+  def self.per_page
+    10  
+  end
+
   def cd?
     # do not check thru MediaType association to make comparison snappier
     media_type_id == MediaType::CD

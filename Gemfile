@@ -17,6 +17,7 @@ gem 'warden', "~> 0.10.7"
 gem 'inherited_resources', '1.0.6'
 gem 'mime-types', '1.16'
 gem 'paperclip', '2.3.3'
+gem 'will_paginate', '2.3.15'
 
 group :development do
   gem 'ruby-debug'

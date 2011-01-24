@@ -40,6 +40,13 @@ class Publish::ProductsControllerTest < ActionController::TestCase
     assert_equal [], @catalog.products.available - assigns(:products)
   end
 
+  test 'pagination with harcoded per_page limit' do
+    get :index, :publisher_id => @publisher.id.to_s, :per_page => 3
+    assert_response :success
+    assert_equal 3, assigns(:products).count
+    assert_select '.pagination'
+  end
+
   test 'soft-deletion of product reduces products availability' do
     assert_difference(['Product.available.count','@publisher.products.available.count'],-1) do
       delete :destroy, :id => @product.id

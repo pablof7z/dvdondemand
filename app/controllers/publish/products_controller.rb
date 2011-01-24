@@ -60,6 +60,6 @@ class Publish::ProductsController < PublishController
   end
 
   def collection
-    @products ||= end_of_association_chain.available
+    @products ||= end_of_association_chain.available.paginate :page => params[:page], :per_page => params[:per_page] || Product.per_page
   end
 end
