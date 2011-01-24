@@ -14,6 +14,6 @@
           %th Ready for Sale
           %th.w20 &nbsp;
       %tbody
-        = render :partial => @catalog.products
-
-
+        = render :partial => @products
+  .box
+    = will_paginate @products
