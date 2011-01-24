@@ -23,4 +23,5 @@
           %td= number_to_currency(order.total)
           %td
             = link_to "Show", admin_order_path(order)
-
+  .box
+    = will_paginate @orders
