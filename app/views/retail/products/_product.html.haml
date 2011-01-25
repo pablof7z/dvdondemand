@@ -1,7 +1,4 @@
-- if @catalog
-  - catalog = @catalog
-- else
-  - catalog = product.catalogs[0]
+- catalog = @catalog || product.catalogs.first
 %tr{:class => cycle("odd", "even")}
   %td
     - if product.image.exists?(:thumb)
@@ -11,4 +8,3 @@
   %td= link_to product.title, retail_catalog_product_path(catalog,product)
   %td= number_to_currency(product.price)
   %td.last= product.description
-

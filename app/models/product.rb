@@ -64,6 +64,15 @@ class Product < ActiveRecord::Base
     10  
   end
 
+  def self.retailable
+    all.reject { |p| !p.retailable? }
+  end
+
+  def retailable?
+    # this is beging to be refactored, as is "available_for_retail_listing"
+    available_for_retail_listing?
+  end
+
   def cd?
     # do not check thru MediaType association to make comparison snappier
     media_type_id == MediaType::CD
@@ -121,6 +130,4 @@ class Product < ActiveRecord::Base
              "!#{art}_crop_w.blank? and !#{art}_crop_h.blank?")
     end
   end
-
 end
-

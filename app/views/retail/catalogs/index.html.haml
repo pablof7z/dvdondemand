@@ -8,8 +8,8 @@
       %a.all{:href => '#'} view all
     %ul#first-carousel.first-and-second-carousel.jcarousel-skin-tango
       - if @products
-        - @products.each_with_index do |product, i|
-          = render :partial => 'retail/shared/carousel_product', :locals => { :product => product, :index => i }
+        - @products.each do |product|
+          = render :partial => 'retail/shared/carousel_product', :locals => { :product => product }
 
     %h2
       Featured Catalogs from Publishers
@@ -19,4 +19,3 @@
         - @catalogs.each do |catalog|
           - product = catalog.products.available.last
           = render :partial => 'retail/shared/carousel_catalog', :locals => { :catalog => catalog, :product => product }
-

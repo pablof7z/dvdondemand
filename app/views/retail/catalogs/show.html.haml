@@ -1,6 +1,5 @@
 - content_for :primary_nav do
-  =render :partial => 'retail/shared/navbar'
-
+  = render :partial => 'retail/shared/navbar'
 
 #content 
   %h1= @catalog.title
@@ -10,17 +9,19 @@
     %p
       %b Description:
       = @catalog.description
-    %p
-      %em Products featured in this Catalog :
-    %table{:style => 'width: 100%;'}
-      %thead
-        %tr
-          %th
-          %th Title
-          %th Price
-          %th
-      %tbody
-        = render :partial => 'retail/products/product', :collection => @catalog.products.available
+    - unless @products.empty?
+      %p
+        %em Products featured in this Catalog :
+      %table.for_products
+        %thead
+          %tr
+            %th
+            %th Title
+            %th Price
+            %th
+        %tbody
+          = render :partial => 'retail/products/product', :collection => @products
+      = will_paginate @products
 
 - unless @catalog.publisher.bio.blank?
   - content_for :sidebar, render(:partial => 'retail/shared/about', :locals => {:publisher => @catalog.publisher})

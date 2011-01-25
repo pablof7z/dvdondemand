@@ -5,9 +5,7 @@ class Retail::CatalogsController < RetailController
   def index
     index! do |format|
       format.html do
-        @products = Product.available.all(:order => :updated_at, :limit => 5).map do |p|
-          p if p.available_for_retail_listing?
-        end.compact
+        @products = Product.available.retailable.first(5)
       end
       format.xml do
         render :xml => @catalogs.to_xml(:except => [:private, :password, :publisher_id, :updated_at], :include => { :publisher => {:except => [:id, :email, :approved, :created_at, :updated_at]} })
@@ -19,6 +17,9 @@ class Retail::CatalogsController < RetailController
     show! do |format|
       render(:text => 'Forbidden', :status => 403) and return if @catalog.private
 
+      format.html do
+        @products = @catalog.products.available.retailable.paginate :page => params[:page], :per_page => params[:per_page] || Product.per_page
+      end
       format.xml do
         render :xml => @catalog.to_xml(:except => [:private, :password, :publisher_id, :updated_at], :include => { :publisher => {:except => [:id, :email, :approved, :created_at, :updated_at]}, :products => {:except => [:catalog_id, :publisher_id, :cover_file_size, :cover_updated_at]} })
       end
@@ -32,4 +33,3 @@ class Retail::CatalogsController < RetailController
     @catalogs = Catalog.public
   end
 end
-
