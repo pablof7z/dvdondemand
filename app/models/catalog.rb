@@ -8,6 +8,11 @@ class Catalog < ActiveRecord::Base
 
   named_scope :public, :conditions => { :private => false }
   named_scope :private, :conditions => { :private => true }
+
+  # set the pagination limit here, but mind the tests
+  def self.per_page
+    10  
+  end
   
   def self.products_available_for_retail_listing
     products.map { |p| p if p.available_for_retail_listing? }.compact
@@ -30,4 +35,3 @@ class Catalog < ActiveRecord::Base
     return false
   end
 end
-

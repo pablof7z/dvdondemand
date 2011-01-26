@@ -25,13 +25,19 @@ class Publish::CatalogsControllerTest < ActionController::TestCase
     get :index, :publisher_id => @publisher.id
     assert_response :success
     # and shoud only list current Publisher's catalogs and none other's
-    assert_equal assigns(:catalogs), @publisher.catalogs
+    assert_equal @publisher.catalogs, assigns(:catalogs)
   end
 
   test 'products collection set along catalog' do
     get :show, :publisher_id => @publisher.id, :id => @catalog.id
     assert_response :success
     assert_not_nil assigns(:products)
+  end
+
+  test 'pagination with harcoded per_page limit' do
+    get :index, :publisher_id => @publisher.id, :per_page => 1
+    assert_equal 1, assigns(:catalogs).count
+    assert_select '.pagination'
   end
 
   test 'products collection pagination with harcoded per_page limit' do
