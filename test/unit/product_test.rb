@@ -33,6 +33,6 @@ class ProductTest < ActiveSupport::TestCase
   test 'deleted products are not available' do
     assert_equal 5, @publisher.products.count
     assert_equal 4, @publisher.products.available.count
-    assert_equal 0, @publisher.products.retailable.count
+    assert_equal 0, @publisher.products.for_retail.count
   end
 end

@@ -64,7 +64,7 @@ class Product < ActiveRecord::Base
     10  
   end
 
-  def self.retailable
+  def self.for_retail
     all.reject { |p| !p.retailable? }
   end
 
