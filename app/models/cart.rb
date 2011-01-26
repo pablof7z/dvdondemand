@@ -12,8 +12,6 @@ class Cart < ActiveRecord::Base
   end
 
   def items_include?(product)
-    items.each { |i| return true if i.product == product }
-    false
+    items.reject { |i| i.product != product } != []
   end
 end
-

@@ -6,6 +6,11 @@ class CartTest < ActiveSupport::TestCase
     @product = products(:johns)
   end
 
+  test 'cart existance and some contents' do
+    assert !@customer.cart.blank?
+    assert !@customer.cart.items.blank?
+  end
+
   test "check cart totals" do
     assert_equal @customer.cart.items_total_count, 3
     assert_equal @customer.cart.items_total_price, 9.5

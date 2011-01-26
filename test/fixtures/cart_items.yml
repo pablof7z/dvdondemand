@@ -1,20 +1,17 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  cart_id: 1
-  customer_id: 1
-  packaging_option_id: 1
-  catalog_id: 1
-  product_id: 1
+  cart: one
+  packaging_option: standard
+  catalog: johns
+  product: johns
   quantity: 1
   price: 1.5
 
 two:
-  cart_id: 1
-  customer_id: 1
-  packaging_option_id: 2
-  catalog_id: 2
-  product_id: 2
+  cart: one
+  packaging_option: premium
+  catalog: janes
+  product: janes
   quantity: 2
   price: 2.5
-
