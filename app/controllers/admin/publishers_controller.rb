@@ -11,7 +11,11 @@ class Admin::PublishersController < AdminController
     end
     
     super
-    
+  end
+  
+  private
+
+  def collection
+    @publishers ||= end_of_association_chain.paginate :page => params[:page], :per_page => params[:per_page] || Publisher.per_page
   end
 end
-

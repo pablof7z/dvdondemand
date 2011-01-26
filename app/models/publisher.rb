@@ -28,6 +28,11 @@ class Publisher < ActiveRecord::Base
 
   after_create :add_default_catalog
 
+  # set the pagination limit here, but mind the tests
+  def self.per_page
+    10  
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -57,5 +62,3 @@ class Publisher < ActiveRecord::Base
     catalog.save!
   end
 end
-
-
