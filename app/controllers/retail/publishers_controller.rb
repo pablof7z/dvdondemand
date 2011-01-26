@@ -11,7 +11,6 @@ class Retail::PublishersController < RetailController
 
   def collection
     # by default, only show approved Publishers
-    @publishers = Publisher.approved
+    @publishers ||= end_of_association_chain.approved.paginate :page => params[:page], :per_page => params[:per_page] || Publisher.per_page
   end
 end
-

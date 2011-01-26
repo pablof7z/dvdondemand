@@ -1,5 +1,5 @@
 - content_for :primary_nav do
-  =render :partial => 'retail/shared/navbar'
+  = render :partial => 'retail/shared/navbar'
 
 #content.wide
   .box
@@ -13,5 +13,5 @@
           %td= link_to publisher.full_name, retail_publisher_path(publisher)
           %td.last
             = link_to "Show", retail_publisher_path(publisher)
-
-
+  .box
+    = will_paginate @publishers
