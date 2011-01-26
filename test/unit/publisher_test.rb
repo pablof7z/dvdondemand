@@ -7,7 +7,7 @@ class PublisherTest < ActiveSupport::TestCase
   end
 
   test 'available publishers' do
-    assert_equal 3, Publisher.count
+    assert_equal 3, Publisher.all.count
     assert_equal 2, Publisher.approved.count
   end
 
