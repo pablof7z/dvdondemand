@@ -128,7 +128,9 @@ class Product < ActiveRecord::Base
   end
 
   def self.best_selling(limit = 5)
-    find(:all, :order => 'times_sold DESC', :limit => limit)
+    find(:all, :order => 'times_sold DESC', :limit => limit).select do |product|
+      product.available_for_retail_listing?
+    end
   end
 
   def self.random(opts = {})
