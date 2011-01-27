@@ -12,18 +12,16 @@
 
 #content
   .box
-    %h2.hbar
+    %h2.hbar2
       Featured Random Products
-      %a.all{:href => ''} view all
 
     %ul#first-carousel.first-and-second-carousel.jcarousel-skin-tango
       - if @products
         - @products.each_with_index do |product, i|
           = render :partial => 'retail/shared/carousel_product', :locals => { :product => product, :index => i }
 
-    %h2.hbar
+    %h2.hbar2
       Featured Catalogs from Publishers
-      %a.all{:href => ''} view all
     %ul#second-carousel.first-and-second-carousel.jcarousel-skin-tango
       - if @catalogs
         - @catalogs.each do |catalog|
@@ -51,7 +49,7 @@
 
 - content_for :sidebar do
   .box.topdvd
-    %h3.hbar Best selling
+    %h3.hbar2 Best selling
     - @best_selling.each_with_index do |product, index|
       .hmedia{:class => "n#{index + 1}"}
         %dl
