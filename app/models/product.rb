@@ -131,6 +131,11 @@ class Product < ActiveRecord::Base
     find(:all, :order => 'times_sold DESC', :limit => limit)
   end
 
+  def self.random(opts = {})
+    opts = { :order => 'rand()', :limit => 25 }.merge(opts) #MySQL specific code
+    all(opts).select { |product| product.available_for_retail_listing? }
+  end
+
   private
 
   def reprocess_arts
