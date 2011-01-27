@@ -117,6 +117,14 @@ class Product < ActiveRecord::Base
     available_for_retail_listing == true
   end
 
+  def public_catalogs
+    catalogs.select { |c| ! c.private }
+  end
+
+  def private_catalogs
+    catalogs.select { |c| c.private }
+  end
+
   def self.best_selling(limit = 5)
     find(:all, :order => 'times_sold DESC', :limit => limit)
   end
