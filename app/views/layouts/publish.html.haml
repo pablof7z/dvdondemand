@@ -36,24 +36,14 @@
       %a{:href => "#"}
         %img.logo{:alt => "", :src => "/images/ondemanddvd-logo.png"}
       %ul.options
-        - unless publisher_signed_in?
-          %li= link_to 'Sign Up', new_publisher_registration_path, :class => 'log'
-          %li= link_to 'My Account', new_publisher_session_path, :class => 'account'
-        - else
+        - if publisher_signed_in?
           - unless current_publisher.approved
             %li= link_to 'Validation Pending', publish_publisher_financial_informations_path(current_publisher), :class => 'log'
           %li= link_to 'Logout', destroy_publisher_session_path, :class => 'log'
           %li= link_to 'Edit Account', edit_publisher_registration_path, :class => 'account'
 
     #nav
-      - if publisher_signed_in?
-        =yield :primary_nav
-      - else
-        %ul.primary-nav
-          %li.active
-            =link_to 'Publish', publish_root_path
-            %ul.secondary-nav
-
+      =yield :primary_nav
 
     #wrapper
       #container
