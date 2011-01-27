@@ -1,5 +1,5 @@
 - content_for :primary_nav do
-  =render :partial => 'admin/shared/navbar'
+  = render :partial => 'admin/shared/navbar'
 
 #content.wide
   %h1 All Shipping Options
@@ -25,6 +25,5 @@
             = link_to "Edit", edit_admin_shipping_option_path(shipping)
             |
             = link_to "Delete", admin_shipping_option_path(shipping), :method => :delete, :confirm => "Are you sure?"
-    .actions-bar.wat-cf
-      .actions
-
+  .box
+    = will_paginate @shipping_options
