@@ -39,4 +39,8 @@ class Catalog < ActiveRecord::Base
     products.each { |p| return true if p.available_for_retail_listing? }
     return false
   end
+
+  def available_products
+    products.select { |product| product.available_for_retail_listing? }
+  end
 end
