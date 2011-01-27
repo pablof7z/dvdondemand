@@ -17,7 +17,12 @@ class Catalog < ActiveRecord::Base
   def self.products_available_for_retail_listing
     products.map { |p| p if p.available_for_retail_listing? }.compact
   end
-  
+
+  def self.random(opts = {})
+    opts = { :order => 'rand()', :limit => 25 }.merge(opts) #MySQL specific code
+    all(opts).select { |catalog| catalog.available_for_retail_listing? }
+  end
+
   def available_for_retail_listing
     return false if publisher == nil
     return false if publisher.approved != true
