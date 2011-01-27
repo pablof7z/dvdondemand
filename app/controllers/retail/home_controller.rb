@@ -1,13 +1,7 @@
 class Retail::HomeController < RetailController
   def index
-    @products = Product.all(:order => :updated_at, :limit => 50).map do |p|
-      p if p.available_for_retail_listing?
-    end.compact
-
-    @catalogs = Catalog.public.all(:order => :updated_at, :limit => 50).map do |c|
-      c if c.available_for_retail_listing?
-    end.compact
-
+    @products = Product.random
+    @catalogs = Catalog.random
     @genres_for_cd = Genre.for_cd
     @genres_for_dvd = Genre.for_dvd
 
