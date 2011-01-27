@@ -49,7 +49,7 @@
 
 - content_for :sidebar do
   .box.topdvd
-    %h3.hbar2 Best selling
+    %h2.hbar2 Best selling
     - @best_selling.each_with_index do |product, index|
       .hmedia{:class => "n#{index + 1}"}
         %dl
