@@ -21,12 +21,11 @@
           = render :partial => 'retail/shared/carousel_product', :locals => { :product => product, :index => i }
 
     %h2.hbar2
-      Featured Catalogs from Publishers
+      Latest Products
     %ul#second-carousel.first-and-second-carousel.jcarousel-skin-tango
-      - if @catalogs
-        - @catalogs.each do |catalog|
-          - product = catalog.available_products.last
-          = render :partial => 'retail/shared/carousel_catalog', :locals => { :catalog => catalog, :product => product }
+      - if @latest_products
+        - @latest_products.each_with_index do |product, i|
+          = render :partial => 'retail/shared/carousel_product', :locals => { :product => product, :index => i }
 
   .box.sp2
     %h2.hbar2 DVD: Genre list

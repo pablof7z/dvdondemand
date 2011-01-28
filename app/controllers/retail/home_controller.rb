@@ -1,7 +1,7 @@
 class Retail::HomeController < RetailController
   def index
     @products = Product.random
-    @catalogs = Catalog.random
+    @latest_products = Product.available.for_retail.last(25)
     @genres_for_cd = Genre.for_cd
     @genres_for_dvd = Genre.for_dvd
 
