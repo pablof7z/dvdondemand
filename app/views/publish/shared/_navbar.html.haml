@@ -36,7 +36,7 @@
       - if controller.controller_name == 'get_stocks' && @type.blank? && @year.blank? && @month.blank?
         = link_to 'Get Stock', publish_publisher_get_stocks_path(current_publisher), :class => 'current'
         %ul.secondary-nav
-          %li= link_to '<strong>Home</strong> sweet home', request.url, :class => 'current'
+          %li= link_to '<strong>Home</strong>', request.url, :class => 'current'
       - else
         = link_to 'Get Stock', publish_publisher_get_stocks_path(current_publisher)
 
