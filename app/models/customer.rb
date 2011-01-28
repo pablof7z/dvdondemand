@@ -15,5 +15,16 @@ class Customer < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def update_with_password(params)
+    if params[:password].blank? and params[:password_confirmation].blank? and params[:current_password].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+      params.delete(:current_password)
+      update_attributes(params)
+    else
+      super
+    end
+  end
 end
 
