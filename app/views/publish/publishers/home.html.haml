@@ -3,6 +3,10 @@
 
 %h1 Welcome to the Publisher’s Home Dashboard.
 
+- unless current_publisher.approved
+  %p{:style=>'text-align: center;'}
+    = link_to 'Not Verified - Click Here to learn more', publish_publisher_financial_informations_path(current_publisher), :style => 'font-weight: bold; font-size: 18px; text-decoration: none; color: #990000;'
+
 %p Here you can navigate through your account, add products, and check your sales stats.
 
 %p You can make changes to your account simply by clicking the “Edit Account” tab. Adding and editing your products is easy; just click onto the “Products” tab.
