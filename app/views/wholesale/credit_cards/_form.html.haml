@@ -42,7 +42,7 @@
 %label
   %span
     Country
-  = f.select :country, country_options_for_select("US")
+  = f.country_select :country, { "United States" => "US" }
 
 %p.btso
   %button.b1{:type => 'submit'}

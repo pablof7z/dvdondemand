@@ -50,7 +50,7 @@
       %label{:for => 'country'}
         %span
           Country
-        = f.select :country, country_options_for_select(current_customer.country)
+        = f.country_select :country, { "United States" => "US" }
 
       %label
         %span

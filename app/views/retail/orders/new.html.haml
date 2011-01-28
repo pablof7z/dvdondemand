@@ -71,7 +71,7 @@
             = f.text_field :billing_zip_code, :value => current_customer.zip_code, :size => '6'
           %label{:for => 'billing_country'}
             %span Country
-            = f.select :billing_country, country_options_for_select(current_customer.country)
+            = f.country_select :billing_country, { "United States" => "US" }
 
           %p.clear
 
@@ -100,7 +100,7 @@
               = f.text_field :shipping_zip_code, :value => current_customer.zip_code, :size => '6'
             %label{:for => 'shipping_country'}
               %span Country
-              = f.select :shipping_country, country_options_for_select(current_customer.country)
+              = f.country_select :shipping_country, { "United States" => "US" }
 
           -# hidden fields for helper attr_accessor methods
           = f.hidden_field :first_name, :value => current_customer.first_name
