@@ -49,7 +49,7 @@
             = f.text_field :card_verification, :size => '6'
           %label{:for => 'card_expires_on'}
             %span Card Expires On
-            = f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :add_month_numbers => true
+            = f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :add_month_numbers => true, , :order => [ :month, :year ]
 
           %p.clear
 

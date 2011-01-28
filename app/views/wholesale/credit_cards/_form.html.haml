@@ -16,7 +16,7 @@
 %label
   %span
     Card Expires On
-  = f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :add_month_numbers => true
+  = f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :add_month_numbers => true, :order => [ :month, :year ]
 
 %h3 Billing Address
 %label
