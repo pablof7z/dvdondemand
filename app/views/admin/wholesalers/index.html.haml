@@ -1,5 +1,5 @@
 - content_for :primary_nav do
-  =render :partial => 'admin/shared/navbar'
+  = render :partial => 'admin/shared/navbar'
 
 #content.wide
   %h1 All Wholesalers
@@ -19,6 +19,5 @@
             = link_to "Invoices", admin_wholesaler_invoices_path(wholesaler)
             |
             = link_to "Show", admin_wholesaler_path(wholesaler)
-    .actions-bar.wat-cf
-      .actions
-
+  .box
+    = will_paginate @wholesalers
