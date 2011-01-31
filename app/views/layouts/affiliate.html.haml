@@ -8,9 +8,9 @@
     %meta{:name => 'csrf-token', :content => form_authenticity_token}
     %meta{:name => 'csrf-param', :content => 'authenticity_token'}
 
-    /[if IE 6] <link rel="stylesheet" type="text/css" href="stylesheets/ie6.css" />
-    /[if IE 7] <link rel="stylesheet" type="text/css" href="stylesheets/ie7.css" />
-    /[if IE 8] <link rel="stylesheet" type="text/css" href="stylesheets/ie8.css" />
+    /[if IE 6] <link rel="stylesheet" type="text/css" href="/stylesheets/ie6.css" />
+    /[if IE 7] <link rel="stylesheet" type="text/css" href="/stylesheets/ie7.css" />
+    /[if IE 8] <link rel="stylesheet" type="text/css" href="/stylesheets/ie8.css" />
     :css
       body#debug #wrapper{background: url(css/996.png) repeat-y;}
       body#debug .col{background: #fff;}
@@ -23,7 +23,7 @@
       body#debug p:before { content: "P"; background: #bdefff;margin: 0 10px 0 0;}
       body#debug #footer{border-top: 1px solid #999;}
       body#debug blockquote:before { content: "BLOCKQUOTE";background: #ffffb9;margin: 0 10px 0 0;}
-      body#debug .box{background: url(css/948.png) no-repeat;opacity: .7;padding: 5px 0 0 0;}
+      body#debug .box{background: url(/stylesheets/948.png) no-repeat;opacity: .7;padding: 5px 0 0 0;}
       p.switch{width: 970px;margin: 2px auto 5px auto;font-size: 75%;max-width: none;background: #ededed;padding: 0 26px 0 0; text-align: right;}
       p.switch a{padding: 0 0 0 10px;color: #999;}
 
