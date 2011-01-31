@@ -6,16 +6,20 @@ class ChangeMediaTypeNames < ActiveRecord::Migration
   def self.up
     Names.each do |old, new|
       media_type = MediaType.find_by_name(old)
-      media_type.name = new
-      media_type.save!
+      if media_type != nil
+        media_type.name = new
+        media_type.save!
+      end
     end
   end
 
   def self.down
     Names.each do |new, old|
       media_type = MediaType.find_by_name(old)
-      media_type.name = new
-      media_type.save!
+      if media_type != nil
+        media_type.name = new
+        media_type.save!
+      end
     end
   end
 end
