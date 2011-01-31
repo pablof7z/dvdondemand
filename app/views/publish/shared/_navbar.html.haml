@@ -1,7 +1,7 @@
 %ul.primary-nav
   - if publisher_signed_in? 
     %li
-      - if controller.controller_name == 'publishers' or controller.controller_name == 'home' or controller.controller_name == 'registrations' or controller.controller_name == 'financial_informations'
+      - if [ 'publishers', 'home', 'registrations', 'financial_informations' ].include? controller.controller_name
         =link_to 'Dashboard', publisher_root_path, :class => 'current'
         %ul.secondary-nav
           %li= link_to "<strong>Publisher</strong> home", publisher_root_path, :class => (controller.controller_name != 'financial_informations' and controller.action_name == 'index'?'current':'')
@@ -69,5 +69,7 @@
 
   - else
     %li
-      =link_to 'Dashboard', publisher_root_path, :class => 'current'
+      =link_to 'Sing In', new_publisher_session_path, :class => (controller.controller_name == 'sessions') ? 'current' : ''
+    %li
+      =link_to 'Sing Up', new_publisher_registration_path, :class => (controller.controller_name == 'registrations') ? 'current' : ''
       %ul.secondary-nav

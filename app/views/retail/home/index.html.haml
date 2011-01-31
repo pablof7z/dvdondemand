@@ -28,7 +28,7 @@
           = render :partial => 'retail/shared/carousel_product', :locals => { :product => product, :index => i }
 
   .box.sp2
-    %h2.hbar2 DVD: Genre list
+    %h2.hbar2 Movies: Genre list
     - (@genres_for_dvd.length / 7.0).ceil.times do |chunk|
       .col.x4
         %ul
@@ -36,7 +36,7 @@
             - if @genres_for_dvd[chunk*7+index]
               %li= link_to @genres_for_dvd[chunk*7+index].title, retail_genre_path(@genres_for_dvd[chunk*7+index])
   .box.sp2
-    %h2.hbar2 CD: Genre list
+    %h2.hbar2 Music: Genre list
     - (@genres_for_cd.length / 7.0).ceil.times do |chunk|
       .col.x4
         %ul

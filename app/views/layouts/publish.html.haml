@@ -46,14 +46,7 @@
           %li= link_to 'Edit Account', edit_publisher_registration_path, :class => 'account'
 
     #nav
-      - if publisher_signed_in?
-        =yield :primary_nav
-      - else
-        %ul.primary-nav
-          %li.active
-            =link_to 'Publish', publish_root_path
-            %ul.secondary-nav
-
+      =yield :primary_nav
 
     #wrapper
       #container
