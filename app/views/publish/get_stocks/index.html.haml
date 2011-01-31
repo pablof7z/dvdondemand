@@ -2,6 +2,11 @@
   = render :partial => 'publish/shared/navbar'
 
 #content.wide
+  %h1 Get Stock
+  %p There may be times when you will need a small stock of your DVD’s or CD’s for personal appearances or gigs. Order the desired amount of stock needed, and we’ll ship it out to the address you specify.
+  %p We only charge our flat replicating fee. No credit card processing fees will be applied. 
+
+
   - form_for @order, :url => publish_publisher_get_stocks_path(current_publisher), :html => { :class => :form } do |f|
     = f.error_messages
     .box

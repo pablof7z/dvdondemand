@@ -37,7 +37,7 @@
         %img.logo{:alt => "", :src => "/images/ondemanddvd-logo.png"}
       %ul.options
         - unless publisher_signed_in?
-          %li= link_to 'Sign Up', new_publisher_registration_path, :class => 'log'
+          %li= link_to 'Sign Up', new_publisher_registration_path, :class => 'account'
           %li= link_to 'My Account', new_publisher_session_path, :class => 'account'
         - else
           - unless current_publisher.approved
