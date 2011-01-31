@@ -11,8 +11,9 @@
     %meta{:name => 'csrf-token', :content => form_authenticity_token}
     %meta{:name => 'csrf-param', :content => 'authenticity_token'}
 
-    /[if IE 6] <link rel="stylesheet" type="text/css" href="css/ie6.css" />
-    /[if IE 7] <link rel="stylesheet" type="text/css" href="css/ie7.css" />
+    /[if IE 6] <link rel="stylesheet" type="text/css" href="stylesheets/ie6.css" />
+    /[if IE 7] <link rel="stylesheet" type="text/css" href="stylesheets/ie7.css" />
+    /[if IE 8] <link rel="stylesheet" type="text/css" href="stylesheets/ie8.css" />
     :javascript
       jQuery(document).ready(function() {
         $('label.fade').inFieldLabels();
