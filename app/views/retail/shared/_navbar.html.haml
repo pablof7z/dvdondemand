@@ -3,6 +3,8 @@
     = link_to 'Catalogs', retail_catalogs_path, :class => controller.controller_name == 'catalogs' ? 'current' : ''
   %li
     = link_to 'Publishers', retail_publishers_path, :class => controller.controller_name == 'publishers' ? 'current' : ''
+  %li
+    = link_to 'Publisher Sign Up', new_publisher_registration_path, :class => controller.controller_name == 'publishers' ? 'current' : ''
   - if customer_signed_in?
     %li.cart= link_to "Cart (#{items_total_count})", retail_customer_cart_path(current_customer)
 
