@@ -29,20 +29,18 @@
 
   .box.sp2
     %h2.hbar2 Movies: Genre list
-    - (@genres_for_dvd.length / 7.0).ceil.times do |chunk|
+    - column_list @genres_for_dvd do |column, list|
       .col.x4
         %ul
-          - 7.times do |index|
-            - if @genres_for_dvd[chunk*7+index]
-              %li= link_to @genres_for_dvd[chunk*7+index].title, retail_genre_path(@genres_for_dvd[chunk*7+index])
+        - list.each do |item|
+          %li= link_to item.title, retail_genre_path(item)
   .box.sp2
     %h2.hbar2 Music: Genre list
-    - (@genres_for_cd.length / 7.0).ceil.times do |chunk|
+    - column_list @genres_for_cd do |column, list|
       .col.x4
         %ul
-          - 7.times do |index|
-            - if @genres_for_cd[chunk*7+index]
-              %li= link_to @genres_for_cd[chunk*7+index].title, retail_genre_path(@genres_for_cd[chunk*7+index])
+          - list.each do |item|
+            %li= link_to item.title, retail_genre_path(item)
 
 
 
