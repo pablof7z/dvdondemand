@@ -12,10 +12,10 @@ csv << ['Period','Retail Sales','Royalty Sales','Wholesales','Get Stock Purchase
     finish = date.end_of_month
     header = start.strftime('%b %Y')
   end
-  whole    = @whole_sales.period(start,finish).totals
-  retail   = @retail_sales.period(start,finish).totals
-  getstock = @get_stocks.period(start,finish).totals
-  payment  = @payments.period(start,finish).totals
+  whole    = @whole_sales.totals_for(start,finish)
+  retail   = @retail_sales.totals_for(start,finish)
+  getstock = @get_stocks.totals_for(start,finish)
+  payment  = @payments.totals_for(start,finish)
 
   csv << [ header, retail, '0', whole, getstock, whole+retail+getstock, payment ]
 end

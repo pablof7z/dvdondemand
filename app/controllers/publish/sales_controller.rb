@@ -32,7 +32,7 @@ class Publish::SalesController < PublishController
     start  = date.beginning_of_month
     finish = date.end_of_month
 
-    @sales   = current_publisher.send(@type).period(start,finish)
+    @sales   = current_publisher.send(@type).find(:all, :conditions => {:created_at => start..finish})
     @grouped = @sales.group_by { |s| s.created_at.beginning_of_month }
 
     respond_to do |format|

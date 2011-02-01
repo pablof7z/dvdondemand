@@ -33,10 +33,10 @@
             - date   = DateTime.new(@year, i, 1)
             - start  = date.beginning_of_month
             - finish = date.end_of_month
-          - whole    = @whole_sales.period(start,finish).totals
-          - retail   = @retail_sales.period(start,finish).totals
-          - getstock = @get_stocks.period(start,finish).totals
-          - payment  = @payments.period(start,finish).totals
+          - whole    = @whole_sales.totals_for(start,finish)
+          - retail   = @retail_sales.totals_for(start,finish)
+          - getstock = @get_stocks.totals_for(start,finish)
+          - payment  = @payments.totals_for(start,finish)
           - subtotal        = whole + retail + getstock
           - whole_total    += whole
           - retail_total   += retail
