@@ -1,0 +1,61 @@
+/* IE8 */
+textarea{overflow: auto;}
+
+.bto{
+	border: 1px solid #cfcfcf;
+   color: #444;
+   font-family: Arial, Helvetica, sans-serif !important;
+   font-size: 80%;
+   cursor: pointer;
+	padding: 6px 25px !important;
+	width: auto;
+	text-decoration: none;
+	vertical-align: middle;
+ 	text-shadow: 0 1px #fff;
+	background: #ededed;
+	}
+.bto:hover{
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
+	background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
+}
+.bto.mini{
+	font-size: 70%;
+	margin: 0;
+	padding: 3px 4px !important; 
+}
+
+/* BIG GREEN BUTTON */
+.b1{
+	border: 1px solid #268624;
+   color: #fff;
+   font-family: Arial, Helvetica, sans-serif !important;
+   font-size: 110%;
+   cursor: pointer;
+   margin: 0 8px 0 0;
+	padding: 10px 20px !important;
+	vertical-align: middle;
+ 	text-shadow: 0 1px #1a5c19;
+ 	background: #2FA42C;
+}
+.b1:hover{
+	background: #268624;
+}
+
+
+/* ADD TO CART */
+.b2{
+	border: 1px solid #fb6c2e;
+   color: #fff;
+   font-family: Arial, Helvetica, sans-serif !important;
+   font-size: 100%;
+   cursor: pointer;
+   margin: 0 8px 0 0;
+	padding: 10px 15px !important;
+	vertical-align: middle;
+ 	text-shadow: 0 1px #b53904;
+	background: #ff8f04 !important;;
+}
+.b2:hover{
+ 	background: #ff9b20 !important;
+}
+

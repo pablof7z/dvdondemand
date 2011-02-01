@@ -2,6 +2,11 @@
   = render :partial => 'publish/shared/navbar'
 
 #content.wide
+  %h1 Get Stock
+  %p There may be times when you will need a small stock of your DVD’s or CD’s for personal appearances or gigs. Order the desired amount of stock needed, and we’ll ship it out to the address you specify.
+  %p We only charge our flat replicating fee. No credit card processing fees will be applied. 
+
+
   - form_for @order, :url => publish_publisher_get_stocks_path(current_publisher), :html => { :class => :form } do |f|
     = f.error_messages
     .box
@@ -39,7 +44,7 @@
         = f.text_field :card_verification, :size => '6'
       %label{:for => 'card_expires_on'}
         %span Card Expires On
-        = f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :add_month_numbers => true
+        = f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :add_month_numbers => true, :order => [ :month, :year ]
 
     .box
       %h3 Shipping Address
@@ -63,7 +68,7 @@
         = f.text_field :shipping_zip_code, :value => current_publisher.zip_code, :size => '6'
       %label{:for => 'shipping_country'}
         %span Country
-        = f.select :shipping_country, country_options_for_select(current_publisher.country)
+        = f.country_select :shipping_country, { "United States" => "US" }
 
     .box
       %h3 Shipping Options available
