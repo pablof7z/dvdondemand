@@ -1,0 +1,15 @@
+csv << ['Date','Transaction','Type','Qty.','Sale Price','Applicable Fees','Earnings']
+
+@grouped.each do |month,sales|
+  sales.each do |sale|
+    csv << [
+      sale.created_at.strftime('%m/%d/%Y'),
+      sale.id,
+      sale.type,
+      sale.quantity,
+      sale.total,
+      "(#{sale.fees})",
+      sale.total-sale.fees
+    ]
+  end
+end
