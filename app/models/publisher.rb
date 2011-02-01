@@ -59,6 +59,18 @@ class Publisher < ActiveRecord::Base
     return validated_financial_informations.first
   end
 
+  def update_with_password(params)
+    if params[:password].blank? and params[:password_confirmation].blank? and params[:current_password].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+      params.delete(:current_password)
+      update_attributes(params)
+    else
+      super
+    end
+  end
+
+
   private
   
   def add_default_catalog
