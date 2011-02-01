@@ -1,4 +1,4 @@
-csv << ['Date','Transaction','Type','Qty.','Sale Price','Applicable Fees','Earnings']
+csv << ['Date','Transaction','Type','Qty.','Sale Price','Applicable Fees','Earnings','Customer','Customer E-mail','Customer Phone','Customer Address']
 
 @grouped.each do |month,sales|
   sales.each do |sale|
@@ -9,7 +9,11 @@ csv << ['Date','Transaction','Type','Qty.','Sale Price','Applicable Fees','Earni
       sale.quantity,
       sale.total,
       "(#{sale.fees})",
-      sale.total-sale.fees
+      sale.total-sale.fees,
+      sale.order.customer.full_name,
+      sale.order.customer.email,
+      sale.order.customer.phone,
+      sale.order.customer.full_address
     ]
   end
 end

@@ -15,5 +15,15 @@ class Customer < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
-end
 
+  def full_address
+    address = []
+    address << send("address1")
+    address << send("address2") unless send("address2").blank?
+    address << send("city")     unless send("city").blank?
+    address << send("zip_code") unless send("zip_code").blank?
+    address << send("state")    unless send("state").blank?
+    address << send("country")  unless send("country").blank?
+    address.join('. ')
+  end
+end

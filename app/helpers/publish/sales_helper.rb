@@ -15,16 +15,4 @@ module Publish::SalesHelper
       {:class => 'current'} if controller.action_name == action
     end
   end
-
-  def buttonize(path, text='Submit', method=:get)
-    if path
-      form_tag path, :method => method do
-        content_tag :p, :class => 'btso', :align => 'center' do
-          content_tag :button, :class => 'b1', :type => 'submit' do
-            text
-          end
-        end
-      end
-    end
-  end
 end
