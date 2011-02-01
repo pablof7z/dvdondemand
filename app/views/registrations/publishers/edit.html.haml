@@ -1,48 +1,72 @@
 - content_for :primary_nav do
   =render :partial => 'publish/shared/navbar'
 
+- content_for :header do
+  :javascript
+    $(function () {
+      $('#publisher_image_delete').click(function () {
+        $(this).remove();
+        $('#publisher_image_div').remove();
+        $('#publisher_image').show();
+      });
+    });
+
 #content
   %h1 Edit my #{resource_name.to_s.humanize} account
   %p Edit you existing account, or create your publisher Bio here.
   .box.sp
-    - form_for resource_name, resource, :url => registration_path(resource_name), :html => { :class => :form, :method => :put } do |f|
+    - form_for resource_name, resource, :url => registration_path(resource_name), :html => { :multipart => true, :class => :form } do |f|
       = f.error_messages
+      .col.x6
+        %label
+          %span
+            E-mail
+          = f.text_field :email, :size => 27
 
-      %label
-        %span
-          E-mail
-        = f.text_field :email
+        %label{:style => 'height: auto'}
+          %span
+            Password
+          = f.password_field :password, :size => 27
+          %span.descr{:style => 'width: 100%; text-align: right;'} (leave blank if you don't want to change it)
 
-      %label
-        %span
-          Password
-        = f.password_field :password
-        %span.descr (leave blank if you don't want to change it)
+        %label
+          %span
+            Password confirmation
+          = f.password_field :password_confirmation, :size => 27
 
-      %label
-        %span
-          Password confirmation
-        = f.password_field :password_confirmation
-      
-      %label
-        %span
-          First Name
-        = f.text_field :first_name
-      
-      %label
-        %span
-          Last Name
-        = f.text_field :last_name
+        %label
+          %span
+            First Name
+          = f.text_field :first_name, :size => 27
 
-      %label
-        %span
-          Artistic Name
-        = f.text_field :nickname
+        %label
+          %span
+            Last Name
+          = f.text_field :last_name, :size => 27
+
+        %label
+          %span
+            Artistic Name
+          = f.text_field :nickname, :size => 27
+
+      .col.x6
+        %label{:style => 'height: auto;'}
+          - if current_publisher.image.exists?(:medium)
+            %span
+              Image
+              %a#publisher_image_delete{:href => '#'} delete
+            #publisher_image_div.box
+              %img.artw{:src => current_publisher.image.url(:medium), :alt => 'image'}
+            = f.file_field :image, :style => 'display: none'
+          - else
+            %span
+              Image
+            = f.file_field :image
 
       %label.lb
         %span
           Biography
-        = f.text_area :bio
+        = f.text_area :bio, :cols => 90
         %span.descr Ex: a simple text
 
       %label
