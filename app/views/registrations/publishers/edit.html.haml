@@ -23,16 +23,6 @@
             E-mail
           = f.text_field :email, :size => 27
 
-        %label{:style => 'height: auto'}
-          %span
-            Password
-          = f.password_field :password, :size => 27
-          %span.descr{:style => 'width: 100%; text-align: right;'} (leave blank if you don't want to change it)
-
-        %label
-          %span
-            Password confirmation
-          = f.password_field :password_confirmation, :size => 27
 
         %label
           %span
@@ -48,6 +38,23 @@
           %span
             Artistic Name
           = f.text_field :nickname, :size => 27
+
+        %label{:style => 'height: auto'}
+          %span
+            Password
+          = f.password_field :password, :size => 27
+          %span.descr{:style => 'width: 100%; text-align: right;'} (leave blank if you don't want to change it)
+
+        %label{:style => 'height: auto'}
+          %span
+            Password confirmation
+          = f.password_field :password_confirmation, :size => 27
+
+        %label{:style => 'height: auto'}
+          %span
+            Current Password
+          = f.password_field :current_password, :size => 27
+          %span.descr{:style => 'width: 100%; text-align: right;'} (only needed if you are changing your password)
 
       .col.x6
         %label{:style => 'height: auto;'}
@@ -68,12 +75,6 @@
           Biography
         = f.text_area :bio, :cols => 90
         %span.descr Ex: a simple text
-
-      %label
-        %span
-          Current Password
-        = f.password_field :current_password
-        %span.descr (we need your current password to confirm your changes)
 
       %p.btso
         %button.b1{:type => 'submit'}
