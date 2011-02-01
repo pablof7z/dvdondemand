@@ -15,7 +15,7 @@
   %h1 Edit my #{resource_name.to_s.humanize} account
   %p Edit you existing account, or create your publisher Bio here.
   .box.sp
-    - form_for resource_name, resource, :url => registration_path(resource_name), :html => { :multipart => true, :class => :form } do |f|
+    - form_for resource_name, resource, :url => registration_path(resource_name), :html => { :multipart => true, :method => :put, :class => :form } do |f|
       = f.error_messages
       .col.x6
         %label
