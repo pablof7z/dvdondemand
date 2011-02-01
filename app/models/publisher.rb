@@ -28,6 +28,10 @@ class Publisher < ActiveRecord::Base
 
   after_create :add_default_catalog
 
+  has_attached_file :image, :url=> '/system/images/publisher/:id/:basename_:style.:extension',
+                    :styles => { :medium => '300x300>', :thumb => '100x100>' }
+  validates_attachment_content_type :image,  :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'], :allow_nil => true
+
   # set the pagination limit here, but mind the tests
   def self.per_page
     10  
