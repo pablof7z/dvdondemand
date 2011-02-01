@@ -1,4 +1,4 @@
-#content
+#content.wide
   %h1 Login to the Admin account
   .box.sp
     - form_for resource_name, resource, :url => session_path(resource_name), :html => { :class => :form } do |f|
@@ -20,6 +20,3 @@
       %p.btso
         %button.b1{:type => 'submit'}
           Login
-
-- content_for :sidebar, render(:partial => "shared/devise_admin_links")
-
