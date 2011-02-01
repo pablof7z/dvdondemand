@@ -3,7 +3,7 @@
 
 #content.wide
   .box
-    %h1 Place New Purchase Order
+    %h1 Place New Order
     %p Please confirm the following products to place your new puchase order.
 
     - form_for @order, :url => retail_customer_orders_path(current_customer), :html => { :class => :form } do |f|
