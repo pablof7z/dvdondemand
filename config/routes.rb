@@ -23,6 +23,8 @@ ActionController::Routing::Routes.draw do |map|
 
       publisher.resources :financial_informations, :as => :financial, :member => { :send_deposit => :post, :make_default => :post, :validate => [ :get, :post, :put ] }, :except => [ :show, :edit, :destroy ]
       publisher.resources :payments, :as => :payments, :only => [:index, :show]
+
+      publisher.support '/support/:action', :controller => 'support'
     end
     
     publish.resources :products_options
