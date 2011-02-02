@@ -1,0 +1,178 @@
+- content_for :primary_nav do
+  =render :partial => 'publish/shared/navbar'
+
+.box
+  %h1 Help Page
+
+  %h3 1. Signing Up
+  %p Signing up with us is easy!
+  %p
+    You will need to enter a valid email address to get started.
+
+  %h3 2. Creating an account
+  %p Creating an account with us is easy!
+  %p
+    You must provide a valid bank or PayPal account to sign up. That information |
+    is used to verify your identity, and will allow us to pay you electronically |
+    when you sell your products! Your information is stored on safe, secured servers!
+
+  %h3 3. Uploading content
+  %p
+    Uploading content will require you to place your data in an ISO file prior  |
+    to uploading. 
+
+  %p
+    %strong What is an ISO image file?
+  %p
+    An ISO-9660 image file is an exact representation of a CD or DVD disk,      |
+    including the content and the logical format. The most common use of an     |
+    image file is to use it with a software tool and a blank disk to create an  |
+    identical copy of the original disk including all file and folder names and |
+    volume label information. Files with the ISO image format may also be       |
+    opened and their contents copied to a local folder, much like ZIP files.    |
+    ISO image files may also be virtually mounted and accessed as if they were  |
+    a CD-ROM device, even when you do not have a CD or DVD drive. These three   |
+    methods of using ISO images are described below.
+    %ul
+      %li Create CD or DVD disk with an ISO image file
+      %li Copy or mount ISO image files (...if you don't have a CD/DVD burner).
+      %li Find other tools that do the same.
+
+  %p
+    %strong Creating a CD or DVD
+  %p
+    Simply performing a direct copy of an ISO image file to a disk will not     |
+    write the directory and file structure needed to use that disk. Most CD-R   |
+    writing software includes a feature to create a CD or DVD from an image     |
+    file. Listed below are custom, third-party, and other popular applications:
+
+    %ul
+      %li
+        %a{:href => 'http://www.ntfs.com/iso_burner_free.htm'} Active@ ISO Burner - Free
+        %p
+          Active@ ISO Burner is a free disk burning program and is available    |
+          at NTFS.com, allowing you to burn ISO or IMG disk image files to a    |
+          disk. Instructions for how to use the software are included on the    |
+          NTFS site, or you can click
+          %a{:href => 'ftp://ftp.e-academy.com/pub/docs/How_to_Burn_an_IMG_File.pdf'} here
+          for instructions on how to download Active ISO Burner and then use it |
+          to burn an ISO or IMG file.
+
+      %li
+        %a{:href => 'http://online.morainevalley.edu/websupported/edmartig/msdnaa/ISO%20CD-DVD%20Burn.zip'}
+          CDBURN and DVDBURN Command Line Programs - Free
+        %p
+          (NOTE: these tools come w/Windows Server 2003 Resource Kit but WILL   |
+          WORK with Windows XP Professional and Media edition, Vista, and       |
+          Windows 7 operating systems. They also MIGHT WORK with Windows XP     |
+          Home Edition but WILL NOT WORK with Windows 98 and Me editions.)
+
+        %p
+          You can download and unzip a Windows application that provides a      |
+          graphical user interface (shown below) for using the cdburn or        |
+          dvdburn tools that come with the Windows Server 2003 Resource Kit.    |
+          Using these tools through this customized application, you can browse |
+          and select an ISO image file, select the drive letter for your CD or  |
+          DVD burner, and click a button to create a disk from the image file.  |
+          %a{:href => 'http://online.morainevalley.edu/websupported/edmartig/msdnaa/CreateSetupDisc.htm'}
+            See How To Create a Disk
+          when using this application. 
+
+          %img{}
+
+        %p
+          Or, you can download and install the 
+          %a{:href => 'http://www.microsoft.com/downloads/details.aspx?FamilyID=9d467a69-57ff-4ae7-96ee-b18c4790cffd&DisplayLang=en'}
+            Windows Server 2003 Resource Kit
+          and then use the cdburn or dvdburn command line programs, which are    |
+          part of that resource kit and also will run on Windows XP Professional |
+          and Media Center operating systems. The Resource Kit is a free         |
+          download but installs a bunch of other utilities that probably cannot  |
+          be used on XP. Once installed, there will be a Help link in the Start  |
+          All Programs menu, which shows how to run the programs from the DOS    |
+          Command Prompt window.
+
+      %li
+        %a{:href => 'http://isorecorder.alexfeinman.com/isorecorder.htm'}
+        ISO Recorder - Free/Donate 
+        %p
+          ISO Recorder is a third-party add-on for Windows operating systems     |
+          that adds image file writing capability. Right-click an image file     |
+          and choose Copy Image to CD.
+
+      %li
+        %a{:href => 'http://www.roxio.com'} Easy Media Creator - Try/Buy
+        %p
+          Available through Roxio, a division of Sonic Solutions. Many of the    |
+          world's largest OEMs such as Dell, HP, and eMachines bundle Roxio      |
+          software with their digital media hardware. (You might already have    |
+          it!) From the File menu, choose Create CD from image file. Easy CD     |
+          Creator assumes the file extension is .CIF so change the "Files of     |
+          type" selection to .ISO, or enter the full path and filename, or       |
+          rename the .ISO file to .CIF. For more information about this or other |
+          Roxio products, visit 
+          %a{:href => 'www.roxio.com'} www.roxio.com.
+
+      %li
+        %a{:href => 'http://www.nero.com/eng/products.html'} Nero Burning ROM - Try/Buy
+        %p
+          Nero AG develops and distributes digital media solutions for consumers |
+          and professionals. In Nero, from the File menu, choose Burn image. For |
+          more information please see the
+          %a{:href => 'http://www.nero.com/en/support.html'} Nero Burning ROM support FAQs. 
+
+    %p
+      %strong Copy or Mount ISO files
+    %p
+      When you do not have the necessary disk-write capabilities with your CD or |
+      DVD drive, or no drive at all, then the contents of image files may be     |
+      accessed directly using third-party tools. Some tools extract the files    |
+      from an image file to a temporary folder on your hard drive, and then run  |
+      setup from your hard drive. And at least one tool in the following list    |
+      makes it easy to simply double-click an ISO file and run the set up program |
+      that installs the software. You might not end up with a backup disk using  |
+      these tools, but then you won't need one if you can backup one of these    |
+      programs and your ISO files! The following tools offer such image file     |
+      support.
+
+    %ul
+      %li
+        %a{:href => 'http://www.slysoft.com/en/virtual-clonedrive.html'}
+          Virtual CloneDrive 
+        %ul
+          %li
+            Be sure to download and install Virtual CloneDrive (Freeware) and    |
+            not other tools you might find listed on this web site.
+          %li
+            After installing, literally double-click an ISO file to run setup    |
+            and install the software packed inside that file! 
+      %li
+        %a{:href => 'http://www.smart-projects.net/isobuster/'}
+          IsoBuster
+        %ul
+          %li
+            IsoBuster is able to open ISO files and treat them as regular CD     |
+            or DVD discs, and a lot more if that's what you're looking for.
+          %li
+            May need to set up File Associations after installation if you want  |
+            to open an ISO file with a double-click.
+
+      %li
+        %a{:href => 'http://www.daemon-tools.cc'}
+          DAEMON Tools
+        %ul
+          %li
+            Download DAEMON Tools Lite (free) for Personal non-Commercial Use. 
+          %li
+            After installing, the program runs in the background and appears in  |
+            the system tray at the right-side of the Task Bar.
+
+      %li
+        %a{:href => 'http://download.microsoft.com/download/7/b/6/7b6abd84-7841-4978-96f5-bd58df02efa2/winxpvirtualcdcontrolpanel_21.exe'}
+          Virtual CD-ROM Control Panel for Windows XP
+        %ul
+          %li
+            Allows image files to be mounted virtually as CD-ROM devices.
+          %li
+            This tool is provided here for your convenience but is no longer     |
+            supported by Microsoft Product Support Services.
