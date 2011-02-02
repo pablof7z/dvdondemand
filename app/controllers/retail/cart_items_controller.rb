@@ -17,4 +17,3 @@ class Retail::CartItemsController < RetailController
     update! { retail_customer_cart_url(current_customer) }
   end
 end
-
