@@ -63,4 +63,4 @@
           %td
             %strong= number_to_currency(grand_payment_total)
 
-    %p{:align => 'center'}= button_to 'Export to CSV', publish_publisher_sales_path(current_publisher, :year => @year, :format => :csv), :class => 'b1', :method => 'get'
+    %p{:align => 'center'}= link_to 'Export to CSV', publish_publisher_sales_path(current_publisher, :year => @year, :format => :csv), :class => 'b1'
