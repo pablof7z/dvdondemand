@@ -66,6 +66,14 @@
           %li= link_to "<strong>Financial</strong> information", publish_publisher_financial_informations_path(current_publisher)
       - else
         =link_to 'Payments', publish_publisher_payments_path(current_publisher)
+    %li
+      - if controller.controller_name == 'support'
+        =link_to 'Support', publish_publisher_support_path(current_publisher, :help), :class => 'current'
+        %ul.secondary-nav
+          %li= link_to "<strong>Help</strong>", publish_publisher_support_path(current_publisher, :help), :class => (controller.action_name == 'help'?'current':'')
+          %li= link_to "<strong>Contact Us</strong>", publish_publisher_support_path(current_publisher, :contact), :class => (controller.action_name == 'contact'?'current':'')
+      - else
+        =link_to 'Support', publish_publisher_support_path(current_publisher, :help)
 
   - else
     %li
