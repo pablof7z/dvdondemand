@@ -72,6 +72,7 @@
         %ul.secondary-nav
           %li= link_to "<strong>Help</strong>", publish_publisher_support_path(current_publisher, :help), :class => (controller.action_name == 'help'?'current':'')
           %li= link_to "<strong>Contact Us</strong>", publish_publisher_support_path(current_publisher, :contact), :class => (controller.action_name == 'contact'?'current':'')
+          %li= link_to "<strong>Terms of</strong> Service", publish_publisher_support_path(current_publisher, :terms), :class => (controller.action_name == 'terms'?'current':'')
       - else
         =link_to 'Support', publish_publisher_support_path(current_publisher, :help)
 
