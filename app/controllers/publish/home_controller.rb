@@ -3,4 +3,3 @@ class Publish::HomeController < ApplicationController
 
   def index; end
 end
-
