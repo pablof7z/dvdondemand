@@ -4,6 +4,7 @@ class Publish::SalesControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   def setup
+    @foreigner = publishers(:jane)
     @publisher = publishers(:john)
     @publisher.confirm!
     sign_in @publisher
@@ -23,6 +24,11 @@ class Publish::SalesControllerTest < ActionController::TestCase
     assert_raise ActionController::RoutingError do
       get :edit, :publisher_id => @publisher.id
     end
+  end
+
+  test 'do not display foreign sales' do
+    get :index, :publisher_id => @foreigner.id
+    assert_response 404
   end
 
   test 'full sale sub-menu navigation' do
