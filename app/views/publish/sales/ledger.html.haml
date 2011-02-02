@@ -19,7 +19,7 @@
         - total = 0
         - subtotal = []
         - sale_total = 0
-        - @group.each do |month,sales|
+        - @grouped.each do |month,sales|
           %tr
             %td{:colspan => 9}
               = month.strftime('%B').upcase
@@ -57,7 +57,7 @@
 
     %p{:align => :right} (*) Fees apply to each product sold
 
-    - buttonize ledger_publish_publisher_sales_path(current_publisher, :type => @type, :year => @year, :month => @month, :format => :csv), 'Export to CSV'
+    %p{:align => 'center'}= link_to 'Export to CSV', ledger_publish_publisher_sales_path(current_publisher, :type => @type, :year => @year, :month => @month, :format => :csv)
 
     %p= render :partial => 'gchart', :locals => { :sales => @sales.map { |s| s.total } }
 

@@ -4,6 +4,7 @@ class Publish::CatalogsControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   def setup
+    @foreigner = publishers(:john)
     @publisher = publishers(:jane)
     @publisher.confirm!
     sign_in @publisher
@@ -26,6 +27,11 @@ class Publish::CatalogsControllerTest < ActionController::TestCase
     assert_response :success
     # and shoud only list current Publisher's catalogs and none other's
     assert_equal @publisher.catalogs, assigns(:catalogs)
+  end
+
+  test 'do not display foreign catalogs' do
+    get :index, :publisher_id => @foreigner.id
+    assert_response 404
   end
 
   test 'products collection set along catalog' do

@@ -2,69 +2,65 @@
   = render :partial => 'publish/shared/navbar'
 
 #content.wide
-  - if @years and @years.empty?
-    .box
-      %em No data available
+  - if @years
+    %h1 All Years
   - else
-    - if @years
-      %h1 All Years
-    - else
-      %h1 Year #{@year}
-    .box
-      %table.t1
-        %thead
-          %tr
-            %th 
-              = @years ? 'Year' : 'Month'
-            %th Retail Sales
-            %th Royalty Sales
-            %th Wholesale Sales
-            %th Get Stock Purchases
-            %th Totals
-            %th PPS Payments
-            - whole_total         = 0
-            - retail_total        = 0
-            - getstock_total      = 0
-            - grand_total         = 0
-            - grand_payment_total = 0
-        %tbody
-          - (@years ? @years : (1..12)).each do |i|
-            - if @years
-              - date   = DateTime.new(i, 1, 1)
-              - start  = date.beginning_of_year
-              - finish = date.end_of_year
-            - else
-              - date   = DateTime.new(@year, i, 1)
-              - start  = date.beginning_of_month
-              - finish = date.end_of_month
-            - whole    = @whole_sales.totals_for(start,finish)
-            - retail   = @retail_sales.totals_for(start,finish)
-            - getstock = @get_stocks.totals_for(start,finish)
-            - payment  = @payments.totals_for(start,finish)
-            - subtotal        = whole + retail + getstock
-            - whole_total    += whole
-            - retail_total   += retail
-            - getstock_total += getstock
-            - if @years
-              = render :partial => 'yearly', :locals => {:year => i, :retail => retail, :whole => whole, :getstock => getstock, :subtotal => subtotal, :payment => payment}
-            - else
-              = render :partial => 'monthly', :locals => {:year => @year, :month => i, :retail => retail, :whole => whole, :getstock => getstock, :subtotal => subtotal, :payment => payment}
-            - grand_payment_total += payment
-            - grand_total += subtotal
-          %tr
-            %td
-              %strong GRAND TOTALS
-            %td
-              %strong= number_to_currency(retail_total)
-            %td
-              %strong= number_to_currency(0)
-            %td
-              %strong= number_to_currency(whole_total)
-            %td
-              %strong= number_to_currency(getstock_total)
-            %td
-              %strong= number_to_currency(grand_total)
-            %td
-              %strong= number_to_currency(grand_payment_total)
+    %h1 Year #{@year}
+  .box
+    %table.t1
+      %thead
+        %tr
+          %th
+            = @years ? 'Year' : 'Month'
+          %th Retail Sales
+          %th Royalty Sales
+          %th Wholesale Sales
+          %th Get Stock Purchases
+          %th Totals
+          %th PPS Payments
+          - whole_total         = 0
+          - retail_total        = 0
+          - getstock_total      = 0
+          - grand_total         = 0
+          - grand_payment_total = 0
+      %tbody
+        - (@years ? @years : (1..12)).each do |i|
+          - if @years
+            - date   = DateTime.new(i, 1, 1)
+            - start  = date.beginning_of_year
+            - finish = date.end_of_year
+          - else
+            - date   = DateTime.new(@year, i, 1)
+            - start  = date.beginning_of_month
+            - finish = date.end_of_month
+          - whole    = @whole_sales.totals_for(start,finish)
+          - retail   = @retail_sales.totals_for(start,finish)
+          - getstock = @get_stocks.totals_for(start,finish)
+          - payment  = @payments.totals_for(start,finish)
+          - subtotal        = whole + retail + getstock
+          - whole_total    += whole
+          - retail_total   += retail
+          - getstock_total += getstock
+          - if @years
+            = render :partial => 'yearly', :locals => {:year => i, :retail => retail, :whole => whole, :getstock => getstock, :subtotal => subtotal, :payment => payment}
+          - else
+            = render :partial => 'monthly', :locals => {:year => @year, :month => i, :retail => retail, :whole => whole, :getstock => getstock, :subtotal => subtotal, :payment => payment}
+          - grand_payment_total += payment
+          - grand_total += subtotal
+        %tr#totals
+          %td
+            %strong GRAND TOTALS
+          %td.retail
+            %strong= number_to_currency(retail_total)
+          %td.royalty
+            %strong= number_to_currency(0)
+          %td.wholesale
+            %strong= number_to_currency(whole_total)
+          %td.getstock
+            %strong= number_to_currency(getstock_total)
+          %td
+            %strong= number_to_currency(grand_total)
+          %td
+            %strong= number_to_currency(grand_payment_total)
 
-      - buttonize publish_publisher_sales_path(current_publisher, :year => @year, :format => :csv), 'Export to CSV'
+    %p{:align => 'center'}= link_to 'Export to CSV', publish_publisher_sales_path(current_publisher, :year => @year, :format => :csv)
