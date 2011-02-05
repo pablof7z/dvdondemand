@@ -11,7 +11,7 @@ class Genre < ActiveRecord::Base
 
   # set the pagination limit here, but mind the tests
   def self.per_page
-    10  
+    25  
   end
   
   def available_for_retail_products
