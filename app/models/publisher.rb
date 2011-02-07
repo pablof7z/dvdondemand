@@ -24,7 +24,7 @@ class Publisher < ActiveRecord::Base
   validates_uniqueness_of :affiliate_introduction_id, :allow_nil => true
   validates_format_of :email, :with => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i
 
-  devise :database_authenticatable, :recoverable, :registerable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :confirmable, :recoverable, :registerable, :rememberable, :trackable, :validatable
 
   after_create :add_default_catalog
 
