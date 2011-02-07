@@ -49,7 +49,12 @@
   %p
     Please see our terms of service for complete details.
 
-  %box.sp
+  %p
+    You will need to provide a valid email account to get started.
+
+  %p.clear
+
+  .box.sp
     - form_for resource_name, resource, :url => registration_path(resource_name) do |f|
       = f.error_messages
       = f.hidden_field :affiliate_id
