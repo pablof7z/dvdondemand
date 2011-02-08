@@ -315,7 +315,17 @@
           - else
             = f.file_field :image
 
-
+  .boxy
+    %h3 Advisory Settings
+    %div
+      = f.check_box :advisory_violence
+      Violence
+    %div
+      = f.check_box :advisory_nudity
+      Nudity
+    %div
+      = f.check_box :advisory_language
+      Language
 
   .boxy
     %h3 Specials
