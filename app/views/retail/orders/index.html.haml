@@ -1,0 +1,28 @@
+- content_for :primary_nav do
+  = render :partial => 'retail/shared/navbar'
+
+#content.wide
+  .box
+    %h1 Your Orders
+    .box
+      %table.t1
+        %thead
+          %tr
+            %th.w20 Date
+            %th.w10 Shipping
+            %th Titles Included
+            %th.w10 No. of Items
+            %th.w10 Total Price
+        %tbody
+          - for order in @orders
+            %tr{:class => cycle("odd", "even")}
+              %td= order.created_at.strftime('%c')
+              %td= order.shipping_option.title
+              %td
+                - for item in order.items
+                  = link_to(item.product.title, retail_catalog_product_path(item.product.catalogs.first, item.product))
+              %td= order.items_full_count
+              %td= number_to_currency(order.total)
+
+  .box
+    = will_paginate @orders
