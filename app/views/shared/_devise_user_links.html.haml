@@ -16,3 +16,5 @@
     - if devise_mapping.lockable? && controller_name != 'unlocks'
       %li= link_to t('devise.unlocks.link'), new_unlock_path(resource_name)
 
+    - if controller_name == 'registrations' and action_name == 'edit'
+      %li= link_to 'Check my order history', retail_customer_orders_path(current_customer)
