@@ -1,0 +1,10 @@
+- content_for :primary_nav do
+  =render :partial => 'retail/shared/navbar'
+
+#content.wide
+  %h1 Order Receipt
+
+  = render :partial => 'receipt'
+
+  .box
+    %button.b2{:onclick => "javascript:location.href='#{retail_customer_order_path(current_customer, @order, :printable => true)}'"} Printable Version
