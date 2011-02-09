@@ -13,7 +13,6 @@ namespace :devise do
       u.password   = '123456'
       u.password_confirmation = '123456'
     end
-    user.confirm!
     puts 'New Devise Customer created!'
     puts 'E-mail  : ' << user.email
     puts 'Password: ' << user.password
