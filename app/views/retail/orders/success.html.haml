@@ -5,3 +5,8 @@
   %h1 Success!
   .message.notice
     %p Your Purchase Order has been successfully created
+
+  = render :partial => 'receipt'
+
+  .box
+    %button.b2{:onclick => "javascript:location.href='#{retail_customer_order_path(current_customer, @order, :printable => true)}'"} Printable Version
