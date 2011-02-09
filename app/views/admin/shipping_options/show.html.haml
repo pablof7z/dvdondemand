@@ -1,0 +1,28 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content
+  .box
+    %p
+      %b Title:
+      = @shipping_option.title
+    %p
+      %b Price:
+      = number_to_currency(@shipping_option.price)
+    %p
+      %b Maximum Weight:
+      = @shipping_option.maximum_weight
+    %p
+      %b Priority?:
+      = @shipping_option.priority ? 'Yes!' : 'No'
+    - unless @shipping_option.description.blank?
+      %p
+        %b Description:
+      %p
+        = @shipping_option.description
+    .wat-cf
+      = link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_admin_shipping_option_path(@shipping_option), :class => "button" 
+      = link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", admin_shipping_option_path(@shipping_option), :method => "delete", :class => "button", :confirm => "Are you sure?" 
+
+- content_for :sidebar, render(:partial => 'admin/shared/sidebar')
+

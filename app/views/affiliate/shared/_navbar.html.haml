@@ -1,0 +1,39 @@
+%ul.primary-nav
+  - if affiliate_signed_in? 
+    %li
+      - if controller.controller_name == 'affiliates' or controller.controller_name == 'registrations' or controller.controller_name == 'home' or controller.controller_name == 'financial_informations'
+        =link_to 'Dashboard', affiliate_root_path, :class => 'current'
+        %ul.secondary-nav
+          %li= link_to "<strong>Affiliate Account</strong> home", affiliate_root_path, :class => (controller.controller_name != 'credit_cards' and controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>Financial</strong> information", affiliate_affiliate_financial_informations_path(current_affiliate), :class => (controller.controller_name == 'financial_informations' and controller.action_name == 'index'?'current':'')
+          - if controller.controller_name == 'financial_informations'
+            %li= link_to "<strong>Add</strong> bank information", new_affiliate_affiliate_financial_information_path(current_affiliate, :type => :bank), :class => ((controller.action_name == 'new' or controller.action_name == 'create')?'current':'')
+            %li= link_to "<strong>Add</strong> paypal information", new_affiliate_affiliate_financial_information_path(current_affiliate, :type => :paypal), :class => ((controller.action_name == 'new' or controller.action_name == 'create')?'current':'')
+      - else
+        =link_to 'Dashboard', affiliate_root_path
+    
+    %li
+      - if controller.controller_name == 'publishers'
+        =link_to 'Publishers', affiliate_affiliate_publishers_path(current_affiliate), :class => 'current'
+        %ul.secondary-nav
+          %li= link_to "<strong>All</strong> publishers", affiliate_affiliate_publishers_path(current_affiliate), :class => (controller.action_name == 'index'?'current':'')
+      - else
+        =link_to 'Publishers', affiliate_affiliate_publishers_path(current_affiliate)
+    
+    %li
+      - if controller.controller_name == 'affiliate_introductions'
+        =link_to 'Introductions', affiliate_affiliate_affiliate_introductions_path(current_affiliate), :class => 'current'
+        %ul.secondary-nav
+          %li= link_to "<strong>All</strong> introductions", affiliate_affiliate_affiliate_introductions_path(current_affiliate), :class => (controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>New</strong> introduction", new_affiliate_affiliate_affiliate_introduction_path(current_affiliate), :class => ((controller.action_name == 'new' or controller.action_name == 'create')?'current':'')
+      - else
+        =link_to 'Introductions', affiliate_affiliate_affiliate_introductions_path(current_affiliate)
+    
+    %li
+      - if controller.controller_name == 'payments'
+        =link_to 'Payments', affiliate_affiliate_payments_path(current_affiliate), :class => 'current'
+        %ul.secondary-nav
+          %li= link_to "<strong>All</strong> payments", affiliate_affiliate_payments_path(current_affiliate), :class => (controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>Financial</strong> information", affiliate_affiliate_financial_informations_path(current_affiliate)
+      - else
+        =link_to 'Payments', affiliate_affiliate_payments_path(current_affiliate)

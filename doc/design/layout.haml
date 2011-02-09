@@ -1,0 +1,294 @@
+!!!
+%html{:lang => "en", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title Layout 0.1 > Debug
+    %link{:href => "css/styles.css", :rel => "stylesheet", :type => "text/css"}/
+    /[if IE 6] <link rel="stylesheet" type="text/css" href="css/ie6.css" />
+    /[if IE 7] <link rel="stylesheet" type="text/css" href="css/ie7.css" />
+    :css
+      body#debug #wrapper{background: url(css/996.png) repeat-y;}
+      body#debug .col{background: #fff;}
+      body#debug h1:before { content: "H1"; background: #d4ffaa;margin: 0 10px 0 0;}
+      body#debug h2:before { content: "H2"; background: #ffffb9;margin: 0 10px 0 0;}
+      body#debug h3:before { content: "H3"; background: #ffffb9;margin: 0 10px 0 0;}
+      body#debug h4:before { content: "H4"; background: #ffffb9;margin: 0 10px 0 0;}
+      body#debug h5:before { content: "H5"; background: #ffffb9;margin: 0 10px 0 0;}
+      body#debug h6:before { content: "H6"; background: #ffffb9;margin: 0 10px 0 0;}
+      body#debug p:before { content: "P"; background: #bdefff;margin: 0 10px 0 0;}
+      body#debug #footer{border-top: 1px solid #999;}
+      body#debug blockquote:before { content: "BLOCKQUOTE";background: #ffffb9;margin: 0 10px 0 0;}
+      body#debug .box{background: url(css/948.png) no-repeat;opacity: .7;padding: 5px 0 0 0;}
+      p.switch{width: 970px;margin: 2px auto 5px auto;font-size: 75%;max-width: none;background: #ededed;padding: 0 26px 0 0; text-align: right;}
+      p.switch a{padding: 0 0 0 10px;color: #999;}
+  %body
+    %p.switch
+      %a{:href => "#", :onclick => "body.setAttribute('id', 'normal');"} Normal
+      %a{:href => "#", :onclick => "body.setAttribute('id', 'debug');"} Debug
+    #wrapper
+      #header
+        %a{:href => "#"}
+          %img{:alt => "", :height => "66", :src => "img/ondemanddvd-logo.png", :width => "119"}/
+        %ul.options
+          %li
+            %a{:href => "#", :onclick => "body.setAttribute('id', 'normal');"} Normal Mode
+          %li
+            %a{:href => "#", :onclick => "body.setAttribute('id', 'debug');"} Debug Mode
+      / header
+      #nav
+        %ul.primary-nav
+          %li
+            %a{:href => "#"} Dashboard
+          %li
+            %a{:href => "#"} Catalogs
+          %li
+            %a.current{:href => "#"} Products
+            %ul.secondary-nav
+              %li
+                %a{:href => "#"}
+                  %strong Accounting
+                  reports
+              %li
+                %a{:href => "#"}
+                  %strong Catalog
+                  management
+              %li
+                %a{:href => "#"}
+                  %strong Get
+                  stock
+              %li
+                %a.current{:href => "#"}
+                  %strong Upload
+                  content
+              %li
+                %a{:href => "#"}
+                  %strong Wholesale &amp; Royalty
+                  program
+              %li
+                %a{:href => "#"}
+                  %strong Get
+                  social
+              %li
+                %a{:href => "#"}
+                  %strong Publisher
+                  support
+          %li
+            %a{:href => "#"} Sales
+          %li
+            %a{:href => "#"} Payments
+      / nav
+      #container
+        #content.wide
+          %h1 Lorem ipsum dolor sit amet
+          %p
+            Consectetur adipiscing elit. Nunc sollicitudin odio venenatis libero placerat aliquet. Vestibulum augue mi, dapibus eu, auctor et, ultricies quis, nunc. Nunc aliquet neque at enim. Fusce ac est. Vestibulum
+            %a{:href => "#"} vestibulum est vel magna
+            tempor pharetra. Integer risus nisi, vehicula dapibus, semper quis, tincidunt quis, augue. Fusce massa sapien, pretium eget, scelerisque sed, feugiat non, neque. Donec lorem. Vivamus luctus eros cursus tellus. Sed auctor. Donec porta ligula volutpat dui. Aliquam semper aliquet justo. In odio. Vestibulum bibendum ipsum sed turpis.
+          %h2 Unordered list
+          %ul
+            %li Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            %li Nunc sollicitudin odio venenatis.
+            %li Vestibulum augue mi, dapibus eu.
+            %li Magna tempor pharetra.
+            %li Integer risus nisi, vehicula dapibus.
+          %h2 Ordered List
+          %ol
+            %li Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            %li Nunc sollicitudin odio venenatis.
+            %li Vestibulum augue mi, dapibus eu.
+            %li Magna tempor pharetra.
+            %li Integer risus nisi, vehicula dapibus.
+          .box
+            %h2 Floating images
+            %img.fl{:alt => "", :height => "300", :src => "img/asimov.jpg", :width => "400"}/
+            %h3 Isaac Asimov
+            %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin odio venenatis libero placerat aliquet. Vestibulum augue mi, dapibus eu, auctor et, ultricies quis, nunc. Nunc aliquet neque at enim. Fusce ac est. Vestibulum vestibulum est vel magna tempor pharetra. Integer risus nisi, vehicula dapibus, semper quis, tincidunt quis, augue. Fusce massa sapien, pretium eget, scelerisque sed, feugiat non, neque. Donec lorem. Vivamus luctus eros cursus tellus. Sed auctor. Donec porta ligula volutpat dui. Aliquam semper aliquet justo. In odio. Vestibulum bibendum ipsum sed turpis.
+            %img.fr{:alt => "", :height => "300", :src => "img/asimov.jpg", :width => "400"}/
+            %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin odio venenatis libero placerat aliquet. Vestibulum augue mi, dapibus eu, auctor et, ultricies quis, nunc. Nunc aliquet neque at enim.
+            %h3 Biography
+            %p Fusce ac est. Vestibulum vestibulum est vel magna tempor pharetra. Integer risus nisi, vehicula dapibus, semper quis, tincidunt quis, augue. Fusce massa sapien, pretium eget, scelerisque sed, feugiat non, neque. Donec lorem. Vivamus luctus eros cursus tellus. Sed auctor. Donec porta ligula volutpat dui. Aliquam semper aliquet justo. In odio. Vestibulum bibendum ipsum sed turpis.
+            %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin odio venenatis libero placerat aliquet. Vestibulum augue mi, dapibus eu, auctor et, ultricies quis, nunc. Nunc aliquet neque at enim. Fusce ac est. Vestibulum vestibulum est vel magna tempor pharetra. Integer risus nisi, vehicula dapibus, semper quis, tincidunt quis, augue. Fusce massa sapien, pretium eget, scelerisque sed, feugiat non, neque. Donec lorem. Vivamus luctus eros cursus tellus. Sed auctor. Donec porta ligula volutpat dui. Aliquam semper aliquet justo. In odio. Vestibulum bibendum ipsum sed turpis.
+            %img.ct{:alt => "", :height => "300", :src => "img/asimov.jpg", :width => "400"}/
+            %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin odio venenatis libero placerat aliquet. Vestibulum augue mi, dapibus eu, auctor et, ultricies quis, nunc. Nunc aliquet neque at enim. Fusce ac est. Vestibulum vestibulum est vel magna tempor pharetra. Integer risus nisi, vehicula dapibus, semper quis, tincidunt quis, augue. Fusce massa sapien, pretium eget, scelerisque sed, feugiat non, neque. Donec lorem. Vivamus luctus eros cursus tellus. Sed auctor. Donec porta ligula volutpat dui. Aliquam semper aliquet justo. In odio. Vestibulum bibendum ipsum sed turpis.
+          / box
+          .box
+            %h3 Custom Ordered List
+            %ol.steps
+              %li
+                %strong 1
+                Select file format
+              %li.current-step
+                %strong 2
+                Add product detail
+              %li
+                %strong 3
+                Upload cover art
+              %li
+                %strong 4
+                Finish
+          / box
+          .box
+            %h2 Forms
+            %form#upload-content{:action => ""}
+              .col.x6
+                %label{:for => "dvdtitle"}
+                  %span DVD Title*:
+                  %input#dvdtitle{:name => "dvdtitle", :size => "48", :tabindex => "1", :type => "text"}/
+                %label.w50{:for => "price"}
+                  %span Price*:
+                  %input#price{:name => "price", :size => "10", :tabindex => "2", :type => "text"}/
+                %label.w50{:for => "wprice"}
+                  %span Wholesale price:
+                  %input#wprice{:name => "wprice", :size => "10", :tabindex => "3", :type => "text"}/
+                %label{:for => "genre"}
+                  %span Genre:
+                  %select{:tabindex => "4"}
+                    %option Action
+                    %option Adventure
+                    %option Animation
+                    %option Biography
+                    %option Comedy
+                    %option Crime
+                    %option Documentary
+                    %option Drama
+                    %option Family
+                    %option Fantasy
+                    %option Film-Noir
+                    %option Game-Show
+                    %option History
+                    %option Horror
+                    %option Music
+                    %option Musical
+                    %option Mystery
+                    %option News
+                    %option Reality-TV
+                    %option Romance
+                    %option Sci-Fi
+                    %option Sport
+                    %option Talk-Show
+                    %option Thriller
+                    %option War
+                    %option Western
+                %label{:for => "studio"}
+                  %span Studio:
+                  %input#studio{:name => "studio", :size => "48", :tabindex => "5", :type => "text"}/
+              / col
+              .col.x6
+                %label{:for => "time"}
+                  %span Running time:
+                  %input#time{:name => "id", :size => "48", :tabindex => "6", :type => "text"}/
+                %label{:for => "keywords"}
+                  %span Keywords:
+                  %input#keywords{:name => "keywords", :size => "48", :tabindex => "7", :type => "text"}/
+                %label{:for => "warnings"}
+                  %span Warnings:
+                  %select{:tabindex => "8"}
+                    %option Action
+                    %option Adventure
+                    %option Animation
+                    %option Biography
+                    %option Comedy
+                    %option Crime
+                    %option Documentary
+                    %option Drama
+                    %option Family
+                    %option Fantasy
+                    %option Film-Noir
+                    %option Game-Show
+                    %option History
+                    %option Horror
+                    %option Music
+                    %option Musical
+                    %option Mystery
+                    %option News
+                    %option Reality-TV
+                    %option Romance
+                    %option Sci-Fi
+                    %option Sport
+                    %option Talk-Show
+                    %option Thriller
+                    %option War
+                    %option Western
+                %label{:for => "actors"}
+                  %span Actors:
+                  %input#actors{:name => "actors", :size => "48", :tabindex => "9", :type => "text"}/
+              / col
+              .col
+                %label.lb{:for => "description"}
+                  %span Item description:
+                  %textarea{:cols => "80", :rows => "9", :tabindex => "10"}
+                %button.bts{:type => "submit"} Next
+          / box
+          %h2 Columns
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In congue aliquam augue vitae congue. Pellentesque sit amet purus lorem. Suspendisse rutrum sagittis lacus, eget lobortis metus faucibus a. Curabitur mollis arcu quis dui condimentum accumsan hendrerit non purus. In mi quam, pretium quis blandit sed, elementum et diam. In urna orci, lacinia id tempus ac, suscipit vitae erat. Donec eleifend magna non tellus sagittis et hendrerit risus porttitor.
+          %p Aenean quis varius urna. Nunc purus sem, venenatis eu sodales quis, elementum at mi. Sed ut nulla odio, in porttitor metus. Aliquam non ante et massa suscipit vehicula ac vel risus. Duis egestas enim et massa lobortis venenatis.
+          .box
+            %h3 1 column
+            .col
+              %h4 Column #1
+          / box
+          .box
+            .col.x6
+              %h4 Column #1
+            .col.x6
+              %h4 Column #2
+            .col.x4
+              %h4 Column #1
+            .col.x4
+              %h4 Column #2
+            .col.x4
+              %h4 Column #3
+            .col.x3
+              %h4 Column #1
+            .col.x3
+              %h4 Column #2
+            .col.x3
+              %h4 Column #3
+            .col.x3
+              %h4 Column #4
+            .col.x6
+              %h4 Column #1
+            .col.x4
+              %h4 Column #2
+            .col.x2
+              %h4 Column #3
+            .col.x8
+              %h4 Column #1
+            .col.x4
+              %h4 Column #2
+          / box
+          .box
+            %h2 Tables
+            %table.t1
+              %tbody
+                %tr
+                  %th.first #
+                  %th Title
+                  %th Media
+                  %th Price
+                  %th.last Genre
+                %tr.odd
+                  %td 1
+                  %td Foobar Blues Media Pack
+                  %td CD
+                  %td $14.99
+                  %td Avant Garde
+                %tr.even
+                  %td 2
+                  %td The Barfoo Rock Antology
+                  %td CD
+                  %td $9.99
+                  %td.last Action &amp; Adventure
+                %tr.odd
+                  %td 3
+                  %td Macross Saga
+                  %td DVD
+                  %td $11.99
+                  %td.last Anime &amp; Animation
+          / box
+        / content wide
+      / container
+      #footer
+        %p Copyright ©2010 onDemandDVD
+      / footer
+    / wrapper
+

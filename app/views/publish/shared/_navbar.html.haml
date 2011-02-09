@@ -1,0 +1,84 @@
+%ul.primary-nav
+  - if publisher_signed_in? 
+    %li
+      - if [ 'publishers', 'home', 'registrations', 'financial_informations' ].include? controller.controller_name
+        =link_to 'Dashboard', publisher_root_path, :class => 'current'
+        %ul.secondary-nav
+          %li= link_to "<strong>Publisher</strong> home", publisher_root_path, :class => (controller.controller_name != 'financial_informations' and controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>Edit</strong> account", edit_publisher_registration_path, :class => (controller.action_name == 'edit'?'current':'')
+          %li= link_to "<strong>Financial</strong> information", publish_publisher_financial_informations_path(current_publisher), :class => (controller.controller_name == 'financial_informations' and controller.action_name == 'index'?'current':'')
+          - if controller.controller_name == 'financial_informations'
+            %li= link_to "<strong>Add</strong> bank information", new_publish_publisher_financial_information_path(current_publisher, :type => :bank), :class => ((controller.action_name == 'new' or controller.action_name == 'create')?'current':'')
+            %li= link_to "<strong>Add</strong> paypal information", new_publish_publisher_financial_information_path(current_publisher, :type => :paypal), :class => ((controller.action_name == 'new' or controller.action_name == 'create')?'current':'')
+      - else
+        =link_to 'Dashboard', publisher_root_path
+
+    %li
+      - if controller.controller_name == 'catalogs'
+        =link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher), :class => 'current'
+        %ul.secondary-nav
+          %li= link_to "<strong>All</strong> catalogs", publish_publisher_catalogs_path(current_publisher), :class => (controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>New</strong> catalog", new_publish_publisher_catalog_path(current_publisher), :class => ((controller.action_name == 'new' or controller.action_name == 'create')?'current':'')
+
+      - else
+        =link_to 'Catalogs', publish_publisher_catalogs_path(current_publisher)
+
+    %li
+      - if controller.controller_name == 'products'
+        = link_to 'Products', publish_publisher_products_path(current_publisher), :class => 'current'
+        %ul.secondary-nav
+          %li= link_to '<strong>All</strong> products', publish_publisher_products_path(current_publisher), :class => (controller.action_name == 'index'?'current':'')
+          %li= link_to '<strong>Upload</strong> content', new_publish_publisher_product_path(current_publisher), :class => ((controller.action_name == 'new' or controller.action_name == 'create')?'current':'')
+      - else
+        = link_to 'Products', publish_publisher_products_path(current_publisher)
+
+    %li
+      - if controller.controller_name == 'get_stocks' && @type.blank? && @year.blank? && @month.blank?
+        = link_to 'Get Stock', publish_publisher_get_stocks_path(current_publisher), :class => 'current'
+        %ul.secondary-nav
+          %li= link_to '<strong>Get</strong> Stock Home', request.url, :class => 'current'
+      - else
+        = link_to 'Get Stock', publish_publisher_get_stocks_path(current_publisher)
+
+    %li
+      - if controller.controller_name == 'sales' || (controller.controller_name == 'get_stocks' && !@type.blank? && !@year.blank? && !@month.blank?)
+        = link_to 'Sales', publish_publisher_sales_path(current_publisher), :class => 'current'
+        %ul.secondary-nav.for_sales
+          %li
+            = link_to '<strong>All</strong> sales report', publish_publisher_sales_path(current_publisher), current_or_not { @year.blank? }
+          - if @year
+            %li
+              = link_to "<strong>Year</strong> #{@year}", publish_publisher_sales_path(current_publisher, :year => @year), current_or_not { @month.blank? }
+          - if @month
+            %li
+              = link_to "<strong>#{Date.new(@year,@month,1).strftime('%B')}</strong> #{@type.classify}", ledger_publish_publisher_sales_path(current_publisher, :type => @type, :year => @year, :month => @month)
+          - if @sale
+            %li
+              = link_to "<strong>Sale</strong> ##{@sale.id}", request.url, :class => 'current'
+      - else
+        = link_to 'Sales', publish_publisher_sales_path(current_publisher)
+
+    %li
+      - if controller.controller_name == 'payments'
+        =link_to 'Payments', publish_publisher_payments_path(current_publisher), :class => 'current'
+        %ul.secondary-nav
+          %li= link_to "<strong>All</strong> payments", publish_publisher_payments_path(current_publisher), :class => (controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>Financial</strong> information", publish_publisher_financial_informations_path(current_publisher)
+      - else
+        =link_to 'Payments', publish_publisher_payments_path(current_publisher)
+    %li
+      - if controller.controller_name == 'support'
+        =link_to 'Support', publish_publisher_support_path(current_publisher, :help), :class => 'current'
+        %ul.secondary-nav
+          %li= link_to "<strong>Help</strong>", publish_publisher_support_path(current_publisher, :help), :class => (controller.action_name == 'help'?'current':'')
+          %li= link_to "<strong>Contact Us</strong>", publish_publisher_support_path(current_publisher, :contact), :class => (controller.action_name == 'contact'?'current':'')
+          %li= link_to "<strong>Terms of</strong> Service", publish_publisher_support_path(current_publisher, :terms), :class => (controller.action_name == 'terms'?'current':'')
+      - else
+        =link_to 'Support', publish_publisher_support_path(current_publisher, :help)
+
+  - else
+    %li
+      =link_to 'Sign In', new_publisher_session_path, :class => (controller.controller_name == 'sessions') ? 'current' : ''
+    %li
+      =link_to 'Sign Up', new_publisher_registration_path, :class => (controller.controller_name == 'registrations') ? 'current' : ''
+      %ul.secondary-nav

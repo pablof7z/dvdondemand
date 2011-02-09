@@ -1,0 +1,34 @@
+.group
+  = f.error_messages
+
+%label
+  %span
+    Minimum Quantity
+  = f.text_field :minimum_quantity, :size => '6'
+  %span.descr (Required)
+
+%label
+  %span
+    Discount Percentage
+  = f.text_field :discount_percentage, :size => '6'
+  #{"%"}
+  %span.descr (Required)
+
+%label.lb
+  %span
+    Terms of Agreement
+  = f.text_area :terms
+
+%label
+  %span
+    Enabled
+  = f.check_box :enabled
+  Yes
+
+%p.btso
+  %button.b1{:type => 'submit'}
+    Save
+  %span
+    or
+    = link_to "Cancel", admin_wholesale_prices_path
+

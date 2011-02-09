@@ -1,0 +1,21 @@
+.group
+  = f.error_messages
+
+%label
+  %span
+    Media Type
+  = f.collection_select :media_type_id, MediaType.all, :id, :name
+
+%label
+  %span
+    Title
+  = f.text_field :title, :class => 'text_field'
+  %span.descr (Required)
+
+%p.btso
+  %button.b1{:type => 'submit'}
+    Save
+  %span
+    or
+    = link_to "Cancel", admin_genres_path
+

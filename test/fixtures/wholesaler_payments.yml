@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  wholesaler_invoice_id: 1
+  payment_gateway: MyString
+  transaction_code: MyString
+  status_code: MyString
+  date_processed: 2010-12-17 15:57:01
+  check_number: MyString
+  amount: 1.5
+
+two:
+  wholesaler_invoice_id: 1
+  payment_gateway: MyString
+  transaction_code: MyString
+  status_code: MyString
+  date_processed: 2010-12-17 15:57:01
+  check_number: MyString
+  amount: 1.5

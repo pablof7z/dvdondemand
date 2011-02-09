@@ -1,10 +1,8 @@
 class CreateFees < ActiveRecord::Migration
   def self.up
     create_table :fees do |t|
-      t.string :fee_type
       t.string :description
-      t.float :amount
-      t.references :sale
+      t.float  :amount
 
       t.timestamps
     end

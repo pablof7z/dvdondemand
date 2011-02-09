@@ -1,0 +1,9 @@
+- content_for :primary_nav do
+  =render :partial => 'publish/shared/navbar'
+
+#content.wide
+  .box.sp
+    %h1 Edit product
+    - form_for @product, :url => publish_publisher_product_path(current_publisher,@product), :html => { :multipart => true, :class => :form } do |f|
+      = render :partial => "form", :locals => {:f => f}
+

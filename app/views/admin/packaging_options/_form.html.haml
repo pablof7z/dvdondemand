@@ -1,0 +1,38 @@
+.group
+  = f.error_messages
+
+%label
+  %span
+    Title
+  = f.text_field :title
+  %span.descr (Required)
+
+%label
+  %span
+    Price
+  = f.text_field :price
+  %span.descr (Required)
+
+%label
+  %span
+    Weight
+  = f.text_field :weight, :size => '6'
+
+%label
+  %span
+    Print Sleeve?
+  = f.check_box :print_sleeve
+
+%label.lb
+  %span
+    Description
+  = f.text_area :description, :rows => 5
+  %span.descr Ex: a simple text
+
+%p.btso
+  %button.b1{:type => 'submit'}
+    Save
+  %span
+    or
+    = link_to "Cancel", admin_packaging_options_path
+

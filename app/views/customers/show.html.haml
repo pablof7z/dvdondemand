@@ -1,0 +1,26 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "All Customers", customers_path
+      %li= link_to "New", new_customer_path
+      %li.active= link_to "Show", customer_path
+  .content
+    .inner
+      %p
+        <b>#{ t("activerecord.attributes.customer.first_name", :default => t("activerecord.labels.first_name", :default => "First name")) }:</b>
+        = @customer.first_name
+      %p
+        <b>#{ t("activerecord.attributes.customer.last_name", :default => t("activerecord.labels.last_name", :default => "Last name")) }:</b>
+        = @customer.last_name
+      %p
+        <b>#{ t("activerecord.attributes.customer.email", :default => t("activerecord.labels.email", :default => "Email")) }:</b>
+        = @customer.email
+      %p
+        <b>#{ t("activerecord.attributes.customer.address", :default => t("activerecord.labels.address", :default => "Address")) }:</b>
+        = @customer.address
+      .wat-cf
+        #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => t("web-app-theme.edit", :default=> "Edit"))} #{t("web-app-theme.edit", :default=> "Edit")}", edit_customer_path(@customer), :class => "button" }
+        #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => t("web-app-theme.delete", :default=> "Delete"))} #{t("web-app-theme.delete", :default => "Delete")}", customer_path(@customer), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
+
+- content_for :sidebar, render(:partial => 'sidebar')
+

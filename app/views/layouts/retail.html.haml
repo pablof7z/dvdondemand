@@ -1,0 +1,58 @@
+!!! Transitional
+%html{:xmlns => 'http://www.w3.org/1999/xhtml', 'xml:lang' =>'en', :lang => 'en'} 
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %title Behind The Station Retail Store
+    = stylesheet_link_tag 'styles', :cache => true
+    = stylesheet_link_tag 'skin', :cache => true
+    = javascript_include_tag 'jquery-1.4.3.min'
+    = javascript_include_tag 'jquery.jcarousel.min'
+    = javascript_include_tag 'jquery.infieldlabel.min'
+    %meta{:name => 'csrf-token', :content => form_authenticity_token}
+    %meta{:name => 'csrf-param', :content => 'authenticity_token'}
+
+    /[if IE 6] <link rel="stylesheet" type="text/css" href="/stylesheets/ie6.css" />
+    /[if IE 7] <link rel="stylesheet" type="text/css" href="/stylesheets/ie7.css" />
+    /[if IE 8] <link rel="stylesheet" type="text/css" href="/stylesheets/ie8.css" />
+    :javascript
+      jQuery(document).ready(function() {
+        $('label.fade').inFieldLabels();
+          // Initialise the first and second carousel by class selector.
+      	// Note that they use both the same configuration options (none in this case).
+      	jQuery('.first-and-second-carousel').jcarousel();
+      	
+      	// If you want to use a caoursel with different configuration options,
+      	// you have to initialise it seperately.
+      	// We do it by an id selector here.
+      	jQuery('#third-carousel').jcarousel({
+              vertical: true
+          });
+      });
+    
+    = yield :header
+
+  %body#customer       
+    #header
+      %a{:href => root_path}
+        %img.logo{:alt => "", :src => "/images/behind_the_station-logo.png"}/
+      %ul.options.customer
+        - if customer_signed_in?
+          %li.log= link_to 'Logout', destroy_customer_session_path, :class => 'log'
+          %li= link_to 'My Account', edit_customer_registration_path, :class => 'account'
+        - elsif publisher_signed_in?
+          %li= link_to 'Logout', destroy_publisher_session_path, :class => 'log'
+          %li= link_to 'Dashboard', publish_root_path, :class => 'account'
+        - else
+          %li= link_to 'Login', new_customer_session_path, :class => 'log'
+          %li= link_to 'Sign Up', new_customer_registration_path, :class => 'account'
+    #nav.nos
+      = yield :primary_nav
+    #wrapper
+      = yield :splash
+      #container
+        = yield
+        - if (sidebar = yield :sidebar)
+          #sidebar
+            = sidebar
+    #footer
+      %p= "Copyright &copy;#{Time.now.year} onDemandDVD"

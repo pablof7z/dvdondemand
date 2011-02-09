@@ -1,0 +1,21 @@
+- content_for :primary_nav do
+  =render :partial => 'retail/shared/navbar'
+
+#content.wide
+  .box
+    %h2
+      Featured Random Products
+      %a.all{:href => '#'} view all
+    %ul#first-carousel.first-and-second-carousel.jcarousel-skin-tango
+      - if @products
+        - @products.each do |product|
+          = render :partial => 'retail/shared/carousel_product', :locals => { :product => product }
+
+    %h2
+      Featured Catalogs from Publishers
+      %a.all{:href => '#'} view all
+    %ul#second-carousel.first-and-second-carousel.jcarousel-skin-tango
+      - if @catalogs
+        - @catalogs.each do |catalog|
+          - product = catalog.products.available.last
+          = render :partial => 'retail/shared/carousel_catalog', :locals => { :catalog => catalog, :product => product }

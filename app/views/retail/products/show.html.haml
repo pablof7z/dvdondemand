@@ -1,0 +1,75 @@
+- content_for :primary_nav do
+  =render :partial => 'retail/shared/navbar'
+
+
+#content
+  .box.sp
+    %h1= @product.title
+
+    .col.x5
+      - if @product.image.exists?(:cropped_medium)
+        %a{:href => @product.image.url, :alt => 'Full size Cover art', :target => 'blank'}
+          =image_tag(@product.image.url(:cropped_medium), :class => 'fl artw')
+      - else
+        - if @product.cd?
+          =image_tag 'medium/missing_cd.png', :class => 'fl artw'
+        - else
+          =image_tag 'medium/missing_dvd.png', :class => 'fl artw'
+      - if @product.advisory_violence or @product.advisory_nudity or @product.advisory_language
+        %div{:style=>'margin: 10px;'}
+          %b Advisory
+          - if @product.advisory_violence
+            %div{:style=>'margin: 5px;'}
+              =image_tag 'violence.png'
+          - if @product.advisory_nudity
+            %div{:style=>'margin: 5px;'}
+              =image_tag 'nudity.png'
+          - if @product.advisory_language
+            %div{:style=>'margin: 5px;'} 
+              =image_tag 'language.png'
+    .col.x7
+      %dl
+        %dt Media Type:
+        %dd= @product.media_type.name
+        %dt Genre:
+        %dd= @product.genre.title
+        %dt Studio:
+        %dd= @product.studio
+        - unless @product.performers.blank?
+          %dt #{@product.dvd? ? 'Actors' : 'Musicians' }:
+          %dd= @product.performers
+
+        %dt Description:
+        %dd= @product.description
+
+        - unless @product.keywords.blank?
+          %dt Keywords:
+          %dd= @product.keyword_list
+
+        %dt Price:
+        %dd= number_to_currency(@product.price)
+
+        - unless @product.running_time.blank?
+          %dt Running Time:
+          %dd= @product.running_time
+
+      %p.clear
+
+      - if customer_signed_in?
+        - if current_customer.cart.blank?
+          = render :partial => 'retail/carts/new', :locals => { :catalog => @catalog, :product => @product }
+        - else
+          - unless current_customer.cart.items_include?(@product)
+            = render :partial => 'retail/cart_items/new', :locals => { :catalog => @catalog, :product => @product }
+          - else
+            %p
+              %em This product is already in your Cart.
+      - else
+        #{link_to 'Login', new_customer_session_path} or #{link_to 'Sign Up', new_customer_registration_path} to purchase this Product
+
+
+- content_for :sidebar do
+  - if @product.publisher.bio.blank?
+    = render :partial => 'retail/shared/sidebar'
+  - else
+    = render :partial => 'retail/shared/about', :locals => { :publisher => @product.publisher }

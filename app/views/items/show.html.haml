@@ -1,0 +1,31 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to t("web-app-theme.list", :default => "List"), items_path
+      %li= link_to t("web-app-theme.new", :default => "New"), new_item_path
+      %li.active= link_to t("web-app-theme.show", :default => "Show"), item_path
+  .content
+    .inner
+      %p
+        <b>#{ t("activerecord.attributes.item.title", :default => t("activerecord.labels.title", :default => "Title")) }:</b>
+        = @item.title
+      %p
+        <b>#{ t("activerecord.attributes.item.artist", :default => t("activerecord.labels.artist", :default => "Artist")) }:</b>
+        = @item.artist
+      %p
+        <b>#{ t("activerecord.attributes.item.genre", :default => t("activerecord.labels.genre", :default => "Genre")) }:</b>
+        = @item.genre
+      %p
+        <b>#{ t("activerecord.attributes.item.media_type", :default => t("activerecord.labels.media_type", :default => "Media type")) }:</b>
+        = @item.media_type
+      %p
+        <b>#{ t("activerecord.attributes.item.running_time", :default => t("activerecord.labels.running_time", :default => "Running time")) }:</b>
+        = @item.running_time
+      %p
+        <b>#{ t("activerecord.attributes.item.publisher_id", :default => t("activerecord.labels.publisher_id", :default => "Publisher")) }:</b>
+        = @item.publisher_id
+      .wat-cf
+        #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => t("web-app-theme.edit", :default=> "Edit"))} #{t("web-app-theme.edit", :default=> "Edit")}", edit_item_path(@item), :class => "button" } 
+        #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => t("web-app-theme.delete", :default=> "Delete"))} #{t("web-app-theme.delete", :default => "Delete")}", item_path(@item), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
+
+- content_for :sidebar, render(:partial => 'sidebar')

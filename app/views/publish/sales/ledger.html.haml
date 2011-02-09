@@ -1,0 +1,63 @@
+- content_for :primary_nav do
+  = render :partial => 'publish/shared/navbar'
+
+#content.wide
+  %h1 #{@type.classify} Reports
+  .box
+    %table.t1
+      %thead
+        %tr
+          %th Date
+          %th Transaction
+          %th Type
+          %th Qty.
+          %th Sale Price
+          %th Applicable Fees
+          %th Earnings
+          %th Actions
+      %tbody
+        - total = 0
+        - subtotal = []
+        - sale_total = 0
+        - @grouped.each do |month,sales|
+          %tr
+            %td{:colspan => 9}
+              = month.strftime('%B').upcase
+          - for sale in sales
+            %tr
+              %td= sale.created_at.strftime('%m/%d')
+              %td= sale.id
+              %td
+                %strong= sale.type
+              %td= sale.quantity
+              %td
+                - sale_total += sale.total
+                %strong= number_to_currency(sale.total)
+              %td
+                = fee_number_to_currency(sale.fees)
+              %td
+                - subtotal << sale.total - sale.fees
+                %strong= number_to_currency(subtotal.last)
+              %td
+                - if sale.instance_of? GetStock
+                  = link_to "Show", publish_publisher_get_stock_path(current_publisher,sale)
+                - else
+                  = link_to "Show", publish_publisher_sale_path(current_publisher,sale)
+              - total += subtotal.last
+        %tr
+          %td{:colspan => 3}
+            %strong TOTAL
+          %td
+          %td
+            %strong= number_to_currency(sale_total)
+          %td
+          %td
+            %strong= number_to_currency(total)
+          %td
+
+    %p{:align => :right} (*) Fees apply to each product sold
+
+    %p{:align => 'center'}= link_to 'Export to CSV', ledger_publish_publisher_sales_path(current_publisher, :type => @type, :year => @year, :month => @month, :format => :csv), :class => 'b1'
+
+    %p= render :partial => 'gchart', :locals => { :sales => @sales.map { |s| s.total } }
+

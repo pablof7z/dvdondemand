@@ -1,9 +1,20 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
-  price: 1.5
+standard:
+  title: Standard Clamshell
+  weight: 150
+  price: 0.0
+  print_sleeve: false
 
-two:
-  name: MyString
+premium:
+  title: Premium Jewell Case
+  weight: 200
   price: 1.5
+  print_sleeve: true
+
+amary:
+  title: Premium DVD Amary Case
+  weight: 225
+  price: 2.5
+  print_sleeve: true
+

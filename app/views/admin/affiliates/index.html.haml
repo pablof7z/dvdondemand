@@ -1,0 +1,26 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content.wide
+  %h1 All Affiliates
+  .box
+    %table.t1
+      %tr
+        %th.first ID
+        %th Name
+        %th Created at
+        %th.last &nbsp;
+      - @affiliates.each do |affiliate|
+        %tr{:class => cycle("odd", "even")}
+          %td= affiliate.id
+          %td= link_to "#{affiliate.full_name}", admin_affiliate_path(affiliate)
+          %td= affiliate.created_at
+          %td.last
+            = link_to "Show", admin_affiliate_path(affiliate)
+            |
+            = link_to "Edit", edit_admin_affiliate_path(affiliate)
+            |
+            = link_to "Delete", admin_affiliate_path(affiliate), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+    .actions-bar.wat-cf
+      .actions
+

@@ -1,0 +1,22 @@
+- content_for :primary_nav do
+  =render :partial => 'retail/shared/navbar'
+
+#content.wide
+  .box
+    %h1= "Search \"#{params[:id]}\""
+    %table.t1
+      %thead
+        %tr
+          %th Title
+          %th Media
+          %th Genre
+          %th Publisher
+          %th.w20 &nbsp;
+      %tbody
+        - @products.each do |product|
+          %tr{:class => cycle("odd", "even")}
+            %td= link_to product.title, retail_catalog_product_path(product.catalogs[0], product)
+            %td= product.media_type.name
+            %td= product.genre.title
+            %td= product.publisher.full_name
+            

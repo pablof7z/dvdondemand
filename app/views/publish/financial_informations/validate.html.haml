@@ -1,0 +1,32 @@
+- content_for :primary_nav do
+  =render :partial => 'publish/shared/navbar'
+
+#content
+  %h1 Validate Financial Information
+  .box
+    %p
+      Approximately
+      = distance_of_time_in_words_to_now @financial_information.deposit1.created_at
+      ago we sent two small deposits to this account. If you received them enter the amounts here to validate
+      your financial account.
+    - form_for @financial_information, :url => validate_publish_publisher_financial_information_path(current_publisher, @financial_information), :method => 'post', :html => { :class => :form } do |f|
+      %label
+        %span
+          Amount:
+        = text_field_tag :deposit1, params[:deposit1], :size => '6'
+        %span.descr= "Right amount is #{number_to_currency @financial_information.deposit1.amount}"
+      %label
+        %span
+          Amount:
+        = text_field_tag :deposit2, params[:deposit2], :size => '6'
+        %span.descr= "Right amount is #{number_to_currency @financial_information.deposit2.amount}"
+      %p.btso
+        %button.b1{:type => 'submit'}
+          Save
+        %span
+          or
+          = link_to "Cancel", publish_publisher_financial_informations_path(current_publisher)
+
+
+- content_for :sidebar, render(:partial => 'publish/shared/sidebar')
+

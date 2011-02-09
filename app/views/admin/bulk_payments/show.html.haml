@@ -1,0 +1,25 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content.wide
+  %h1= "All Publishers paid by bulk payment ##{@bulk_payment.id}"
+  .box
+    %table.t1
+      %tr
+        %th.first.w5{:scope => 'col'} ID
+        %th Date
+        %th Publisher
+        %th Payment Method
+        %th
+        %th Amount
+      - @bulk_payment.payments.each do |payment|
+        %tr{:class => cycle("odd", "even")}
+          %td= link_to payment.id, admin_bulk_payment_payment_path(@bulk_payment, payment)
+          %td= payment.created_at
+          %td= payment.owner.full_name
+          %td= payment.payment_method_with_data
+          %td= payment.memo
+          %td= number_to_currency payment.amount
+    .actions-bar.wat-cf
+      .actions
+

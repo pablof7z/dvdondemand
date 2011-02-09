@@ -1,0 +1,52 @@
+- @type, @year, @month = saleize(@sale), @sale.created_at.year, @sale.created_at.month
+
+- content_for :primary_nav do
+  = render :partial => 'publish/shared/navbar'
+
+#content.wide
+  %h1 Sale ##{@sale.id}
+  .box
+    %p
+      %b Type:
+      = @sale.class
+    %p
+      %b Date:
+      = @sale.created_at.to_s(:long)
+    %h2 Your Products in this Sale
+    %table.t1
+      %thead
+        %th ID
+        %th Title
+        %th Quantity
+        %th Price
+      %tbody
+        - for item in @sale.order.items_from(current_publisher)
+          %tr{:class => cycle("odd", "even")}
+            %td= item.product.id
+            %td= item.product.title
+            %td= item.quantity
+            %td= number_to_currency(item.price)
+        %tr
+          %td{:colspan => 3, :align => :right}
+            %b Total
+          %td
+            %b= number_to_currency(@sale.total)
+        - for fv in @sale.fee_versions
+          - fv.fee.revert_to(fv.number)
+          %tr
+            %td{:colspan => 3, :align => :right}
+              = fv.fee.description
+              (*)
+            %td
+              - if fv.fee.percentage
+                = fee_number_to_currency(@sale.apply_processing_fees)
+              - else
+                = fee_number_to_currency(@sale.apply_production_fee(fv.fee))
+        %tr
+          %td{:colspan => 3, :align => :right}
+            %b Earnings
+          %td
+            %b= number_to_currency(@sale.total - @sale.fees)
+
+    %p{:align => :right} (*) Fees apply to each product sold
+

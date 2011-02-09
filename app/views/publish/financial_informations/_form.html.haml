@@ -1,0 +1,38 @@
+.group
+  = f.error_messages
+
+= f.hidden_field :payment_method, :value => params[:type]
+
+- if params[:type] == 'bank'
+  %label
+    %span
+      Bank Name
+    = f.text_field :bank_name
+
+  %label
+    %span
+      Account #
+    = f.text_field :bank_account_number
+
+  %label
+    %span
+      Routing #
+    = f.text_field :bank_routing_number
+
+  %label
+    %span
+      Account Type
+    = f.select :bank_account_type, options_for_select(['Checking', 'Savings'])
+- elsif params[:type] == 'paypal'
+  %label
+    %span
+      Email
+    = f.text_field :paypal_email
+
+%p.btso
+  %button.b1{:type => 'submit'}
+    Save
+  %span
+    or
+    = link_to "Cancel", publish_publisher_financial_informations_path(current_publisher)
+

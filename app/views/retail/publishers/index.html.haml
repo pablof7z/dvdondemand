@@ -1,0 +1,17 @@
+- content_for :primary_nav do
+  = render :partial => 'retail/shared/navbar'
+
+#content.wide
+  .box
+    %h1 Featured Publishers on the Store
+    %table.t1
+      %tr
+        %th Full Name
+        %th.w10 &nbsp;
+      - @publishers.each do |publisher|
+        %tr{:class => cycle("odd", "even")}
+          %td= link_to publisher.full_name, retail_publisher_path(publisher)
+          %td.last
+            = link_to "Show", retail_publisher_path(publisher)
+  .box
+    = will_paginate @publishers

@@ -1,0 +1,37 @@
+- content_for :primary_nav do
+  =render :partial => 'retail/shared/navbar'
+
+#content.wide
+  .box
+    %h1 Shopping cart 
+    %table.t1
+      %thead
+        %tr
+          %th.w40 Title
+          %th Packaging
+          %th.w15 Qty.
+          %th Price
+          %th Options
+      %tfoot
+        %th Total
+        %th
+        %th
+        %th= number_to_currency(@cart.items_total_price)
+        %th
+      %tbody
+        - for item in @cart.items
+          - form_for item, :url => retail_customer_cart_cart_item_path(current_customer,item) do |f|
+            %tr{:class => cycle("odd", "even")}
+              %td= link_to item.product.title, retail_catalog_product_path(item.catalog, item.product)
+              %td= item.packaging_option.title
+              %td
+                = f.text_field :quantity, :class => 'cart_text_field_small', :size => 2
+                %button.bto.mini{:type => 'submit'} Update
+              %td= number_to_currency(item.price*item.quantity + item.packaging_option.price)
+              %td= link_to 'Delete', retail_customer_cart_cart_item_path(current_customer,item), :method => :delete, :class => 'delete'
+
+  %p.btso
+    %button.b2{:type => 'submit', :onclick => "javascript:location.href='#{new_retail_customer_order_url(current_customer)}'"} Proceed to Place Order
+    or
+    = link_to 'Clear cart', retail_customer_cart_path(current_customer), :method => :delete, :confirm => 'Are you sure?'
+

@@ -1,0 +1,17 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content
+  .box
+    %p
+      %b Description:
+      = @fee.description
+    %p
+      %b Amount:
+      = number_to_currency(@fee.amount)
+    .wat-cf
+      #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_admin_fee_path(@fee), :class => "button" }
+      #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", admin_fee_path(@fee), :method => "delete", :class => "button", :confirm => "Are you sure?" }
+
+- content_for :sidebar, render(:partial => 'admin/shared/sidebar')
+

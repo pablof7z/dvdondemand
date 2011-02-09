@@ -1,0 +1,12 @@
+%li
+  %a{:href => retail_catalog_product_path(product.public_catalogs.first, product), :title => product.title}
+    - if product.image.exists?(:small)
+      = image_tag(product.image.url(:small))
+    - else
+      - if product.cd?
+        =image_tag 'medium/missing_cd90.png'
+      - else
+        =image_tag 'medium/missing_dvd90.png'
+    %span.title= product.title
+    %span.genre= product.genre.title
+    %span.price= number_to_currency product.price

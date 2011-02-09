@@ -1,0 +1,29 @@
+- content_for :primary_nav do
+  = render :partial => 'admin/shared/navbar'
+
+#content.wide
+  %h1 All Packaging Options
+  .box
+    %table.t1
+      %tr
+        %th.first ID
+        %th.w40 Title
+        %th Weight
+        %th Print Sleeve
+        %th Price
+        %th.last &nbsp;
+      - for packaging in @packaging_options
+        %tr{:class => cycle("odd", "even")}
+          %td= packaging.id
+          %td= link_to packaging.title, admin_packaging_option_path(packaging)
+          %td= packaging.weight
+          %td= packaging.print_sleeve? ? 'Yes' : 'No'
+          %td= number_to_currency(packaging.price)
+          %td.last
+            = link_to "Show", admin_packaging_option_path(packaging)
+            |
+            = link_to "Edit", edit_admin_packaging_option_path(packaging)
+            |
+            = link_to "Delete", admin_packaging_option_path(packaging), :method => :delete, :confirm => "Are you sure?"
+  .box
+    = will_paginate @packaging_options

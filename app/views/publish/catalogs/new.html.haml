@@ -1,0 +1,11 @@
+- content_for :primary_nav do
+  =render :partial => 'publish/shared/navbar'
+    
+/ = render :partial => "form", :locals => {:f => f}
+
+#content
+  %h1 New catalog
+  %p Here you can group your products separately according to your choice. Group all your works together under one catalog, or separate them as you like.
+  .box.sp
+    - form_for @catalog, :url => publish_publisher_catalogs_path(current_publisher), :html => { :class => :form } do |f|
+      =render :partial => "form", :locals => {:f => f}

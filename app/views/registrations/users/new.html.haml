@@ -1,0 +1,80 @@
+- content_for :primary_nav do
+  =render :partial => 'retail/shared/navbar'
+
+#content
+  %h1 Sign up for your User account
+  .box.sp
+    - form_for resource_name, resource, :url => registration_path(resource_name), :html => { :class => :form } do |f|
+      = f.error_messages
+      
+      %label
+        %span
+          First Name
+        = f.text_field :first_name
+
+      %label
+        %span
+          Last Name
+        = f.text_field :last_name
+
+      %label
+        %span
+          E-mail
+        = f.text_field :email
+
+      %label
+        %span
+          Password
+        = f.password_field :password, :size => '6'
+
+      %label
+        %span
+          Password confirmation
+        = f.password_field :password_confirmation, :size => '6'
+
+      %label
+        %span
+          Address 1
+        = f.text_field :address1
+
+      %label
+        %span
+          Address 2
+        = f.text_field :address2
+      
+      %label
+        %span
+          Phone #
+        = f.text_field :phone
+
+      %label
+        %span
+          Company
+        = f.text_field :company
+
+      %label
+        %span
+          City
+        = f.text_field :city
+
+      %label
+        %span
+          State (US only)
+        = f.us_state_select :state, :include_blank => true
+
+      %label
+        %span
+          Zip Code
+        = f.text_field :zip_code, :size => '6'
+
+      %label
+        %span
+          Country
+        = f.country_select :country, { "United States" => "US" }
+
+      %p.btso
+        %button.b1{:type => 'submit'}
+          Sign up
+
+- content_for :sidebar, render(:partial => "shared/devise_user_links")
+

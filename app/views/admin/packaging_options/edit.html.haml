@@ -1,0 +1,11 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content
+  %h1 Edit Packaging Option
+  .box.sp
+    - form_for @packaging_option, :url => admin_packaging_option_path(@packaging_option), :html => { :class => :form } do |f|
+      = render :partial => "form", :locals => {:f => f}
+
+- content_for :sidebar, render(:partial => 'admin/shared/sidebar')
+

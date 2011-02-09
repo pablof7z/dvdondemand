@@ -1,0 +1,18 @@
+- content_for :primary_nav do
+  =render :partial => 'retail/shared/navbar'
+
+
+#content 
+  %h1= @genre.title
+  %table{:style => 'width: 100%;'}
+    %thead
+      %tr
+        %th
+        %th Title
+        %th Price
+        %th
+    %tbody
+      = render :partial => 'retail/products/product', :collection => @genre.available_for_retail_products
+
+- content_for :sidebar, render(:partial => 'retail/shared/sidebar')
+

@@ -1,0 +1,25 @@
+- content_for :primary_nav do
+  = render :partial => 'admin/shared/navbar'
+
+#content.wide
+  %h1 All Product Genres
+  .box
+    %table.t1
+      %tr
+        %th.first ID
+        %th Media
+        %th Title
+        %th.last &nbsp;
+      - @genres.each do |genre|
+        %tr{:class => cycle("odd", "even")}
+          %td= genre.id
+          %td= genre.media_type.name
+          %td= link_to genre.title, admin_genre_path(genre)
+          %td.last
+            = link_to "Show", admin_genre_path(genre)
+            |
+            = link_to "Edit", edit_admin_genre_path(genre)
+            |
+            = link_to "Delete", admin_genre_path(genre), :method => :delete, :confirm => "Are you sure?"
+  .box
+    = will_paginate @genres

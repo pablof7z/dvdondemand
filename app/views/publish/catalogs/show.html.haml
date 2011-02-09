@@ -1,0 +1,19 @@
+- content_for :primary_nav do
+  =render :partial => 'publish/shared/navbar'
+
+#content.wide
+  %h1= "Catalog #{@catalog.title}"
+  .box
+    %table.t1
+      %thead
+        %tr
+          %th ID
+          %th Title
+          %th Media
+          %th Genre
+          %th Ready for Sale
+          %th.w20 &nbsp;
+      %tbody
+        = render :partial => @products
+  .box
+    = will_paginate @products

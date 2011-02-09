@@ -1,0 +1,11 @@
+.box
+  %h3 About DVDonDemand publishing
+  %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+.box
+  %h3 Get on the Store
+  %ul
+    %li= link_to 'Sign up for Purchasing', new_customer_registration_path
+    - unless publisher_signed_in?
+      %li= link_to 'Publish and Sell your Products', new_publisher_session_path
+

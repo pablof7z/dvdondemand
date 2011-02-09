@@ -4,7 +4,21 @@ class CreateCustomers < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.string :email
-      t.text :address
+      t.string :address1
+      t.string :address2
+      t.string :company
+      t.string :city
+      t.string :state
+      t.string :zip_code
+      t.string :country
+
+      # Devise-specific
+      t.database_authenticatable
+      t.confirmable
+      t.recoverable
+      t.registerable
+      t.rememberable
+      t.trackable
 
       t.timestamps
     end
@@ -14,3 +28,4 @@ class CreateCustomers < ActiveRecord::Migration
     drop_table :customers
   end
 end
+

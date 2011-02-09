@@ -1,0 +1,39 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content
+  .inner
+    %p
+      %b First name:
+      = @publisher.first_name
+    %p
+      %b Last name:
+      = @publisher.last_name
+    %p
+      %b E-mail:
+      = @publisher.email
+    %p
+      %b Address1:
+      = @publisher.address1
+    %p
+      %b Address2:
+      = @publisher.address2
+    %p
+      %b City:
+      = @publisher.city
+    %p
+      %b State:
+      = @publisher.state
+    %p
+      %b Country:
+      = @publisher.country
+    %p
+      %b Approved:
+      = @publisher.approved ? 'Yes' : 'No'
+      = @publisher.approval_source
+    .wat-cf
+      #{ link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "Edit")} Edit", edit_admin_publisher_path(@publisher), :class => "button" }
+      #{ link_to "#{image_tag("web-app-theme/cross.png", :alt => "Delete")} Delete", admin_publisher_path(@publisher), :method => "delete", :class => "button", :confirm => t("web-app-theme.confirm", :default => "Are you sure?") }
+
+- content_for :sidebar, render(:partial => 'admin/shared/sidebar')
+

@@ -1,0 +1,22 @@
+- content_for :primary_nav do
+  =render :partial => 'publish/shared/navbar'
+
+#content.wide
+  %h1 All your payments
+
+  %table.t1
+    %thead
+      %tr
+        %th.first.w5{:scope => 'col'} ID
+        %th Date of Payment
+        %th.w50 Payment Method
+        %th
+        %th Amount
+    %tbody
+      - @payments.each do |payment|
+        %tr{:class => cycle("odd", "even")}
+          %td= payment.id
+          %td= payment.created_at
+          %td= payment.payment_method
+          %td
+          %td= number_to_currency payment.amount

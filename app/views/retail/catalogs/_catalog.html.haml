@@ -1,0 +1,7 @@
+- if catalog.products.count > 0
+  %tr{:class => cycle("odd", "even")}
+    %td= link_to catalog.title, retail_catalog_path(catalog)
+    %td= catalog.publisher.full_name
+    %td.last
+      = link_to "Show #{pluralize(catalog.products.count, "Product")}", retail_catalog_path(catalog)
+

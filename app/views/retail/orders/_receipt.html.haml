@@ -1,0 +1,47 @@
+#receipt
+  .box.sp
+    .col.x6
+      %h3 Bill To:
+      #{@order.customer.full_name}
+      %br
+      #{@order.billing_address1} #{@order.billing_address2}
+      %br
+      #{@order.billing_city}, #{@order.billing_state}
+      #{@order.billing_zip_code}
+      #{@order.billing_country}
+
+    .col.x6
+      %h3 Ship To:
+      #{@order.customer.full_name}
+      %br
+      #{@order.shipping_address1} #{@order.shipping_address2}
+      %br
+      #{@order.shipping_city}, #{@order.shipping_state}
+      #{@order.shipping_zip_code}
+      #{@order.shipping_country}
+
+    %p
+      %strong Paid by
+      #{@order.card_type.capitalize} XXXXXXXXXXXX #{@order.partial_cc_number}
+
+  .box
+    %h3 Order Details
+    %table.t1
+      %thead
+        %tr
+          %th.w40 Title
+          %th Packaging
+          %th.w15 Qty.
+          %th Price
+      %tfoot
+        %th Total
+        %th
+        %th
+        %th= number_to_currency(@order.total)
+      %tbody
+        - for item in @order.items
+          %tr{:class => cycle("odd", "even")}
+            %td= link_to item.product.title, retail_catalog_product_path(item.product.catalogs.first, item.product)
+            %td= item.packaging_option.title
+            %td= item.quantity
+            %td= number_to_currency(item.price*item.quantity + item.packaging_option.price)

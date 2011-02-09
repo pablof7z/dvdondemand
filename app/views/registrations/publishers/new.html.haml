@@ -1,0 +1,96 @@
+- if params[:id] != nil
+  - affiliate_introduction = AffiliateIntroduction.find_by_signup_hash(params[:id])
+  - if affiliate_introduction != nil
+    - resource.first_name = affiliate_introduction.first_name unless resource.first_name.blank? == false
+    - resource.last_name = affiliate_introduction.last_name unless resource.last_name.blank? == false
+    - resource.email = affiliate_introduction.email unless resource.email.blank? == false
+    - resource.affiliate_id = affiliate_introduction.affiliate_id
+    - resource.affiliate_introduction_id = affiliate_introduction.id
+
+- content_for :primary_nav do
+  =render :partial => 'publish/shared/navbar'
+
+#content
+  %h1 Publisher Sign-Up
+  
+  %p
+    Behind The Station will revolutionize how you do business, increase your profits, and allow you to bring more titles to market without the ever increasing replication, distribution and warehousing costs associated with traditional distribution channels.    
+  %p
+    Upload your video or audio content and your cover art with no hassles and no set-up fees.
+  
+  %p
+    Your DVD or music CD will be replicated by us one at a time, as it is sold. This means you only get charged our flat replication fee when your DVD or CD sells! You can remove your titles from our site at anytime so there truly is no risk and nothing to lose!
+    
+  %p
+    You upload your content and artwork, set the price, and we do the rest! No stocking issues, no web-store worries, no credit card processing hassles, and no need to hire customer service reps. All of this is handled by us! 
+  
+  %p
+    Once uploaded, you will need to do nothing more than collect your profits at the end of the month!
+  
+  %p
+    You can even tie your products in with your MySpace or Facebook account and start selling directly from your social networking pages!
+  
+  %p
+    Your customer has the option to upgrade the packaging from the economical clamshell case, to the retail ready DVD amaray case with full color printed inserts, and full color sleeves. This is a professional retail-ready product!
+
+  %p
+    The upgrade fee for the amaray case is $1.00. The upgrade fee for the CD jewel case is $1.50, and will be charged to your retail customer, not you.
+
+  %p
+    A $5.00 replicating fee is charged for every disc we replicate. We also charge a small credit card processing fee which is currently at 5%. This fee will be deducted will from your retail sale ONLY AFTER THE SALE IS COMPLETED. 
+
+  %p
+    CommerceSocial charges a percentage of your social networking sales. Please see their terms of service for complete details. The standard packaging for CD’s and DVD’s is the clamshell case, with full color printing on the disc. 
+
+  
+  %p
+    Just follow the easy steps provided on our uploading page after you create your account.
+  
+  %p
+    Please see our terms of service for complete details.
+
+  %p
+    You will need to provide a valid email account to get started.
+
+  %p.clear
+
+  .box.sp
+    - form_for resource_name, resource, :url => registration_path(resource_name) do |f|
+      = f.error_messages
+      = f.hidden_field :affiliate_id
+      = f.hidden_field :affiliate_introduction_id
+      
+      %label
+        %span
+          First Name
+        = f.text_field :first_name
+      
+      %label
+        %span
+          Last Name
+        = f.text_field :last_name
+
+      %label
+        %span
+          E-mail
+        = f.text_field :email
+
+      %label
+        %span
+          Password
+        = f.password_field :password
+
+      %label
+        %span
+          Password confirmation
+        = f.password_field :password_confirmation
+      
+      %p
+        &nbsp;
+      
+      %p.btso
+        %button.b1{:type => 'submit'}
+          Sign up
+
+- content_for :sidebar, render(:partial => "shared/devise_publisher_links")
+

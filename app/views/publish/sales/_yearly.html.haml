@@ -1,0 +1,15 @@
+%tr{:class => cycle("odd", "even")}
+  %td
+    = link_to_unless(subtotal == 0, year, publish_publisher_sales_path(current_publisher, :year => year))
+  %td
+    = number_to_currency(retail) unless retail == 0
+  %td
+    = number_to_currency(0)
+  %td
+    = number_to_currency(whole) unless whole == 0
+  %td
+    = number_to_currency(getstock) unless getstock == 0
+  %td
+    = number_to_currency(subtotal) unless subtotal == 0
+  %td
+    = number_to_currency(payment) unless payment == 0

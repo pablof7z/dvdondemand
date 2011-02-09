@@ -1,0 +1,15 @@
+#contentFbox
+  .box.sp
+    %h1 DVD Sleeve
+    .col.x4
+      %img#sleeve-dvd-cropbox{:src => @product.dvd_sleeve_art.url(:medium)}
+    .col.x4
+      %div{:style => 'width: 240px; height: 160px; overflow: hidden; margin: 0 auto;'}
+        %img#sleeve-dvd-back{:src => "/images/template_dvd.png", :style => 'position: absolute; z-index: 1; width: 240px; height: 160px'}
+        %img.sleeve-dvd-preview{:src => @product.dvd_sleeve_art.url(:original)}
+
+    %p.btso
+      %button.b1{:type => 'submit'} Save
+      %span
+        or
+        %a{:href => '#cancel'} Cancel

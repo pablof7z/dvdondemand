@@ -1,0 +1,18 @@
+/* Debug mode */
+#wrapper{background: url(996.png) repeat-y;}
+.col{background: #fff;}
+
+h1:before { content: "H1"; background: #d4ffaa;margin: 0 10px 0 0;}
+h2:before { content: "H2"; background: #ffffb9;margin: 0 10px 0 0;}
+h3:before { content: "H3"; background: #ffffb9;margin: 0 10px 0 0;}
+h4:before { content: "H4"; background: #ffffb9;margin: 0 10px 0 0;}
+h5:before { content: "H5"; background: #ffffb9;margin: 0 10px 0 0;}
+h6:before { content: "H6"; background: #ffffb9;margin: 0 10px 0 0;}
+p:before { content: "P"; background: #bdefff;margin: 0 10px 0 0;}
+blockquote:before { content: "BLOCKQUOTE";background: #ffffb9;margin: 0 10px 0 0;}
+/*.box{background: url(944.png) repeat-y;}*/
+.box{
+	background: url(948.png) no-repeat;
+	opacity: .7;
+
+}

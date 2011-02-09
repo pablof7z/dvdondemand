@@ -1,0 +1,6 @@
+%tr{:class => cycle("odd", "even")}
+  %td
+    = publisher.id
+  %td= publisher.full_name
+  %td= number_to_currency current_affiliate.paid_for_publisher(publisher)
+  %td= number_to_currency current_affiliate.owed_for_publisher(publisher)

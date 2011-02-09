@@ -1,0 +1,30 @@
+- content_for :primary_nav do
+  = render :partial => 'admin/shared/navbar'
+
+#content
+  %h1 All Wholesale Programs
+  .box
+    %table.table
+      %tr
+        %th.first ID
+        %th Minimum Quantity
+        %th Discount Percentage
+        %th Enabled?
+        %th.last &nbsp;
+      - @wholesale_prices.each do |wholesale_price|
+        %tr{:class => cycle("odd", "even")}
+          %td= wholesale_price.id
+          %td= link_to wholesale_price.minimum_quantity, admin_wholesale_price_path(wholesale_price)
+          %td= number_to_percentage(wholesale_price.discount_percentage, :precision => 1)
+          %td= wholesale_price.enabled ? 'Yes' : 'No'
+          %td.last
+            = link_to "Show", admin_wholesale_price_path(wholesale_price)
+            |
+            = link_to "Edit", edit_admin_wholesale_price_path(wholesale_price)
+            |
+            = link_to "Delete", admin_wholesale_price_path(wholesale_price), :method => :delete, :confirm => "Are you sure?"
+  .box
+    = will_paginate @wholesale_prices
+
+- content_for :sidebar, render(:partial => 'admin/shared/sidebar')
+

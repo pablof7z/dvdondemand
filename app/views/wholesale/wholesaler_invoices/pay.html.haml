@@ -1,0 +1,44 @@
+- content_for :primary_nav do
+  =render :partial => 'wholesale/shared/navbar'
+
+#content
+  %h1= "Invoice ##{@wholesaler_invoice.id}"
+  .box
+    - form_for @wholesaler_payment, :url => pay_wholesale_wholesaler_wholesaler_invoice_path(current_wholesaler, @wholesaler_invoice), :html => { :class => :form } do |f|
+      .group
+        = f.error_messages
+        
+      %label
+        %span
+          %b Invoice Total:
+        = number_to_currency(@wholesaler_invoice.total)
+      %label
+        %span
+          %b Owed:
+        = number_to_currency(@wholesaler_invoice.owed)
+
+      %label
+        %span
+          Amount
+        = f.text_field :amount, :size => '6'
+      
+      %label
+        %span
+          Credit Card
+        - if current_wholesaler.credit_cards.size == 0
+          You have not entered any credit cards.
+          = link_to "You need to enter a credit card before paying this", new_wholesale_wholesaler_credit_card_path(current_wholesaler)
+        - else
+          %p= f.select :credit_card_id, current_wholesaler.credit_cards.map { |i| [ "#{i.card_type.capitalize} #{i.card_number_mask} #{i.card_expires_on.strftime('%m/%y')}", i.id] }
+      - if current_wholesaler.credit_cards.size != 0
+        %p.btso
+          %button.b1{:type => 'submit'}
+            Submit
+          %span
+            or
+            = link_to "Cancel", wholesale_wholesaler_wholesaler_invoices_path(current_wholesaler)
+
+        
+
+- content_for :sidebar, render(:partial => 'wholesale/shared/sidebar')
+

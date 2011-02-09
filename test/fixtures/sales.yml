@@ -1,7 +1,97 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  references: 
+# Jane's sales are only Retail
+janes:
+  order: one
+  publisher: jane
+  type: Retail
+  quantity: 2
+  total: <%= 9.99*2  %>
+  created_at: <%= DateTime.now %>
 
-two:
-  references: 
+# John's sales are Wholesale/Retail
+johns_for_order_one:
+  order: one
+  publisher: john
+  payment: johns_for_retail
+  type: Retail
+  quantity: 1
+  total: 14.99
+  created_at: <%= DateTime.new(2010,10,1) %>
+
+johns_for_order_two:
+  order: two
+  publisher: john
+  payment: johns_for_retail
+  type: Retail
+  quantity: 2
+  total: <%= 14.99*2 %>
+  created_at: <%= DateTime.new(2010,10,2) %>
+
+johns_for_order_three:
+  order: three
+  publisher: john
+  type: Retail
+  quantity: 3
+  total: <%= 14.99*3 %>
+  created_at: <%= DateTime.new(2010,11,1) %>
+
+johns_for_order_four:
+  order: four
+  publisher: john
+  type: Retail
+  quantity: 4
+  total: <%= 14.99*4 %>
+  created_at: <%= DateTime.new(2010,11,2) %>
+
+johns_for_order_five:
+  order: five
+  publisher: john
+  type: Retail
+  quantity: 5
+  total: <%= 14.99*5 %>
+  created_at: <%= DateTime.new(2010,12,1) %>
+
+# follow Wholesale sales
+johns_for_order_six:
+  order: six
+  publisher: john
+  payment: johns_for_wholesale
+  type: Wholesale
+  quantity: 6
+  total: <%= 14.99*6 %>
+  created_at: <%= DateTime.now - 4.month %>
+
+johns_for_order_seven:
+  order: seven
+  publisher: john
+  type: Wholesale
+  quantity: 7
+  total: <%= 14.99*7 %>
+  created_at: <%= DateTime.now - 3.month %>
+
+johns_for_order_eight:
+  order: eight
+  publisher: john
+  type: Wholesale
+  quantity: 8
+  total: <%= 14.99*8 %>
+  created_at: <%= DateTime.now - 2.month %>
+
+# GetStock follows
+johns_for_order_nine:
+  order: eight
+  publisher: john
+  type: GetStock
+  quantity: 9
+  total: <%= 14.99*9 %>
+  created_at: <%= DateTime.now - 1.month %>
+
+johns_for_order_ten:
+  order: eight
+  publisher: john
+  type: GetStock
+  quantity: 10
+  total: <%= 14.99*10 %>
+  created_at: <%= DateTime.now %>
+

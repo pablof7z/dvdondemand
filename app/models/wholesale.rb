@@ -1,0 +1,2 @@
+class Wholesale < Sale
+end

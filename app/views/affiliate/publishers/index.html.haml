@@ -1,0 +1,16 @@
+- content_for :primary_nav do
+  =render :partial => 'affiliate/shared/navbar'
+
+#content.wide
+  %h1 All your publishers
+  .box
+    %table.t1
+      %tr
+        %th.first ID
+        %th Name
+        %th Commissions Generated (paid)
+        %th Commissions Generated (unpaid)
+      = render :partial => @publishers
+    .actions-bar.wat-cf
+      .actions
+

@@ -1,0 +1,86 @@
+/* admin*/
+
+#content .tools{
+	min-height: 25px;
+	height: auto !important;
+	height: 25px;
+	margin: 0 0 10px 0;
+	padding: 5px 0;
+	clear: both;
+}
+#content .tools li{
+	float: left;
+	margin: 0 10px 0 0;
+	padding: 0;
+	list-style: none;
+}
+.tab_content .tools{
+	margin: 0 auto;
+	text-align: center;
+}
+#content .tab_content .tools li{
+	float: none;
+	display: inline;
+	margin: 0
+}
+#content table ul.tools{border: 0;background: none;padding: 0;}
+#content table ul.tools li{margin: 5px 25px 0 0; list-style: none;float: left;}
+#content table ul.tools li a{padding: 0 0 0 20px;}
+#content table ul.tools .edit{background: url(ico-edit.png) 0 0 no-repeat;}
+#content table ul.tools .delete{background: url(ico-delete.png) 0 0 no-repeat;}
+.delete{
+	background: url(ico-delete.png) 0 0 no-repeat;
+	padding: 0 0 0 20px;
+}
+
+/* Tabs */
+.template{
+	margin: 0 auto 15px auto;
+	b ackground: #ededed
+}
+.template img{
+	display: block;
+	margin: 0 auto;
+}
+ul.tabs {
+	height: 30px;
+	position: absolute;
+	top: -8px;
+	right: -10px;
+	margin: 0;
+	padding: 0;
+}
+ul.tabs li {
+	list-style: none;
+	float: left;
+	margin: 0 5px 10px 0;
+	padding: 0;
+	font-size: 80%;
+}
+ul.tabs li a {
+	text-decoration: none;
+	padding: 2px 10px 4px 10px;
+	margin: 2px 0 0 0;
+	float: left;
+	color: #fff;
+}
+ul.tabs li a:hover {
+
+}	
+html ul.tabs li.active, 
+html ul.tabs li.active a:hover,
+html ul.tabs li.active a {
+	color: #666;
+	background: #fff;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+.tab_container {}
+.tab_content {}
+.tab_content h2 {}
+.tab_content h3 a{}
+.tab_content img {}

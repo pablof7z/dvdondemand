@@ -1,0 +1,26 @@
+
+.group
+  = f.label :first_name, t("activerecord.attributes.customer.first_name", :default => "First name"), :class => :label
+  = f.text_field :first_name, :class => 'text_field'
+  <span class="description">Ex: a simple text</span>
+
+.group
+  = f.label :last_name, t("activerecord.attributes.customer.last_name", :default => "Last name"), :class => :label
+  = f.text_field :last_name, :class => 'text_field'
+  <span class="description">Ex: a simple text</span>
+
+.group
+  = f.label :email, t("activerecord.attributes.customer.email", :default => "Email"), :class => :label
+  = f.text_field :email, :class => 'text_field'
+  <span class="description">Ex: a simple text</span>
+
+.group
+  = f.label :address, t("activerecord.attributes.customer.address", :default => "Address"), :class => :label
+  = f.text_area :address, :class => 'text_area'
+  <span class="description">Ex: a simple text</span>
+        
+.group.navform.wat-cf
+  %button.button{:type => 'submit'}
+    = image_tag("web-app-theme/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}")
+    = t("web-app-theme.save", :default => "Save")
+  = link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.cancel", :default => "Cancel")}")} #{t("web-app-theme.cancel", :default => "Cancel")}", customers_path, :class => "button"

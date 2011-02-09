@@ -1,0 +1,9 @@
+- content_for :primary_nav do
+  =render :partial => 'admin/shared/navbar'
+
+#content
+  %h1 Admin's Dashboard
+  .box
+
+- content_for :sidebar, render(:partial => 'admin/shared/sidebar')
+

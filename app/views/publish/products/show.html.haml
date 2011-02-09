@@ -1,0 +1,122 @@
+- content_for :primary_nav do
+  =render :partial => 'publish/shared/navbar'
+
+
+#content
+  .box.sp
+    %h1= @product.title
+    
+    - if @product.available_for_retail_listing?
+      %div.flash
+        %div.notice.message
+          %p= link_to "This product is currently available for sale.", retail_catalog_product_path(@product.catalogs.first, @product)
+    - else
+      %p This product is not being listed for sale. #{@product.available_for_retail_listing}.
+
+    .col.x5
+      - if @product.image.exists?(:cropped_medium)
+        %a{:href => @product.image.url, :alt => 'Full size Cover art', :target => 'blank'}
+          =image_tag(@product.image.url(:cropped_medium), :class => 'fl artw')
+      - else
+        - if @product.cd?
+          =image_tag 'medium/missing_cd.png', :class => 'fl artw'
+        - else
+          =image_tag 'medium/missing_dvd.png', :class => 'fl artw'
+
+    .col.x7  
+      %dl
+        %dt Media Type:
+        %dd= @product.media_type.name
+        %dt Genre:
+        %dd= @product.genre.title
+        %dt Studio:
+        %dd= @product.studio
+        - unless @product.performers.blank?
+          %dt #{@product.dvd? ? 'Actors' : 'Musicians' }:
+          %dd= @product.performers
+
+        %dt Description:
+        %dd= @product.description
+
+        - unless @product.keywords.blank?
+          %dt Keywords:
+          %dd= @product.keyword_list
+
+        %dt Price:
+        %dd= number_to_currency(@product.price)
+
+        - unless @product.running_time.blank?
+          %dt Running Time:
+          %dd= @product.running_time
+
+        %ul.tools
+          %li= link_to 'Edit', edit_publish_publisher_product_path(current_publisher, @product), :class => 'bto'
+          %li= link_to 'Delete', publish_publisher_product_path(current_publisher,@product), :method => 'delete', :class => 'bto del', :confirm => t('web-app-theme.confirm', :default => 'Are you sure?')
+
+
+  .box.sp
+    %h2 ISO for this product
+
+    - unless @product.iso? == false
+      %p.iso{:id => "up_iso_#{@product.iso_file_name}"}
+        = @product.iso_file_name
+        (#{number_to_human_size(@product.iso_file_size)})
+        &nbsp;
+        = link_to '[Delete]', remove_iso_publish_publisher_product_path(current_publisher, @product), :class => 'remote-delete'
+
+    - else
+      %p No ISO image(s) uploaded yet.
+
+
+  .box.sp
+    %h2 Upload new ISO
+
+    - form_for @product, :url => iso_publish_publisher_product_path(current_publisher, @product), :html => { :multipart => true } do |f|
+      .group
+        = f.label :iso, "ISO File", :class => :label
+        = f.file_field :iso
+        = render_uploadify :id => 'product_iso', :url => iso_publish_publisher_product_path(current_publisher, @product), :allowed_extensions => [:iso], :max_size => 4.gigabytes, :allow_multiple_files => false
+      .group.navform.wat-cf
+        = uploadify_submit("Upload")
+        = uploadify_cancel("Stop")
+
+
+  .box.sp
+    %h2 Available Packaging Options for this Product
+
+    - form_for @product.product_options.build, :url => publish_publisher_product_options_path(current_publisher), :html => { :class => :form } do |f|
+      - for option in PackagingOption.all
+        = hidden_field_tag 'product_id', @product.id
+        %p
+          - std_clamshell = (option.price == 0)
+          - html_options  = { :checked => std_clamshell, :disabled => std_clamshell }
+          = check_box_tag 'packaging_option_ids[]', option.id, @product.packaging_options.include?(option), html_options
+          = option.title
+          (#{number_to_currency(option.price)})
+        - unless option.description.blank?
+          %span.description= option.description
+
+      %button.button{:type => 'submit'}
+        = image_tag("web-app-theme/tick.png", :alt => "Save")
+        Save
+
+
+  .box.sp
+    %h2 Allocate Product to selected Catalogs
+
+    - unless current_publisher.catalogs.blank?
+      - form_for @product.catalogs.build, :url => publish_publisher_product_placements_path(current_publisher), :html => { :class => :form } do |f|
+        = hidden_field_tag 'product_id', @product.id
+        = label_tag :catalog_ids, "Catalogs", :class => :label
+        - for catalog in current_publisher.catalogs
+          %p
+            = check_box_tag 'catalog_ids[]', catalog.id, @product.catalogs.include?(catalog)
+            = catalog.title
+        %button.button{:type => 'submit'}
+          = image_tag("web-app-theme/tick.png", :alt => "Save")
+          Save
+    - else
+      %p= link_to 'Create some catalogs first.', new_publish_publisher_catalog_path(current_publisher)
+
+- content_for :sidebar, render(:partial => 'publish/shared/sidebar')
+

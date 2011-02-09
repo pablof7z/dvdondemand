@@ -1,7 +1,57 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
+johns:
+  publisher: john
+  media_type_id: 1
+  genre_id: 1
+  title: Foobar Blues Media Pack
+  studio: Almighty Records
+  price: 14.99
+  performers: moe, larry, curly, shemp
+  description: Play it again, Sam
+  # for habtm fixture:
+  catalogs: johns
 
-two:
-  name: MyString
+janes:
+  publisher: jane
+  media_type_id: 1
+  genre_id: 2
+  title: The Barfoo Rock Antology
+  studio: 2nd Grade Records
+  price: 9.99
+  performers: athos, porthos, aramis, dartagnan
+  description: The golden glam age
+  # for habtm fixture:
+  catalogs: janes, janes_private
+
+<% %w(janes_bulk_1 janes_bulk_2 janes_bulk_3).each do |p| %>
+<%= p %>:
+  publisher: jane
+  media_type_id: 1
+  genre_id: 2
+  title: Unimportant assorted bulk product
+  description: Some bulk product
+  price: 0.99
+  catalogs: janes
+<% end %>
+
+janes_deleted:
+  publisher: jane
+  media_type_id: 1
+  genre_id: 2
+  title: Does not actually matter
+  description: Ghost product
+  price: 0.99
+  catalogs: janes
+  deleted_at: <%= DateTime.new(2000,1,1) %>
+
+devises:
+  publisher: newbie
+  media_type_id: 2
+  genre_id: 4
+  title: Macross Saga
+  studio: Harmony Gold
+  price: 11.99
+  performers: rick hunter, minn may, roy focker, miriya parina, max sterling
+  description: The anime that changed it all, forever
+  catalogs: devises

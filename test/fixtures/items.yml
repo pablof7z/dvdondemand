@@ -1,7 +1,17 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  title: MyString
+johns:
+  id: 1
+  publisher_id: 1
+  title: Foobar Blues DVD extra
+  artist: Sam and Max
+  genre: blues
+  media_type: dvd
 
-two:
-  title: MyString
+janes:
+  id: 2
+  publisher_id: 2
+  title: Barfoo Rock CD rare tracks
+  artist: Misc.
+  genre: rock
+  media_type: cd

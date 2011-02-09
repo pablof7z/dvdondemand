@@ -1,0 +1,17 @@
+- @cart = current_customer.build_cart
+- @cart.items.build
+- form_for @cart, :url => retail_customer_cart_path(current_customer) do |f|
+  - f.fields_for :items do |item|
+    = item.hidden_field :customer_id, :value => current_customer.id
+    = item.hidden_field :catalog_id,  :value => catalog.id
+    = item.hidden_field :product_id,  :value => product.id
+    = item.hidden_field :price,       :value => product.price
+
+    %label{:for => 'quantity'}
+      %span Quantity:
+      = item.text_field :quantity, :value => '1', :id => 'qty', :size => '6'
+    %label{:for => 'packaging_option_id'}
+      %span Packaging:
+      = item.select :packaging_option_id, options_from_collection_for_select(product.available_packaging_options, :id, :title_with_price), :id => 'packg'
+    %button.b2{:type => 'submit'} Add to Cart
+

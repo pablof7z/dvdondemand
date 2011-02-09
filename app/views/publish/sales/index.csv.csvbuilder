@@ -1,0 +1,21 @@
+csv << ['Period','Retail Sales','Royalty Sales','Wholesales','Get Stock Purchases','Totals','PPS Payments']
+
+(@years || (1..12)).each do |i|
+  unless @years.blank?
+    date   = DateTime.new(i, 1, 1)
+    start  = date.beginning_of_year
+    finish = date.end_of_year
+    header = start.strftime('%Y')
+  else
+    date   = DateTime.new(@year, i, 1)
+    start  = date.beginning_of_month
+    finish = date.end_of_month
+    header = start.strftime('%b %Y')
+  end
+  whole    = @whole_sales.totals_for(start,finish)
+  retail   = @retail_sales.totals_for(start,finish)
+  getstock = @get_stocks.totals_for(start,finish)
+  payment  = @payments.totals_for(start,finish)
+
+  csv << [ header, retail, '0', whole, getstock, whole+retail+getstock, payment ]
+end

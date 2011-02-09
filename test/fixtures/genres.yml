@@ -1,0 +1,170 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+aa:
+  id: 1
+  media_type_id: 1
+  title: Avant Garde
+
+ab:
+  id: 3
+  media_type_id: 1
+  title: Blues
+
+ac:
+  media_type_id: 1
+  title: Classical
+
+ad:
+  media_type_id: 1
+  title: Country
+
+ae:
+  media_type_id: 1
+  title: Easy Listening
+
+af:
+  media_type_id: 1
+  title: Electronic
+
+ag:
+  media_type_id: 1
+  title: Folk
+
+ah:
+  media_type_id: 1
+  title: Hip-Hop/Rap
+
+ai:
+  media_type_id: 1
+  title: Holiday
+
+aj:
+  media_type_id: 1
+  title: Jazz
+
+ak:
+  media_type_id: 1
+  title: Kids/Family
+
+al:
+  media_type_id: 1
+  title: Latin
+
+am:
+  media_type_id: 1
+  title: Metal/Punk
+
+an:
+  media_type_id: 1
+  title: Moods
+
+ao:
+  media_type_id: 1
+  title: New Age
+
+ap:
+  media_type_id: 1
+  title: Pop
+
+aq:
+  media_type_id: 1
+  title: Reggae
+
+ar:
+  media_type_id: 1
+  title: Rock
+
+as:
+  media_type_id: 1
+  title: Spiritual
+
+at:
+  media_type_id: 1
+  title: Spoken Word
+
+au:
+  media_type_id: 1
+  title: Urban/R&B
+
+av:
+  media_type_id: 1
+  title: World
+
+ba:
+  id: 2
+  media_type_id: 2
+  title: Action & Adventure
+
+bb:
+  id: 4
+  media_type_id: 2
+  title: Anime & Animation
+
+bc:
+  media_type_id: 2
+  title: Children & Family
+
+bd:
+  media_type_id: 2
+  title: Classics
+
+be:
+  media_type_id: 2
+  title: Comedy
+
+bf:
+  media_type_id: 2
+  title: Documentary
+
+bg:
+  media_type_id: 2
+  title: Drama
+
+bh:
+  media_type_id: 2
+  title: Faith & Spirituality
+
+bi:
+  media_type_id: 2
+  title: Foreign
+
+bj:
+  media_type_id: 2
+  title: Gay & Lesbian
+
+bk:
+  media_type_id: 2
+  title: Horror
+
+bl:
+  media_type_id: 2
+  title: Independent
+
+bm:
+  media_type_id: 2
+  title: Music & Musicals
+
+bn:
+  media_type_id: 2
+  title: Romance
+
+bo:
+  media_type_id: 2
+  title: Sci-Fi & Fantasy
+
+bp:
+  media_type_id: 2
+  title: Special Interest
+
+bq:
+  media_type_id: 2
+  title: Sports & Fitness
+
+br:
+  media_type_id: 2
+  title: Television
+
+bs:
+  media_type_id: 2
+  title: Thrillers
+

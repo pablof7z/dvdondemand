@@ -1,0 +1,26 @@
+- content_for :primary_nav do
+  =render :partial => 'retail/shared/navbar'
+
+#content
+  .box
+    %h1= @publisher.artist_name
+    - unless @publisher.bio.blank?
+      %p
+        %b Biography:
+      %p= @publisher.bio
+    %p
+      %em Catalogs by this Publisher :
+    %table{:style => 'width: 100%;'}
+      %thead
+        %tr
+          %th Title
+          %th.w40 Publisher
+          %th.w10 &nbsp;
+      %tbody
+        = render :partial => 'retail/catalogs/catalog', :collection => @publisher.catalogs
+
+- content_for :sidebar do
+  - if @publisher.bio.blank?
+    = render :partial => 'retail/shared/sidebar'
+  - else
+    = render :partial => 'retail/shared/about', :locals => { :publisher => @publisher }

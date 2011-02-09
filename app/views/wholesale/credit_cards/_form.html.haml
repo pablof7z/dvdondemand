@@ -1,0 +1,53 @@
+.group
+  = f.error_messages
+
+%label
+  %span
+    Card Type
+  = f.select :card_type, [['Visa','visa'], ['MasterCard','mastercard'], ['Discover','discover'], ['American Express', 'american_express']]
+%label
+  %span
+    Card Number
+  = f.text_field :card_number
+%label
+  %span
+    Card Verification Value
+  = f.text_field :card_verification_value, :size => '6'
+%label
+  %span
+    Card Expires On
+  = f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :add_month_numbers => true, :order => [ :month, :year ]
+
+%h3 Billing Address
+%label
+  %span
+    Address 1
+  = f.text_field :address1
+%label
+  %span
+    Address 2
+  = f.text_field :address2
+%label
+  %span
+    City
+  = f.text_field :city
+%label
+  %span
+    State (US only)
+  = f.select :state, us_state_options_for_select(:include_blank => true)
+%label
+  %span
+    Zip Code
+  = f.text_field :zip, :size => '6'
+%label
+  %span
+    Country
+  = f.country_select :country, { "United States" => "US" }
+
+%p.btso
+  %button.b1{:type => 'submit'}
+    Save
+  %span
+    or
+    = link_to "Cancel", wholesale_wholesaler_credit_cards_path(current_wholesaler), :class => "button"
+
