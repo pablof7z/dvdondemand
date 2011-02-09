@@ -3,7 +3,7 @@ class Retail::OrdersController < RetailController
   before_filter :prevent_session_hijack
   before_filter :no_empty_cart, :only => [:new, :create]
   belongs_to :customer
-  actions :new, :create
+  actions :new, :create, :index, :show
 
   def new
     @order ||= current_customer.orders.build
@@ -37,6 +37,10 @@ class Retail::OrdersController < RetailController
     end
   end
 
+  def show
+    show! { render :partial => 'receipt', :layout => 'receipt' and return if params[:printable] == 'true' }
+  end
+ 
   private
 
   def prevent_session_hijack
