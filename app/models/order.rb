@@ -22,6 +22,8 @@ class Order < ActiveRecord::Base
   validate_on_create :valid_credit_card
   after_create :assign_partial_cc_number
 
+  default_scope :order => 'created_at DESC'
+
   # set the pagination limit here, but mind the tests
   def self.per_page
     10  
