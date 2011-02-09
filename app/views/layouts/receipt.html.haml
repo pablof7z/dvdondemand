@@ -1,0 +1,54 @@
+!!! Transitional
+%html{:xmlns => 'http://www.w3.org/1999/xhtml', 'xml:lang' =>'en', :lang => 'en'} 
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %title Behind The Station Retail Store
+    %meta{:name => 'csrf-token', :content => form_authenticity_token}
+    %meta{:name => 'csrf-param', :content => 'authenticity_token'}
+    :css
+      * {
+        font-family: sans-serif;
+        text-align: left;
+      }
+      .col.x6 {
+        float: left;
+        width: 200px;
+        margin-bottom: 15px;
+      }
+      h2 {
+        width: 400px;
+        text-align: center;
+      }
+      p {
+        clear: both;
+        width: 400px;
+      }
+      .box {
+        clear: both;
+        width: 400px;
+        margin-top: 30px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      thead {
+        border-bottom: solid 1px black;
+      }
+      tfoot {
+        border-top: solid 1px black;
+      }
+      tbody {
+        margin: 20px;
+      }
+      th.w40 {
+        width: 40%;
+      }
+      th.w15 {
+        width: 15%;
+      }
+      
+
+  %body
+    %h2 Customer Receipt
+    = yield
