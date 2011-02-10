@@ -1,4 +1,6 @@
 class Publish::SupportController < PublishController
+  skip_before_filter :authenticate_publisher!, :only => :terms
+
   def terms
     @publisher_name, @publisher_address = if publisher_signed_in?
       full_address = "#{current_publisher.address1} #{current_publisher.address2}" +
