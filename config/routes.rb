@@ -6,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.devise_for :publishers  # first to avoid the :publishers resources to catch devise's auto-generated routes
   map.publisher_root 'publisher', :controller => 'publish/publishers', :action => 'home'
+  map.publish_support '/publisher/support/:action', :controller => 'publish/support'
   map.namespace :publish do |publish|
     publish.resources :publishers, :only => [:edit, :show] do |publisher|
       publisher.resources :catalogs, :has_many => :products
