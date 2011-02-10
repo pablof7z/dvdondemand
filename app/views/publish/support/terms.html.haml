@@ -1,0 +1,471 @@
+- content_for :primary_nav do
+  = render :partial => 'publish/shared/navbar'
+
+#content.wide
+  %h1 Distribution Agreement
+
+  %p
+    This Distribution Agreement ("Agreement") is entered into and effective as
+    of this __ day of December, 2010 (hereinafter the "Effective Date") by and
+    between Post Production Solutions, LLC (hereinafter referred to as PPS),
+    with offices at 3 Canale Drive, Suite 6 Egg Harbor Township, NJ  08234; and
+    #{@publisher_name}#{" with offices at #{@publisher_address}" if @publisher_address}.
+  %p
+    WHEREAS, PPS owns certain computer software applications and programs for
+    the distribution of digital content; and
+
+  %p
+    WHEREAS, #{@publisher_name} is a publisher of multimedia content and owns
+    certain content that it desires PPS to distribute (the "Content"); and
+  %p
+    WHEREAS, #{@publisher_name} desires to engage PPS to distribute the
+    Content, and PPS desires to distribute the Content, on the terms and
+    conditions set forth herein.
+  %p
+    NOW THEREFORE, in consideration of the mutual covenants herein contained,
+    the parties hereto, intending to be legally bound by the provision hereof,
+    hereby agree as follows:
+
+  %p.clear
+  %p
+    %h3 1. SERVICE DISTRIBUTION OF CONTENT
+    %p
+      1.1 PPS will provide first level support to #{@publisher_name} by
+      duplicating and distributing the Content as more fully set forth on
+      Exhibit A, attached hereto and incorporated herein by this reference,
+      and to assist #{@publisher_name}  in
+      formatting all Content in a manner that is acceptable to PPS for use by
+      PPS replication and distribution services.
+
+  
+  %p.clear
+  %p
+    %h3 2. USE OF CONTENT
+    %p
+      2.1 PPS shall act solely as a duplicator and distributor and shall not
+      be responsible for producing any Content whatsoever.  PPS shall upload
+      Content provided by #{@publisher_name} solely for duplication and
+      distribution and shall not retain any portion of the Content for its own
+      resale or use.
+    %p
+      2.2 PPS reserves the right to remove and/or destroy any Content that it
+      determines to be in violation of any trademark, copyright or other state
+      or Federal law, although under no obligation to do so.
+    %p
+      2.3 PPS shall have the right to print Content and review it prior to
+      distribution. PPS reserves the right to refuse to distribute any Content
+      that it deems unsuitable in its sole discretion. 
+
+    %p.clear
+    %p
+      %h3 3. PAYMENT
+      %p
+        3.1 Service Fees. PPS shall receive all funds from the distribution of
+        the Content.  PPS will deduct all "Service Fees" due to PPS prior to
+        any "Payments" to Publisher.  The balance due the Publisher shall be
+        paid in accordance with  Exhibit B attached hereto.
+      %p
+        Payments will be made to the Publisher a maximum of twice per month. A
+        minimum payout amount of $25.00 US dollars must be due the Publisher
+        for PPS to process a Payment.
+      %p
+        Payments will be transferred to the Publisher by either: (i)  ACH
+        transfer direct to Publishers bank account on file; or (ii) PayPal
+        transfer direct to Publishers PayPal account on file.
+      %p
+        3.2 Fees. PPS will pay #{@publisher_name} a Payment ("Payment") for
+        each Title that is sold from non-PPS websites that do not use the PPS
+        retail store solution and this use, and have been approved in advance
+        by PPS, to use the PPS API solution as more fully set forth on Exhibit
+        B. Titles sold to distributors or sales derived directly through the
+        PPS store catalog shall not be used to determine the Payment amount.
+      %p
+        PPS will charge fees for each and every service provided to
+        #{@publisher_name} as more fully set forth on Exhibit B.  Production
+        Fees are only charged to the Publisher when one of their Titles has
+        been produced by the PPS system.  
+      %p
+        PPS has the right to change the Payment structure in its sole
+        discretion by providing electronic notice via e-mail and posting on
+        the PPS website.
+
+  %p.clear
+  %p
+    %h3 4. NOTICES
+    %p
+      All notices contemplated herein shall be sent in writing and delivered
+      in person, by certified mail, return receipt required, or by reputable
+      overnight courier service at the address indicated below, or as the same
+      may be changed from time to time by notice similarly given. Such notices
+      shall be deemed to be effective, upon delivery if personally delivered,
+      5 days after deposit in the U.S. mail if sent by certified, return
+      receipt mail or 2 days after delivery to the courier if sent by courier
+      service.
+    %p
+      For #{@publisher_name}:
+    %p
+      For PPS:
+      Post Production Solutions, LLC
+
+  %p.clear
+  %p
+    %h3 5. TERM OF AGREEMENT.
+    
+    %p
+      Either party may terminate this agreement upon thirty (30) days written 
+      notice to the other party.
+
+  %p.clear
+  %p
+    %h3 6. CANCELLATION
+
+    %p
+      6.1 Survival. Upon expiration or cancellation of this Agreement, the 
+      provisions of Sections 7,8.9.10 and 13 and all payment obligations 
+      incurred prior to the date of cancellation or expiration, and all end
+      user licenses granted by either party shall survive.
+
+    %p
+      6.2 Not Exclusive Remedy. The right to cancel this Agreement in 
+      accordance with Section 5 is in addition to and shall not limit or 
+      prejudice any other right or remedy available under the Agreement, at 
+      law or in equity except as provided herein.
+
+  %p.clear
+  %p
+    %h3 7. CONFIDENTIAL INFORMATION 
+    %p
+      7.1 Definition. Confidential Information shall mean any information which
+      either party may disclose to the other party which is proprietary to the
+      disclosing party and, if it is disclosed in tangible form the disclosing
+      party marks such information as being confidential to it by marking such
+      information as "Proprietary", "Restricted" or "Confidential" or if
+      disclosed verbally will be identified as confidential at the time of
+      disclosure and thereafter confirmed in writing as being confidential.
+    %p
+      7.2 Non-disclosure. Each party shall exercise the same degree of care to
+      avoid the publication or dissemination of the Confidential Information of
+      the other party as it affords to its own Confidential Information of a
+      similar nature which it desires not to be published or disseminated.
+      Confidential Information disclosed under this Agreement shall only be used
+      by the receiving party in the furtherance of this Agreement or the
+      performance of its obligations hereunder.
+    %p
+      7.3 Exceptions. Neither party shall be obligated to protect Confidential
+      Information of the other party which: 
+
+      %ul
+        %li
+          (a) is rightfully received by the receiving party from another party
+          without restriction, or
+        %li
+          (b) is known to or developed by the receiving party independently
+          without use of the Confidential Information, or
+        %li
+          (c) is or becomes generally known to the public by other than a breach
+          of duty hereunder by the receiving party, or
+        %li
+          (d) has been or is hereafter furnished to others without restriction
+          on disclosures.
+
+  %p.clear
+  %p
+    %h3 8. WARRANTY
+    %p
+      8.1 Title. #{@publisher_name}  represents and warrants that it owns all
+      right, title and interest (free and clear of all liens, encumbrances,
+      adverse claims, or security interests) in the content or possesses
+      adequate third-party licenses or other valid rights to use the Content. 
+
+    %p
+      8.2 No Violation. #{@publisher_name}  represents and warrants that it has
+      the right and power to distribute the Content and warrants that the
+      Content and its distribution does not violate any agreement, patent,
+      copyright, trade secret, or other proprietary right of any other.
+      #{@publisher_name}  warrants that it has no knowledge of any patents or
+      copyrights which are infringed or may be infringed, or of trade secrets
+      or other proprietary rights of any third parties that are or may be
+      misappropriated or violated by PPS's distribution of the Content. PPS's
+      distribution of the Content will not violate any agreement, infringe or
+      violate, or constitute a misappropriation of, any Intellectual Property
+      rights of any person or entity.  For purposes of this Agreement,
+      "Intellectual Property" means all (i) patents and patent applications,
+      (ii) copyrights and registrations thereof, (iii) computer software, data
+      and documentation, (iv) trade secrets and confidential business
+      information, whether patentable or unpatentable and whether or not
+      reduced to practice, know-how, manufacturing and production processes and
+      techniques, research and development information, copyrightable works,
+      financial, marketing and business data, pricing and cost information,
+      business and marketing plans and customer and supplier lists and
+      information, (v) trademarks, service marks, trade names, domain names and
+      applications and registrations therefore, and (vi) other proprietary
+      rights relating to any of the foregoing.
+    %p
+      8.3 Disclaimer. EXCEPT AS EXPRESSLY STATED HEREIN, PPS HAS NOT MADE ANY
+      WARRANTIES OR REPRESENTATION, EXPRESS OR IMPLIED BY OPERATION OF LAW OR
+      OTHERWISE, CONCERNING THE SERVICES TO BE PROVIDED HEREUNDER, THE SCOPE OR
+      DURATION OF ANY MARKETING EFFORT OR THE SUCCESS OF ANY SUCH EFFORT,
+      WRITTEN OR ORAL, AS AN INDUCEMENT TO ENTERING INTO THIS AGREEMENT. PPS
+      EXPRESSLY DISCLAIMS ANY IMPLIED WARRANTIES, WARRANTIES OF MERCHANTABILITY
+      OR FITNESS FOR A PARTICULAR PURPOSE.
+
+  %p.clear
+  %p
+    %h3
+      9. PPS SHALL NOT BE LIABLE FOR ANY INCIDENTAL, INDIRECT, SPECIAL OR
+      CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO, LOST PROFITS, EVEN
+      IF #{@publisher_name}  HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
+      DAMAGES.
+
+  %p.clear
+  %p
+    %h3 10. INFRINGEMENT/INDEMNITY.
+    %p  
+    #{@publisher_name} agrees to indemnify, defend and hold harmless PPS from
+    any claims, liabilities, suits, actions, demands, deficiencies, charges,
+    penalties, fines, interest, damages, losses, costs, or expenses including but
+    not limited to legal expenses of whatever kind for, or on account of, patent
+    infringement, copyright infringement, misappropriation of trade secrets or
+    violation of other proprietary rights in connection with or relating to the
+    use, performance, reproduction, translation, distribution, licensing or
+    other disposition of the Content. #{@publisher_name} agrees to defend or
+    settle at #{@publisher_name} expense, all suits or proceedings arising out
+    of any of the foregoing; provided, however, that PPS shall give
+    #{@publisher_name}  prompt written notice of all such claims. PPS, at its own
+    expense, shall have the right to participate in #{@publisher_name} defense
+    of any such action through PPS's own counsel. In the event that
+    #{@publisher_name} fails, after notice, to adequately defend or settle any
+    action which it is obligated to defend or settle under this Section 10, PPS
+    shall have the right of prosecuting and defending such action or actions
+    and to collect such costs and expenses (including attorneys' fees) from
+    #{@publisher_name} and shall further have the right to charge
+    #{@publisher_name} with any and all expenses, awards or damages and court
+    costs in such action or actions and to collect such expenses, awards,
+    damages and court costs from #{@publisher_name} .
+
+  %p.clear
+  %p
+    %h3 11. FORCE MAJEURE.
+    %p
+      Neither PPS nor #{@publisher_name}  shall be liable to the other for
+      delays in the performance of or completion of this Agreement if such delay
+      is caused by strikes, riots, wars, government regulations, acts of God,
+      fire, flood or other similar causes beyond its control; provided,
+      however, if such delay exceeds 120 days, the other party shall have the
+      option, exercisable by written notice, to terminate this Agreement, in
+      which case the licenses granted hereunder shall survive.
+
+  %p.clear
+  %p
+    %h3 12. ASSIGNMENT.
+    %p
+      All the terms and conditions of this Agreement shall be binding upon,
+      inure to the benefit of, and be enforceable by the respective successors
+      and permitted assigns of the parties hereto. Except as specifically
+      stated in this Agreement, neither this Agreement nor any of the rights,
+      interests or obligations of either party shall be assigned or delegated
+      without the prior written consent of the other party which shall not
+      unreasonably withhold its consent, except that such consent shall not be
+      required in connection with a merger or sale of assets of a party
+      relating to the subject matter of this Agreement. Any unauthorized
+      assignment or delegation shall be null and void.
+
+  %p.clear
+  %p
+    %h3 13. GENERAL PROVISIONS
+    %p
+      13.1  Governing Law. This Agreement shall be construed, governed and
+      interpreted in accordance with the laws, but not the rules relating to the
+      choice of law, of the State of New Jersey.
+    %p
+      13.2  Captions/Headings. The captions and headings of the Sections and
+      paragraphs contained herein have been inserted for the convenience of the
+      parties and shall not be construed as a part of or as modifying any
+      provisions of this Agreement.
+    %p
+      13.3  Waiver. The failure of either party to insist, in any one or more
+      instance, upon the performance of any of the terms, covenants or
+      conditions of this Agreement or to exercise any right hereunder, shall not
+      be construed as a waiver of the future performance of any such term,
+      covenant or condition or the future exercise of such right.
+    %p
+      13.4  Severability. If any court should find any particular provision of
+      this Agreement void, illegal, or unenforceable, then that provision shall
+      be regarded as stricken from this Agreement and the remainder of this
+      Agreement shall remain in full force and effect and the parties shall
+      negotiate a substitute provision which most nearly effects the intent of
+      the stricken provision.
+    %p
+      13.5  Independent Contractors. It is agreed that the relationship between
+      the parties is that of independent contractors and nothing contained in
+      this Agreement shall be construed or implied to create the relationship of
+      partners, joint ventures agent and principal, employer and employee, or
+      any other relationship other than that of independent contractors. At no
+      time shall either party make any commitments or incur any charges or
+      expenses for or in the name of the other party.
+    %p
+      13.6  Right to Develop Independently. #{@publisher_name}  understands and
+      acknowledges that PPS is in the business of providing digital content and
+      develops products that are based upon the same products that are employed
+      with distributing the Content and #{@publisher_name}  agrees that nothing
+      in this Agreement will impair PPS's right to develop such technologies
+      independently for itself or others.
+    %p
+      13.7  Counterparts. This Agreement may be executed in any number of
+      counterparts, each of which together shall constitute one and the same
+      instrument.
+    %p
+      13.8  Publicity. No party shall, except as may be required by law or
+      federal regulation, or except with the prior written permission of the
+      other party, publicly advertise this Agreement or disclose its contents.
+    %p
+      13.9  Entire Agreement. This Agreement constitutes the entire agreement
+      between the parties with respect to the subject matter hereof and shall
+      supersede all previous proposals, negotiations, representations,
+      commitments, writings, agreements and other communications, both oral and
+      written, between the parties. This Agreement may not be released,
+      discharged, changed or modified except by an instrument in writing signed
+      by a duly authorized representative of each of the parties.
+
+
+    %p
+      IN WITNESS WHEREOF, this Agreement has been duly executed by the parties
+      hereto, as of the Effective Date.
+
+
+    %div{:style => 'width: 50%; float: left;'}
+      %ul
+        %li Attest/Witness: _________________
+        %li Witnes: __________________
+    %div{:style => 'width: 50%; float: left;'}
+      %ul
+        %li Date: _________________
+        %li
+          By: _________________
+          %br
+          Post Production Solutions, LLC
+        %li By: _________________
+        
+
+
+    %p
+      ELECTRONIC SIGNATURE AND ACCEPTANCE WHEN A PUBLISHER SIGNS UP FOR OUR
+      SERVICE ONLINE (HOWEVER YOU'D LIKE TO HANDLE THAT MARK?)
+
+  %p.clear
+  %p
+    %h3 EXHIBIT A
+
+    %p
+      %strong SERVICE DISTRIBUTION OF CONTENT:
+    %p
+      PPS has developed a system which gives a Publisher the ability to upload
+      their Content in ISO format to the PPS online system.  By uploading
+      Content, the Publisher will be able to sell their Content online without
+      the need for a Credit Card Merchant Account, Online Store and Catalog.  In
+      addition the PPS system will duplicate and provide all the necessary
+      distribution services required to have the Content delivered to the
+      Publisher's customers.  
+    %p
+      PPS will also allow the Publisher to upload images for each ISO.  These
+      images will be used to display their Content within the online catalog.
+      The images will also be used within the production portion of PPS'
+      services, printed and used as Amary cover sleeves and Jewel case inserts
+      depending on the product duplicated and produced.
+    %p
+      The PPS Publisher Account allows the Publisher to set the retail and
+      wholesale pricing.  It is the responsibility of the Publisher to set these
+      prices when they upload their ISO's.  Publishers also have the ability
+      to give wholesale and distributor discounts for quantity purchases.
+    %p
+      The PPS service is complete with no intervention necessary from the
+      Publisher once their Content has been accepted into the system.
+
+    %p
+      %strong PPS SERVICE LEVELS:
+    %p
+      STANDARD - Includes the duplication and distribution of Content.  Each
+      duplicated disc will include full color printing on the actual disc, and
+      then packed in a clear Clamshell impact resistant case.
+    %p
+      PREMIUM AMARY CASE - Includes the duplication and distribution of
+      Content.  Each disc duplicated and produced will include full color
+      printing on the actual disc, then a full color sleeve will be printed and
+      inserted into the Amaray clear cover, professionally shrink wrapped with a
+      clear cellophane wrapper.
+    %p
+      PREMIUM JEWEL CASE - Includes the duplication and distribution of
+      Content.  Each disc replicated and produced will include full color
+      printing on the actual disc, then full color front and back inserts will
+      be printed and inserted into the Jewel case, professionally shrink wrapped
+      with a clear cellophane wrapper.
+    %p
+      Publishers may enroll any or all of the Content into our wholesale
+      distribution program; pricing for the wholesale program is set by the
+      Publisher from within their PPS Publisher account.
+
+    %p
+      Publishers may also enroll any or all of their Content into our
+      partner's social networking program from within their PPS Publisher
+      Account.  Please see www.commercesocial.com for complete details and
+      features. 
+      EXHIBIT B
+
+    %p 
+      %strong PAYMENTS
+    %p
+      Payments are paid based on a rate of 20% percent of the Publishers
+      Suggested Retail Price (PSRP).  The PSRP will be set by the Publisher from
+      within the Publisher Account; this price will be the same price that the
+      title is sold for within the PPS catalog.
+    %p
+      Payments are only paid on titles that have been sold through websites
+      using the PPS API.
+    %p
+      When Payments are earned by the publisher of a title that IS NOT charged
+      any production fees, production fees are to be paid by the website the
+      originated the sale, using the PPS API.
+
+    %p
+      %strong SERVICE FEES;
+    %p
+      Service Fees shall consist of:
+    %p
+      Credit Card Processing Fee - a 3.5% percent fee is charged for all
+      sales that have been sold through the PPS store catalog.  The 3.5% percent
+      fee is calculated on the Gross sale of each order including shipping.
+      Credit Card Fees WILL NOT be charged to the Publisher when the sale is
+      derived from a Wholesaler Account or a PPS API enabled web site.  Such
+      credit card fees will be paid for by each of the respective parties.
+
+      %ul
+        %li
+          STANDARD PRODUCTION - $5.00 US Dollars  
+        %li
+          PREMIUM AMARY CASE PRODUCTION – $5.75 US Dollars
+        %li
+          PREMIUM JEWEL CASE PRODUCTION - $6.25 US Dollars
+
+    %p
+      CONTENT STORAGE (MAY APPLY) - PPS will charge $0.25 cents for each
+      title that is listed within the Publishers Account.  Each title is given a
+      FREE (90) Ninety Day Grace period whereas the Publisher will not be
+      charged any Content Storage Fees for the first (90) Ninety Days from the
+      uploading of a particular ISO.  Publishers will continue to receive FREE
+      storage if they sell at least one copy of said title per month.  If this
+      qualification is met the title will continue to receive FREE storage, a
+      sale of the title can be sold through any of the aforementioned methods
+      (Wholesale, Retail, PPS API).
+    %p
+      This Storage Fee when charged will be credited to the Publishers Account
+      and will only be deducted when PPS makes a distribution payment to
+      #{@publisher_name}. If Publisher elects to use PPS system as Back-up
+      Storage, PPS will charge #{@publisher_name} $0.25 cents per month per
+      title. If #{@publisher_name} does not pay the storage fees all titles will
+      be automatically removed from the PPS system without notice.
+    %p
+      Commerce Social fees will be charged in accordance with Commerce
+      Social's terms of use agreement. See www.commercesocial.com site for
+      details.
+    %p
+      Service Fees are subject to change by a 30 day written notice.
