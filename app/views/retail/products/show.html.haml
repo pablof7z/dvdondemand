@@ -1,6 +1,12 @@
 - content_for :primary_nav do
   =render :partial => 'retail/shared/navbar'
 
+- content_for :header do
+  :javascript
+    function doFlag() {
+      $('#flag-form').submit();
+    }
+
 
 #content
   .box.sp
@@ -15,6 +21,10 @@
           =image_tag 'medium/missing_cd.png', :class => 'fl artw'
         - else
           =image_tag 'medium/missing_dvd.png', :class => 'fl artw'
+      %div{:style => 'margin: 10px; clear: both'}
+        - form_tag flag_retail_catalog_product_path(@catalog, @product), :id => 'flag-form', :method => :post do
+          %a{:href => "javascript:doFlag()", :style => 'font-size: 70%;'} Flag as inappropriate.
+
       - if @product.advisory_violence or @product.advisory_nudity or @product.advisory_language
         %div{:style=>'margin: 10px;'}
           %b Advisory
