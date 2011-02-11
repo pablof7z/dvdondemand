@@ -12,7 +12,7 @@ class Retail::ProductsController < RetailController
   end
 
   def flag
-    resource.flag_count = (resource.flag_count.nil?)? 0 : resource.flag_count += 1
+    resource.flag_count = (resource.flag_count.nil?)? 1 : resource.flag_count += 1
     if resource.save
       flash[:notice] = 'The product has been flagged'
     else
