@@ -7,7 +7,7 @@ class Admin::FlaggedProductsController < AdminController
     if resource.save
       flash[:notice] = 'Product unflagged'
     else
-      flash[:error] = 'Error unflagging product'
+      flash[:alert] = 'Error unflagging product'
     end
     redirect_to admin_flagged_products_path
   end
