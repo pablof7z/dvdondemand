@@ -9,6 +9,10 @@
 
 
 #content
+  .flash
+    - flash.each do |type, message|
+      .message{:class => type.to_s}
+        %p= message
   .box.sp
     %h1= @product.title
 
