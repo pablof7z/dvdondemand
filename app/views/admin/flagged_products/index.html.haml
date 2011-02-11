@@ -2,11 +2,6 @@
   = render :partial => 'admin/shared/navbar'
 
 #content.wide
-  .flash
-    - flash.each do |type, message|
-      .message{:class => type.to_s}
-        %p= message
-
   %h1 Flagged Products
   .box
     %table.t1
