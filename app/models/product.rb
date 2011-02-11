@@ -59,6 +59,7 @@ class Product < ActiveRecord::Base
   # please don't use default_scope to hide deleted products. See http://blog.semanticart.com/2009/03/22/using-default-scope-to-recreate-acts-as-paranoid.html
   named_scope :available, :conditions => {:deleted_at => nil}
   named_scope :available_filo, :conditions => {:deleted_at => nil}, :order => 'created_at DESC'
+  named_scope :flagged, :conditions => 'flag_count is not null and flag_count > 0', :order => 'flag_count DESC'
 
   # set the pagination limit here, but mind the tests
   def self.per_page
