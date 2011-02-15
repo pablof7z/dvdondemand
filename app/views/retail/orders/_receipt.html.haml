@@ -24,6 +24,10 @@
       %strong Paid by
       #{@order.card_type.capitalize} XXXXXXXXXXXX #{@order.partial_cc_number}
 
+    %p
+      %strong Order Number
+      #{@order.id}
+
   .box
     %h3 Order Details
     %table.t1
