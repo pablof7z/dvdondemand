@@ -10,6 +10,7 @@
           - if controller.controller_name == 'financial_informations'
             %li= link_to "<strong>Add</strong> bank information", new_publish_publisher_financial_information_path(current_publisher, :type => :bank), :class => ((controller.action_name == 'new' or controller.action_name == 'create')?'current':'')
             %li= link_to "<strong>Add</strong> paypal information", new_publish_publisher_financial_information_path(current_publisher, :type => :paypal), :class => ((controller.action_name == 'new' or controller.action_name == 'create')?'current':'')
+          %li= link_to '<strong>Upload</strong> content', new_publish_publisher_product_path(current_publisher)
       - else
         =link_to 'Dashboard', publisher_root_path
 
