@@ -218,8 +218,6 @@
                   %img#disc-cover-cropped{:src => "#{@product.cover_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'width: 160px; height: 160px;'}
               %ul.tools
                 %li
-                  %a.bto.disc-cover{:href => publish_publisher_product_modal_path(current_publisher, @product, :disc_cover)} Edit
-                %li
                   %a.bto.del.label{:href => '#cover'} Delete
             #cover-upload{:style => 'display: none'}
               = f.file_field :cover_art
@@ -242,8 +240,6 @@
                   %img#sleeve-cd-cropped{:src => "#{@product.cd_sleeve_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'width: 240px; height: 120px;'}
               %ul.tools
                 %li
-                  %a.bto.sleeve-cd{:href => publish_publisher_product_modal_path(current_publisher, @product, :sleeve_cd)} Edit
-                %li
                   %a.bto.del.label{:href => '#sleeve-cd'} Delete
             #sleeve-cd-upload{:style => 'display: none'}
               = f.file_field :cd_sleeve_art
@@ -265,8 +261,6 @@
                   %img.sleeve-dvd-medium.sleeve-dvd-preview{:src => @product.dvd_sleeve_art.url(:medium), :style => 'padding: 5px; display: none; width: 240px; height: 160px;'}
                   %img#sleeve-dvd-cropped{:src => "#{@product.dvd_sleeve_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'padding: 5px; width: 240px; height: 160px;'}
               %ul.tools
-                %li
-                  %a.bto.sleeve-dvd{:href => publish_publisher_product_modal_path(current_publisher, @product, :sleeve_dvd)} Edit
                 %li
                   %a.bto.del.label{:href => '#sleeve-dvd'} Delete
             #sleeve-dvd-upload{:style => 'display: none'}
@@ -291,8 +285,6 @@
                     %img#product-image-cropped{:src => "#{@product.image.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'padding: 5px; width: 210px; height: 210px;'}
                   %ul.tools
                     %li
-                      %a.bto.product-image{:href => publish_publisher_product_modal_path(current_publisher, @product, :product_image, :media_type => :cd)} Edit
-                    %li
                       %a.bto.del.label{:href => '#product-image'} Delete
 
                 #product-image-dvd-tab
@@ -301,8 +293,6 @@
                     %img.product-image-medium.product-image-preview{:src => @product.image.url(:medium), :style => 'padding: 5px; display: none; width: 210px; height: 283px;'}
                     %img#product-image-cropped{:src => "#{@product.image.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'padding: 5px; width: 210px; height: 283px;'}
                   %ul.tools
-                    %li
-                      %a.bto.product-image{:href => publish_publisher_product_modal_path(current_publisher, @product, :product_image, :media_type => :dvd)} Edit
                     %li
                       %a.bto.del.label{:href => '#product-image'} Delete
               #product-image-upload{:style => 'display: none'}
