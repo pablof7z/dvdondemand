@@ -10,3 +10,5 @@
 
   .box
     %button.b2{:onclick => "javascript:location.href='#{retail_customer_order_path(current_customer, @order, :printable => true)}'"} Printable Version
+    %h3{:style=>'text-align: center;'}
+      = link_to "Back to Store", "/"
