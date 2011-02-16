@@ -1,11 +1,11 @@
 #!/bin/bash
 
-git checkout haml
+git checkout master
 git checkout deploy
-git merge haml
+git merge master
 git checkout behindthestation
 git merge deploy
 git checkout deploy
 git checkout adultmediafactory
 git merge deploy
-git checkout haml
+git checkout master
