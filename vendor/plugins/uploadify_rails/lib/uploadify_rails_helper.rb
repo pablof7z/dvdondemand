@@ -40,6 +40,7 @@ module UploadifyRailsHelper
         onAllComplete : function(event, data){
           $('#uploadify_cancel').hide('blind');
           $('#uploadify_submit').show('blind');
+          location.reload(true);
         },
         onSelect: function(event, queueID, fileObj){
           if (fileObj.size > #{uploadify_options[:max_size]}) {
