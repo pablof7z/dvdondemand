@@ -44,7 +44,7 @@ class Product < ActiveRecord::Base
   validates_attachment_content_type :cd_sleeve_art,  :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'], :if => :cd?, :allow_nil => true
   validates_attachment_content_type :dvd_sleeve_art, :content_type => ['image/jpeg', 'image/png', 'image/pjpeg', 'image/x-png'], :if => :dvd?, :allow_nil => true
 
-  has_attached_file :iso, :url => '/system/:id/disc.iso'
+  has_attached_file :iso, :url => '/system/:id/disc.iso', :storage => :appendable
 
   acts_as_taggable
   acts_as_taggable_on :keywords
@@ -55,6 +55,8 @@ class Product < ActiveRecord::Base
   attr_accessor :cover_art_crop_x, :cover_art_crop_y, :cover_art_crop_w, :cover_art_crop_h
   attr_accessor :cd_sleeve_art_crop_x, :cd_sleeve_art_crop_y, :cd_sleeve_art_crop_w, :cd_sleeve_art_crop_h
   attr_accessor :dvd_sleeve_art_crop_x, :dvd_sleeve_art_crop_y, :dvd_sleeve_art_crop_w, :dvd_sleeve_art_crop_h
+
+  attr_accessor :iso_chunk, :iso_eof
 
   # please don't use default_scope to hide deleted products. See http://blog.semanticart.com/2009/03/22/using-default-scope-to-recreate-acts-as-paranoid.html
   named_scope :available, :conditions => {:deleted_at => nil}
