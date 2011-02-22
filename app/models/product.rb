@@ -60,6 +60,7 @@ class Product < ActiveRecord::Base
   named_scope :available, :conditions => {:deleted_at => nil}
   named_scope :available_filo, :conditions => {:deleted_at => nil}, :order => 'created_at DESC'
   named_scope :flagged, :conditions => 'flag_count is not null and flag_count > 0', :order => 'flag_count DESC'
+  named_scope :featured, :conditions => 'featured is not null', :order => 'featured ASC'
 
   # set the pagination limit here, but mind the tests
   def self.per_page
