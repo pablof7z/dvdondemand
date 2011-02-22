@@ -36,10 +36,10 @@ class Publish::ProductsController < PublishController
   
   def iso
     @product = Product.find(params[:id])
-    if @product.update_attributes(params[:product])
-      render :json => { :result => 'success', :source => iso_publish_publisher_product_path(current_publisher, @product, :format => :js) }
+    if @product.update_attributes(:iso => params[:File0], :iso_chunk => params[:jupart], :iso_eof => params[:jufinal])
+      render :text => 'SUCCESS'
     else
-      render :json => { :result => 'error' } # not yet actually handled in Uploadify's onComplete event
+      render :text => 'ERROR: '
     end
   end
   
