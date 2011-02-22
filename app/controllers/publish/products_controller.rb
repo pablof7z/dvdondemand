@@ -3,6 +3,8 @@ class Publish::ProductsController < PublishController
     belongs_to :catalog, :optional => true
   end
 
+  skip_before_filter :verify_authenticity_token, :only => :iso
+
   def new
     new! { @genres = Genre.for_cd }
   end
