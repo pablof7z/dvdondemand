@@ -76,6 +76,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :shipping_options, :as => 'shipping'
     admin.resources :wholesale_prices, :as => 'wholesale'
     admin.resources :flagged_products, :as => 'flagged', :only => [ :index, :destroy ]
+    admin.resources :featured_products, :as => 'featured', :only => [ :index, :create ]
 
     # route needed for Devise after_sign_in, always auth-ful because it's admin's
     admin.root :controller => 'home'
