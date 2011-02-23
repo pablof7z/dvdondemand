@@ -6,7 +6,7 @@ class Publish::ProductsController < PublishController
   skip_before_filter :verify_authenticity_token, :only => :iso
 
   def new
-    new! { @genres = Genre.for_cd }
+    new! { @genres = Genre.for_dvd }
   end
 
   def edit
