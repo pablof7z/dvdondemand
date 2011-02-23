@@ -11,12 +11,10 @@ class Publish::GetStocksController < PublishController
 
   def create
     @order = Order.new(params[:order])
-    if @order.save
-      if @order.purchase
+    if @order.save and @order.purchase
         get_stock = @order.to_get_stock 
         flash[:notice] = 'Your GetStock has been successfully processed.'
         redirect_to receipt_publish_publisher_get_stock_path(current_publisher, get_stock)
-      end
     else
       flash[:notice] = 'Error while processing your GetStock.'
       redirect_to publish_publisher_get_stocks_url
