@@ -89,6 +89,7 @@ class Order < ActiveRecord::Base
     Fee.applicable.each do |f|
       gs.fee_versions.create!(:fee_id => f.id, :number => f.version)
     end
+    gs
   end
 
   private
