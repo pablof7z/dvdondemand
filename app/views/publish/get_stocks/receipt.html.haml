@@ -1,0 +1,11 @@
+- content_for :primary_nav do
+  =render :partial => 'publish/shared/navbar'
+
+#content.wide
+  %h1 Success!
+
+  = render :partial => 'receipt'
+
+  .box
+    %a{:href => receipt_publish_publisher_get_stock_path(current_publisher, @get_stock, :printable => true)}
+      %button.b2 Printable Version
