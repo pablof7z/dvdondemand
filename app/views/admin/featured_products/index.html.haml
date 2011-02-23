@@ -11,10 +11,19 @@
           No featured products
         - else
           - for product in @products
-            = link_to(product.title, retail_catalog_product_path(product.catalogs.first, product))
+            %li
+              = link_to(product.title, retail_catalog_product_path(product.catalogs.first, product))
     .box
       %h3 New Featured Products
       - form_tag admin_featured_products_path do
-        %input{:type => 'text', :name => 'featured', :size => 60}
+        - featured = ""
+        - @products.each { |a| featured = "#{featured}#{a.id}"; featured = "#{featured} " if a != @products.last }
+        %input{:type => 'text', :name => 'featured', :size => 60, :value => featured}
         %span.descr{:style => 'float: none;'} Enter product ids separeted by white spaces
+        %p.btso
+          %button.b1{:type => 'submit'}
+            Save
+          %span
+            or
+            = link_to "Cancel", admin_publishers_path
 
