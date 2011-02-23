@@ -13,12 +13,21 @@ class Publish::GetStocksController < PublishController
     @order = Order.new(params[:order])
     if @order.save
       if @order.purchase
-        @order.to_get_stock 
+        get_stock = @order.to_get_stock 
         flash[:notice] = 'Your GetStock has been successfully processed.'
+        redirect_to receipt_publish_publisher_get_stock_path(current_publisher, get_stock)
       end
     else
       flash[:notice] = 'Error while processing your GetStock.'
+      redirect_to publish_publisher_get_stocks_url
     end
-    redirect_to publish_publisher_get_stocks_url
   end
+
+  def receipt
+    @order = resource.order
+    @order.first_name = resource.publisher.first_name
+    @order.last_name = resource.publisher.last_name
+    render :partial => 'receipt', :layout => 'receipt' if params[:printable] == 'true'
+  end
+
 end
