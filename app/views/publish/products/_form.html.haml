@@ -5,8 +5,8 @@
   = javascript_include_tag 'fbox/jquery.mousewheel-1.3.0.4.pack'
   = stylesheet_link_tag 'jquery.Jcrop', 'fbox/jquery.fancybox.css'
   :css
-    #cd_sleeve { display: #{(@product.cd? or @product.media_type_id == nil) ? 'block' : 'none'}; }
-    #dvd_sleeve { display: #{@product.dvd? ? 'block' : 'none'}; }
+    #cd_sleeve { display: #{(@product.cd?) ? 'block' : 'none'}; }
+    #dvd_sleeve { display: #{(@product.dvd? or @product.media_type_id == nil) ? 'block' : 'none'}; }
     #product-image-cd-tab { display: #{@product.cd? ? 'block' : 'none'}; }
     #product-image-dvd-tab { display: #{@product.dvd? ? 'block' : 'none'}; }
 
