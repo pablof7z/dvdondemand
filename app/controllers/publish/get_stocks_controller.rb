@@ -16,7 +16,7 @@ class Publish::GetStocksController < PublishController
         flash[:notice] = 'Your GetStock has been successfully processed.'
         redirect_to receipt_publish_publisher_get_stock_path(current_publisher, get_stock)
     else
-      flash[:notice] = 'Error while processing your GetStock.'
+      flash[:alert] = 'Error while processing your GetStock.'
       redirect_to publish_publisher_get_stocks_url
     end
   end
