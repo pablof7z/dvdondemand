@@ -57,6 +57,8 @@
           - flash.each do |type, message|
             .message{:class => type.to_s}
               %p= message
+        %p.clear
+
         =yield
 
         - if (sidebar = yield :sidebar)
