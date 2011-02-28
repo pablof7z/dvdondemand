@@ -38,5 +38,13 @@ class ApplicationController < ActionController::Base
       when :wholesaler then wholesale_root_path
     end
   end
+
+  def after_sign_in_path_for(resource)
+    if resource.is_a?(Customer) and session.delete(:checkout)
+      new_retail_customer_order_path(resource)
+    else
+      super
+    end
+  end
 end
 
