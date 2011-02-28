@@ -6,7 +6,7 @@ class Customer < ActiveRecord::Base
   has_many :customer_payments
   belongs_to :wholesaler
 
-  devise :database_authenticatable, :confirmable, :recoverable, :registerable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :recoverable, :registerable, :rememberable, :trackable, :validatable
 
   validates_presence_of :first_name, :last_name, :address1, :city, :country
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
@@ -27,7 +27,6 @@ class Customer < ActiveRecord::Base
       c.password = 'anonymous'
       c.anonymous = true
     end
-    anonymous.confirm!
     anonymous
   end
 end
