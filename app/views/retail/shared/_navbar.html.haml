@@ -1,5 +1,7 @@
 %ul.primary-nav
   %li
+    = link_to 'Home', retail_root_path, :class => controller.controller_name == 'home' ? 'current' : ''
+  %li
     = link_to 'Catalogs', retail_catalogs_path, :class => controller.controller_name == 'catalogs' ? 'current' : ''
   %li
     = link_to 'Publishers', retail_publishers_path, :class => controller.controller_name == 'publishers' ? 'current' : ''
