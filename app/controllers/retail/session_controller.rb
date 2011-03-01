@@ -19,7 +19,6 @@ class Retail::SessionController < ApplicationController
   def register
     @user = Customer.new(params[:customer])
     if @user.save
-      @user.confirm!
       sign_in(:customer, @user)
       redirect_to root_path
     else
