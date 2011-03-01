@@ -18,7 +18,7 @@
           %td= order.id
           %td= order.created_at.to_date.to_s(:short)
           %td= order.date_shipped
-          %td= order.customer.full_name
+          %td= order.customer.full_name rescue ""
           %td= order.items_full_count
           %td= number_to_currency(order.total)
           %td
