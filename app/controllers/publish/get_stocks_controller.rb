@@ -5,20 +5,27 @@ class Publish::GetStocksController < PublishController
   def index
     @order = current_publisher.get_orders.build
     current_publisher.products.available.each do |p|
-      @order.items.build(:product => p, :packaging_option => nil, :quantity => 0)
+      @order.items.build(:product => p, :price => p.price, :packaging_option => nil, :quantity => 0)
     end
   end
 
   def create
     @order = Order.new(params[:order])
-    if @order.save
-      if @order.purchase
-        @order.to_get_stock 
+    if @order.save and @order.purchase
+        get_stock = @order.to_get_stock 
         flash[:notice] = 'Your GetStock has been successfully processed.'
-      end
+        redirect_to receipt_publish_publisher_get_stock_path(current_publisher, get_stock)
     else
-      flash[:notice] = 'Error while processing your GetStock.'
+      flash[:alert] = 'Error while processing your GetStock.'
+      redirect_to publish_publisher_get_stocks_url
     end
-    redirect_to publish_publisher_get_stocks_url
   end
+
+  def receipt
+    @order = resource.order
+    @order.first_name = resource.publisher.first_name
+    @order.last_name = resource.publisher.last_name
+    render :partial => 'receipt', :layout => 'receipt' if params[:printable] == 'true'
+  end
+
 end

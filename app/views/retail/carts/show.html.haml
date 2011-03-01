@@ -17,7 +17,7 @@
         %th
         %th
         %th= number_to_currency(@cart.items_total_price)
-        %th
+        %th= link_to 'Clear cart', retail_customer_cart_path(current_customer), :method => :delete, :confirm => 'Are you sure?', :style => 'font-size: 80%;', :class => 'delete'
       %tbody
         - for item in @cart.items
           - form_for item, :url => retail_customer_cart_cart_item_path(current_customer,item) do |f|
@@ -32,6 +32,5 @@
 
   %p.btso
     %button.b2{:type => 'submit', :onclick => "javascript:location.href='#{new_retail_customer_order_url(current_customer)}'"} Proceed to Place Order
-    or
-    = link_to 'Clear cart', retail_customer_cart_path(current_customer), :method => :delete, :confirm => 'Are you sure?'
-
+    |
+    = link_to 'Continue shopping', root_path

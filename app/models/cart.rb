@@ -14,4 +14,16 @@ class Cart < ActiveRecord::Base
   def items_include?(product)
     items.reject { |i| i.product != product } != []
   end
+
+  def assign_customer(customer)
+    customer.cart = self
+    customer.save!
+
+    write_attribute(:customer_id, customer.id)
+    items.each do |item|
+      item.customer_id = customer.id
+      item.save!
+    end
+    self.save!
+  end
 end

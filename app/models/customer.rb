@@ -37,4 +37,18 @@ class Customer < ActiveRecord::Base
     address << send("country")  unless send("country").blank?
     address.join('. ')
   end
+
+  def self.anonymous
+    anonymous = create! do |c|
+      c.first_name = 'Anonymous'
+      c.last_name = 'User'
+      c.address1 = '123 Anonymous St.'
+      c.city = 'Anonymouspolis'
+      c.country = 'Anonymousland'
+      c.email = "#{rand(999999)}@anonymous.nil"
+      c.password = 'anonymous'
+      c.anonymous = true
+    end
+    anonymous
+  end
 end

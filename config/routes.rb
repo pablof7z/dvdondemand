@@ -1,5 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
-  map.devise_for :customers, :as => 'users'  # first to avoid the :customers resources to catch devise's auto-generated routes
+  map.customer_sign_in '/sign_in', :controller => 'retail/session', :action => 'login', :method => :get
+  map.customer_sign_up '/sign_up', :controller => 'retail/session', :action => 'sign_up', :method => :get
+  map.customer_register '/register', :controller => 'retail/session', :action => 'register', :method => :post
+  map.devise_for :customers, :as => 'users' # first to avoid the :customers resources to catch devise's auto-generated routes
   map.resources :customers, :as => 'users' do |customer|
     customer.resources :customer_payments, :as => :payments
   end
@@ -19,7 +22,7 @@ ActionController::Routing::Routes.draw do |map|
       publisher.resources :product_placements, :as => 'placements', :only => [:create]
 
       publisher.resources :genres, :only => :index
-      publisher.resources :get_stocks, :only => [:index, :create, :show]
+      publisher.resources :get_stocks, :only => [:index, :create, :show], :member => { :receipt => :get }
       publisher.resources :sales, :only => [:index, :show], :collection => {:ledger => :get}
 
       publisher.resources :financial_informations, :as => :financial, :member => { :send_deposit => :post, :make_default => :post, :validate => [ :get, :post, :put ] }, :except => [ :show, :edit, :destroy ]
