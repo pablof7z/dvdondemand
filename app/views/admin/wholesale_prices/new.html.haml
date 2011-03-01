@@ -6,6 +6,3 @@
   .box.sp
     - form_for @wholesale_price, :url => admin_wholesale_prices_path, :html => { :class => :form } do |f|
       = render :partial => "form", :locals => {:f => f}
-
-- content_for :sidebar, render(:partial => 'admin/shared/sidebar')
-
