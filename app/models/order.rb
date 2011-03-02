@@ -38,7 +38,7 @@ class Order < ActiveRecord::Base
   end
 
   def total
-    subtotal + shipping_option.price 
+    subtotal + shipping_cost
   end
 
   def billing_address
@@ -90,6 +90,10 @@ class Order < ActiveRecord::Base
       gs.fee_versions.create!(:fee_id => f.id, :number => f.version)
     end
     gs
+  end
+
+  def shipping_cost
+    shipping_option.price + (get_stocks.empty? ? 0 : items_full_count * 0.2)
   end
 
   private
