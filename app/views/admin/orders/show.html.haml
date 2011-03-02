@@ -6,7 +6,7 @@
   .box
     %p
       %b Placed by:
-      = @order.customer.full_name
+      = @order.customer.full_name rescue ""
     %p
       %b Date Created:
       = @order.created_at
