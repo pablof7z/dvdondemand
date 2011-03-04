@@ -18,4 +18,4 @@
       - if @catalogs
         - @catalogs.each do |catalog|
           - product = catalog.products.available.last
-          = render :partial => 'retail/shared/carousel_catalog', :locals => { :catalog => catalog, :product => product }
+          = render :partial => 'retail/shared/carousel_catalog', :locals => { :catalog => catalog, :product => product } if product
