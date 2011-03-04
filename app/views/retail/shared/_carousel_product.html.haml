@@ -1,5 +1,5 @@
 %li
-  %a{:href => retail_catalog_product_path(product.public_catalogs.first, product), :title => product.title}
+  %a{:href => retail_catalog_product_path(product.catalogs.first, product), :title => product.title}
     - if product.image.exists?(:small)
       = image_tag(product.image.url(:small))
     - else

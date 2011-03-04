@@ -4,7 +4,7 @@ class Wholesale::CatalogsController < WholesaleController
   def index
     case params[:type]
     when 'catalogs'
-      @catalogs = Catalog.public.all.map { |c| c if c.has_a_product_available_for_retail_listing }.compact
+      @catalogs = Catalog.all.map { |c| c if c.has_a_product_available_for_retail_listing }.compact
       
       respond_to do |format|
         format.xml { send_data @catalogs.to_xml(:include => :products), :filename => "catalog.xml" }

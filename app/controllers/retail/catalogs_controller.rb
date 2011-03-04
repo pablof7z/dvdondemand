@@ -12,10 +12,18 @@ class Retail::CatalogsController < RetailController
       end
     end
   end
+  
+  def show_private
+  end
 
   def show
     show! do |format|
-      render(:text => 'Forbidden', :status => 403) and return if @catalog.private
+      password = params[:password] || session[:password]
+      render :action => :show_private and return if @catalog.private and @catalog.password != password
+      
+      if params[:password] != nil
+        session[:password] = params[:password]
+      end
 
       format.html do
         @products = @catalog.products.available.for_retail.paginate :page => params[:page], :per_page => params[:per_page] || Product.per_page
@@ -29,7 +37,6 @@ class Retail::CatalogsController < RetailController
   private
 
   def collection
-    # by default, only show non-private (public) Catalogs
-    @catalogs = Catalog.public
+    @catalogs = Catalog.all
   end
 end

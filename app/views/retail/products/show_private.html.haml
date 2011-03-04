@@ -1,0 +1,16 @@
+%h1= "#{@catalog.publisher.full_name}'s Catalog"
+
+#content
+  .box.sp
+    %p This item requires a password which is only provided by the publisher.
+
+    - form_tag retail_catalog_path(@catalog), :method => :get do
+      = password_field_tag :password
+    
+      %p.btso
+        %button.b1{:type => 'submit'}
+          Submit
+        %span
+          or
+          = link_to "Cancel", root_path
+

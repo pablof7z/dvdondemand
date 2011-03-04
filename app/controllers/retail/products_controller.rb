@@ -1,10 +1,20 @@
 class Retail::ProductsController < RetailController
   belongs_to :catalog
   actions :show
+  
+  def show_private
+  end
 
   def show
     show! do
-      render(:text => 'Forbidden', :status => 403) and return if (@catalog.private || !@product.available?)
+      render(:text => 'Forbidden', :status => 403) and return if (!@product.available?)
+      
+      password = params[:password] || session[:password]
+      render :action => :show_private and return if @catalog.private and @catalog.password != password
+      
+      if params[:password] != nil
+        session[:password] = params[:password]
+      end
     end
   rescue ActiveRecord::RecordNotFound
     # also raised when accessing a Product with incorrect Catalog association
