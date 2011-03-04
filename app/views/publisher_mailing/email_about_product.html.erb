@@ -1,0 +1,11 @@
+I have recently published a new product <%= @product.title %> in my catalog <%= @product.catalogs.first.title %>,
+and thought you might be interested in seeing it.
+
+You can see it in <%= "#{URL}#{retail_catalog_product_path(@product.catalogs.first, @product)}" %>.
+
+<% if @product.catalogs.first.private %>  
+  This catalog is private, so you will need to enter the password '<%= @product.catalogs.first.password %>' to access it.
+<% end %>
+
+<%= @product.publisher.full_name %>
+

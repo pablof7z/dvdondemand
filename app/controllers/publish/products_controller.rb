@@ -55,6 +55,16 @@ class Publish::ProductsController < PublishController
     redirect_to publish_publisher_product_path(current_publisher, @product)
   end
   
+  def email
+    @product = Product.find(params[:id])
+    
+    if request.post?
+      PublisherMailing.deliver_email_about_product(params[:email], @product)
+      flash[:notice] = "Email recipients notified"
+      redirect_to publish_publisher_products_path(current_publisher)
+    end
+  end
+  
   private
 
   def begin_of_association_chain

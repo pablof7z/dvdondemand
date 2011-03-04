@@ -1,0 +1,44 @@
+- content_for :primary_nav do
+  =render :partial => 'publish/shared/navbar'
+
+
+#content.wide
+  %h1= "Send emails about #{@product.title}"
+  
+  - form_tag do
+    %label{:for => 'email'}
+      %span Email addresses:
+      = text_field_tag :email, params[:email], :size => 50
+      %span.descr (enter many email addresses separated by spaces)
+    %p
+      %span= "Disclosure: At no point will #{SITE} store these email addresses in the database or send unsolicitated emails, you should use caution"
+      = "when sending out emails, always making sure they are not unsolicitated."
+    
+    .box.sp
+      %h2 Email preview
+      
+      %p
+        %b From:
+        %span= @product.publisher.full_name
+        %br
+        %b Subject:
+        %span= "Invitation to see my new product #{@product.title}"
+      
+      %p
+        = "I have recently published a new product #{@product.title} in my catalog #{@product.catalogs.first.title},"
+        %br
+        = "and thought you might be interested in seeing it."
+        %br
+        %br
+        = "You can see it in #{link_to "#{URL}#{retail_catalog_product_path(@product.catalogs.first, @product)}", "#{retail_catalog_product_path(@product.catalogs.first, @product)}"}."
+        %br
+        - if @product.catalogs.first.private
+          %br
+          = "This catalog is private, so you will need to enter the password '#{@product.catalogs.first.password}' to access it."
+        %br
+        %br
+        = "#{@product.publisher.full_name}"
+    
+    %p.btso
+      %button.b1{:type => 'submit'} Send Email
+
