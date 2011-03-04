@@ -59,8 +59,12 @@ class Publish::ProductsController < PublishController
     @product = Product.find(params[:id])
     
     if request.post?
-      PublisherMailing.deliver_email_about_product(params[:email], @product)
-      flash[:notice] = "Email recipients notified"
+      begin
+        PublisherMailing.deliver_email_about_product(params[:email].gsub(/ /, ','), @product)
+        flash[:notice] = "Email recipients notified"
+      rescue
+        flash[:warning] = "#{$!}"
+      end
       redirect_to publish_publisher_products_path(current_publisher)
     end
   end
