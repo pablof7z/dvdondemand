@@ -6,7 +6,9 @@
   %p Add your Music or Film here.
   %p Complete the required fields, upload your iso file, and add your cover art and you’ll be good to go!
   %p We require you to place your content in an iso file for uploading. For more information regarding iso files check out our support page!
-  %p Once you upload your cover art, save your project, and then edit it to adjust your images to fit our template.
+  %p When adding images to your product, please follow these guidlines.
+  %p The CD Disc Cover should be 1410 pixels by 1410 pixels, the DVD Sleeve should be 3225 by 2175 pixels, and the Product Image should be the front cover of your DVD or CD.
+  %p DVD's are approximately 1538 pixels by 2175 pixels, and CD's are approximately 705 pixels by 1410 pixels.
   .box.sp
     - form_for @product, :url => publish_publisher_products_path(current_publisher), :html => { :multipart => true, :class => :form } do |f|
       = render :partial => 'form', :locals => { :f => f } 
