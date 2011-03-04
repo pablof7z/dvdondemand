@@ -13,8 +13,8 @@
         %tr{:class => cycle("odd", "even")}
           %td= link_to product.title, retail_catalog_product_path(product.catalogs.first, product)
           %td= product.flag_count
-          %td= link_to "Unflag", admin_flagged_product_path(product), :method => :delete, :confirm => "Are you sure?"
-          %td.last
+          %td
+            = link_to "Unflag", admin_flagged_product_path(product), :method => :delete, :confirm => "Are you sure?"
             - if product.available?
               - if product.available_for_retail_listing?
                 = link_to "Delete", disable_admin_product_path(product), :method => :post, :confirm => "Are you sure?"
