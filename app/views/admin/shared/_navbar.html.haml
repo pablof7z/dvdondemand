@@ -47,7 +47,7 @@
         =link_to 'Orders', admin_orders_path
     
     %li
-      - if %w{ publishers affiliates bulk_payments payments flagged_products featured_products }.include? controller.controller_name
+      - if %w{ publishers affiliates bulk_payments payments flagged_products featured_products products }.include? controller.controller_name
         =link_to 'Publishers', admin_publishers_path, :class => 'current'
         %ul.secondary-nav
           %li= link_to "<strong>All</strong> publishers", admin_publishers_path, :class => (controller.controller_name == 'publishers' and controller.action_name == 'index'?'current':'')
@@ -69,6 +69,7 @@
             %li= link_to "<strong>Sales of</strong> #{@payment.owner.full_name}", admin_bulk_payment_payment_path(@bulk_payment, @payment), :class => (controller.action_name == 'show'?'current':'')
           %li= link_to "<strong>Flagged</strong> products", admin_flagged_products_path, :class => (controller.controller_name == 'flagged_products' and controller.action_name == 'index'?'current':'')
           %li= link_to "<strong>Featured</strong> products", admin_featured_products_path, :class => (controller.controller_name == 'featured_products' and controller.action_name == 'index'?'current':'')
+          %li= link_to "<strong>All</strong> products", admin_products_path, :class => (controller.controller_name == 'products' and controller.action_name == 'index'?'current':'')
           
 
       - else

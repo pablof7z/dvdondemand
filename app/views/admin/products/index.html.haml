@@ -1,0 +1,29 @@
+- content_for :primary_nav do
+  = render :partial => 'admin/shared/navbar'
+
+#content.wide
+  %h1 Products
+  .box
+    %table.t1
+      %tr
+        %th.first ID
+        %th.w40 Title
+        %th Publisher
+        %th Price
+        %th Flags
+        %th.last &nbsp;
+      - for product in @products
+        %tr{:class => cycle("odd", "even")}
+          %td= product.id
+          %td= link_to product.title, retail_catalog_product_path(product.catalogs.first, product) rescue product.title
+          %td= product.publisher.full_name
+          %td= number_to_currency(product.price)
+          %td= product.flag_count or 0
+          %td.last
+            - if product.available?
+              - if product.available_for_retail_listing?
+                = link_to "Delete", disable_admin_product_path(product), :method => :post, :confirm => "Are you sure?"
+              - else
+                = product.available_for_retail_listing
+            - else
+              = link_to "Enable", enable_admin_product_path(product), :method => :post, :confirm => "Are you sure?"
