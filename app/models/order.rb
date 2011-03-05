@@ -19,7 +19,7 @@ class Order < ActiveRecord::Base
   attr_accessor :card_number, :card_verification     # to not persist'em in the db
   attr_accessor :first_name, :last_name              # just for credit_card validations
 
-  validate_on_create :valid_credit_card
+  #validate_on_create :valid_credit_card
   after_create :assign_partial_cc_number
 
   default_scope :order => 'created_at DESC'

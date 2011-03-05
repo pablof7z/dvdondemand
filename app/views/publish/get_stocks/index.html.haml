@@ -1,7 +1,7 @@
 - content_for :header do
   :javascript
     var shipping_price_per_disc = #{ShippingOption.per_disc_cost};
-    var item_prices = [ #{@order.items.map { |i| i.price }.join(', ')} ];
+    var item_prices = [ #{@order.items.map { |i| @production_fee.amount }.join(', ')} ];
     var packaging_prices = { #{PackagingOption.all.map { |po| "'#{po.id}': #{po.price}" }.join(', ')} };
     var shipping_prices = { #{ShippingOption.all.map { |so| "'#{so.id}': #{so.price}" }.join(', ')} };
 
@@ -24,6 +24,7 @@
         quantity = Number($('#item_' + index + '_quantity').attr('value'));
         packaging_price = packaging_prices[$('#order_items_attributes_' + index + '_packaging_option_id').attr('value')];
         item_total = (price + packaging_price) * quantity;
+        alert(price)
 
         $('#item_' + index + '_total').html(currency(item_total));
 
@@ -78,7 +79,7 @@
               %tr{:class => cycle("odd", "even")}
                 %td
                   = ff.hidden_field :product_id
-                  = ff.hidden_field :price, :id => "item_#{index}_price"
+                  = ff.hidden_field :price, :id => "item_#{index}_price", :value => @production_fee.amount
                   = ff.object.product.id
                 %td
                   = link_to ff.object.product.title, publish_publisher_product_path(current_publisher,ff.object.product)

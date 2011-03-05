@@ -7,6 +7,8 @@ class Publish::GetStocksController < PublishController
     current_publisher.products.available.each do |p|
       @order.items.build(:product => p, :price => p.price, :packaging_option => nil, :quantity => 0)
     end
+    
+    @production_fee = Fee.find_by_description("Production Fee")
   end
 
   def create
