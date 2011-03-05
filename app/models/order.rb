@@ -93,7 +93,7 @@ class Order < ActiveRecord::Base
   end
 
   def shipping_cost
-    shipping_option.price + (get_stocks.empty? ? 0 : items_full_count * 0.2)
+    shipping_option.price + (get_stocks.empty? ? 0 : items_full_count * ShippingOption.per_disc_cost)
   end
 
   private
