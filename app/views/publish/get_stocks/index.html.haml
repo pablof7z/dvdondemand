@@ -1,3 +1,57 @@
+- content_for :header do
+  :javascript
+    var shipping_price_per_disc = #{ShippingOption.per_disc_cost};
+    var item_prices = [ #{@order.items.map { |i| i.price }.join(', ')} ];
+    var packaging_prices = { #{PackagingOption.all.map { |po| "'#{po.id}': #{po.price}" }.join(', ')} };
+    var shipping_prices = { #{ShippingOption.all.map { |so| "'#{so.id}': #{so.price}" }.join(', ')} };
+
+    function currency(amount)
+    {
+      amount = String(amount);
+
+      index = amount.indexOf('.');
+      if (index == -1)
+        return '$' + amount + '.00';
+
+      decimal = amount.substr(index, 3);
+      return '$' + amount.substring(0, index) + ((decimal.length==3)?decimal:decimal+'0');
+    }
+
+    function updateCosts()
+    {
+      totals = item_prices.reduce(function(subtotal, price, index)
+      {
+        quantity = Number($('#item_' + index + '_quantity').attr('value'));
+        packaging_price = packaging_prices[$('#order_items_attributes_' + index + '_packaging_option_id').attr('value')];
+        item_total = (price + packaging_price) * quantity;
+
+        $('#item_' + index + '_total').html(currency(item_total));
+
+        subtotal.total += item_total;
+        subtotal.items_count += quantity;
+
+        return subtotal;
+
+      }, { total: 0, items_count: 0 });
+
+      shipping = shipping_price_per_disc * totals.items_count + Number(shipping_prices[$('#order_shipping_option_id').attr('value')]);
+      totals.total += shipping;
+
+      $('#shipping_cost').html(currency(totals.items_count==0?0:shipping));
+      $('#total_cost').html(currency(totals.items_count==0?0:totals.total));
+
+    };
+    $(document).ready(function()
+    {
+      for (i = 0; i < item_prices.length; i++)
+      {
+        $('#item_' + i + '_quantity').change(updateCosts);
+        $('#item_' + i + '_quantity').keypress(function(event) { if (event.which == 13) { updateCosts(); return false; } });
+        $('#order_items_attributes_' + i + '_packaging_option_id').change(updateCosts);
+        $('#order_shipping_option_id').change(updateCosts);
+      }
+    });
+
 - content_for :primary_nav do
   = render :partial => 'publish/shared/navbar'
 
@@ -13,23 +67,41 @@
       %table.t1
         %thead
           %tr
-            %th ID
+            %th.w10 ID
             %th Title
-            %th Packaging
-            %th Quantity
+            %th.w20 Packaging
+            %th.w10 Quantity
+            %th.w10 Price
         %tbody
-          - f.fields_for :items, @order.items do |item|
-            %tr{:class => cycle("odd", "even")}
-              %td
-                = item.hidden_field :product_id
-                = item.hidden_field :price
-                = item.object.product.id
-              %td
-                = link_to item.object.product.title, publish_publisher_product_path(current_publisher,item.object.product)
-              %td
-                = item.select :packaging_option_id, options_from_collection_for_select(item.object.product.available_packaging_options, :id, :title_with_price)
-              %td
-                = item.text_field :quantity, :size => '6'
+          - @order.items.each_with_index do |item, index|
+            - fields_for 'order[items_attributes]', item, :index => index do |ff|
+              %tr{:class => cycle("odd", "even")}
+                %td
+                  = ff.hidden_field :product_id
+                  = ff.hidden_field :price, :id => "item_#{index}_price"
+                  = ff.object.product.id
+                %td
+                  = link_to ff.object.product.title, publish_publisher_product_path(current_publisher,ff.object.product)
+                %td
+                  = ff.select :packaging_option_id, options_from_collection_for_select(ff.object.product.available_packaging_options, :id, :title_with_price), :html => { :id => "item_#{index}_packaging" }
+                %td
+                  =# raise item.methods.sort.join
+                  = ff.text_field :quantity, :size => '6', :id => "item_#{index}_quantity"
+                %td{:id => "item_#{index}_total"} $0.00
+          %tr{:class => cycle("odd", "even"), :style => 'border-top: solid 1px black;'}
+            %td
+            %td{:style => 'text-align: right; font-weight: bold;'} Shipping Option
+            %td{:colspan => 2}
+              = f.select :shipping_option_id, options_from_collection_for_select(ShippingOption.all, :id, :title_with_price)
+              = "+ #{number_to_currency(ShippingOption.per_disc_cost)} per disc"
+            %td{:id => 'shipping_cost'} $0.00
+        %tfoot
+          %th
+          %th
+          %th
+          %th{:style => 'text-align: right;'} Total
+          %th{:id => 'total_cost'} $0.00
+
     .box
       %h3 Credit Card
       %label{:for => 'card_type'}
@@ -69,17 +141,13 @@
         %span Country
         = f.country_select :shipping_country, { "United States" => "US" }
 
-    .box
-      %h3 Shipping Options available
-      %p
-        = f.select :shipping_option_id, options_from_collection_for_select(ShippingOption.all, :id, :title_with_price)
-
     -# hidden fields for helper attr_accessor methods
     = f.hidden_field :publisher_id, :value => current_publisher.id
     = f.hidden_field :first_name,   :value => current_publisher.first_name
     = f.hidden_field :last_name,    :value => current_publisher.last_name
     = f.hidden_field :ip_address,   :value => request.remote_ip
 
+    %p.clear
     %p{:align => 'center'}
       %button.b1{:type => 'submit'} Get Stock!
 
