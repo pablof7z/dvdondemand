@@ -24,7 +24,6 @@
         quantity = Number($('#item_' + index + '_quantity').attr('value'));
         packaging_price = packaging_prices[$('#order_items_attributes_' + index + '_packaging_option_id').attr('value')];
         item_total = (price + packaging_price) * quantity;
-        alert(price)
 
         $('#item_' + index + '_total').html(currency(item_total));
 
