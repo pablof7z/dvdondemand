@@ -27,3 +27,5 @@
                 = product.available_for_retail_listing
             - else
               = link_to "Enable", enable_admin_product_path(product), :method => :post, :confirm => "Are you sure?"
+
+    = will_paginate @products
