@@ -1,5 +1,4 @@
 .block
-  %h3 For your eyes only
   %ul.navigation
     - if controller_name != 'sessions'
       %li= link_to t('devise.sessions.link'), new_session_path(resource_name)
@@ -15,7 +14,4 @@
 
     - if devise_mapping.lockable? && controller_name != 'unlocks'
       %li= link_to t('devise.unlocks.link'), new_unlock_path(resource_name)
-
-  .content
-    %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 

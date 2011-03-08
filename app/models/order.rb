@@ -50,7 +50,7 @@ class Order < ActiveRecord::Base
   end
 
   def items_from(publisher)
-    items.reject { |i| i.product.publisher != publisher }
+    items.reject { |i| i.product == nil or i.product.publisher != publisher }
   end
 
   # follow ActiveMerchant-specific methods for FirstData integration
