@@ -64,7 +64,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :fees, :genres
     admin.resources :orders, :only => [:index, :show]
     admin.resources :affiliates
-    admin.resources :publishers, :except => [:create, :new]
+    admin.resources :publishers, :except => [:create, :new], :member => { :impersonate => :get }
     admin.resources :bulk_payments, :as => 'payments', :except => [ :edit, :delete ],
                     :member => { :generate => [ :get, :post ], :validate => [ :get, :post ], :ach => :get, :paypal => :get },
                     :has_many => :payments do |bulk_payment|
