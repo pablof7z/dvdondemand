@@ -12,4 +12,5 @@
     %span Packaging:
     = item.select :packaging_option_id, options_from_collection_for_select(product.available_packaging_options, :id, :title_with_price), :id => 'packg'
   %button.b2{:type => 'submit'} Add to Cart
-
+  - if admin_signed_in?
+    = link_to 'Edit this product', admin_product_path(@product)
