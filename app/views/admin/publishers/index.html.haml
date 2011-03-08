@@ -6,16 +6,18 @@
   .box
     %table.t1
       %tr
-        %th.first ID
+        %th.w10 ID
         %th Name
-        %th Created at
-        %th.last &nbsp;
+        %th.w20 Created at
+        %th.w25 &nbsp;
       - @publishers.each do |publisher|
         %tr{:class => cycle("odd", "even")}
           %td= publisher.id
           %td= link_to "#{publisher.first_name} #{publisher.last_name}", admin_publisher_path(publisher)
           %td= publisher.created_at
           %td.last
+            = link_to 'Impersonate', impersonate_admin_publisher_path(publisher)
+            |
             = link_to "Show", admin_publisher_path(publisher)
             |
             = link_to "Edit", edit_admin_publisher_path(publisher)
