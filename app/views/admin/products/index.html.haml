@@ -15,7 +15,9 @@
       - for product in @products
         %tr{:class => cycle("odd", "even")}
           %td= product.id
-          %td= link_to product.title, retail_catalog_product_path(product.catalogs.first, product) rescue product.title
+          %td
+            = link_to product.title, retail_catalog_product_path(product.catalogs.first, product) rescue product.title
+            = link_to 'Edit', admin_product_path(product), :style => 'font-size: 70%'
           %td= product.publisher.full_name
           %td= number_to_currency(product.price)
           %td= product.flag_count or 0
