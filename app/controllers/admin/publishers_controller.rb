@@ -12,7 +12,13 @@ class Admin::PublishersController < AdminController
     
     super
   end
-  
+
+  def impersonate
+    sign_out(:publisher)
+    sign_in(:publisher, resource)
+    redirect_to params[:url] || publish_root_path
+  end
+
   private
 
   def collection
