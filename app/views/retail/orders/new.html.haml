@@ -106,14 +106,20 @@
 
           %p.clear
 
-          %h3 Shipping Address
-          = check_box_tag :same_as, '1', false
-          Same as Billing Address
+          %h3{:style => 'margin-bottom: 0px;'} Shipping Information
+          %div{:style => 'margin-bottom: 20px;'}
+            = check_box_tag :same_as, '1', false
+            Same as Billing Address
+
           
           #shipping
-            %label{:for => 'shipping_name'}
-              %span Ship to
-              = f.text_field :shipping_name, :value => current_customer.full_name
+            %div{:style => 'font-weight: bold; margin-bottom: 15px;'} Ship To:
+            %label{:for => 'shipping_first_name'}
+              %span First Name 
+              = f.text_field :shipping_first_name, :value => current_customer.first_name
+            %label{:for => 'shipping_last_name'}
+              %span Last Name
+              = f.text_field :shipping_last_name, :value => current_customer.last_name
             %label{:for => 'shipping_address1'}
               %span Address 1
               = f.text_field :shipping_address1, :value => current_customer.address1
