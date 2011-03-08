@@ -43,7 +43,10 @@
         - else
           - unless current_publisher.approved
             %li= link_to 'Validation Pending', publish_publisher_financial_informations_path(current_publisher), :class => 'log'
-          %li= link_to 'Logout', destroy_publisher_session_path, :class => 'log'
+          - if admin_signed_in?
+            %li= link_to 'Admin Dashboard', admin_root_path, :class => 'log'
+          - else
+            %li= link_to 'Logout', destroy_publisher_session_path, :class => 'log'
           %li= link_to 'Edit Account', edit_publisher_registration_path, :class => 'account'
 
     #nav
