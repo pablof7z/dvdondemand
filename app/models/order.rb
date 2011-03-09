@@ -143,7 +143,7 @@ class Order < ActiveRecord::Base
         # :company  => customer.company,   # same as Customer's?
       },
       :shipping_address => {
-        :name     => shipping_name,
+        :name     => "#{shipping_first_name} #{shipping_last_name}",
         :address1 => shipping_address1,
         :address2 => shipping_address2,
         :city     => shipping_city,

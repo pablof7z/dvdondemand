@@ -121,7 +121,8 @@
       %h3 Shipping Address
       %label{:for => 'shipping_name'}
         %span Ship to
-        = f.text_field :shipping_name, :value => current_publisher.full_name
+        = f.text_field :shipping_first_name, :value => current_publisher.first_name
+        = f.text_field :shipping_last_name, :value => current_publisher.last_name
       %label{:for => 'shipping_address1'}
         %span Address 1
         = f.text_field :shipping_address1, :value => current_publisher.address1
