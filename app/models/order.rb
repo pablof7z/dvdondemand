@@ -61,7 +61,6 @@ class Order < ActiveRecord::Base
   end
 
   def purchase
-    return true
     response = OrderTransaction.purchase(total_in_cents, credit_card, options)
     transactions << response
     response.success?
