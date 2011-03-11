@@ -16,7 +16,7 @@
         %tbody
           - for order in @orders
             %tr{:class => cycle("odd", "even")}
-              %td= order.created_at.strftime('%c')
+              %td= link_to order.created_at.strftime('%c'), retail_customer_order_path(current_customer, order)
               %td= order.shipping_option.title
               %td
                 - for item in order.items

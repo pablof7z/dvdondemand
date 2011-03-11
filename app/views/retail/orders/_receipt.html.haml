@@ -27,6 +27,16 @@
     %p
       %strong Order Number
       #{@order.id}
+    
+    - if @order.shipping_status
+      %p
+        %strong Order Status
+        #{@order.shipping_status}
+    
+    - if @order.shipping_tracking_number
+      %p
+        %strong Tracking Number
+        #{@order.shipping_tracking_number}
 
   .box
     %h3 Order Details

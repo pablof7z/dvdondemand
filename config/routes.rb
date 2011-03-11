@@ -54,6 +54,7 @@ ActionController::Routing::Routes.draw do |map|
       customer.resource :cart do |cart|
         cart.resources :cart_items, :as => 'items'
       end
+      customer.resource :orders, :only => [ :index, :show ]
     end
 
     retail.root :controller => 'home'
