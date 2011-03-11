@@ -59,3 +59,9 @@
             %td= item.packaging_option.title
             %td= item.quantity
             %td= number_to_currency(item.price*item.quantity + item.packaging_option.price)
+          %tr{:class => cycle("odd", "even")}
+            %td
+              Shipping Fees
+            %td
+            %td
+            %td= number_to_currency @order.shipping_cost
