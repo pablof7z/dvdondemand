@@ -37,7 +37,8 @@
         %img.logo{:alt => "", :src => "/images/behind_the_station-logo.png"}/
       %ul.options.customer
         - if customer_signed_in? and not current_customer.anonymous
-          %li.log= link_to 'My Orders', retail_customer_orders_path(current_customer), :class => 'log'
+          - if current_customer.orders.size >= 1
+            %li.log= link_to 'My Orders', retail_customer_orders_path(current_customer), :class => 'log'
           %li.log= link_to 'Logout', destroy_customer_session_path, :class => 'log'
           %li= link_to 'My Account', edit_customer_registration_path, :class => 'account'
         - elsif publisher_signed_in?
