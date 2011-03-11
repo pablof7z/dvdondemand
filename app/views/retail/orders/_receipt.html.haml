@@ -1,6 +1,6 @@
 #receipt
   .box.sp
-    .col.x6
+    .col.x4
       %h3 Bill To:
       #{@order.customer.full_name}
       %br
@@ -10,7 +10,7 @@
       #{@order.billing_zip_code}
       #{@order.billing_country}
 
-    .col.x6
+    .col.x4
       %h3 Ship To:
       #{@order.customer.full_name}
       %br
@@ -19,6 +19,20 @@
       #{@order.shipping_city}, #{@order.shipping_state}
       #{@order.shipping_zip_code}
       #{@order.shipping_country}
+    
+    .col.x4
+      %h3 Provided by:
+      Post Production Solutions LLC
+      %br
+      3 Canale Drive, Suite 6
+      %br
+      Egg Harbor Township, NJ 08234
+      %br
+      (609) 840-8340 Phone
+      %br
+      (609) 677-4590 Fax
+      %br
+      
 
     %p
       %strong Paid by
