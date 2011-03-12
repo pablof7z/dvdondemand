@@ -55,17 +55,23 @@
 
 
   .box.sp
-    %h2 ISO for this product
+    %h2 #{(@product.cd?)? 'Audio files' : 'ISO'} for this product
 
-    - unless @product.iso? == false
+    - if @product.iso?
       %p.iso{:id => "up_iso_#{@product.iso_file_name}"}
         = @product.iso_file_name
         (#{number_to_human_size(@product.iso_file_size)})
         &nbsp;
         = link_to '[Delete]', remove_iso_publish_publisher_product_path(current_publisher, @product), :class => 'remote-delete'
 
+    - elsif @product.audio_files?
+      %p.iso{:id => "up_audio_files_#{@product.audio_files_file_name}"}
+        = @product.audio_file_file_name
+        (#{number_to_human_size(@product.audio_files_file_size)})
+        &nbsp;
+        = link_to '[Delete]', remove_audio_files_publish_publisher_product_path(current_publisher, @product), :class => 'remote-delete'
     - else
-      %p No ISO image(s) uploaded yet.
+      %p No #{(@product.cd?)? 'Audio files' : 'ISO image(s)'} uploaded yet.
 
 
   .box.sp
