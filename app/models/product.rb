@@ -116,7 +116,8 @@ class Product < ActiveRecord::Base
     return "No publisher selected" if publisher == nil
     return "Publisher not yet approved" if publisher.approved != true
     return "Product is not associated with any catalog" if catalogs.empty?
-    return "Product has no ISO file" if iso? == false
+    return "Product has no audio file" if cd? and not audio_files?
+    return "Product has no ISO file" if dvd? and not iso?
     return "Product is deleted" unless available?
     return true
   end
