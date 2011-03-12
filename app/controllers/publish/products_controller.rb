@@ -3,7 +3,7 @@ class Publish::ProductsController < PublishController
     belongs_to :catalog, :optional => true
   end
 
-  skip_before_filter :verify_authenticity_token, :only => :iso
+  skip_before_filter :verify_authenticity_token, :only => [ :iso, :audio_files ]
 
   def new
     new! { @genres = Genre.for_dvd }
@@ -51,10 +51,29 @@ class Publish::ProductsController < PublishController
     if @product.save
       flash[:notice] = "The ISO file was removed"
     end
-    
+
     redirect_to publish_publisher_product_path(current_publisher, @product)
   end
-  
+
+  def audio_files
+    @product = Product.find(params[:id])
+    if @product.update_attributes(:iso => params[:File0], :audio_files_chunk => params[:jupart], :audio_files_eof => params[:jufinal])
+      render :text => 'SUCCESS'
+    else
+      render :text => 'ERROR: '
+    end
+  end
+
+  def remove_audio_files
+    @product = Product.find(params[:id])
+    @product.audio_files.destroy
+    if @product.save
+      flash[:notice] = "Audio files deleted"
+    end
+
+    redirect_to publish_publisher_product_path(current_publisher, @product)
+  end
+
   def email
     @product = Product.find(params[:id])
     
