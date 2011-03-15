@@ -75,7 +75,7 @@
 
 
   .box.sp
-    %h2 Upload new ISO
+    %h2 Upload new #{(@product.cd?)? 'audio file' : 'ISO'}
 
     - form_for @product, :url => send("#{(@product.cd?)? :audio_files : :iso}_publish_publisher_product_path", current_publisher, @product), :html => { :id => 'upload_form' } do |f|
       - true
