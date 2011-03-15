@@ -38,7 +38,7 @@ class Order < ActiveRecord::Base
   end
 
   def total
-    subtotal + shipping_cost
+    subtotal + shipping_cost + total_taxes
   end
 
   def billing_address
@@ -94,6 +94,16 @@ class Order < ActiveRecord::Base
 
   def shipping_cost
     shipping_option.price + (get_stocks.empty? ? 0 : items_full_count * ShippingOption.per_disc_cost)
+  end
+
+  def taxes
+    taxes = []
+    taxes << [ 'N.J. sales tax', subtotal * 0.07 ] if shipping_state == 'NJ'
+    taxes
+  end
+
+  def total_taxes
+    taxes.inject(0) { |sum, tax| sum + tax[1] }
   end
 
   private
