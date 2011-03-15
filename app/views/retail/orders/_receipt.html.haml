@@ -79,3 +79,9 @@
           %td
           %td
           %td= number_to_currency @order.shipping_cost
+        - @order.taxes.each do |name, value|
+          %tr{:class => cycle("odd", "even")}
+            %td= name
+            %td
+            %td
+            %td= number_to_currency value
