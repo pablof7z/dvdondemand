@@ -57,7 +57,7 @@ class Publish::ProductsController < PublishController
 
   def audio_files
     @product = Product.find(params[:id])
-    if @product.update_attributes(:iso => params[:File0], :audio_files_chunk => params[:jupart], :audio_files_eof => params[:jufinal])
+    if @product.update_attributes(:audio_files => params[:File0], :audio_files_chunk => params[:jupart], :audio_files_eof => params[:jufinal])
       render :text => 'SUCCESS'
     else
       render :text => 'ERROR: '
