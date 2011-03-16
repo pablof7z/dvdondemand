@@ -120,5 +120,24 @@
                 %td Error:
                 %td= transaction.params['error']
 
+  %h1 Logs
+  .box
+    %table{:style => 'width: 100%'}
+      %thead
+        %tr
+          %th.w25 Date
+          %th.w10 Priority
+          %th.w10 Source
+          %th.w15 Status
+          %th Description
+      %tbody
+        - for log in @order.logs
+          %tr
+            %td= log.created_at
+            %td= log.priority
+            %td= log.source
+            %td= log.status
+            %td= log.description
+
 - content_for :sidebar, render(:partial => 'admin/shared/sidebar')
 
