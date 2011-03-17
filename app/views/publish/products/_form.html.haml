@@ -218,6 +218,8 @@
                   %img#disc-cover-cropped{:src => "#{@product.cover_art.url(:cropped_medium)}?#{Time.now.to_i}", :style => 'width: 160px; height: 160px;'}
               %ul.tools
                 %li
+                  %a.bto.disc-cover{:href => publish_publisher_product_modal_path(current_publisher, @product, :disc_cover)} Edit
+                %li
                   %a.bto.del.label{:href => '#cover'} Delete
             #cover-upload{:style => 'display: none'}
               = f.file_field :cover_art
