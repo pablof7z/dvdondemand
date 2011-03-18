@@ -24,6 +24,6 @@ class Admin::ProductsController < AdminController
   end
 
   def collection
-    @products ||= end_of_association_chain.paginate :page => params[:page], :per_page => params[:per_page] || Product.per_page
+    @products ||= end_of_association_chain.available.paginate :page => params[:page], :per_page => params[:per_page] || Product.per_page
   end
 end

@@ -22,6 +22,6 @@ class Admin::PublishersController < AdminController
   private
 
   def collection
-    @publishers ||= end_of_association_chain.paginate :page => params[:page], :per_page => params[:per_page] || Publisher.per_page
+    @publishers ||= end_of_association_chain.available.paginate :page => params[:page], :per_page => params[:per_page] || Publisher.per_page
   end
 end

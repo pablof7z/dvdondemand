@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   belongs_to :media_type
-  belongs_to :publisher
+  belongs_to :publisher, :dependent => :destroy
   belongs_to :genre
 
   has_many :order_items
@@ -143,6 +143,10 @@ class Product < ActiveRecord::Base
   def self.random(opts = {})
     opts = { :order => 'rand()', :limit => 25 }.merge(opts) #MySQL specific code
     all(opts).select { |product| product.available_for_retail_listing? }
+  end
+  
+  def destroy
+    self.update_attribute(:deleted_at, Time.now)
   end
 
   private

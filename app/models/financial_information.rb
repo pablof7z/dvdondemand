@@ -1,7 +1,7 @@
 class FinancialInformation < ActiveRecord::Base
   belongs_to :deposit1, :class_name => 'Payment'
   belongs_to :deposit2, :class_name => 'Payment'
-  belongs_to :owner, :polymorphic => true
+  belongs_to :owner, :polymorphic => true, :dependent => :destroy
   has_many :payments
   
   validates_inclusion_of :payment_method, :in => %w(bank paypal), :message => 'payment method must be bank | paypal'
@@ -87,6 +87,10 @@ class FinancialInformation < ActiveRecord::Base
     self.owner.approval_source = "Approved through amount confirmation on #{DateTime.now}"
     
     self.save! and self.owner.save!
+  end
+  
+  def destroy
+    self.update_attribute(:deleted_at, Time.now)
   end
   
   private

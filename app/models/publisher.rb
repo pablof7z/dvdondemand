@@ -1,6 +1,6 @@
 class Publisher < ActiveRecord::Base
-  has_many :catalogs, :dependent => :delete_all
-  has_many :products
+  has_many :catalogs, :dependent => :destroy
+  has_many :products, :dependent => :destroy
   has_many :items
 
   has_many :sales
@@ -17,8 +17,9 @@ class Publisher < ActiveRecord::Base
   
   belongs_to :affiliate
   belongs_to :affiliate_introduction
-
-  named_scope :approved, :conditions => { :approved => true }
+  
+  named_scope :available, :conditions => { :deleted_at => nil }  
+  named_scope :approved, :conditions => { :deleted_at => nil, :approved => true }
   
   validates_presence_of :first_name, :last_name
   validates_uniqueness_of :affiliate_introduction_id, :allow_nil => true
@@ -69,7 +70,12 @@ class Publisher < ActiveRecord::Base
       super
     end
   end
-
+  
+  def destroy
+    self.update_attribute(:deleted_at, Time.now)
+    catalogs.each { |c| c.delete }
+    products.each { |p| p.destroy }
+  end
 
   private
   
