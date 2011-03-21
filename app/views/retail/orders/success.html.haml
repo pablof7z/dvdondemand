@@ -9,6 +9,6 @@
   = render :partial => 'receipt'
 
   .box
-    %button.b2{:onclick => "javascript:window.open('#{retail_customer_order_path(current_customer, @order, :printable => true)}');location.href='#{root_path}'"} Printable Version
+    %button.b2{:onclick => "javascript:window.open('#{retail_customer_order_path(current_customer, @order, :printable => true)}','','location=no,menubar=no,status=no,toolbar=no,width=500');location.href='#{root_path}'"} Printable Version
     %h3{:style=>'text-align: center;'}
       = link_to "Back to Store", "/"

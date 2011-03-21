@@ -7,4 +7,4 @@
   = render :partial => 'receipt'
 
   .box
-    %button.b2{:onclick => "javascript:window.open('#{receipt_publish_publisher_get_stock_path(current_publisher, @get_stock, :printable => true)}');location.href='#{publish_root_path}'"} Printable Version
+    %button.b2{:onclick => "javascript:window.open('#{receipt_publish_publisher_get_stock_path(current_publisher, @get_stock, :printable => true)}','','location=no,menubar=no,status=no,toolbar=no,width=500');location.href='#{publish_root_path}'"} Printable Version
