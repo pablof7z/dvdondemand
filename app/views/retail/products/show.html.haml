@@ -18,7 +18,7 @@
 
     .col.x5
       - if @product.image.exists?(:cropped_medium)
-        %a{:href => @product.image.url, :alt => 'Full size Cover art', :target => 'blank'}
+        %a{:href => @product.image.url, :alt => 'Full size Cover art', :target => 'blank', :onclick => "window.open('#{@product.image.url}','','location=no,menubar=no,status=no,toolbar=no');return false"}
           =image_tag(@product.image.url(:cropped_medium), :class => 'fl artw')
       - else
         - if @product.cd?
