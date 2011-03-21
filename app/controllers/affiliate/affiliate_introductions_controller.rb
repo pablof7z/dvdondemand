@@ -4,7 +4,7 @@ class Affiliate::AffiliateIntroductionsController < AffiliateController
   
   def create
     create! do |success, failure|
-      success.html { redirect_to affiliate_affiliate_affiliate_introductions_path(current_affiliate) }
+      success.html { flash[:notice] = "Affiliate introduction was sent"; redirect_to affiliate_affiliate_affiliate_introductions_path(current_affiliate) }
     end
   end
   
