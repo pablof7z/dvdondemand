@@ -85,3 +85,7 @@
             %td
             %td
             %td= number_to_currency value
+
+- if params[:printable] == 'true'
+  %script
+    window.print();
