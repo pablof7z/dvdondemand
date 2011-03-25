@@ -11,8 +11,7 @@
       = text_field_tag :email, params[:email], :size => 50
       %span.descr (enter many email addresses separated by spaces)
     %p
-      %span= "Disclosure: At no point will #{SITE} store these email addresses in the database or send unsolicitated emails, you should use caution"
-      = "when sending out emails, always making sure they are not unsolicitated."
+      %span= "At no point will #{SITE} store or send any unsolicited emails to any addresses you provide above!"
     
     .box.sp
       %h2 Email preview
@@ -25,12 +24,13 @@
         %span= "Invitation to see my new product #{@product.title}"
       
       %p
-        = "I have recently published a new product #{@product.title} in my catalog #{@product.catalogs.first.title},"
+        - product_link = link_to @product.title, "#{retail_catalog_product_path(@product.catalogs.first, @product)}"
+        = "#{@product.publisher.full_name} has recently published a new product on #{link_to SITE, URL} entitled #{product_link}"
         %br
         = "and thought you might be interested in seeing it."
         %br
         %br
-        = "You can see it in #{link_to "#{URL}#{retail_catalog_product_path(@product.catalogs.first, @product)}", "#{retail_catalog_product_path(@product.catalogs.first, @product)}"}."
+        = "Click the link below to review #{product_link} now!"
         %br
         - if @product.catalogs.first.private
           %br
