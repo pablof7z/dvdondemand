@@ -15,7 +15,10 @@
         %th.last
       - @orders.each do |order|
         %tr{:class => cycle("odd", "even")}
-          %td= order.id
+          %td
+            = order.id
+            - if order.logs.error.count > 0 or order.logs.fatal.count > 0
+              %span{:style => 'color: #ff4444;'} (Failed)
           %td= order.created_at.to_date.to_s(:short)
           %td= order.date_shipped
           %td= order.customer.full_name rescue ""
