@@ -12,7 +12,7 @@
         - else
           - for product in @products
             %li
-              = link_to(product.title, retail_catalog_product_path(product.catalogs.first, product))
+              = link_to(product.title, retail_catalog_product_path(product.catalogs.first, product)) rescue product.title
     .box
       %h3 New Featured Products
       - form_tag admin_featured_products_path do
