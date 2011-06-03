@@ -6,6 +6,9 @@
     - resource.email = affiliate_introduction.email unless resource.email.blank? == false
     - resource.affiliate_id = affiliate_introduction.affiliate_id
     - resource.affiliate_introduction_id = affiliate_introduction.id
+- elsif params[:aid] != nil
+  - unless (affiliate = Affiliate.find_by_hash_id(params[:aid])).nil?
+    - resource.affiliate_id = affiliate.id
 
 - content_for :primary_nav do
   =render :partial => 'publish/shared/navbar'
