@@ -14,6 +14,11 @@ class Affiliate < ActiveRecord::Base
   
   devise :registerable, :database_authenticatable, :rememberable, :trackable
 
+
+  def before_validation_on_create
+   create_hash_id
+  end
+
   def full_name
     "#{name}"
   end
@@ -49,6 +54,18 @@ class Affiliate < ActiveRecord::Base
   end
   
   private
+
+  def create_hash_id
+    a = ("0".."9").to_a + ("a".."z").to_a + ("A".."Z").to_a
+
+    while true
+      s = ""
+      32.times { s << a[rand(a.size-1)] }
+      break if Affiliate.find_by_hash_id(s) == nil
+    end
+
+    self.hash_id = s
+  end
   
   def commission(sale)
     (((sale.total - sale.fees) * commission_percentage)/100) +
