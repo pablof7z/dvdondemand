@@ -1,12 +1,14 @@
 %ul.primary-nav
   %li
-    = link_to 'Home', retail_root_path, :class => controller.controller_name == 'home' ? 'current' : ''
+    = link_to 'Home', retail_root_path, :class => (controller.controller_name == 'home' and controller.action_name == 'index' ? 'current' : '')
   %li
     = link_to 'Catalogs', retail_catalogs_path, :class => controller.controller_name == 'catalogs' ? 'current' : ''
   %li
     = link_to 'Publishers', retail_publishers_path, :class => controller.controller_name == 'publishers' ? 'current' : ''
   %li
     = link_to 'Publisher Sign Up', new_publisher_registration_path
+  %li
+    = link_to 'Links', retail_links_path, :class => (controller.controller_name == 'home' and controller.action_name == 'links' ? 'current' : '')
   - if customer_signed_in?
     %li.cart= link_to "Cart (#{items_total_count})", retail_customer_cart_path(current_customer)
 
