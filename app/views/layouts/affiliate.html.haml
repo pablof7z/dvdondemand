@@ -63,8 +63,9 @@
               %p= message
         =yield
 
-        #sidebar
-          =yield :sidebar
+        - if (sidebar = yield :sidebar)
+          #sidebar
+            =sidebar
 
     #footer
       %p= "Copyright &copy;#{Time.now.year} onDemandDVD"
