@@ -57,6 +57,8 @@ ActionController::Routing::Routes.draw do |map|
       customer.resource :orders, :only => [ :index, :show ]
     end
 
+    retail.links '/links', :controller => 'home', :action => 'links'
+
     retail.root :controller => 'home'
   end
 
