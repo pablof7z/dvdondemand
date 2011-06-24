@@ -3,8 +3,25 @@
 
 #content.wide
   %h1 Affiliate's Dashboard
+  %p
+    Remember, you receive a commission for every disc sold by one of your publishers.
+  %p
+    As an affiliate you have a couple of options for obtaining sign-ups under your account. One of your options is to use our “Introductions” tab that will send a customized email inviting your friends and associates to become publishers on our site.
+  %p
+    Another option is to add your very own customized link to your web site. This link will credit your affiliate account anytime someone signs up as a publisher through it. This method allows you to set the link, and never lift a finger again to generate revenue.
+  %p
+    Have your web master add the link and the banner together for the best results.
+
   .box.sp
-    %span{:style => 'font-weight: bold'} Your affiliate URL:
-    %div{:style => 'padding-left: 15px;'}
+    %span{:style => 'font-weight: bold'} Your affiliate banner:
+    %div{:style => 'padding: 15px;'}
       - affiliate_url = new_publisher_registration_url(:aid => current_affiliate.hash_id)
-      %a{:href => affiliate_url} #{affiliate_url}
+      %a{:href => affiliate_url}
+        = image_tag 'banner468x90.jpg'
+
+    %span{:style => 'font-weight: bold'} HTML code:
+    %div{:style => 'padding: 15px;'}
+      %textarea{:cols => 80, :rows => 3, :disabled => 'disabled'}
+        ="<a href=\"#{affiliate_url}\">&#x000A"
+        ="    <img src=\"#{root_url.gsub(/\/$/, '')}#{image_path('banner468x90.jpg').gsub(/\?\d+$/, '')}\" />&#x000A"
+        ="</a>"
