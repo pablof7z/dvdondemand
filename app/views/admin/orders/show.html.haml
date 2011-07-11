@@ -10,58 +10,93 @@
     %p
       %b Date Created:
       = @order.created_at
+
+  .box.sp
+    .col.x4
+      %h3 Bill To:
+      #{@order.customer.full_name}
+      %br
+      #{@order.billing_address1} #{@order.billing_address2}
+      %br
+      #{@order.billing_city}, #{@order.billing_state}
+      #{@order.billing_zip_code}
+      #{@order.billing_country}
+
+    .col.x4
+      %h3 Ship To:
+      #{@order.customer.full_name}
+      %br
+      #{@order.shipping_address1} #{@order.shipping_address2}
+      %br
+      #{@order.shipping_city}, #{@order.shipping_state}
+      #{@order.shipping_zip_code}
+      #{@order.shipping_country}
+
+    .col.x4
+      %h3 Provided by:
+      Post Production Solutions LLC
+      %br
+      3 Canale Drive, Suite 6
+      %br
+      Egg Harbor Township, NJ 08234
+      %br
+      (609) 840-8340 Phone
+      %br
+      (609) 677-4590 Fax
+      %br
+
+
     %p
-      %b Product(s) requested:
-    %table.table
-      %tr
-        %th.first
-        %th Title
-        %th Media
-        %th Quantity
-        %th Price
-        %th.last
-      - for item in @order.items
+      %strong Paid by
+      #{@order.card_type.capitalize} XXXXXXXXXXXX #{@order.partial_cc_number}
+
+    %p
+      %strong Order Number
+      #{@order.id}
+
+    - if @order.shipping_status
+      %p
+        %strong Order Status
+        #{@order.shipping_status}
+
+    - if @order.shipping_tracking_number
+      %p
+        %strong Tracking Number
+        #{@order.shipping_tracking_number}
+
+  .box
+    %h3 Order Details
+    %table
+      %thead
+        %tr
+          %th.w40 Title
+          %th Packaging
+          %th.w15 Qty.
+          %th Price
+      %tfoot
+        %th Total
+        %th
+        %th
+        %th= number_to_currency(@order.total)
+      %tbody
+        - for item in @order.items
+          %tr{:class => cycle("odd", "even")}
+            %td= link_to item.product.title, retail_catalog_product_path(item.product.catalogs.first, item.product)
+            %td= item.packaging_option.title
+            %td= item.quantity
+            %td= number_to_currency(item.price*item.quantity + item.packaging_option.price)
         %tr{:class => cycle("odd", "even")}
           %td
+            Shipping Fees
           %td
-            %strong= item.product.title
-            %br by #{link_to item.product.publisher.full_name, admin_publisher_path(item.product.publisher)} Publisher
-            %br with
-            %em= item.packaging_option.title
-          %td= item.product.media_type.name
-          %td= item.quantity
           %td
-            = number_to_currency(item.product.price * item.quantity)
-            %br
-            = number_to_currency(item.packaging_option.price * item.quantity)
-          %td
-      %tr
-        %th.first
-        %th{:colspan => 2}
-        %th SubTotal
-        %th= number_to_currency(@order.subtotal)
-        %th.last
-      %tr
-        %td.first
-        %td{:colspan => 2}
-        %td
-          Shipping Option Selected
-          %em= @order.shipping_option.title
-        %td= number_to_currency(@order.shipping_option.price)
-        %td.last
-      %tr
-        %th.first
-        %th{:colspan => 2}
-        %th 
-          %strong Total
-        %th= number_to_currency(@order.total)
-        %th.last
-    %p
-      %b Billing Address:
-      %br= @order.billing_address
-    %p
-      %b Shipping Address:
-      %br= @order.shipping_address
+          %td= number_to_currency @order.shipping_cost
+        - @order.taxes.each do |name, value|
+          %tr{:class => cycle("odd", "even")}
+            %td= name
+            %td
+            %td
+            %td= number_to_currency value
 
   %h1 FirstData transactions logging
   .box
