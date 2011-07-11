@@ -14,7 +14,7 @@ class AffiliateIntroduction < ActiveRecord::Base
     create_signup_hash
   end
   
-  def after_validation_on_create
+  def after_create
     Affiliate::Notifications.deliver_introduction(self)
   end
   
